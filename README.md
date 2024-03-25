@@ -1,19 +1,249 @@
 
-<!-- [![aa-projects-munch.png](https://i.postimg.cc/pV7s4077/aa-projects-munch.png)](https://postimg.cc/DmrQbc7d) -->
 # RIFF HARBOR
   - Welcome to Riff Harbor – your premier destination for all things music! Our mission is to assist you in discovering the ideal instrument that perfectly complements your individual style and sonic expression. Let us guide you as you embark on your musical journey.
 
-  - Feature List:
-    - Shopping (Orders & Checkout) 
-      - Order List - CRUD
-    - Instruments - CRUD
-      - Instrument images
-    - Search filter
-
-  - Customers can quickly find products by name via searchbox, or sort the products by categories. The customer can easily add or bookmark a product from any page, simple user interface to update each product quantity and checkout. Besides that, each product can be magnified for details view.
-
 ## URL
 my url
+
+## Data Schema
+![data schema](./images/Riff_Harbor_DB_schema.png)
+
+## Feature List
+  - Shopping (Orders & Checkout) 
+    - Order List - CRUD
+  - Instruments - CRUD
+    - Instrument images
+  - Search filter
+
+# API Documentation
+## USERS
+
+### Get the Current User
+
+Returns the information about the current user that is logged in.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/auth
+  * Body: none
+
+* Successful Response when there is a logged in user
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "user": {
+          "id": 1,
+          "first_name": "John",
+          "last_name": "Smith",
+          "email": "john1.smith@gmail.com",
+          "username": "JohnSmith,",
+          "profile_image_url": null
+        }
+      }
+    ```
+
+* Successful Response when there is no logged in user
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "user": null
+      }
+    ```
+
+### Log In a User
+
+Logs in a user with valid credentials and returns the current user's
+information.
+
+* Require Authentication: false
+* Request
+  * Method: POST
+  * URL: /api/auth/login
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "email": "john1.smith@gmail.com",
+        "password": "secret_password"
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "user": {
+          "id": 1,
+          "first_name": "John",
+          "last_name": "Smith",
+          "email": "john1.smith@gmail.com",
+          "username": "JohnSmith,",
+          "profile_image_url": null
+        }
+      }
+    ```
+
+* Error response: Inccorect Password
+  * Status code: 401
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "password": [
+          "Password was incorrect."
+        ]
+      }
+    ```
+
+* Error response: Bad request
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "email": [
+          "This field is required" || "Email provided not found."
+        ],
+        "password": [
+          "This field is required" || "Password was incorrect."
+        ]
+      }
+    ```
+
+### Log Out a User
+
+Logs out the current user, ending their session.
+
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/auth/logout
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "User logged out"
+      }
+    ```
+
+
+### Sign Up a User
+
+Creates a new user, logs them in as the current user, and returns the current user's information.
+
+* Require Authentication: false
+* Request
+  * Method: POST
+  * URL: /api/auth/signup
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "first_name": "John",
+        "last_name": "Smith",
+        "email": "john1.smith@gmail.com",
+        "username": "JohnSmith",
+        "password": "secret_password",
+        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/avatar2.png" || null
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "user": {
+          "id": 1,
+          "first_name": "John",
+          "last_name": "Smith",
+          "email": "john1.smith@gmail.com",
+          "username": "JohnSmith,",
+          "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/avatar2.png" || null,
+        }
+      }
+    ```
+
+* Error response: User already exists with the specified email or username
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "email": [
+        "Email address is already in use."
+      ],
+      "username": [
+        "Username is already in use."
+      ]
+    }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "email": [
+          "This field is required" || "Email is invalid."
+        ],
+        "first_name": [
+          "This field is required."
+        ],
+        "last_name": [
+          "This field is required."
+        ],
+        "password": [
+          "This field is required" || "Password must be at least 6 characters."
+        ],
+        "username": [
+          "This field is required" || "Username must be at least 4 characters."
+        ],
+        "profile_image_url": [
+          "Photo must be a valid image URL!"
+        ],
+      }
+    ```
+
+
+## Instruments
+
+
 
 ## Users
 ### Sign Up
@@ -89,3 +319,6 @@ my url
 ### Search
 - As a logged-in or logged-out user
   - I can search instruments  on the `/` page, based on its make and category.
+
+
+
