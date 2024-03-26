@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: dd9a30fbcc20
+Revision ID: f19b7c23dd6c
 Revises: 
-Create Date: 2024-03-26 13:19:52.674660
+Create Date: 2024-03-26 13:45:28.059151
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'dd9a30fbcc20'
+revision = 'f19b7c23dd6c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,8 +31,9 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
     # ### end Alembic commands ###
-    if environment == 'production' and SCHEMA:
-        op.execute(f"ALTER Table users SET SCHEMA {SCHEMA};")
+    if environment == 'production' and SCHEMA and 'sqlite' not in SQLALCHEMY_DATABASE_URI:
+        op.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
