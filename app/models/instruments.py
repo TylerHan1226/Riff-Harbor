@@ -24,6 +24,7 @@ class Instrument(db.Model):
     image_url = Column(String(1000), nullable=False)
 
     users = relationship('User', back_populates='instruments')
+    order_items = relationship('OrderItem', back_populates='instruments')
 
 
     def to_dict(self):
