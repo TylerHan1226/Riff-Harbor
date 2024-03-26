@@ -31,9 +31,9 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
     # ### end Alembic commands ###
-    if environment == 'production' and SCHEMA and 'sqlite' not in SQLALCHEMY_DATABASE_URI:
-        op.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA};")
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+    if environment == 'production' and SCHEMA:
+        op.execute(f"ALTER Table users SET SCHEMA {SCHEMA};")
+
 
 
 def downgrade():
