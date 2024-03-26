@@ -398,8 +398,11 @@ Creates a new user, logs them in as the current user, and returns the current us
         "model": [
           "This field is required." || "Model must be under 100 characters"
         ],
+        "make": [
+          "This field is required." || "Details must be under 100 characters"
+        ],
         "color": [
-          "This field is required." || "Color must be under 50 characters"
+          "This field is required." || "Color must be under 100 characters"
         ],
         "category": [
           "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Accessories."
@@ -408,18 +411,15 @@ Creates a new user, logs them in as the current user, and returns the current us
           "This field is required." || "Price must be greater than 0"
         ],
         "details": [
-          "This field is required." || "Details must be greater than 25 characters"
+          "This field is required." || "Details must be greater than 100 characters"
         ],
         "body": [
-          "This field is required." || "Details must be under 25 characters"
+          "This field is required." || "Details must be under 100 characters"
         ],
         "fingerBoard": [
-          "This field is required." || "Details must be under 25 characters"
+          "This field is required." || "Details must be under 100 characters"
         ],
-        "make": [
-          "This field is required." || "Details must be under 25 characters"
-        ],
-        "used": [
+        "is_used": [
           "This field is required."
         ],
         "image_url": [
@@ -497,8 +497,11 @@ Creates a new user, logs them in as the current user, and returns the current us
         "model": [
           "This field is required." || "Model must be under 100 characters"
         ],
+        "make": [
+          "This field is required." || "Details must be under 100 characters"
+        ],
         "color": [
-          "This field is required." || "Color must be under 50 characters"
+          "This field is required." || "Color must be under 100 characters"
         ],
         "category": [
           "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Accessories."
@@ -507,18 +510,15 @@ Creates a new user, logs them in as the current user, and returns the current us
           "This field is required." || "Price must be greater than 0"
         ],
         "details": [
-          "This field is required." || "Details must be greater than 25 characters"
+          "This field is required." || "Details must be greater than 20 characters"
         ],
         "body": [
-          "This field is required." || "Details must be under 25 characters"
+          "This field is required." || "Details must be under 100 characters"
         ],
         "fingerBoard": [
-          "This field is required." || "Details must be under 25 characters"
+          "This field is required." || "Details must be under 100 characters"
         ],
-        "make": [
-          "This field is required." || "Details must be under 25 characters"
-        ],
-        "used": [
+        "is_used": [
           "This field is required."
         ],
         "image_url": [
