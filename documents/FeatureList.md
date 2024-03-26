@@ -28,3 +28,9 @@
 # Bonus Feature
 ## 5. Amazon Web Services
 * All media should be able to be stored in AWS.
+
+## 6. Wish List
+* Users should be able to view all the items added to the wish list.
+* Users should be able to add items to the wish list.
+* Users should be able to update the wish list they created.
+* Users should be able to delete their wish list.
