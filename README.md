@@ -6,7 +6,7 @@
 my url
 
 ## Data Schema
-![data schema](./images/Riff_Harbor_DB_schema.png)
+![data schema](./documents/Riff_Harbor_DB_schema.png)
 
 ## Feature List
   - Shopping (Orders & Checkout) 
@@ -38,11 +38,8 @@ Returns the information about the current user that is logged in.
       {
         "user": {
           "id": 1,
-          "first_name": "John",
-          "last_name": "Smith",
           "email": "john1.smith@gmail.com",
-          "username": "JohnSmith,",
-          "profile_image_url": null
+          "username": "JohnSmith,"
         }
       }
     ```
@@ -75,7 +72,7 @@ information.
     ```json
       {
         "email": "john1.smith@gmail.com",
-        "password": "secret_password"
+        "password": "password"
       }
     ```
 
@@ -89,11 +86,8 @@ information.
       {
         "user": {
           "id": 1,
-          "first_name": "John",
-          "last_name": "Smith",
           "email": "john1.smith@gmail.com",
-          "username": "JohnSmith,",
-          "profile_image_url": null
+          "username": "JohnSmith,"
         }
       }
     ```
@@ -166,12 +160,9 @@ Creates a new user, logs them in as the current user, and returns the current us
 
     ```json
       {
-        "first_name": "John",
-        "last_name": "Smith",
         "email": "john1.smith@gmail.com",
         "username": "JohnSmith",
-        "password": "secret_password",
-        "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/avatar2.png" || null
+        "password": "password"
       }
     ```
 
@@ -185,11 +176,8 @@ Creates a new user, logs them in as the current user, and returns the current us
       {
         "user": {
           "id": 1,
-          "first_name": "John",
-          "last_name": "Smith",
           "email": "john1.smith@gmail.com",
-          "username": "JohnSmith,",
-          "profile_image_url": "https://meetup2024.s3.us-west-2.amazonaws.com/avatar2.png" || null,
+          "username": "JohnSmith,"
         }
       }
     ```
@@ -222,27 +210,360 @@ Creates a new user, logs them in as the current user, and returns the current us
         "email": [
           "This field is required" || "Email is invalid."
         ],
-        "first_name": [
-          "This field is required."
-        ],
-        "last_name": [
-          "This field is required."
-        ],
         "password": [
           "This field is required" || "Password must be at least 6 characters."
         ],
         "username": [
           "This field is required" || "Username must be at least 4 characters."
-        ],
-        "profile_image_url": [
-          "Photo must be a valid image URL!"
-        ],
+        ]
       }
     ```
 
 
 ## Instruments
+### Get all instruments
+* Require Authentication: False
+* Request
+  * Method: GET
+  * URL: /api/instruments
+  * Body: None
 
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "Products": [
+          {
+            "id": 1,
+            "seller_id": 1,
+            "model": "Fender American Vintage II 1951 Telecaster",
+            "color": "Butterscotch Blonde",
+            "category": "Electric Guitar",
+            "price": 2449.99,
+            "details": "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
+            "body": "Maple",
+            "fingerBoard": "Maple",
+            "make": "Fender",
+            "is_used": false,
+            "image_url": "url.png",
+            "createdAt": "2024-01-20 20:00:00",
+            "updatedAt": "2024-01-20 20:20:20",
+          }
+        ]
+      }
+    ```
+
+
+### Get all instruments posted by current user
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/instruments/current
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "Products": [
+          {
+            "id": 1,
+            "seller_id": 1,
+            "model": "Fender American Vintage II 1951 Telecaster",
+            "color": "Butterscotch Blonde",
+            "category": "Electric Guitar",
+            "price": 2449.99,
+            "details": "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
+            "body": "Maple",
+            "fingerBoard": "Maple",
+            "make": "Fender",
+            "is_used": false,
+            "image_url" : "img.png"
+            "createdAt": "2024-01-20 20:00:00",
+            "updatedAt": "2024-01-20 20:20:20",
+          }
+        ]
+      }
+    ```
+* Error response: Couldn't find a instrument with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+
+### Get a instrument by id
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/instruments/:instrumentId
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "id": 1,
+        "seller_id": 1,
+        "model": "Fender American Vintage II 1951 Telecaster",
+        "color": "Butterscotch Blonde",
+        "category": "Electric Guitar",
+        "price": 2449.99,
+        "details": "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
+        "body": "Maple",
+        "fingerBoard": "Maple",
+        "make": "Fender",
+        "is_used": false,
+        "image_url" : "img.png"
+        "createdAt": "2024-01-20 20:00:00",
+        "updatedAt": "2024-01-20 20:20:20",
+      }
+    ```
+
+* Error response: Product not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Product couldn't be found"
+      }
+    ```
+
+### Create a instrument
+* Require Authentication: True
+* Request
+  * Method: POST
+  * URL: /api/products
+  * Body:
+    ```json
+      {
+        "model": "Fender American Ultra Stratocaster HSS",
+        "color": "Arctic Pearl",
+        "category": "Electric Guitar",
+        "price": 2249.99,
+        "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
+        "body": "Alder",
+        "fingerBoard": "Maple",
+        "make": "Fender",
+        "is_used": true,
+        "image_url" : "img.png"
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "id": 2,
+        "seller_id": 1,
+        "model": "Fender American Ultra Stratocaster HSS",
+        "color": "Arctic Pearl",
+        "category": "Electric Guitar",
+        "price": 2249.99,
+        "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
+        "body": "Alder",
+        "fingerBoard": "Maple",
+        "make": "Fender",
+        "is_used": true,
+        "image_url" : "img.png",
+        "createdAt": "2024-01-20 20:00:00",
+        "updatedAt": "2024-01-20 20:20:20",
+      }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "model": [
+          "This field is required." || "Invalid category! Here is a list of allowed categories: ['Groceries', 'Electronics', 'Books', 'Beauty & Health', 'Handmade']"
+        ],
+        "color": [
+          "This field is required." || "Color must be under 50 characters"
+        ],
+        "category": [
+          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Effects."
+        ],
+        "price": [
+          "This field is required." || "Price must be greater than 0"
+        ],
+        "details": [
+          "This field is required." || "Details must be greater than 25 characters"
+        ],
+        "body": [
+          "This field is required." || "Details must be under 25 characters"
+        ],
+        "fingerBoard": [
+          "This field is required." || "Details must be under 25 characters"
+        ],
+        "make": [
+          "This field is required." || "Details must be under 25 characters"
+        ],
+        "used": [
+          "This field is required."
+        ],
+        "image_url": [
+          "This field is required."
+        ]
+      }
+    ```
+
+### Update a instrument
+* Require Authentication: True
+* Request
+  * Method: PUT
+  * URL: /api/instruments/:instrumentId
+  * Body:
+    ```json
+      {
+        "model": "Fender American Ultra Stratocaster HSS NEW!",
+        "color": "Arctic Pearl",
+        "category": "Electric Guitar",
+        "price": 3339.99,
+        "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
+        "body": "Alder",
+        "fingerBoard": "Maple",
+        "make": "Fender",
+        "is_used": false,
+        "image_url" : "img.png"
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "id": 2,
+        "seller_id": 1,
+        "model": "Fender American Ultra Stratocaster HSS",
+        "color": "Arctic Pearl",
+        "category": "Electric Guitar",
+        "price": 2249.99,
+        "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
+        "body": "Alder",
+        "fingerBoard": "Maple",
+        "make": "Fender",
+        "is_used": true,
+        "image_url" : "img.png",
+        "createdAt": "2024-01-20 20:00:00",
+        "updatedAt": "2024-01-20 20:20:20",
+      }
+    ```
+
+* Error response: Instrument not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Instrument couldn't be found"
+      }
+    ```
+
+* Error response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "model": [
+          "This field is required." || "Invalid category! Here is a list of allowed categories: ['Groceries', 'Electronics', 'Books', 'Beauty & Health', 'Handmade']"
+        ],
+        "color": [
+          "This field is required." || "Color must be under 50 characters"
+        ],
+        "category": [
+          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Effects."
+        ],
+        "price": [
+          "This field is required." || "Price must be greater than 0"
+        ],
+        "details": [
+          "This field is required." || "Details must be greater than 25 characters"
+        ],
+        "body": [
+          "This field is required." || "Details must be under 25 characters"
+        ],
+        "fingerBoard": [
+          "This field is required." || "Details must be under 25 characters"
+        ],
+        "make": [
+          "This field is required." || "Details must be under 25 characters"
+        ],
+        "used": [
+          "This field is required."
+        ],
+        "image_url": [
+          "This field is required."
+        ]
+      }
+    ```
+
+### Delete a instrument by id
+
+Delete an existing instrument by id.
+
+* Require Authentication: True
+* Require Authorization: True. (Must be the seller of the instrument)
+* Request
+  * Method: DELETE
+  * URL: /api/instrument/:instrumentId
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully deleted instrument"
+      }
+    ```
+
+* Error response: Product not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Instrument couldn't be found"
+      }
+    ```
 
 
 ## Users
@@ -279,7 +600,8 @@ Creates a new user, logs them in as the current user, and returns the current us
 - As a logged-in user, I am able to create a new instrument for sell by providing relevant information such as name, price, details, etc.
 - From any page, click the "Sell Your Gear" button to navigate to `/instruments/new`. Here, owners can:
   - Create a new instrument.
-  - Add images for the instruments you've created
+  - Add a images for the instrument in the create form.
+  - Navigate to instrument detail page to add more images
 
 ### Viewing a Instrument
 - As a logged-in or logged-out user
