@@ -8,16 +8,13 @@ my url
 ## Data Schema
 ![data schema](./documents/Riff_Harbor_DB_schema.png)
 
-## Feature List
+## Features
   - Shopping (Orders & Checkout) 
-    - Order List - CRUD
-  - Instruments - CRUD
-    - Instrument images
-  - Search filter
+  - Instruments
+  - Search box
 
-# API Documentation
+# Endpoints
 ## USERS
-
 ### Get the Current User
 
 Returns the information about the current user that is logged in.
@@ -348,7 +345,7 @@ Creates a new user, logs them in as the current user, and returns the current us
 * Require Authentication: True
 * Request
   * Method: POST
-  * URL: /api/products
+  * URL: /api/instruments/new
   * Body:
     ```json
       {
@@ -399,13 +396,13 @@ Creates a new user, logs them in as the current user, and returns the current us
     ```json
       {
         "model": [
-          "This field is required." || "Invalid category! Here is a list of allowed categories: ['Groceries', 'Electronics', 'Books', 'Beauty & Health', 'Handmade']"
+          "This field is required." || "Model must be under 100 characters"
         ],
         "color": [
           "This field is required." || "Color must be under 50 characters"
         ],
         "category": [
-          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Effects."
+          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Accessories."
         ],
         "price": [
           "This field is required." || "Price must be greater than 0"
@@ -435,7 +432,7 @@ Creates a new user, logs them in as the current user, and returns the current us
 * Require Authentication: True
 * Request
   * Method: PUT
-  * URL: /api/instruments/:instrumentId
+  * URL: /api/instruments/:instrumentId/update
   * Body:
     ```json
       {
@@ -498,13 +495,13 @@ Creates a new user, logs them in as the current user, and returns the current us
     ```json
       {
         "model": [
-          "This field is required." || "Invalid category! Here is a list of allowed categories: ['Groceries', 'Electronics', 'Books', 'Beauty & Health', 'Handmade']"
+          "This field is required." || "Model must be under 100 characters"
         ],
         "color": [
           "This field is required." || "Color must be under 50 characters"
         ],
         "category": [
-          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Effects."
+          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Accessories."
         ],
         "price": [
           "This field is required." || "Price must be greater than 0"
@@ -538,7 +535,7 @@ Delete an existing instrument by id.
 * Require Authorization: True. (Must be the seller of the instrument)
 * Request
   * Method: DELETE
-  * URL: /api/instrument/:instrumentId
+  * URL: /api/instrument/:instrumentId/delete
   * Body: None
 
 * Successful Response
@@ -565,82 +562,264 @@ Delete an existing instrument by id.
       }
     ```
 
-
-## Users
-### Sign Up
-- As an unregistered and unauthorized user, I want to be able to sign up for the website via a sign-up form.
-- When I'm on the `/signup` page:
-  - I would like to be able to enter my email, username, and preferred password on a clearly laid out form.
-  - I would like the website to log me in upon successful completion of the sign-up form, so that I can seamlessly access the site's functionality.
-  - When I enter invalid data on the sign-up form:
-    - I would like the website to inform me of the validations I failed to pass and repopulate the form with my valid entries (except my password), so that I can try again without needing to refill forms I entered valid data into.
-
-### Log in
-- As a registered and unauthorized user, I want to be able to log in to the website via a log-in form.
-- When I'm on the `/login` page:
-  - I would like to be able to enter my email and password on a clearly laid out form.
-  - When I enter invalid data on the log-up form:
-    - I would like the website to inform me of the validations I failed to pass and repopulate the form with my valid entries (except my password), so that I can try again without needing to refill forms I entered valid data into.
-
-### Demo User
-- As an unregistered and unauthorized user, I would like an easy-to-find and clear button on both the `/signup` and `/login` pages to allow me to visit the site as a guest without signing up or logging in.
-- When I'm on either the `/signup` or `/login` pages:
-  - I can click on a Demo User button to log me in and allow me access as a normal user, so that I can test the site's features and functionality without needing to stop and enter credentials.
-
-### Log Out
-- As a logged-in user, I want to log out via an easy-to-find log out button on the navigation bar.
-- While on any page of the site:
-  - I can log out of my account and be redirected to the landing change.
-  - So that I can easily log out to keep my information secure.
-
-
-## Instrument
-> Create, Read, Update, Delete
-### Creating a Instrument
-- As a logged-in user, I am able to create a new instrument for sell by providing relevant information such as name, price, details, etc.
-- From any page, click the "Sell Your Gear" button to navigate to `/instruments/new`. Here, owners can:
-  - Create a new instrument.
-  - Add a images for the instrument in the create form.
-  - Navigate to instrument detail page to add more images
-
-### Viewing a Instrument
-- As a logged-in or logged-out user
-  - I can view all the stores  on the `/instruments` page.
-  - I can view a selection of the store on the `/instruments/:instrumentId` page.
-  <!-- - I can see the images of a store `/instruments/:instrumentId/images` -->
-
-### Updating a Instrument
-- As a logged-in user, when I'm on the `/instruments/:instrumentId`
-  - I can click "Edit" on the instrument associated with the user to make changes to it.
-
-### Deleting a Instrument
-- When I'm on the `/instruments/:instrumentId`, I can click "Delete" to permanently delete a instrument I have created.
-
-
 ## Order List
-> Create, Read, Update, Delete
-### Creating a Order List
-- As a logged-in user, I am able to create a order list for the instruments I want to buy.
-- From either `/instruments` or `/instruments/:instrumentId`, click the "Add to Cart" button to navigate to add the item in your order list. Here, owners can:
+### Get all orders (current orders and previous orders) for the current user
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/orderLists
+  * Body: None
 
-### Viewing a Order List
-- As a logged-in user, I can view all the items in my cart on the `user/:userId/order_list` page.
-- You can see order history on the `user/:userId/order_history` page
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
 
-### Updating a Order List
-- As a logged-in user, when I'm on the `user/:userId/order_list`
-  - I can change the amount of the item I want to buy
-  - After I clicked the "check out" button, it will charge me the amount of the subtotal
+    ```json
+      {
+        "AllOrderLists": [
+        {
+          "id": 1,
+          "customer_id": 1,
+          "hasCheckedOut": false,
+          "Items": [
+            {
+              "id": 2,
+              "order_list_id": 2,
+              "instrument_id": 3,
+              "orderQuantity": 1
+            },
+            {
+              "id": 3,
+              "order_list_id": 2,
+              "instrument_id": 4,
+              "orderQuantity": 2
+            }
+          ],
+          "createdAt": "2024-01-20 20:00:00",
+          "updatedAt": "2024-01-20 20:20:20",
+        }, {
+          "id": 2,
+          "customer_id": 1,
+          "hasCheckedOut": true,
+          "Items": [
+            {
+              "id": 1,
+              "order_list_id": 1,
+              "instrument_id": 1,
+              "orderQuantity": 1
+            }
+          ],
+          "createdAt": "2024-01-20 20:00:00",
+          "updatedAt": "2024-01-20 20:20:20",
+        }
+        ]
+      }
+    ```
 
-### Deleting a Instrument
-- When I'm on the `user/:userId/order_list`, I can click "Delete" to permanently delete a instrument I have added to the cart.
+
+### Get an order list (current orders or previous orders) by id
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/orderLists/:orderListId
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "id": 1,
+        "customer_id": 1,
+        "hasCheckedOut": false,
+        "Items": [
+          {
+            "id": 2,
+            "order_list_id": 2,
+            "instrument_id": 3,
+            "orderQuantity": 1
+          },
+          {
+            "id": 3,
+            "order_list_id": 2,
+            "instrument_id": 4,
+            "orderQuantity": 2
+          }
+        ],
+        "createdAt": "2024-01-20 20:00:00",
+        "updatedAt": "2024-01-20 20:20:20",
+      }
+    ```
+
+* Error response: Order List not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Order List couldn't be found"
+      }
+    ```
+
+### Create an order lists (cerate an empty cart for the user)
+* Require Authentication: True
+* Request
+  * Method: POST
+  * URL: /api/orderLists
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "id": 1,
+        "customer_id": 1,
+        "hasCheckedOut": false,
+        "Items": []
+        "createdAt": "2024-01-20 20:00:00",
+        "updatedAt": "2024-01-20 20:20:20",
+      }
+    ```
+
+* Error response: Only allows user to have one cart
+  * Status Code: 500
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Please checkout or clear your previous cart"
+      }
+    ```
 
 
-## Search
-<!-- > Create, Read, Update, Delete -->
-### Search
-- As a logged-in or logged-out user
-  - I can search instruments  on the `/` page, based on its make and category.
+### Update the current order (already in the cart) in the order lists
+* Require Authentication: True
+* Request
+  * Method: PUT
+  * URL: /api/orderLists/:orderList
+  * Body:
+    ```json
+      {
+        "instrument_id": 4,
+        "orderQuantity": 3
+      }
+    ```
+
+* Successful Response (when order quantity is greater than 0)
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "id": 3,
+        "order_list_id": 2,
+        "instrument_id": 4,
+        "orderQuantity": 3,
+        "createdAt": "2024-01-20 20:00:00",
+        "updatedAt": "2024-01-20 20:20:20",
+      }
+    ```
+
+* Successful Response (when order quantity equals to 0 => deleting the item)
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully removed order item from cart"
+      }
+    ```
+
+* Error response: Order List not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Order couldn't be found"
+      }
+    ```
+* Error response: Order item body validation
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "instrument_id": [
+          "This field is required."|| "Instrument Id must be a valid positive integer"
+        ],
+        "orderQuantity": [
+          "This field is required."|| "Order quantity Id must be 1 when you first add it to cart"
+        ]
+      }
+    ```
+
+### Checkout
+* Require Authentication: True
+* User authentication: Current user must own the order list
+* Request
+  * Method: GET
+  * URL: /api/orderLists/:orderList/checkout
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully checkout"
+      }
+    ```
+
+* Error response: Order List not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Order couldn't be found"
+      }
+    ```
+* Error response: Order List is empty
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "There's nothing in your cart"
+      }
+    ```
+
+
+
 
 
 
