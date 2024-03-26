@@ -49,23 +49,23 @@
 - When I'm on the `/instruments/:instrumentId`, I can click "Delete" to permanently delete a instrument I have created.
 
 
-## Order List
+## Order Items
 > Create, Read, Update, Delete
-### Creating an Order List
-- As a logged-in user, I am able to create a order list for the instruments I want to buy.
-- From either `/instruments` or `/instruments/:instrumentId`, click the "Add to Cart" button to navigate to add the item in your order list.
+### Creating an Order Item
+- As a logged-in user, I am able to create an Order Item for the instruments I want to buy.
+- From either `/instruments` or `/instruments/:instrumentId`, click the "Add to Cart" button to navigate to add the item in your Order Item.
 
-### Viewing an Order List
+### Viewing an Order Item
 - As a logged-in user, I can view all the current order items and my order history on the `/api/orderLists` page.
-- As a logged-in user, I can view a specific order list (current or past) on the `/api/orderLists/:orderListId` page.
+- As a logged-in user, I can view a specific Order Item (current or past) on the `/api/orderLists/:orderListId` page.
 
-### Updating an Order List
-- As a logged-in user, when I open the order list `/api/orderLists/:orderListId`
+### Updating an Order Item
+- As a logged-in user, when I open the Order Item `/api/orderLists/:orderListId`
   - I can change the amount of the order items I want to buy
   - After I clicked the "check out" button, it will ask me to confirm the subtotal
 
 ### Deleting an Order
-- When I'm on the `/api/orderLists/:orderList`, I can either click "Clear Cart" to permanently delete all the order items, or change the quantity to 0 to remove the item.
+- When I'm on the `/api/orderLists/:orderList`, I can either click "Checkout" to permanently remove all the order items in the cart, or change the quantity to 0 to remove the item.
 
 
 ## Search Filter

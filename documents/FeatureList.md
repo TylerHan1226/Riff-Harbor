@@ -14,23 +14,24 @@
 * Users should be able to update the order items they created.
 * Users should be able to delete their order items.
 
-## 3. Order List
-* Users should be able to view all the order lists created by the users.
-* Users should be able to add order list.
-* Users should be able to update the order list they created.
-* Users should be able to delete their order lists.
+## 3. Order History
+* Users should be able to view all the orders created by the users.
+* Users should be able to create order history.
+* Users should be able to update the order histories they created.
+* Users should be able to delete their order history.
 
-## 4. Search / Sort & Filter
-* Users should be able to view the results by sorting or filtering.
-* Users should be able to view the results by searching car models or car locations.
+## 4. Wish List
+* Users should be able to view all the items added to the wish list.
+* Users should be able to add items to the wish list.
+* Users should be able to update the wish list they created.
+* Users should be able to delete their wish list.
 
 
 # Bonus Feature
 ## 5. Amazon Web Services
 * All media should be able to be stored in AWS.
 
-## 6. Wish List
-* Users should be able to view all the items added to the wish list.
-* Users should be able to add items to the wish list.
-* Users should be able to update the wish list they created.
-* Users should be able to delete their wish list.
+
+## 6. Search / Sort & Filter
+* Users should be able to view the results by sorting or filtering.
+* Users should be able to view the results by searching car models or car locations.
