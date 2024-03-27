@@ -243,7 +243,7 @@ Creates a new user, logs them in as the current user, and returns the current us
             "price": 2449.99,
             "details": "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
             "body": "Maple",
-            "fingerBoard": "Maple",
+            "fretboard": "Maple",
             "make": "Fender",
             "is_used": false,
             "image_url": "url.png",
@@ -280,7 +280,7 @@ Creates a new user, logs them in as the current user, and returns the current us
             "price": 2449.99,
             "details": "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
             "body": "Maple",
-            "fingerBoard": "Maple",
+            "fretboard": "Maple",
             "make": "Fender",
             "is_used": false,
             "image_url" : "img.png"
@@ -320,7 +320,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "price": 2449.99,
         "details": "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
         "body": "Maple",
-        "fingerBoard": "Maple",
+        "fretboard": "Maple",
         "make": "Fender",
         "is_used": false,
         "image_url" : "img.png"
@@ -355,7 +355,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "price": 2249.99,
         "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
         "body": "Alder",
-        "fingerBoard": "Maple",
+        "fretboard": "Maple",
         "make": "Fender",
         "is_used": true,
         "image_url" : "img.png"
@@ -378,7 +378,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "price": 2249.99,
         "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
         "body": "Alder",
-        "fingerBoard": "Maple",
+        "fretboard": "Maple",
         "make": "Fender",
         "is_used": true,
         "image_url" : "img.png",
@@ -405,7 +405,7 @@ Creates a new user, logs them in as the current user, and returns the current us
           "This field is required." || "Color must be under 100 characters"
         ],
         "category": [
-          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Accessories."
+          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Accessories."
         ],
         "price": [
           "This field is required." || "Price must be greater than 0"
@@ -416,7 +416,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "body": [
           "This field is required." || "Details must be under 100 characters"
         ],
-        "fingerBoard": [
+        "fretboard": [
           "This field is required." || "Details must be under 100 characters"
         ],
         "is_used": [
@@ -442,7 +442,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "price": 3339.99,
         "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
         "body": "Alder",
-        "fingerBoard": "Maple",
+        "fretboard": "Maple",
         "make": "Fender",
         "is_used": false,
         "image_url" : "img.png"
@@ -465,7 +465,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "price": 2249.99,
         "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
         "body": "Alder",
-        "fingerBoard": "Maple",
+        "fretboard": "Maple",
         "make": "Fender",
         "is_used": true,
         "image_url" : "img.png",
@@ -504,7 +504,7 @@ Creates a new user, logs them in as the current user, and returns the current us
           "This field is required." || "Color must be under 100 characters"
         ],
         "category": [
-          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Drum, Amp, or Accessories."
+          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass."
         ],
         "price": [
           "This field is required." || "Price must be greater than 0"
@@ -515,7 +515,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "body": [
           "This field is required." || "Details must be under 100 characters"
         ],
-        "fingerBoard": [
+        "fretboard": [
           "This field is required." || "Details must be under 100 characters"
         ],
         "is_used": [

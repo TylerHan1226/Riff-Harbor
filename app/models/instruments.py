@@ -20,7 +20,7 @@ class Instrument(db.Model):
     price = Column(Float, nullable=False)
     details = Column(String(1000), nullable=False)
     body = Column(String(100), nullable=False)
-    fingerBoard = Column(String(100), nullable=False)
+    fretboard = Column(String(100), nullable=False)
     is_used = Column(String(100), nullable=False)
     image_url = Column(String(1000), nullable=False)
 
@@ -39,7 +39,7 @@ class Instrument(db.Model):
             'price': self.price,
             'details': self.details,
             'body': self.body,
-            'fingerBoard': self.fingerBoard,
+            'fretboard': self.fretboard,
             'is_used': self.is_used,
             'image_url': self.image_url,
         }
