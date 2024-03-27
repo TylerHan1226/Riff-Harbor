@@ -54,8 +54,8 @@ export default function InstrumentDetails() {
                     <p className="inst-dtl-text">Fretboard Material: {instrument.fretboard}</p>
                     <p className="inst-dtl-text">Seller: {seller?.username}</p>
                     {/* <p className="inst-dtl-text">Contact: {seller?.email}</p> */}
-                    <button className="add-to-cart-button">
-                        <NavLink className='add-to-cart-text'>
+                    <button className="add-to-cart-button-dtl">
+                        <NavLink className='add-to-cart-text-dtl'>
                             Add to Cart
                         </NavLink>
                     </button>

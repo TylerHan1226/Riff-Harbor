@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getAllInstrumentsThunk } from '../../redux/instrument'
 import "./LandingPage.css";
 import { NavLink } from "react-router-dom";
+import { FaDice } from "react-icons/fa6";
 
 export default function LandingPage() {
 
@@ -63,8 +64,11 @@ export default function LandingPage() {
     <div id='landing-page-container'>
       <div id="trending-container">
         <div>
-          <h1>Trending</h1>
-          <button onClick={handleRandomizeInstClick}>Randomize Instruments</button>
+          <h1>Gallery</h1>
+          <button id='dice-button' onClick={handleRandomizeInstClick}>
+            <FaDice id='dice-icon' />
+            <p id='dice-text'>click to randomize</p>
+          </button>
         </div>
         <div className="trending-instruments-container">
           {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (

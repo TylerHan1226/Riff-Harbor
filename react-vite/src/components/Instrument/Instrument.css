@@ -38,8 +38,30 @@
 .back-button {
     width: 80px;
     height: 24px;
+    background-color: white;
+    border: none;
+    box-shadow: 0.5px 0.5px 1px 1px;
 }
 
 .back-button-text {
     text-decoration: none;
+    color: black;
 }
+
+.add-to-cart-button-dtl {
+    width: 50%;
+    margin-top: auto;
+    background-color: rgb(200, 0, 0);
+    border: none;
+    box-shadow: 0.5px 0.5px 1px 1px;
+    height: 48px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+.add-to-cart-text-dtl {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
