@@ -13,7 +13,7 @@ export default function InstrumentDetails() {
 
     const instrument = useSelector(state => state.instruments)
     const session = useSelector(state => state.session)
-    const {instrumentId} = useParams()
+    const { instrumentId } = useParams()
     console.log('instrumentId ==>', instrumentId)
     console.log('instrument ==>', instrument)
 
@@ -32,25 +32,38 @@ export default function InstrumentDetails() {
     console.log('seller?.username ==>', seller?.username)
 
     return (
-        <div id='instrument-dtl-page-container'>
-            {/* <div id='instrument-dtl-page-container'> */}
-            {/* <div id='instrument-dtl-page-container'> */}
-                    <div className="instrument-dtl-info-container">
-                        <img id="instrument-dtl-image" src={instrument.image_url} />
-                    </div>
-                    <div className="instrument-dtl-info-container">
-                        <p className="inst-dtl-text">{instrument.model}</p>
-                        <p className="inst-dtl-text">{instrument.color}</p>
-                        <p className="inst-dtl-text">${instrument.price}</p>
-                        <p className="inst-dtl-text">Make: {instrument.make}</p>
-                        <p className="inst-dtl-text">Body Material: {instrument.body}</p>
-                        <p className="inst-dtl-text">Fretboard Material: {instrument.fretboard}</p>
-                        <p className="inst-dtl-text">Seller: {seller?.username}</p>
-                        {/* <p className="inst-dtl-text">Contact: {seller?.email}</p> */}
-                        <button className="add-to-cart-button">Add to Cart</button>
-                    </div>
+        <div id='instrument-dtl-page-root'>
+            <button className='back-button'><NavLink className='back-button-text' to='/'>back</NavLink></button>
+            <div id='instrument-dtl-page-container'>
+                {/* <div id='instrument-dtl-page-container'> */}
+                {/* <div id='instrument-dtl-page-container'> */}
+                <div className="instrument-dtl-info-container">
+                    <img id="instrument-dtl-image" src={instrument.image_url} />
+                </div>
+                <div className="instrument-dtl-info-container">
+                    <h2>{instrument.model}</h2>
+                    <p className="inst-dtl-text">{instrument.color}</p>
+                    <p className="inst-dtl-text">${instrument.price}</p>
+                    {instrument.is_used ? (
+                        <p className="inst-dtl-text">Condition: Pre-owned</p>
+                    ) : (
+                        <p className="inst-dtl-text">Condition: New</p>
+                    )}
+                    <p className="inst-dtl-text">Make: {instrument.make}</p>
+                    <p className="inst-dtl-text">Body Material: {instrument.body}</p>
+                    <p className="inst-dtl-text">Fretboard Material: {instrument.fretboard}</p>
+                    <p className="inst-dtl-text">Seller: {seller?.username}</p>
+                    {/* <p className="inst-dtl-text">Contact: {seller?.email}</p> */}
+                    <button className="add-to-cart-button">
+                        <NavLink className='add-to-cart-text'>
+                            Add to Cart
+                        </NavLink>
+                    </button>
+                </div>
 
-            {/* </div> */}
+                {/* </div> */}
+            </div>
         </div>
+
     )
 }

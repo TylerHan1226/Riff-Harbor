@@ -1,4 +1,15 @@
 
+#instrument-dtl-page-root {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    margin-top: 36px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 #instrument-dtl-page-container {
     border: 0.5px solid rgb(0, 0, 0, 0.2);
     border-radius: 12px;
@@ -8,7 +19,6 @@
     max-height: 600px;
     max-width: 900px;
     min-width: 600px;
-    margin-top: 36px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -23,4 +33,13 @@
 
 #instrument-dtl-image {
     height: auto;
+}
+
+.back-button {
+    width: 80px;
+    height: 24px;
+}
+
+.back-button-text {
+    text-decoration: none;
 }

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 0746b089778b
+Revision ID: ffe79dc82e2d
 Revises: 
-Create Date: 2024-03-26 21:48:33.555128
+Create Date: 2024-03-27 15:55:32.529491
 
 """
 from alembic import op
@@ -11,9 +11,8 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA") 
 
-
 # revision identifiers, used by Alembic.
-revision = '0746b089778b'
+revision = 'ffe79dc82e2d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,7 +40,7 @@ def upgrade():
     sa.Column('details', sa.String(length=1000), nullable=False),
     sa.Column('body', sa.String(length=100), nullable=False),
     sa.Column('fretboard', sa.String(length=100), nullable=False),
-    sa.Column('is_used', sa.String(length=100), nullable=False),
+    sa.Column('is_used', sa.Boolean(create_constraint=100), nullable=False),
     sa.Column('image_url', sa.String(length=1000), nullable=False),
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -60,6 +59,7 @@ def upgrade():
         op.execute(f"ALTER Table users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER Table instruments SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER Table order_items SET SCHEMA {SCHEMA};")
+
 
 
 def downgrade():

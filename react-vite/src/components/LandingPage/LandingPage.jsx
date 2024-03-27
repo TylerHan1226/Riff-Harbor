@@ -78,12 +78,16 @@ export default function LandingPage() {
                 <p className="inst-dtl-text">{eachInst.model}</p>
                 <p className="inst-dtl-text">{eachInst.color}</p>
                 <p className="inst-dtl-text">{eachInst.price}</p>
-                {{ eachInst } ? (
-                  <p className="inst-dtl-text">New</p>
-                ) : (
+                { eachInst.is_used  ? (
                   <p className="inst-dtl-text">Pre-owned</p>
+                ) : (
+                  <p className="inst-dtl-text">New</p>
                 )}
-                <button className="add-to-cart-button">Add to Cart</button>
+                <button className="add-to-cart-button">
+                  <NavLink className='add-to-cart-text'>
+                    Add to Cart
+                  </NavLink>
+                </button>
               </div>
             </div>
           ))}
