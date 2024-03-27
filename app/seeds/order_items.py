@@ -3,11 +3,7 @@ from sqlalchemy.sql import text
 import json
 
 
-
-
 def seed_order_items():
-
-
     order_1 = OrderItem(
         instrument_id = 1,
         user_id = "1",
@@ -33,7 +29,6 @@ def undo_order_items():
    if environment == "production":
        db.session.execute(f"TRUNCATE table {SCHEMA}.order_items RESTART IDENTITY CASCADE;")
    else:
-       db.session.execute(text("DELETE FROM instruments"))
-
+       db.session.execute(text("DELETE FROM order_items"))
 
    db.session.commit()

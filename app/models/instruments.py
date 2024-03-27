@@ -15,6 +15,7 @@ class Instrument(db.Model):
     seller_id = Column(Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     make = Column(String(100), nullable=False)
     model = Column(String(100), nullable=False)
+    color = Column(String(100), nullable=False)
     category = Column(String(100), nullable=False)
     price = Column(Float, nullable=False)
     details = Column(String(1000), nullable=False)
@@ -33,6 +34,7 @@ class Instrument(db.Model):
             'seller_id': self.seller_id,
             'make': self.make,
             'model': self.model,
+            'color': self.color,
             'category': self.category,
             'price': self.price,
             'details': self.details,

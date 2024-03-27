@@ -3,12 +3,10 @@ from sqlalchemy.sql import text
 import json
 
 
-
-
 def seed_instruments():
-
     e_guitar_1 = Instrument(
         seller_id = 2,
+        make = "Fender",
         model = "Fender American Vintage II 1951 Telecaster",
         color = "Butterscotch Blonde",
         category = "Electric Guitar",
@@ -16,20 +14,19 @@ def seed_instruments():
         details = "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
         body = "Maple",
         fingerBoard = "Maple",
-        make = "Fender",
         is_used = False,
         image_url = "url.png",
     )
     e_guitar_2 = Instrument(
         seller_id = 2,
         model = "Fender American Ultra Stratocaster",
+        make = "Fender",
         color = "Cobra Blue",
         category = "Electric Guitar",
         price = 2199.99,
         details = "The Fender American Ultra Strat: Alder body, maple neck, Ultra Noiseless pickups, modern upgrades for precision, tone, and comfort.",
         body = "Maple",
         fingerBoard = "Maple",
-        make = "Fender",
         is_used = False,
         image_url = "url.png",
     )
@@ -62,6 +59,5 @@ def undo_instruments():
        db.session.execute(f"TRUNCATE table {SCHEMA}.instruments RESTART IDENTITY CASCADE;")
    else:
        db.session.execute(text("DELETE FROM instruments"))
-
 
    db.session.commit()
