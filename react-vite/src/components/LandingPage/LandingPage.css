@@ -43,18 +43,22 @@ p {
 
 .instrument-image {
     height: 200px;
-    margin-top: 24px;
+    margin-top: 12px;
 }
 
 .add-to-cart-button {
     width: 50%;
     margin-top: auto;
-    background-color: rgb(202, 0, 0);
-    border: none;
+    background-color: rgb(200, 0, 0);
     box-shadow: 0.5px 0.5px 1px 1px;
+    border: none;
     height: 24px;
     margin-bottom: 12px;
     border-radius: 4px;
+}
+
+.add-to-cart-button:hover {
+    background-color: rgb(120, 0, 0);
 }
 
 .add-to-cart-text {
@@ -71,7 +75,7 @@ p {
     border: none;
     display: flex;
     flex-direction: column;
-    background-color: rgb(240, 0, 0, 0.8);
+    background-color: rgb(240, 0, 0, 0.75);
     padding: 4px;
     border-radius: 8px;
     width: 160px;
@@ -79,7 +83,7 @@ p {
 }
 
 #dice-button:hover {
-    background-color: rgb(90, 0, 0);
+    background-color: rgb(120, 0, 0);
     cursor: pointer;
 }
 

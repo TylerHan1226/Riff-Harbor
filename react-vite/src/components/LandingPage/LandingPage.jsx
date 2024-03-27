@@ -79,8 +79,7 @@ export default function LandingPage() {
                 </NavLink>
               </div>
               <div className="instrument-dtl-container">
-                <p className="inst-dtl-text">{eachInst.model}</p>
-                <p className="inst-dtl-text">{eachInst.color}</p>
+                <h4>{eachInst.model}</h4>
                 <p className="inst-dtl-text">{eachInst.price}</p>
                 { eachInst.is_used  ? (
                   <p className="inst-dtl-text">Pre-owned</p>

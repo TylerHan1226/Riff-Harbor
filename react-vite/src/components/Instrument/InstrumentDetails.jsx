@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import './Instrument.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
-import { getOneInstrument } from '../../redux/instrument'
+import { getOneInstrumentThunk } from '../../redux/instrument'
 import { getAllUsersThunk } from '../../redux/session'
 
 
@@ -18,7 +18,7 @@ export default function InstrumentDetails() {
     console.log('instrument ==>', instrument)
 
     useEffect(() => {
-        dispatch(getOneInstrument(instrumentId))
+        dispatch(getOneInstrumentThunk(instrumentId))
         dispatch(getAllUsersThunk())
     }, [dispatch, instrumentId])
 
@@ -42,7 +42,7 @@ export default function InstrumentDetails() {
                 </div>
                 <div className="instrument-dtl-info-container">
                     <h2>{instrument.model}</h2>
-                    <p className="inst-dtl-text">{instrument.color}</p>
+                    <h3>{instrument.color}</h3>
                     <p className="inst-dtl-text">${instrument.price}</p>
                     {instrument.is_used ? (
                         <p className="inst-dtl-text">Condition: Pre-owned</p>
