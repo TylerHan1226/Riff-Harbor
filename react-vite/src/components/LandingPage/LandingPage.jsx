@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllInstrumentsThunk } from '../../redux/instrument'
 import "./LandingPage.css";
+import { NavLink } from "react-router-dom";
 
-function LandingPage() {
+export default function LandingPage() {
 
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.session)
-  const instruments = useSelector((state) => state.instruments)
+  const user = useSelector(state => state.session)
+  const instruments = useSelector(state => state.instruments)
 
   const [randomInstruments, setRandomInstruments] = useState([])
 
@@ -69,7 +70,9 @@ function LandingPage() {
           {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
             <div className="instrument-container" key={eachInst.id}>
               <div className="instrument-dtl-container">
+                <NavLink to='/instruments/:instrumentId'>
                 <img className="instrument-image" src={eachInst.image_url} />
+                </NavLink>
               </div>
               <div className="instrument-dtl-container">
                 <p className="inst-dtl-text">{eachInst.model}</p>
@@ -90,6 +93,3 @@ function LandingPage() {
     </div>
   );
 }
-
-
-export default LandingPage;
