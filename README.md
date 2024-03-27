@@ -255,47 +255,6 @@ Creates a new user, logs them in as the current user, and returns the current us
     ```
 
 
-### Get all instruments posted by current user
-* Require Authentication: True
-* Request
-  * Method: GET
-  * URL: /api/instruments/current
-  * Body: None
-
-* Successful Response
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-      {
-        "Products": [
-          {
-            "id": 1,
-            "seller_id": 1,
-            "model": "Fender American Vintage II 1951 Telecaster",
-            "color": "Butterscotch Blonde",
-            "category": "Electric Guitar",
-            "price": 2449.99,
-            "details": "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
-            "body": "Maple",
-            "fretboard": "Maple",
-            "make": "Fender",
-            "is_used": false,
-            "image_url" : "img.png"
-            "createdAt": "2024-01-20 20:00:00",
-            "updatedAt": "2024-01-20 20:20:20",
-          }
-        ]
-      }
-    ```
-* Error response: Couldn't find a instrument with the specified id
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
 
 ### Get a instrument by id
 * Require Authentication: True
@@ -349,16 +308,16 @@ Creates a new user, logs them in as the current user, and returns the current us
   * Body:
     ```json
       {
-        "model": "Fender American Ultra Stratocaster HSS",
-        "color": "Arctic Pearl",
+        "make": "B.C. Rich",
+        "model": "B.C. Rich Ironbird Extreme with Floyd Rose",
+        "color": "Matte Black",
         "category": "Electric Guitar",
-        "price": 2249.99,
-        "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
-        "body": "Alder",
-        "fretboard": "Maple",
-        "make": "Fender",
+        "price": 1799.99,
+        "details": "The BC Rich Ironbird, designed by Joey Rico in 1983, is a metal artist’s favorite. Its angular body shape features sharp, dagger-like points. With a 24-fret neck and licensed Floyd Rose tremolo, it’s built for shredding.",
+        "body": "Basswood",
+        "fretboard": "Rosewood",
         "is_used": true,
-        "image_url" : "img.png"
+        "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg"
       }
     ```
 
@@ -372,16 +331,16 @@ Creates a new user, logs them in as the current user, and returns the current us
       {
         "id": 2,
         "seller_id": 1,
-        "model": "Fender American Ultra Stratocaster HSS",
-        "color": "Arctic Pearl",
+        "make": "B.C. Rich",
+        "model": "B.C. Rich Ironbird Extreme with Floyd Rose",
+        "color": "Matte Black",
         "category": "Electric Guitar",
-        "price": 2249.99,
-        "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
-        "body": "Alder",
-        "fretboard": "Maple",
-        "make": "Fender",
+        "price": 1799.99,
+        "details": "The BC Rich Ironbird, designed by Joey Rico in 1983, is a metal artist’s favorite. Its angular body shape features sharp, dagger-like points. With a 24-fret neck and licensed Floyd Rose tremolo, it’s built for shredding.",
+        "body": "Basswood",
+        "fretboard": "Rosewood",
         "is_used": true,
-        "image_url" : "img.png",
+        "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg"
         "createdAt": "2024-01-20 20:00:00",
         "updatedAt": "2024-01-20 20:20:20",
       }
@@ -395,29 +354,29 @@ Creates a new user, logs them in as the current user, and returns the current us
 
     ```json
       {
+        "make": [
+          "This field is required." || "Make must be under 100 characters"
+        ],
         "model": [
           "This field is required." || "Model must be under 100 characters"
-        ],
-        "make": [
-          "This field is required." || "Details must be under 100 characters"
         ],
         "color": [
           "This field is required." || "Color must be under 100 characters"
         ],
         "category": [
-          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass, Accessories."
+          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass."
         ],
         "price": [
           "This field is required." || "Price must be greater than 0"
         ],
         "details": [
-          "This field is required." || "Details must be greater than 100 characters"
+          "This field is required." || "Details must be greater than 25 characters"
         ],
         "body": [
-          "This field is required." || "Details must be under 100 characters"
+          "This field is required." || "Body must be under 100 characters"
         ],
         "fretboard": [
-          "This field is required." || "Details must be under 100 characters"
+          "This field is required." || "Fretboard must be under 100 characters"
         ],
         "is_used": [
           "This field is required."
@@ -436,16 +395,16 @@ Creates a new user, logs them in as the current user, and returns the current us
   * Body:
     ```json
       {
-        "model": "Fender American Ultra Stratocaster HSS NEW!",
-        "color": "Arctic Pearl",
+        "make": "B.C. Rich",
+        "model": "B.C. Rich Ironbird Extreme 2025 Special Edition",
+        "color": "Matte Black",
         "category": "Electric Guitar",
-        "price": 3339.99,
-        "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
-        "body": "Alder",
-        "fretboard": "Maple",
-        "make": "Fender",
-        "is_used": false,
-        "image_url" : "img.png"
+        "price": 1999.99,
+        "details": "The BC Rich Ironbird, designed by Joey Rico in 1983, is a metal artist’s favorite. Its angular body shape features sharp, dagger-like points. With a 24-fret neck and licensed Floyd Rose tremolo, it’s built for shredding.",
+        "body": "Basswood",
+        "fretboard": "Rosewood",
+        "is_used": true,
+        "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg"
       }
     ```
 
@@ -459,16 +418,16 @@ Creates a new user, logs them in as the current user, and returns the current us
       {
         "id": 2,
         "seller_id": 1,
-        "model": "Fender American Ultra Stratocaster HSS",
-        "color": "Arctic Pearl",
+        "make": "B.C. Rich",
+        "model": "B.C. Rich Ironbird Extreme 2025 Special Edition",
+        "color": "Matte Black",
         "category": "Electric Guitar",
-        "price": 2249.99,
-        "details": "Iconic for 60+ years, the Fender American Ultra Strat HSS offers precision, performance, and tone. Modern design, Ultra Noiseless pickups, and versatile sound.",
-        "body": "Alder",
-        "fretboard": "Maple",
-        "make": "Fender",
+        "price": 1999.99,
+        "details": "The BC Rich Ironbird, designed by Joey Rico in 1983, is a metal artist’s favorite. Its angular body shape features sharp, dagger-like points. With a 24-fret neck and licensed Floyd Rose tremolo, it’s built for shredding.",
+        "body": "Basswood",
+        "fretboard": "Rosewood",
         "is_used": true,
-        "image_url" : "img.png",
+        "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg"
         "createdAt": "2024-01-20 20:00:00",
         "updatedAt": "2024-01-20 20:20:20",
       }
@@ -494,11 +453,11 @@ Creates a new user, logs them in as the current user, and returns the current us
 
     ```json
       {
+        "make": [
+          "This field is required." || "Make must be under 100 characters"
+        ],
         "model": [
           "This field is required." || "Model must be under 100 characters"
-        ],
-        "make": [
-          "This field is required." || "Details must be under 100 characters"
         ],
         "color": [
           "This field is required." || "Color must be under 100 characters"
@@ -510,13 +469,13 @@ Creates a new user, logs them in as the current user, and returns the current us
           "This field is required." || "Price must be greater than 0"
         ],
         "details": [
-          "This field is required." || "Details must be greater than 20 characters"
+          "This field is required." || "Details must be greater than 25 characters"
         ],
         "body": [
-          "This field is required." || "Details must be under 100 characters"
+          "This field is required." || "Body must be under 100 characters"
         ],
         "fretboard": [
-          "This field is required." || "Details must be under 100 characters"
+          "This field is required." || "Fretboard must be under 100 characters"
         ],
         "is_used": [
           "This field is required."
