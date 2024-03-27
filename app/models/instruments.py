@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship
 
 
@@ -21,7 +21,7 @@ class Instrument(db.Model):
     details = Column(String(1000), nullable=False)
     body = Column(String(100), nullable=False)
     fretboard = Column(String(100), nullable=False)
-    is_used = Column(String(100), nullable=False)
+    is_used = Column(Boolean(100), nullable=False)
     image_url = Column(String(1000), nullable=False)
 
     users = relationship('User', back_populates='instruments')

@@ -60,8 +60,7 @@ function LandingPage() {
 
   return (
     <div id='landing-page-container'>
-      
-      <div className="trending-container">
+      <div id="trending-container">
         <div>
           <h1>Trending</h1>
           <button onClick={handleRandomizeInstClick}>Randomize Instruments</button>

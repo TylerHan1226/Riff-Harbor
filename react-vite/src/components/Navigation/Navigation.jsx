@@ -14,6 +14,10 @@ function Navigation() {
         Search Bar
       </div>
 
+      <button>
+        <NavLink to='/instruments/new'>Sell Your Gear!</NavLink>
+      </button>
+
       <div>
         <ProfileButton />
       </div>
