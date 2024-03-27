@@ -25,7 +25,7 @@ export default function LandingPage() {
   }, [instruments])
 
   if (!instruments) {
-    <h2>loading...</h2>
+    return <h2>loading...</h2>
   }
 
   const allInstruments = instruments.Instruments
@@ -44,7 +44,7 @@ export default function LandingPage() {
     return numArr.slice(1, count)
   }
   // helper
-  function getRandomized () {
+  function getRandomized() {
     const randomIds = randomIdGenerator(13)
     const newRandomInstruments = allInstruments?.filter(ele => randomIds.includes(ele.id))
     setRandomInstruments(newRandomInstruments)
@@ -70,15 +70,15 @@ export default function LandingPage() {
           {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
             <div className="instrument-container" key={eachInst.id}>
               <div className="instrument-dtl-container">
-                <NavLink to='/instruments/:instrumentId'>
-                <img className="instrument-image" src={eachInst.image_url} />
+                <NavLink to={`instruments/${eachInst.image_url}`}>
+                  <img className="instrument-image" src={eachInst.image_url} />
                 </NavLink>
               </div>
               <div className="instrument-dtl-container">
                 <p className="inst-dtl-text">{eachInst.model}</p>
                 <p className="inst-dtl-text">{eachInst.color}</p>
                 <p className="inst-dtl-text">{eachInst.price}</p>
-                {{eachInst} ? (
+                {{ eachInst } ? (
                   <p className="inst-dtl-text">New</p>
                 ) : (
                   <p className="inst-dtl-text">Pre-owned</p>

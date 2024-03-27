@@ -1,5 +1,19 @@
 
 #instrument-dtl-page-container {
-    /* border: 1px solid black; */
+    border: 1px solid black;
     padding: 12px;
+    display: flex;
+    flex-direction: row;
 }
+
+.instrument-dtl-info-container {
+    /* border: 1px solid green; */
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* #instrument-dtl-image {
+    border: 1px solid blue;
+} */
