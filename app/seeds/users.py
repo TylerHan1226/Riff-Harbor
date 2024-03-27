@@ -7,9 +7,9 @@ def seed_users():
     demo = User(
         username='Demo', email='demo@gmail.com', password='password')
     riffCaptain = User(
-        username='RiffCaptain', email='riffHarbor@gmail.com', password='myCaptainR')
+        username='Riff Captain', email='riffHarbor@gmail.com', password='myCaptainR')
     tyler = User(
-        username='TylerHan', email='tyler@gmail.com', password='tyler123')
+        username='Tyler Han', email='tyler@gmail.com', password='tyler123')
 
     db.session.add_all([demo, riffCaptain, tyler])
     db.session.commit()

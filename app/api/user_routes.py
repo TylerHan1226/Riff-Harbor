@@ -4,9 +4,12 @@ from app.models import User
 
 user_routes = Blueprint('users', __name__)
 
-
+# get all users
+# api/users/
 @user_routes.route('/')
-@login_required
+# since There're only have id, email, username will be sent (we need them all in the detail page for contact)
+# we don't need user auth here
+# @login_required
 def users():
     """
     Query for all users and returns them in a list of user dictionaries

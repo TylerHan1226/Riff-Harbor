@@ -70,7 +70,7 @@ export default function LandingPage() {
           {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
             <div className="instrument-container" key={eachInst.id}>
               <div className="instrument-dtl-container">
-                <NavLink to={`instruments/${eachInst.image_url}`}>
+                <NavLink to={`instruments/${eachInst.id}`}>
                   <img className="instrument-image" src={eachInst.image_url} />
                 </NavLink>
               </div>
