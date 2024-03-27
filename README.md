@@ -494,7 +494,7 @@ Delete an existing instrument by id.
 * Require Authorization: True. (Must be the seller of the instrument)
 * Request
   * Method: DELETE
-  * URL: /api/instrument/:instrumentId/delete
+  * URL: /api/instruments/:instrumentId/delete
   * Body: None
 
 * Successful Response
@@ -509,7 +509,7 @@ Delete an existing instrument by id.
       }
     ```
 
-* Error response: Product not found
+* Error response: Instrument not found
   * Status Code: 404
   * Headers:
     * Content-Type: application/json

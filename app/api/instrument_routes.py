@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required, current_user
 from app.models import db, Instrument
 from app.forms import InstrumentForm
@@ -21,7 +21,7 @@ def all_instruments():
 def instrument(id):
     instrument = Instrument.query.get(id)
     if not instrument:
-        return {'message': 'Business not found'}, 404
+        return {'message': 'Instrument not found'}, 404
     else:
         instrument_dict = instrument.to_dict()
         return instrument_dict
@@ -48,9 +48,34 @@ def create_instrument():
 
 # update an instrument
 # /api/instruments/update
-# @instrument_routes.route('/<int:id>/update', methods=['PUT'])
-# @login_required
-# def update_instrument(id)
-#     form = InstrumentForm()
-#     form["csrf_token"].data = request.cookies["csrf_token"]
-#     if form.validate_on_submit():
+@instrument_routes.route('/<int:id>/update', methods=['PUT'])
+@login_required
+def update_instrument(id):
+    form = InstrumentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        instrument = Instrument.query.get(id)
+        if not instrument:
+            return {'message': 'Instrument not found'}, 404
+        if instrument.seller_id != current_user.id:
+            return redirect('api/auth/unauthorized')
+        form.populate_obj(instrument)
+        db.session.commit()
+        return instrument.to_dict(), 200
+    return form.errors, 400
+
+
+# delete an instrument
+# /api/instruments/delete
+@instrument_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_instrument(id):
+    instrument = Instrument.query.get(id)
+    if not instrument:
+        return {'message': 'Instrument not found'}, 404
+    if instrument.seller_id != current_user.id:
+        return redirect('api/auth/unauthorized')
+    db.session.delete(instrument)
+    db.session.commit()
+    return {'message': 'Successfully Deleted'}, 200
+
