@@ -2,7 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import LandingPage from '../components/LandingPage'
-import CreateInstrumentForm from '../components/Instrument/CreateInstrumentForm'
+import InstrumentForm from '../components/Instrument/InstrumentForm'
+import CreateInstrumentPage from '../components/Instrument/CreateInstrumentPage'
 import InstrumentDetails from '../components/Instrument/InstrumentDetails';
 import Layout from './Layout';
 
@@ -23,12 +24,16 @@ export const router = createBrowserRouter([
         element: <SignupFormPage />,
       },
       {
-        path: "/instruments/new",
-        element: <CreateInstrumentForm />,
-      },
-      {
         path: "/instruments/:instrumentId",
         element: <InstrumentDetails />,
+      },
+      {
+        path: "/instruments/new",
+        element: <CreateInstrumentPage />,
+      },
+      {
+        path: "/instruments/:instrumentId/update",
+        element: <CreateInstrumentPage />,
       },
     ],
   },

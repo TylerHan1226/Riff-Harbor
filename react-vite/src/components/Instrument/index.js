@@ -1,3 +1,3 @@
-import CreateInstrumentForm from './CreateInstrumentForm';
+import InstrumentForm from './InstrumentForm';
 
-export default CreateInstrumentForm;
+export default InstrumentForm;

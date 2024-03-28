@@ -10,7 +10,7 @@ import { FaDice } from "react-icons/fa6";
 export default function LandingPage() {
 
   const dispatch = useDispatch()
-  const user = useSelector(state => state.session)
+  // const user = useSelector(state => state.session.user)
   const instruments = useSelector(state => state.instruments)
 
   const [randomInstruments, setRandomInstruments] = useState([])
