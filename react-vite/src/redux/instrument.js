@@ -4,6 +4,7 @@ export const LOAD_ALL_INSTRUMENTS = 'instrument/LOAD_ALL_INSTRUMENTS'
 export const LOAD_ONE_INSTRUMENT = 'instrument/LOAD_ONE_INSTRUMENT'
 export const CREATE_INSTRUMENT = 'instrument/CREATE_INSTRUMENT'
 export const UPDATE_INSTRUMENT = 'instrument/UPDATE_INSTRUMENT'
+export const DELETE_INSTRUMENT = 'instrument/DELETE_INSTRUMENT'
 
 
 // Action Types
@@ -22,6 +23,10 @@ export const createInstrument = (newInstrument) => ({
 export const updateInstrument = (updatedInstrument) => ({
     type: UPDATE_INSTRUMENT,
     updatedInstrument
+})
+export const deleteInstrument = (deletedInstrument) => ({
+    type: DELETE_INSTRUMENT,
+    deletedInstrument
 })
 
 
@@ -67,18 +72,30 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
 }
 // Update Instrument Thunk
 export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => async (dispatch) => {
-    const res = await fetch(`api/instruments/${instrumentId}/update`, {
+    const res = await fetch(`/api/instruments/${instrumentId}/update`, {
         method: "PUT",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(updatedInstrumentData)
     })
-    if (!response.ok) {
+    if (!res.ok) {
         throw new Error('Failed to update instrument.')
     }
     const updatedInstrument = await res.json()
     // dispatch(updateInstrument({...instrument, ...updatedInstrument}))
     dispatch(updateInstrument({...updatedInstrument}))
     return updatedInstrument
+}
+// Delete Instrument Thunk
+export const deleteInstrumentThunk = (instrumentId) => async (dispatch) => {
+    const res = await fetch(`api/instruments/${instrumentId}/delete`, {
+        method: 'DELETE'
+    })
+    if (!res.ok) {
+        throw new Error('Failed to delete instrument')
+    }
+    const dInstrument = await res.json()
+    dispatch(deleteInstrument(dInstrument))
+    return dInstrument
 }
 
 
@@ -96,6 +113,11 @@ export const instrumentReducer = (state ={}, action) => {
         }
         case UPDATE_INSTRUMENT: {
             return {...state, ...action.updatedInstrument}
+        }
+        case DELETE_INSTRUMENT: {
+            const deleteState = {...state}
+            delete deleteState[action.deletedInstrument]
+            return deleteState
         }
         default:
             return state

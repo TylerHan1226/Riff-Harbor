@@ -1,36 +1,46 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { getOneInstrumentThunk, createInstrumentThunk, updateInstrumentThunk } from "../../redux/instrument";
+import { createInstrumentThunk, updateInstrumentThunk } from "../../redux/instrument";
 // import "./Instrument.css";
 
-export default function InstrumentForm({ buttonName}) {
+export default function InstrumentForm({ buttonName, instrument}) {
 
     const dispatch = useDispatch()
     const nav = useNavigate()
 
     const user = useSelector(state => state.session.user)
-    const instrument = useSelector(state => state.instruments)
     const { instrumentId } = useParams()
-    console.log('instrument ==>', instrument)
 
-
-    const [make, setMake] = useState(instrument?.make)
-    const [model, setModel] = useState(instrument?.model)
-    const [color, setColor] = useState(instrument?.color)
-    const [category, setCategory] = useState(instrument?.category)
-    const [price, setPrice] = useState(instrument?.price)
-    const [details, setDetails] = useState(instrument?.details)
-    const [body, setBody] = useState(instrument?.body)
-    const [fretboard, setFretboard] = useState(instrument?.fretboard)
-    const [is_used, setIsUsed] = useState(instrument?.is_used)
-    const [image_url, setImageUrl] = useState(instrument?.image_url)
-    const [validations, setValidations] = useState({})
-    const [submitted, setSubmitted] = useState(false)
+    const [make, setMake] = useState('');
+    const [model, setModel] = useState('');
+    const [color, setColor] = useState('');
+    const [category, setCategory] = useState('');
+    const [price, setPrice] = useState('');
+    const [details, setDetails] = useState('');
+    const [body, setBody] = useState('');
+    const [fretboard, setFretboard] = useState('');
+    const [is_used, setIsUsed] = useState('');
+    const [image_url, setImageUrl] = useState('');
+    const [validations, setValidations] = useState({});
+    const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
-        dispatch(getOneInstrumentThunk(instrumentId))
-    }, [dispatch, instrumentId])
+        if (instrument) {
+            setMake(instrument.make || '');
+            setModel(instrument.model || '');
+            setColor(instrument.color || '');
+            setCategory(instrument.category || '');
+            setPrice(instrument.price || '');
+            setDetails(instrument.details || '');
+            setBody(instrument.body || '');
+            setFretboard(instrument.fretboard || '');
+            setIsUsed(instrument.is_used || '');
+            setImageUrl(instrument.image_url || '');
+        }
+    }, [instrument, instrumentId]);
+
+
 
     let isValidated = false
     useEffect(() => {
@@ -77,7 +87,6 @@ export default function InstrumentForm({ buttonName}) {
             }
         }
 
-
         setValidations(errors)
         if (Object.keys(validations).length) {
             isValidated = true
@@ -93,15 +102,17 @@ export default function InstrumentForm({ buttonName}) {
             make, model, color, category, price, details, body, fretboard, is_used, image_url
         }
 
+        console.log('instrumentId ==>', instrumentId)
+
         if (!instrumentId) {
             const instrumentCreated = await dispatch(createInstrumentThunk(newInstrument))
             if (instrumentCreated.id) {
                 nav(`/instruments/${instrumentCreated.id}`)
-            } else {
-                const instrumentUpdated = await dispatch(updateInstrumentThunk(newInstrument, instrumentId))
-                if (instrumentUpdated) {
-                    nav(`/instruments/${instrumentUpdated.id}`)
-                }
+            }
+        } else {
+            const instrumentUpdated = await dispatch(updateInstrumentThunk(newInstrument, instrumentId))
+            if (instrumentUpdated) {
+                nav(`/instruments/${instrumentUpdated.id}`)
             }
         }
     }
@@ -155,7 +166,7 @@ export default function InstrumentForm({ buttonName}) {
                         value={category}
                         onChange={e => setCategory(e.target.value)}
                     >
-                        <option value='' disabled hidden>Please select a category</option>
+                        <option value='' disabled selected hidden>Please select a category</option>
                         <option value='Electric Guitar'>Electric Guitar</option>
                         <option value='Acoustic Guitar'>Acoustic Guitar</option>
                         <option value='Bass'>Bass</option>

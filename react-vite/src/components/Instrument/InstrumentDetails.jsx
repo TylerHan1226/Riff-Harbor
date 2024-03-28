@@ -56,11 +56,20 @@ export default function InstrumentDetails() {
                     <p className="inst-dtl-text">Seller: {seller?.username}</p>
                     {/* <p className="inst-dtl-text">Contact: {seller?.email}</p> */}
                     {instrument.seller_id == user?.id ? (
-                        <button className="add-to-cart-button-dtl">
-                            <NavLink className='add-to-cart-text-dtl' to={`instruments/${instrument.id}/update`}>
-                                Update
-                            </NavLink>
-                        </button>
+                        <>
+
+                            <button className="add-to-cart-button-dtl">
+                                <NavLink className='add-to-cart-text-dtl' to={`update`}>
+                                    Update
+                                </NavLink>
+                            </button>
+                            <button className="add-to-cart-button">
+                                {/* <NavLink className='add-to-cart-text' to={`instruments/${eachInst.id}/update`}> */}
+                                Delete
+                                {/* </NavLink> */}
+                            </button>
+
+                        </>
                     ) : (
                         <button className="add-to-cart-button-dtl">
                             <NavLink className='add-to-cart-text-dtl'>

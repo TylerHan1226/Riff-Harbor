@@ -47,7 +47,7 @@ def create_instrument():
 
 
 # update an instrument
-# /api/instruments/update
+# /api/instruments/:instrumentId/update
 @instrument_routes.route('/<int:id>/update', methods=['PUT'])
 @login_required
 def update_instrument(id):
