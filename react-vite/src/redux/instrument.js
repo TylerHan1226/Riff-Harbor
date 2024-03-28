@@ -87,15 +87,15 @@ export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => as
 }
 // Delete Instrument Thunk
 export const deleteInstrumentThunk = (instrumentId) => async (dispatch) => {
-    const res = await fetch(`api/instruments/${instrumentId}/delete`, {
+    const res = await fetch(`/api/instruments/${instrumentId}/delete`, {
         method: 'DELETE'
     })
-    if (!res.ok) {
-        throw new Error('Failed to delete instrument')
+    if (res.ok) {
+        // throw new Error('Failed to delete instrument')
+        const deletedInstrument = await res.json()
+        dispatch(deleteInstrument(deletedInstrument))
     }
-    const dInstrument = await res.json()
-    dispatch(deleteInstrument(dInstrument))
-    return dInstrument
+
 }
 
 

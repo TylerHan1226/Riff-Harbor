@@ -90,3 +90,52 @@
     height: 5%;
 }
 
+
+
+.delete-instrument-modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-form-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.remove-inst-title{
+    text-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-modal-btn{
+    height: 45px;
+    width: 300px;
+    margin: 15px;
+    color: white;
+    background-color: black;
+    border: 1px solid black;
+    height: 48px;
+    border-radius: 4px;
+}
+.delete-modal-btn:hover{
+    background-color: grey;
+    border: 1px solid grey;
+}
+
+.confirm-delete-btn{
+    background-color: rgb(190, 0, 0);
+    border: 1px solid rgb(190, 0, 0);
+    color: white;
+}
+.confirm-delete-btn:hover{
+    background-color: rgb(235, 0, 0);
+    border: 1px solid rgb(235, 0, 0);
+}
+
+

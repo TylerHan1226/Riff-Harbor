@@ -13,6 +13,8 @@ export default function DeleteInstrument({instrumentId, reRenderOnDelete}) {
     const instrument = useSelector(state => state.instruments)
     const user = useSelector(state => state.session.user)
 
+    console.log('instrument in delete page! ==>', instrument)
+    console.log('instrument.id in delete page! ==>', instrument.id)
 
     useEffect(() => {
         if (!user) {
@@ -23,11 +25,20 @@ export default function DeleteInstrument({instrumentId, reRenderOnDelete}) {
 
     const deleteInstrument = async (e) => {
         e.preventDefault()
-        dispatch(deleteInstrumentThunk())
+        dispatch(deleteInstrumentThunk(instrument.id))
+        closeModal()
+        reRenderOnDelete()
+        nav(`/`)
     }
 
     return (
-        <h1>Delete Page!</h1>
+        <div className='delete-instrument-modal'>
+            <div className='delete-form-container'>
+                <h1 className='remove-inst-title'>Are you sure you want to remove this instrument from Riff Harbor?</h1>
+                <button className='delete-modal-btn confirm-delete-btn' onClick={deleteInstrument}>Remove My Instrument</button>
+                <button className='delete-modal-btn' onClick={closeModal}>Cancel</button>
+            </div>
+        </div>
     )
 
 
