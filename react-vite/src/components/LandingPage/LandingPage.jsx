@@ -10,7 +10,7 @@ import { FaDice } from "react-icons/fa6";
 export default function LandingPage() {
 
   const dispatch = useDispatch()
-  // const user = useSelector(state => state.session.user)
+  const user = useSelector(state => state.session.user)
   const instruments = useSelector(state => state.instruments)
 
   const [randomInstruments, setRandomInstruments] = useState([])
@@ -31,7 +31,6 @@ export default function LandingPage() {
 
   const allInstruments = instruments.Instruments
   const numOfInstruments = allInstruments?.length
-  // console.log('user ==>', user)
 
   // generate random instrument ids
   function randomIdGenerator(count) {
@@ -55,6 +54,8 @@ export default function LandingPage() {
     getRandomized()
   }
 
+  console.log('user ==>', user)
+  console.log('randomInstruments ==>', randomInstruments)
 
 
 
@@ -81,16 +82,25 @@ export default function LandingPage() {
                 <h4>{eachInst.model}</h4>
                 <p className="inst-dtl-text">{eachInst.category}</p>
                 <p className="inst-dtl-text">${eachInst.price}</p>
-                { eachInst.is_used  ? (
+                {eachInst.is_used ? (
                   <p className="inst-dtl-text">Pre-owned</p>
                 ) : (
                   <p className="inst-dtl-text">New</p>
                 )}
-                <button className="add-to-cart-button">
-                  <NavLink className='add-to-cart-text'>
-                    Add to Cart
-                  </NavLink>
-                </button>
+                {eachInst.seller_id == user.id ? (
+                  <button className="add-to-cart-button">
+                    <NavLink className='add-to-cart-text' to={`instruments/${eachInst.id}/update`}>
+                      Update
+                    </NavLink>
+                  </button>
+                ) : (
+                  <button className="add-to-cart-button">
+                    <NavLink className='add-to-cart-text'>
+                      Add to Cart
+                    </NavLink>
+                  </button>
+                )}
+
               </div>
             </div>
           ))}

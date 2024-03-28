@@ -1,31 +1,36 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { createInstrumentThunk, updateInstrumentThunk } from "../../redux/instrument";
+import { getOneInstrumentThunk, createInstrumentThunk, updateInstrumentThunk } from "../../redux/instrument";
 // import "./Instrument.css";
 
-export default function InstrumentForm({ buttonName, instrument }) {
+export default function InstrumentForm({ buttonName}) {
 
     const dispatch = useDispatch()
     const nav = useNavigate()
 
     const user = useSelector(state => state.session.user)
+    const instrument = useSelector(state => state.instruments)
     const { instrumentId } = useParams()
-    console.log('user ==>', user)
-    console.log('instrumentId ==>', instrumentId)
+    console.log('instrument ==>', instrument)
 
-    const [make, setMake] = useState('')
-    const [model, setModel] = useState('')
-    const [color, setColor] = useState('')
-    const [category, setCategory] = useState('')
-    const [price, setPrice] = useState()
-    const [details, setDetails] = useState('')
-    const [body, setBody] = useState('')
-    const [fretboard, setFretboard] = useState('')
-    const [is_used, setIsUsed] = useState('')
-    const [image_url, setImageUrl] = useState('')
+
+    const [make, setMake] = useState(instrument?.make)
+    const [model, setModel] = useState(instrument?.model)
+    const [color, setColor] = useState(instrument?.color)
+    const [category, setCategory] = useState(instrument?.category)
+    const [price, setPrice] = useState(instrument?.price)
+    const [details, setDetails] = useState(instrument?.details)
+    const [body, setBody] = useState(instrument?.body)
+    const [fretboard, setFretboard] = useState(instrument?.fretboard)
+    const [is_used, setIsUsed] = useState(instrument?.is_used)
+    const [image_url, setImageUrl] = useState(instrument?.image_url)
     const [validations, setValidations] = useState({})
     const [submitted, setSubmitted] = useState(false)
+
+    useEffect(() => {
+        dispatch(getOneInstrumentThunk(instrumentId))
+    }, [dispatch, instrumentId])
 
     let isValidated = false
     useEffect(() => {
@@ -33,42 +38,45 @@ export default function InstrumentForm({ buttonName, instrument }) {
             nav('/')
         }
         const errors = {}
-        if (!make || make.length > 100) {
-            errors.make = 'Make is required and must be under 100 characters'
+        if (submitted) {
+            if (!make || make.length > 100) {
+                errors.make = 'Make is required and must be under 100 characters'
+            }
+            if (!model || model.length > 100) {
+                errors.model = 'model is required and must be under 100 characters'
+            }
+            if (!color || color.length > 100) {
+                errors.color = 'Color is required and must be under 100 characters'
+            }
+            if (!category || !['Electric Guitar', 'Acoustic Guitar', 'Bass'].includes(category)) {
+                errors.category = 'This field is required and must be one of the following: Electric Guitar, Acoustic Guitar, Bass.'
+            }
+            if (!price || price <= 0 || typeof price != 'number') {
+                errors.price = 'Price is required and must be a number greater than 0'
+            }
+            if (!details || details.length < 25) {
+                errors.details = 'Details is required and must be greater than 25 characters'
+            }
+            if (details?.length >= 900) {
+                errors.details = 'Details cannot be greater than 900 characters'
+            }
+            if (!body || body.length > 100) {
+                errors.body = 'Body material is required and must be under 100 characters'
+            }
+            if (!fretboard || fretboard.length > 100) {
+                errors.fretboard = 'Fretboard material is required and must be under 100 characters'
+            }
+            if (!is_used) {
+                errors.is_used = 'New/Pre-owned field is required'
+            }
+            if (!image_url) {
+                errors.image_url = 'Image URL is required'
+            }
+            if (image_url >= 900) {
+                errors.image_url = 'Image URL cannot be more than 900 characters'
+            }
         }
-        if (!model || model.length > 100) {
-            errors.model = 'model is required and must be under 100 characters'
-        }
-        if (!color || color.length > 100) {
-            errors.color = 'Color is required and must be under 100 characters'
-        }
-        if (!category || !['Electric Guitar', 'Acoustic Guitar', 'Bass'].includes(category)) {
-            errors.category = 'This field is required and must be one of the following: Electric Guitar, Acoustic Guitar, Bass.'
-        }
-        if (!price || price <= 0 || typeof price != 'number') {
-            errors.price = 'Price is required and must be a number greater than 0'
-        }
-        if (!details || details.length < 25) {
-            errors.details = 'Details is required and must be greater than 25 characters'
-        }
-        if (details.length >= 900) {
-            errors.details = 'Details cannot be greater than 900 characters'
-        }
-        if (!body || body.length > 100) {
-            errors.body = 'Body material is required and must be under 100 characters'
-        }
-        if (!fretboard || fretboard.length > 100) {
-            errors.fretboard = 'Fretboard material is required and must be under 100 characters'
-        }
-        if (!is_used) {
-            errors.is_used = 'New/Pre-owned field is required'
-        }
-        if (!image_url) {
-            errors.image_url = 'Image URL is required'
-        }
-        if (image_url >= 900) {
-            errors.image_url = 'Image URL cannot be more than 900 characters'
-        }
+
 
         setValidations(errors)
         if (Object.keys(validations).length) {
@@ -114,7 +122,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setMake(e.target.value)}
                     ></input>
                 </label>
-                {validations.make && submitted && (<p className="validation-error-text">* {validations.make}</p>)}
+                {validations.make && (<p className="validation-error-text">* {validations.make}</p>)}
 
                 <label className="form-label-container">
                     Model: <br></br>
@@ -126,7 +134,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setModel(e.target.value)}
                     ></input>
                 </label>
-                {validations.model && submitted && (<p className="validation-error-text">* {validations.model}</p>)}
+                {validations.model && (<p className="validation-error-text">* {validations.model}</p>)}
 
                 <label className="form-label-container">
                     Color: <br></br>
@@ -138,7 +146,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setColor(e.target.value)}
                     ></input>
                 </label>
-                {validations.color && submitted && (<p className="validation-error-text">* {validations.color}</p>)}
+                {validations.color && (<p className="validation-error-text">* {validations.color}</p>)}
 
                 <label className="form-label-container">
                     Category: <br></br>
@@ -153,7 +161,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         <option value='Bass'>Bass</option>
                     </select>
                 </label>
-                {validations.category && submitted && (<p className="validation-error-text">* {validations.category}</p>)}
+                {validations.category && (<p className="validation-error-text">* {validations.category}</p>)}
 
                 <label className="form-label-container">
                     Price: <br></br>
@@ -165,8 +173,8 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setPrice(e.target.value)}
                     ></input>
                 </label>
-                {validations.color && submitted && (<p className="validation-error-text">* {validations.price}</p>)}
-                
+                {validations.color && (<p className="validation-error-text">* {validations.price}</p>)}
+
                 <label className="form-label-container">
                     Details about your gear: <br></br>
                     <textarea
@@ -177,7 +185,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setDetails(e.target.value)}
                     ></textarea>
                 </label>
-                {validations.details && submitted && (<p className="validation-error-text">* {validations.details}</p>)}
+                {validations.details && (<p className="validation-error-text">* {validations.details}</p>)}
 
                 <label className="form-label-container">
                     Body Material: <br></br>
@@ -189,7 +197,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setBody(e.target.value)}
                     ></input>
                 </label>
-                {validations.body && submitted && (<p className="validation-error-text">* {validations.body}</p>)}
+                {validations.body && (<p className="validation-error-text">* {validations.body}</p>)}
 
                 <label className="form-label-container">
                     Fretboard Material: <br></br>
@@ -201,7 +209,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setFretboard(e.target.value)}
                     ></input>
                 </label>
-                {validations.fretboard && submitted && (<p className="validation-error-text">* {validations.fretboard}</p>)}
+                {validations.fretboard && (<p className="validation-error-text">* {validations.fretboard}</p>)}
 
                 <label className="form-label-container">
                     Pre-owned:
@@ -223,7 +231,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setIsUsed(e.target.value)}
                     />
                 </label>
-                {validations.is_used && submitted && (<p className="validation-error-text">* {validations.is_used}</p>)}
+                {validations.is_used && (<p className="validation-error-text">* {validations.is_used}</p>)}
 
                 <label className="form-label-container">
                     Image URL: <br></br>
@@ -235,7 +243,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setImageUrl(e.target.value)}
                     ></input>
                 </label>
-                {validations.image_url && submitted && (<p className="validation-error-text">* {validations.image_url}</p>)}
+                {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)}
 
             </div>
 

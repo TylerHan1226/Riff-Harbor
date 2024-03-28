@@ -13,6 +13,7 @@ export default function InstrumentDetails() {
 
     const instrument = useSelector(state => state.instruments)
     const session = useSelector(state => state.session)
+    const user = useSelector(state => state.session.user)
     const { instrumentId } = useParams()
     console.log('instrumentId ==>', instrumentId)
     console.log('instrument ==>', instrument)
@@ -54,11 +55,20 @@ export default function InstrumentDetails() {
                     <p className="inst-dtl-text">Fretboard Material: {instrument.fretboard}</p>
                     <p className="inst-dtl-text">Seller: {seller?.username}</p>
                     {/* <p className="inst-dtl-text">Contact: {seller?.email}</p> */}
-                    <button className="add-to-cart-button-dtl">
-                        <NavLink className='add-to-cart-text-dtl'>
-                            Add to Cart
-                        </NavLink>
-                    </button>
+                    {instrument.seller_id == user?.id ? (
+                        <button className="add-to-cart-button-dtl">
+                            <NavLink className='add-to-cart-text-dtl' to={`instruments/${instrument.id}/update`}>
+                                Update
+                            </NavLink>
+                        </button>
+                    ) : (
+                        <button className="add-to-cart-button-dtl">
+                            <NavLink className='add-to-cart-text-dtl'>
+                                Add to Cart
+                            </NavLink>
+                        </button>
+                    )}
+
                 </div>
 
                 {/* </div> */}
