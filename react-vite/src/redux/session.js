@@ -70,7 +70,7 @@ export const thunkLogout = () => async (dispatch) => {
 };
 
 export const getAllUsersThunk = () => async(dispatch) => {
-  const res = await fetch('/api/users')
+  const res = await fetch(`/api/users`)
   if (!res.ok) {
     throw new Error('Failed to fetch users')
   }

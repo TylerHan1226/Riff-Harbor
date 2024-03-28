@@ -7,8 +7,7 @@ user_routes = Blueprint('users', __name__)
 # get all users
 # api/users/
 @user_routes.route('/')
-# since There're only have id, email, username will be sent (we need them all in the detail page for contact)
-# we don't need user auth here
+# Users shouldn't need to log in to see the seller info on the detail page
 # @login_required
 def users():
     """

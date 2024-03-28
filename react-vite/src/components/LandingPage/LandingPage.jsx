@@ -47,10 +47,9 @@ export default function LandingPage() {
   // helper
   function getRandomized() {
     const randomIds = randomIdGenerator(13)
-    const newRandomInstruments = allInstruments?.filter(ele => randomIds.includes(ele.id))
+    const newRandomInstruments = allInstruments?.sort(() => Math.random() - 0.5).filter(ele => randomIds.includes(ele.id))
     setRandomInstruments(newRandomInstruments)
   }
-
   //randomize button
   const handleRandomizeInstClick = () => {
     getRandomized()
@@ -80,7 +79,8 @@ export default function LandingPage() {
               </div>
               <div className="instrument-dtl-container">
                 <h4>{eachInst.model}</h4>
-                <p className="inst-dtl-text">{eachInst.price}</p>
+                <p className="inst-dtl-text">{eachInst.category}</p>
+                <p className="inst-dtl-text">${eachInst.price}</p>
                 { eachInst.is_used  ? (
                   <p className="inst-dtl-text">Pre-owned</p>
                 ) : (
