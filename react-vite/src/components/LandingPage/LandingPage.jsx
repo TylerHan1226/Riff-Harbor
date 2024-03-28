@@ -30,25 +30,16 @@ export default function LandingPage() {
   }
 
   const allInstruments = instruments.Instruments
-  const numOfInstruments = allInstruments?.length
-
-  console.log('allInstruments ==>', allInstruments)
-  console.log('numOfInstruments ==>', numOfInstruments)
+  const allInstIds = allInstruments?.map(ele => ele.id)
 
   // generate random instrument ids
-  function randomIdGenerator(count) {
-    let numArr = Array.from({ length: numOfInstruments }, (_, i) => i + 1)
-    for (let i = numArr.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1))
-      if (j) {
-        [numArr[i], numArr[j]] = [numArr[j], numArr[i]]
-      }
-    }
-    return numArr.slice(1, count)
+  function randomIdGenerator(arr, count) {
+    const shuffledArr = arr.sort(() => Math.random() - 0.5)
+    return shuffledArr.slice(0, count)
   }
   // helper
   function getRandomized() {
-    const randomIds = randomIdGenerator(13)
+    const randomIds = randomIdGenerator(allInstIds, 12)
     const newRandomInstruments = allInstruments?.sort(() => Math.random() - 0.5).filter(ele => randomIds.includes(ele.id))
     setRandomInstruments(newRandomInstruments)
   }
@@ -56,10 +47,6 @@ export default function LandingPage() {
   const handleRandomizeInstClick = () => {
     getRandomized()
   }
-
-  console.log('randomInstruments ==>', randomInstruments)
-
-
 
 
   return (
