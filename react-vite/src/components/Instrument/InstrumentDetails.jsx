@@ -1,10 +1,12 @@
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './Instrument.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
 import { getOneInstrumentThunk } from '../../redux/instrument'
 import { getAllUsersThunk } from '../../redux/session'
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
+import DeleteInstrument from './DeleteInstrument'
 
 
 export default function InstrumentDetails() {
@@ -14,14 +16,21 @@ export default function InstrumentDetails() {
     const instrument = useSelector(state => state.instruments)
     const session = useSelector(state => state.session)
     const user = useSelector(state => state.session.user)
+
+    const [deletedInstrument, setDeleteInst] = useState(false)
     const { instrumentId } = useParams()
+
     console.log('instrumentId ==>', instrumentId)
     console.log('instrument ==>', instrument)
+
+    const reRenderOnDelete = () => {
+        setDeleteInst(!deletedInstrument)
+    }
 
     useEffect(() => {
         dispatch(getOneInstrumentThunk(instrumentId))
         dispatch(getAllUsersThunk())
-    }, [dispatch, instrumentId])
+    }, [dispatch, instrumentId, deletedInstrument])
 
     if (!instrument || !instrumentId || !session) {
         return <h2>loading...</h2>
@@ -63,10 +72,11 @@ export default function InstrumentDetails() {
                                     Update
                                 </NavLink>
                             </button>
-                            <button className="add-to-cart-button">
-                                {/* <NavLink className='add-to-cart-text' to={`instruments/${eachInst.id}/update`}> */}
-                                Delete
-                                {/* </NavLink> */}
+                            <button className="add-to-cart-button-dtl delete-button">
+                                <OpenModalMenuItem
+                                    itemText='Delete Instrument'
+                                    modalComponent={<DeleteInstrument instrumentId={instrumentId} reRenderOnDelete={reRenderOnDelete} />}
+                                />
                             </button>
 
                         </>

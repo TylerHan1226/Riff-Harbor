@@ -6,6 +6,7 @@ import LandingPage from '../components/LandingPage'
 import CreateInstrumentPage from '../components/Instrument/CreateInstrumentPage'
 import UpdateInstrumentPage from '../components/Instrument/UpdateInstrumentPage';
 import InstrumentDetails from '../components/Instrument/InstrumentDetails';
+import DeleteInstrument from '../components/Instrument/DeleteInstrument'
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/instruments/:instrumentId/update",
         element: <UpdateInstrumentPage />,
+      },
+      {
+        path: "/instruments/:instrumentId/delete",
+        element: <DeleteInstrument />,
       },
     ],
   },

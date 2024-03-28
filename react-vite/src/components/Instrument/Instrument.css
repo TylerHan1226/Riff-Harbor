@@ -51,12 +51,17 @@
 .add-to-cart-button-dtl {
     width: 50%;
     margin-top: auto;
-    background-color: rgb(200, 0, 0);
+    background-color: rgb(190, 0, 0);
     border: none;
-    box-shadow: 0.5px 0.5px 1px 1px;
     height: 48px;
     margin-bottom: 12px;
     border-radius: 4px;
+}
+
+.add-to-cart-button-dtl:hover, .delete-button:hover {
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.25);
+    background-color: rgb(235, 0, 0);
+    cursor: pointer;
 }
 
 .add-to-cart-text-dtl {
@@ -77,5 +82,11 @@
 
 .validation-error-text {
     color: red;
+}
+
+.delete-button {
+    list-style: none;
+    color: white;
+    height: 5%;
 }
 
