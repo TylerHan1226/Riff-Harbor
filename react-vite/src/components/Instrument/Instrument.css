@@ -65,3 +65,17 @@
     font-size: 20px;
 }
 
+#form-fields-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* .form-label-container {
+    border: 1px solid green;
+} */
+
+.validation-error-text {
+    color: red;
+}
+

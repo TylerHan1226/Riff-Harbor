@@ -66,11 +66,11 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
     return newInstrument
 }
 // Update Instrument Thunk
-export const updateInstrumentThunk = (instrument, instrumentId) => async (dispatch) => {
+export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => async (dispatch) => {
     const res = await fetch(`api/instruments/${instrumentId}/update`, {
         method: "PUT",
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(instrument)
+        body: JSON.stringify(updatedInstrumentData)
     })
     if (!response.ok) {
         throw new Error('Failed to update instrument.')
