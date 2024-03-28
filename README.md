@@ -463,7 +463,7 @@ Creates a new user, logs them in as the current user, and returns the current us
           "This field is required." || "Color must be under 100 characters"
         ],
         "category": [
-          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass."
+          "This field is required." || "Category must be one of the following: Electric Guitar, Acoustic Guitar, Bass"
         ],
         "price": [
           "This field is required." || "Price must be greater than 0"
