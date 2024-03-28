@@ -32,6 +32,9 @@ export default function LandingPage() {
   const allInstruments = instruments.Instruments
   const numOfInstruments = allInstruments?.length
 
+  console.log('allInstruments ==>', allInstruments)
+  console.log('numOfInstruments ==>', numOfInstruments)
+
   // generate random instrument ids
   function randomIdGenerator(count) {
     let numArr = Array.from({ length: numOfInstruments }, (_, i) => i + 1)
@@ -54,7 +57,6 @@ export default function LandingPage() {
     getRandomized()
   }
 
-  console.log('user ==>', user)
   console.log('randomInstruments ==>', randomInstruments)
 
 

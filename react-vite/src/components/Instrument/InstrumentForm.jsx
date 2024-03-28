@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { createInstrumentThunk, updateInstrumentThunk } from "../../redux/instrument";
-// import "./Instrument.css";
+import "./InstrumentForm.css";
 
 export default function InstrumentForm({ buttonName, instrument}) {
 
@@ -120,9 +120,9 @@ export default function InstrumentForm({ buttonName, instrument}) {
 
     return (
         <form className='form-container' onSubmit={handleSubmit}>
-            <h3>Tell us about your gear!</h3>
-            <div id='form-fields-container'>
-
+            
+            <div className='form-fields-container'>
+                <h3>Tell us about your gear!</h3>
                 <label className="form-label-container">
                     Make: <br></br>
                     <input
@@ -131,6 +131,7 @@ export default function InstrumentForm({ buttonName, instrument}) {
                         value={make}
                         placeholder="Make"
                         onChange={e => setMake(e.target.value)}
+                        className="form-input-field"
                     ></input>
                 </label>
                 {validations.make && (<p className="validation-error-text">* {validations.make}</p>)}
@@ -143,6 +144,7 @@ export default function InstrumentForm({ buttonName, instrument}) {
                         value={model}
                         placeholder="Model"
                         onChange={e => setModel(e.target.value)}
+                        className="form-input-field"
                     ></input>
                 </label>
                 {validations.model && (<p className="validation-error-text">* {validations.model}</p>)}
@@ -155,6 +157,7 @@ export default function InstrumentForm({ buttonName, instrument}) {
                         value={color}
                         placeholder="Color"
                         onChange={e => setColor(e.target.value)}
+                        className="form-input-field"
                     ></input>
                 </label>
                 {validations.color && (<p className="validation-error-text">* {validations.color}</p>)}
@@ -162,9 +165,9 @@ export default function InstrumentForm({ buttonName, instrument}) {
                 <label className="form-label-container">
                     Category: <br></br>
                     <select
-                        className="inst-form-select-filed"
+                        className="inst-form-select-filed form-input-field"
                         value={category}
-                        onChange={e => setCategory(e.target.value)}
+                        onChange={(e) => setCategory(e.target.value)}
                     >
                         <option value='' disabled selected hidden>Please select a category</option>
                         <option value='Electric Guitar'>Electric Guitar</option>
@@ -180,8 +183,9 @@ export default function InstrumentForm({ buttonName, instrument}) {
                         type='text'
                         name='price'
                         value={price}
-                        placeholder="Color"
+                        placeholder="Price"
                         onChange={e => setPrice(e.target.value)}
+                        className="form-input-field"
                     ></input>
                 </label>
                 {validations.color && (<p className="validation-error-text">* {validations.price}</p>)}
@@ -194,6 +198,7 @@ export default function InstrumentForm({ buttonName, instrument}) {
                         value={details}
                         placeholder="Details"
                         onChange={e => setDetails(e.target.value)}
+                        className="form-input-field form-textarea-field"
                     ></textarea>
                 </label>
                 {validations.details && (<p className="validation-error-text">* {validations.details}</p>)}
@@ -206,6 +211,7 @@ export default function InstrumentForm({ buttonName, instrument}) {
                         value={body}
                         placeholder="Body Material"
                         onChange={e => setBody(e.target.value)}
+                        className="form-input-field"
                     ></input>
                 </label>
                 {validations.body && (<p className="validation-error-text">* {validations.body}</p>)}
@@ -216,8 +222,9 @@ export default function InstrumentForm({ buttonName, instrument}) {
                         type='text'
                         name='fretboard'
                         value={fretboard}
-                        placeholder="Body Material"
+                        placeholder="Fretboard Material"
                         onChange={e => setFretboard(e.target.value)}
+                        className="form-input-field"
                     ></input>
                 </label>
                 {validations.fretboard && (<p className="validation-error-text">* {validations.fretboard}</p>)}
@@ -246,20 +253,30 @@ export default function InstrumentForm({ buttonName, instrument}) {
 
                 <label className="form-label-container">
                     Image URL: <br></br>
-                    <input
+                    <input 
                         type='text'
                         name='image_url'
                         value={image_url}
                         placeholder="URL"
                         onChange={e => setImageUrl(e.target.value)}
+                        className="form-input-field"
                     ></input>
                 </label>
                 {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)}
+                <button className="submit-form-button" type='submit' disabled={isValidated}>
+                    <p className='add-to-cart-text-dtl submit-form-btn-text'>{buttonName}</p>
+                </button>
 
             </div>
 
+            <div className="form-fields-container form-preview-img-container ">
+                 <h4>Post Your Photo!</h4>
+                 {image_url && 
+                    <img className="form-preview-img" src={image_url} />
+                 }
+            </div>
 
-            <button className="submit-form-button" type='submit' disabled={isValidated}>{buttonName}</button>
+
         </form>
     );
 }
