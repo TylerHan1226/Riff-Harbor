@@ -43,7 +43,7 @@ export default function InstrumentDetails() {
 
     return (
         <div id='instrument-dtl-page-root'>
-            <button className='back-button'><NavLink className='back-button-text' to='/'>back</NavLink></button>
+            {/* <button className='back-button'><NavLink className='back-button-text' to='/'>home</NavLink></button> */}
             <div id='instrument-dtl-page-container'>
                 {/* <div id='instrument-dtl-page-container'> */}
                 {/* <div id='instrument-dtl-page-container'> */}

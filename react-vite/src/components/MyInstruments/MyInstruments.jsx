@@ -40,7 +40,7 @@ export default function MyInstruments() {
                 {myInstruments?.length > 0 && myInstruments?.map((eachInst) => (
                     <div className="instrument-container" key={eachInst?.id}>
                         <div className="instrument-dtl-container">
-                            <NavLink to={`instruments/${eachInst?.id}`}>
+                            <NavLink to={`${eachInst?.id}`}>
                                 <img className="instrument-image" src={eachInst?.image_url} />
                             </NavLink>
                         </div>
@@ -53,18 +53,21 @@ export default function MyInstruments() {
                             ) : (
                                 <p className="inst-dtl-text">New</p>
                             )}
-                            <button className="add-to-cart-button">
-                                <NavLink className='add-to-cart-text' to={`instruments/${eachInst?.id}/update`}>
+                        </div>
+                        <div className="my-inst-item-btn-container">
+                        <button className="my-inst-action-btn">
+                                <NavLink className='add-to-cart-text my-inst-update-btn' to={`${eachInst?.id}/update`}>
                                     Update
                                 </NavLink>
                             </button>
-                            <button className="add-to-cart-button-dtl delete-button">
+                            <button className="delete-button my-inst-action-btn">
                                 <OpenModalMenuItem
                                     itemText='Delete Instrument'
                                     modalComponent={<DeleteInstrument instrumentId={eachInst?.id} reRenderOnDelete={reRenderOnDelete} />}
                                 />
                             </button>
                         </div>
+
                     </div>
                 ))}
             </div>

@@ -5,3 +5,18 @@
     min-width: 600px;
     margin: 0 auto 0 auto
 }
+
+.my-inst-item-btn-container {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-inst-action-btn {
+    margin: 12px;
+    background-color: rgb(190, 0, 0);
+    border: none;
+    height: 36px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}

@@ -3,6 +3,7 @@ import { thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { MdSailing } from "react-icons/md";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -29,10 +30,14 @@ function LoginFormModal() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="profile-log-modal-container">
+      <div className="profile-log-modal-header">
+        <h2>Log In to Riff Harbor</h2>
+        <MdSailing className="login-model-icon" />
+      </div>
+      
+      <form className="profile-log-modal-form" onSubmit={handleSubmit}>
+        <label className="profile-log-modal-label">
           Email
           <input
             type="text"
@@ -42,7 +47,7 @@ function LoginFormModal() {
           />
         </label>
         {errors.email && <p>{errors.email}</p>}
-        <label>
+        <label className="profile-log-modal-label">
           Password
           <input
             type="password"
@@ -52,9 +57,9 @@ function LoginFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
+        <button className="profile-log-modal-btn" type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 

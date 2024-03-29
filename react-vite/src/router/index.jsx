@@ -45,6 +45,14 @@ export const router = createBrowserRouter([
       {
         path: "/instruments/:userId/MyInstruments",
         element: <MyInstruments />
+      },
+      {
+        path: "/instruments/:userId/MyInstruments/:instrumentId/update",
+        element: <UpdateInstrumentPage />
+      },
+      {
+        path: "/instruments/:userId/MyInstruments/:instrumentId",
+        element: <InstrumentDetails />
       }
     ],
   },
