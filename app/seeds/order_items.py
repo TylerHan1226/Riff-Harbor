@@ -10,12 +10,25 @@ def seed_order_items():
         quantity = 1,
     )
     order_2 = OrderItem(
+        instrument_id = 24,
+        user_id = "1",
+        quantity = 1,
+    )
+    order_3 = OrderItem(
+        instrument_id = 10,
+        user_id = "1",
+        quantity = 1,
+    )
+    order_4 = OrderItem(
         instrument_id = 3,
         user_id = "3",
         quantity = 1,
     )
 
-    db.session.add_all([order_1, order_2])
+    db.session.add_all([order_1, 
+                        order_2, 
+                        order_3, 
+                        order_4])
     db.session.commit()
 
 

@@ -11,6 +11,7 @@ import { instrumentReducer } from "./instrument";
 const rootReducer = combineReducers({
   session: sessionReducer,
   instruments: instrumentReducer
+
 });
 
 let enhancer;

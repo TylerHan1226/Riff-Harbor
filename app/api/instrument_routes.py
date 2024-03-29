@@ -12,19 +12,19 @@ instrument_routes = Blueprint('instruments', __name__)
 def all_instruments():
     instruments = Instrument.query.all()
     instrument_list = [instrument.to_dict() for instrument in instruments]
-    return {'Instruments': instrument_list}
+    return {'Instruments': instrument_list}, 200
 
 
 # get the instrument by id
-# /api/instruments/current
+# /api/instruments/:instrumentId
 @instrument_routes.route('/<int:id>')
 def instrument(id):
     instrument = Instrument.query.get(id)
     if not instrument:
         return {'message': 'Instrument not found'}, 404
     else:
-        instrument_dict = instrument.to_dict()
-        return instrument_dict
+        instrument_list = instrument.to_dict()
+        return instrument_list, 200
 
 
 # create an instrument
