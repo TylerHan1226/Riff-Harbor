@@ -1,4 +1,19 @@
 
+#nav-home {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+}
+
+#nav-site-name {
+  color: white;
+}
+
+.nav-text-icon {
+  color: white;
+  font-size: 32px;
+}
 
 .nav-container {
   /* border: 1px red solid; */

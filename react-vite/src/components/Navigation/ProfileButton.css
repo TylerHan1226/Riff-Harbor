@@ -77,12 +77,13 @@
 .profile-log-modal-btn:hover {
     background-color: rgb(235, 0 , 0);
     box-shadow: 2px 2px 2px grey;
+    cursor: pointer;
 }
 
-
-
-
-/* Unused Styling  */
+.profile-log-modal-demo-text {
+    color: white;
+    text-decoration: none;
+}
 
 .logout-button{
     color: white;
@@ -93,39 +94,6 @@
     height: 30px;
 }
 
-.login-button{
-    align-self: center;
-    width: 95%;
-    height: 35px;
-    margin: 10px;
-    background-color: rgb(175, 17, 17);
-    color: white;
-    border: 1px solid rgb(175, 17, 17);
-    box-shadow: 3px 3px 3px grey;
-}
-.login-button:hover{
-    background-color: white;
-}
-
-
-
-
-
-.signup-btn{
-    align-self: center;
-    width: 95%;
-    height: 35px;
-    margin: 10px;
-    background-color: rgb(175, 17, 17);
-    color: white;
-    border: 1px solid rgb(175, 17, 17);
-    box-shadow: 3px 3px 3px grey;
-}
-
-.sign-up-button:hover{
-    background-color: rgb(26,121,255);
-    border: 1px solid rgb(26,121,255);
-}
 
 .demo-login-btn{
     text-align: center;

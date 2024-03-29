@@ -5,6 +5,7 @@ import "./Navigation.css";
 
 import { GiGuitarBassHead } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
+import { MdSailing } from "react-icons/md";
 
 export default function Navigation() {
 
@@ -13,11 +14,17 @@ export default function Navigation() {
   return (
     <div className="nav-container">
 
-      <div>
+      <div id='nav-home'>
         <NavLink to="/">
           <GiGuitarBassHead id='nav-icon' />
         </NavLink>
+        <h1 id='nav-site-name'>
+            Riff Harbor
+        </h1>
+        <MdSailing className="nav-text-icon" />
       </div>
+
+
 
       <div>
         Search Bar
