@@ -1,0 +1,7 @@
+.my-instrument-item-container {
+    width: 80%;
+    max-height: 600px;
+    max-width: 900px;
+    min-width: 600px;
+    margin: 0 auto 0 auto
+}

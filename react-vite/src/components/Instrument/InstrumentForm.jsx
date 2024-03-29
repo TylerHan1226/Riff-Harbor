@@ -111,7 +111,7 @@ export default function InstrumentForm({ buttonName, instrument}) {
             }
         } else {
             const instrumentUpdated = await dispatch(updateInstrumentThunk(newInstrument, instrumentId))
-            if (instrumentUpdated) {
+            if (instrumentUpdated.id) {
                 nav(`/instruments/${instrumentUpdated.id}`)
             }
         }
@@ -188,7 +188,7 @@ export default function InstrumentForm({ buttonName, instrument}) {
                         className="form-input-field"
                     ></input>
                 </label>
-                {validations.color && (<p className="validation-error-text">* {validations.price}</p>)}
+                {validations.price && (<p className="validation-error-text">* {validations.price}</p>)}
 
                 <label className="form-label-container">
                     Details about your gear: <br></br>

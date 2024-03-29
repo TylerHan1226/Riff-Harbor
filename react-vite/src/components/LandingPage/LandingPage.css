@@ -2,7 +2,7 @@ h1, h2, h3, h4, p {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#landing-page-container, #create-inst-form-container {
+#landing-page-container, #create-inst-form-container, #my-instruments-page-container {
     padding: 68px;
 }
 

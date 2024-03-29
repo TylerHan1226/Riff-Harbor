@@ -1,22 +1,34 @@
 import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
+import { GiGuitarBassHead } from "react-icons/gi";
+import { useSelector } from "react-redux";
 
-function Navigation() {
+export default function Navigation() {
+
+  const user = useSelector(state => state.session.user)
+
   return (
     <div className="nav-container">
 
       <div>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">
+          <GiGuitarBassHead id='nav-icon' />
+        </NavLink>
       </div>
 
       <div>
         Search Bar
       </div>
 
-      <button>
-        <NavLink to='/instruments/new'>Sell Your Gear!</NavLink>
+      <button className="nav-action-button">
+        <NavLink className='nav-action-button-text' to='/instruments/new'>Sell Your Gear!</NavLink>
       </button>
+
+      {user &&
+      <button className="nav-action-button">
+        <NavLink className='nav-action-button-text' to='/instruments/:userId/MyInstruments'>My Instruments</NavLink>
+      </button>}
 
       <div>
         <ProfileButton />
@@ -25,5 +37,3 @@ function Navigation() {
     </div>
   );
 }
-
-export default Navigation;

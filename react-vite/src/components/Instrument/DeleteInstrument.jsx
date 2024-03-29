@@ -28,7 +28,7 @@ export default function DeleteInstrument({instrumentId, reRenderOnDelete}) {
         dispatch(deleteInstrumentThunk(instrument.id))
         closeModal()
         reRenderOnDelete()
-        nav(`/`)
+        nav(`/instruments/:userId/MyInstruments`)
     }
 
     return (
