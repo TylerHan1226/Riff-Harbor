@@ -23,14 +23,16 @@ export default function Navigation() {
         Search Bar
       </div>
 
-      <button className="nav-action-button">
-        <NavLink className='nav-action-button-text' to='/instruments/new'>Sell Your Gear!</NavLink>
-      </button>
-
       {user &&
-      <button className="nav-action-button">
-        <NavLink className='nav-action-button-text' to={`/instruments/${user.id}/MyInstruments`}>My Instruments</NavLink>
-      </button>}
+        <>
+          <button className="nav-action-button">
+            <NavLink className='nav-action-button-text' to={`/instruments/${user.id}/MyInstruments`}>My Instruments</NavLink>
+          </button>
+          <button className="nav-action-button">
+            <NavLink className='nav-action-button-text' to='/instruments/new'>Sell Your Gear!</NavLink>
+          </button>
+        </>
+      }
 
       <div>
         <ProfileButton />

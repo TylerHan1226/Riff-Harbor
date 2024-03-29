@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
 import "./SignupForm.css";
+import { MdSailing } from "react-icons/md";
+
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -39,11 +41,15 @@ function SignupFormModal() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
+    <div className="profile-log-modal-container">
+      <div className="profile-log-modal-header">
+        <h1>Sign Up</h1>
+        <MdSailing className="login-model-icon" />
+        
+      </div>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="profile-log-modal-form" onSubmit={handleSubmit}>
+        <label className="profile-log-modal-label">
           Email
           <input
             type="text"
@@ -53,7 +59,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.email && <p>{errors.email}</p>}
-        <label>
+        <label className="profile-log-modal-label">
           Username
           <input
             type="text"
@@ -63,7 +69,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.username && <p>{errors.username}</p>}
-        <label>
+        <label className="profile-log-modal-label">
           Password
           <input
             type="password"
@@ -73,7 +79,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
-        <label>
+        <label className="profile-log-modal-label">
           Confirm Password
           <input
             type="password"
@@ -83,9 +89,9 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        <button className="profile-log-modal-btn" type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 
