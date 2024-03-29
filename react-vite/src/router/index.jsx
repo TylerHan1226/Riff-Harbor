@@ -8,6 +8,7 @@ import UpdateInstrumentPage from '../components/Instrument/UpdateInstrumentPage'
 import InstrumentDetails from '../components/Instrument/InstrumentDetails';
 import DeleteInstrument from '../components/Instrument/DeleteInstrument'
 import MyInstruments from '../components/MyInstruments/MyInstruments';
+import MyOrders from '../components/Order/MyOrders';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: "/instruments/:userId/MyInstruments/:instrumentId",
         element: <InstrumentDetails />
+      },
+      {
+        path: "/orders/MyOrders",
+        element: <MyOrders />
       }
     ],
   },

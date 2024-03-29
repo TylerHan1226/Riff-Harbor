@@ -46,7 +46,7 @@ export default function Navigation() {
       </div>
 
       <div>
-        <NavLink>
+        <NavLink to='orders/MyOrders'>
           <FaShoppingCart id='nav-cart' />
         </NavLink>
       </div>
