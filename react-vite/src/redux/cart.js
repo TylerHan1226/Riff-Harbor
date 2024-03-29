@@ -44,7 +44,7 @@ export const getOrderByUserThunk = () => async (dispatch) => {
     if (orders.errors){
         return orders.errors
     }
-    dispatch(loadOrdersByUser)
+    dispatch(loadOrdersByUser(orders))
     return orders
 }
 

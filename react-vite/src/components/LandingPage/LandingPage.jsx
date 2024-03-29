@@ -50,7 +50,7 @@ export default function LandingPage() {
 
 
   return (
-    <div id='landing-page-container'>
+    <div className="page-container">
       <div id="trending-container">
         <div>
           <h1>Gallery</h1>

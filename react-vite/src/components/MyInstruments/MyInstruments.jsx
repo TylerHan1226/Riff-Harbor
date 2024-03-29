@@ -34,7 +34,7 @@ export default function MyInstruments() {
 
     return (
 
-        <div id="my-instruments-page-container">
+        <div className="page-container">
             <h1>My Instruments</h1>
             <div className="my-instrument-item-container">
                 {myInstruments?.length > 0 && myInstruments?.map((eachInst) => (

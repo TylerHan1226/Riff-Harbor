@@ -20,7 +20,7 @@ export default function UpdateInstrumentPage() {
     }
 
     return (
-        <div id="create-inst-form-container">
+        <div className="page-container">
             <h1>Update Your Gear!</h1>
             <InstrumentForm buttonName={buttonName} instrument={instrument} />
         </div>            

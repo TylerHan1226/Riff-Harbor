@@ -6,7 +6,7 @@ export default function CreateInstrumentPage() {
 
 
     return (
-        <div id="create-inst-form-container">
+        <div className="page-container">
             <h1>Sell Your Gear</h1>
             <InstrumentForm buttonName={buttonName}/>
         </div>            
