@@ -5,6 +5,7 @@ export const LOAD_ONE_INSTRUMENT = 'instrument/LOAD_ONE_INSTRUMENT'
 export const CREATE_INSTRUMENT = 'instrument/CREATE_INSTRUMENT'
 export const UPDATE_INSTRUMENT = 'instrument/UPDATE_INSTRUMENT'
 export const DELETE_INSTRUMENT = 'instrument/DELETE_INSTRUMENT'
+export const LOAD_INSTRUMENTS_BY_IDS = 'instrument/LOAD_INSTRUMENTS_BY_IDS'
 
 
 // Action Types
@@ -27,6 +28,10 @@ export const updateInstrument = (updatedInstrument) => ({
 export const deleteInstrument = (deletedInstrument) => ({
     type: DELETE_INSTRUMENT,
     deletedInstrument
+})
+export const loadInstrumentsByIds = (instruments) => ({
+    type: LOAD_INSTRUMENTS_BY_IDS,
+    instruments
 })
 
 
@@ -55,6 +60,20 @@ export const getOneInstrumentThunk = (instrumentId) => async (dispatch) => {
     }
     dispatch(loadOneInstrument(instrument))
     return instrument
+}
+// Get instruments details by ids
+export const getInstrumentsByIdsThunk = (instrumentIds) => async (dispatch) => {
+    const idString = instrumentIds.join(',')
+    const res = await fetch(`/api/instruments?ids=${idString}`)
+    if (!res.ok) {
+        throw new Error('Failed to fetch instruments by ids')
+    }
+    const instruments = await res.json()
+    if (instruments.errors) {
+        return instruments.errors
+    }
+    dispatch(loadInstrumentsByIds(instruments))
+    return instruments
 }
 // Create Instrument Thunk
 export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => {
@@ -107,6 +126,9 @@ export const instrumentReducer = (state ={}, action) => {
         }
         case LOAD_ONE_INSTRUMENT: {
             return {...state, ...action.instrument}
+        }
+        case LOAD_INSTRUMENTS_BY_IDS: {
+            return {...state, ...action.instruments}
         }
         case CREATE_INSTRUMENT: {
             return {...state, ...action.newInstrument}

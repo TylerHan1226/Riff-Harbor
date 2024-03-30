@@ -1,25 +1,70 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useMemo } from 'react';
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { getOrderByUserThunk } from "../../redux/cart";
 import './Orders.css'
+import { getInstrumentsByIdsThunk } from "../../redux/instrument";
 
 
 export default function MyOrders() {
-    const dispatch = useDispatch()
-    const user = useSelector(state => state.session.user)
-    const orders = useSelector(state => state.orders)
+    // const dispatch = useDispatch()
+    // const user = useSelector(state => state.session.user)
+    // const orders = useSelector(state => state.orders)
+    // const instruments = useSelector(state => state.instruments)
+
+
+    // useEffect(() => {
+    //     dispatch(getOrderByUserThunk())
+    // }, [dispatch])
+
+    // if (!user || !orders || !instruments) {
+    //     return <h2>Loading</h2>
+    // }
+
+    // const myOrders = orders?.CurrentOrders
+    // const instrumentIds = myOrders?.map(ele => ele.instrument_id)
+    // const selectedInstruments = instruments.Instrument?.filter(ele => instrumentIds.includes(ele.id))
+
+    // console.log('myOrders ==>', myOrders)
+    // console.log('instrumentIds ==>', instrumentIds)
+    // console.log('selectedInstruments ==>', selectedInstruments)
+
+    // // useEffect(() => {
+    // //     if (instrumentIds && instrumentIds.length > 0) {
+    // //         dispatch(getInstrumentsByIdsThunk(instrumentIds));
+    // //     }
+    // // }, [dispatch]);
+
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
+    const orders = useSelector(state => state.orders);
+    const instruments = useSelector(state => state.instruments);
 
     useEffect(() => {
-        dispatch(getOrderByUserThunk())
-    }, [dispatch])
+        dispatch(getOrderByUserThunk());
+    }, [dispatch]);
 
-    if (!user || !orders) {
-        return <h2>Loading</h2>
+    // Memoize instrumentIds to prevent unnecessary re-renders
+    const instrumentIds = useMemo(() => {
+        return orders?.CurrentOrders?.map(ele => ele.instrument_id) || [];
+    }, [orders]);
+
+    useEffect(() => {
+        if (instrumentIds.length > 0) {
+            dispatch(getInstrumentsByIdsThunk(instrumentIds));
+        }
+    }, [dispatch, instrumentIds]);
+
+    if (!user || !orders || !instruments) {
+        return <h2>Loading</h2>;
     }
 
-    const myOrders = orders.CurrentOrders
-    console.log('myOrders ==>', myOrders)
+    const myOrders = orders.CurrentOrders;
+    const selectedInstruments = instruments.Instrument?.filter(ele => instrumentIds.includes(ele.id));
+
+    console.log('myOrders ==>', myOrders);
+    console.log('instrumentIds ==>', instrumentIds);
+    console.log('selectedInstruments ==>', selectedInstruments);
 
 
     return (
