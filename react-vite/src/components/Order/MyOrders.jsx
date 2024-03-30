@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { getOrderByUserThunk } from "../../redux/cart";
-import './Orders.css'
 import { getInstrumentsByIdsThunk } from "../../redux/instrument";
+import OrderOperation from './OrderOperation'
+import './Orders.css'
 
 
 export default function MyOrders() {
@@ -12,7 +13,17 @@ export default function MyOrders() {
     const user = useSelector(state => state.session.user)
     const orders = useSelector(state => state.orders?.CurrentOrders)
     const instruments = useSelector(state => state.instruments)
-    const instArr = Object.values(instruments)
+    const instArr = Object.values(instruments)?.slice(0, orders?.length)
+
+    console.log('instArr ==>', instArr)
+
+    let subTotal = 0
+    if (instArr?.length > 0) {
+        subTotal = instArr.reduce((acc, cur) => {
+            return acc + cur.price
+        }, 0)
+    }
+    console.log('subTotal ==>', subTotal)
 
     useEffect(() => {
         if (!user) {
@@ -34,15 +45,10 @@ export default function MyOrders() {
     }
 
 
-    console.log('orders ==>', orders)
-    console.log('instrumentIds ==>', instrumentIds)
-    console.log('instArr ==>', instArr)
-
-
-
     return (
         <div className="page-container">
             <h1>My Orders</h1>
+            <h3>Subtotal: ${subTotal}</h3>
             <div className="my-instrument-item-container">
                 {instArr?.length > 0 && instArr?.map((eachInst) => (
                     <div className="instrument-container" key={eachInst?.id}>
@@ -61,20 +67,16 @@ export default function MyOrders() {
                                 <p className="inst-dtl-text">New</p>
                             )}
                         </div>
-                        <div className="my-inst-item-btn-container">
-                        <button className="my-inst-action-btn">
-                                <NavLink className='add-to-cart-text my-inst-update-btn' to={`${eachInst?.id}/update`}>
-                                    Update
-                                </NavLink>
-                            </button>
-                            {/* <button className="delete-button my-inst-action-btn">
-                                <OpenModalMenuItem
-                                    itemText='Delete Instrument'
-                                    modalComponent={<DeleteInstrument instrumentId={eachInst?.id} reRenderOnDelete={reRenderOnDelete} />}
-                                />
-                            </button> */}
-                        </div>
-
+                        <OrderOperation instrument={eachInst} orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]}/>
+                        {/* <div className="my-cart-item-btn-container">
+                            <div className='quantity-container'>
+                                <button>-</button>
+                                <p>
+                                    Quantity: {orders?.filter(ele => ele.instrument_id == eachInst.id)[0]?.quantity}
+                                </p>
+                                <button>+</button>
+                            </div>
+                        </div> */}
                     </div>
                 ))}
             </div>

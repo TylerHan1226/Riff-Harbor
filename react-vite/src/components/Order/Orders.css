@@ -1,0 +1,14 @@
+
+.my-cart-item-btn-container {
+    border: blue solid 1px;
+    margin-left: auto;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quantity-container {
+    display: flex;
+    flex-direction: row;
+}

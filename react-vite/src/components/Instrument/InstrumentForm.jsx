@@ -61,7 +61,7 @@ export default function InstrumentForm({ buttonName, instrument}) {
             if (!category || !['Electric Guitar', 'Acoustic Guitar', 'Bass'].includes(category)) {
                 errors.category = 'This field is required and must be one of the following: Electric Guitar, Acoustic Guitar, Bass.'
             }
-            if (!price || price <= 0 || typeof price != 'number') {
+            if (!price || price <= 0) {
                 errors.price = 'Price is required and must be a number greater than 0'
             }
             if (!details || details.length < 25) {
