@@ -26,18 +26,6 @@ def instrument(id):
         instrument_list = instrument.to_dict()
         return instrument_list, 200
 
-# get instruments by an array of id
-# /api/instruments/?ids = id_1, id_2, ...
-@instrument_routes.route('/')
-def instruments_by_ids():
-    ids = request.args.get('ids')
-    if not ids:
-        return {'message': 'No instrument id provided'}, 400
-    id_list = [int(id) for id in ids.split(',')]
-    instruments = Instrument.query.filter(Instrument.id.in_(id_list))
-    instrument_list = [instrument.to_dict() for instrument in instruments]
-    return instrument_list, 200
-
 
 # create an instrument
 # /api/instruments/new

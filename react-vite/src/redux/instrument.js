@@ -48,6 +48,7 @@ export const getAllInstrumentsThunk = () => async (dispatch) => {
     dispatch(loadAllInstruments(instruments))
     return instruments
 }
+
 // Get One Instrument by its ID Thunk
 export const getOneInstrumentThunk = (instrumentId) => async (dispatch) => {
     const res = await fetch(`/api/instruments/${instrumentId}`)
@@ -61,20 +62,22 @@ export const getOneInstrumentThunk = (instrumentId) => async (dispatch) => {
     dispatch(loadOneInstrument(instrument))
     return instrument
 }
-// Get instruments details by ids
+
+// Get instruments by ids
 export const getInstrumentsByIdsThunk = (instrumentIds) => async (dispatch) => {
-    const idString = instrumentIds.join(',')
-    const res = await fetch(`/api/instruments?ids=${idString}`)
+    const res = await fetch(`/api/instruments`)
     if (!res.ok) {
         throw new Error('Failed to fetch instruments by ids')
     }
-    const instruments = await res.json()
-    if (instruments.errors) {
-        return instruments.errors
+    const data = await res.json()
+    const selectedInstruments = data.Instruments.filter(ele => instrumentIds.includes(ele.id))
+    if (selectedInstruments.errors) {
+        return selectedInstruments.errors
     }
-    dispatch(loadInstrumentsByIds(instruments))
-    return instruments
+    dispatch(loadInstrumentsByIds(selectedInstruments))
+    return selectedInstruments
 }
+
 // Create Instrument Thunk
 export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => {
     const res = await fetch('/api/instruments/new', {
@@ -89,6 +92,7 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
     dispatch(createInstrument(newInstrument))
     return newInstrument
 }
+
 // Update Instrument Thunk
 export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => async (dispatch) => {
     const res = await fetch(`/api/instruments/${instrumentId}/update`, {
@@ -104,6 +108,7 @@ export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => as
     dispatch(updateInstrument({...updatedInstrument}))
     return updatedInstrument
 }
+
 // Delete Instrument Thunk
 export const deleteInstrumentThunk = (instrumentId) => async (dispatch) => {
     const res = await fetch(`/api/instruments/${instrumentId}/delete`, {
