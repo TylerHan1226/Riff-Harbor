@@ -115,9 +115,10 @@ export const deleteInstrumentThunk = (instrumentId) => async (dispatch) => {
         method: 'DELETE'
     })
     if (res.ok) {
-        // throw new Error('Failed to delete instrument')
         const deletedInstrument = await res.json()
         dispatch(deleteInstrument(deletedInstrument))
+    } else {
+        throw new Error('Failed to delete instrument')
     }
 
 }

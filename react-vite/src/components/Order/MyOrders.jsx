@@ -15,7 +15,7 @@ export default function MyOrders() {
     const instruments = useSelector(state => state.instruments)
     const instArr = Object.values(instruments)?.slice(0, orders?.length)
 
-    console.log('instArr ==>', instArr)
+    // console.log('instArr ==>', instArr)
 
     let subTotal = 0
     if (instArr?.length > 0) {
@@ -23,14 +23,14 @@ export default function MyOrders() {
             return acc + cur.price
         }, 0)
     }
-    console.log('subTotal ==>', subTotal)
+    // console.log('subTotal ==>', subTotal)
 
     useEffect(() => {
         if (!user) {
             nav('/')
         }
         dispatch(getOrderByUserThunk());
-    }, [dispatch])
+    }, [dispatch, user])
 
     const instrumentIds = orders?.map(ele => ele.instrument_id)
 

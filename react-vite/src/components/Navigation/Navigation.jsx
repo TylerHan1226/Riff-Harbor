@@ -19,7 +19,7 @@ export default function Navigation() {
           <GiGuitarBassHead id='nav-icon' />
         </NavLink>
         <h1 id='nav-site-name'>
-            Riff Harbor
+          Riff Harbor
         </h1>
         <MdSailing className="nav-text-icon" />
       </div>
@@ -45,11 +45,13 @@ export default function Navigation() {
         <ProfileButton />
       </div>
 
-      <div>
-        <NavLink to='orders/MyOrders'>
-          <FaShoppingCart id='nav-cart' />
-        </NavLink>
-      </div>
+      {user &&
+        <div>
+          <NavLink to='orders/MyOrders'>
+            <FaShoppingCart id='nav-cart' />
+          </NavLink>
+        </div>
+      }
 
     </div>
   );

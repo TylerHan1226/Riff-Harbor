@@ -13,9 +13,6 @@ export default function DeleteInstrument({instrumentId, reRenderOnDelete}) {
     const instrument = useSelector(state => state.instruments)
     const user = useSelector(state => state.session.user)
 
-    console.log('instrument in delete page! ==>', instrument)
-    console.log('instrument.id in delete page! ==>', instrument.id)
-
     useEffect(() => {
         if (!user) {
             nav('/')

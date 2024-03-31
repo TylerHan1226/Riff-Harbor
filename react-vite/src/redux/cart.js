@@ -2,7 +2,10 @@
 // Action Creators
 export const LOAD_ALL_ORDER_ITEMS = 'cart/LOAD_ALL_ORDER_ITEMS'
 export const LOAD_ORDER_BY_USER = 'cart/LOAD_ORDER_BY_USER'
+export const LOAD_ORDER_BY_ID = 'cart/LOAD_ORDER_BY_ID'
 export const CREATE_ORDER = 'cart/CREATE_ORDER'
+export const UPDATE_ORDER = 'cart/UPDATE_ORDER'
+export const DELETE_ORDER = 'cart/DELETE_ORDER'
 
 
 // Action Types
@@ -14,10 +17,22 @@ export const loadOrdersByUser = (orders) => ({
     type: LOAD_ORDER_BY_USER,
     orders
 })
+export const loadOrderById = (order) => ({
+    type: LOAD_ORDER_BY_ID,
+    order
+})
 export const createOrder = (newOrder) => ({
     type: CREATE_ORDER,
     newOrder
 })
+export const updateOrder = (updatedOrder) => ({
+    type: UPDATE_ORDER,
+    updatedOrder
+})
+export const deleteOrder = (orderToDelete) => {
+    type: DELETE_ORDER,
+    orderToDelete
+}
 
 
 // Get All Orders
@@ -48,6 +63,20 @@ export const getOrderByUserThunk = () => async (dispatch) => {
     return orders
 }
 
+// Get Order by id
+export const getOrderByIdThunk = (orderId) => async (dispatch) => {
+    const res = await fetch(`/api/orders/${orderId}`)
+    if (!res.ok) {
+        throw new Error('Failed to fetch the order by id')
+    }
+    const order = await res.json()
+    if (order.errors) {
+        return order.errors
+    }
+    dispatch(loadOrderById(order))
+    return order
+}
+
 // Create an Order
 export const createOrderThunk = (newOrderData) => async (dispatch) => {
     const res = await fetch('/api/orders/new', {
@@ -64,8 +93,32 @@ export const createOrderThunk = (newOrderData) => async (dispatch) => {
 }
 
 // Update an Order
+export const updateOrderThunk = (orderId, updatedOrderData) => async (dispatch) => {
+    const res = await fetch(`/api/orders/${orderId}/update`, {
+        method: "PUT",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(updatedOrderData)
+    })
+    if (!res.ok) {
+        throw new Error('Failed to update order')
+    }
+    const updatedOrder = await res.json()
+    dispatch(updateOrder(updatedOrder))
+    return updatedOrder
+}
 
 // Delete Order by id
+export const deleteOrderThunk = (orderId) => async (dispatch) => {
+    const res = await fetch(`/api/orders/${orderId}/delete`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        const orderToDelete = await res.json()
+        dispatch(deleteOrder(orderToDelete))
+    } else {
+        throw new Error('Failed to delete order')
+    }
+}
 
 // Clear Cart / Checkout
 
@@ -78,8 +131,19 @@ export const orderReducer = (state={}, action) => {
         case LOAD_ORDER_BY_USER: {
             return {...state, ...action.orders}
         }
+        case LOAD_ORDER_BY_ID: {
+            return {...state, ...action.order}
+        }
         case CREATE_ORDER: {
             return {...state, ...action.newOrder}
+        }
+        case UPDATE_ORDER: {
+            return {...state, ...action.updatedOrder}
+        }
+        case DELETE_ORDER: {
+            const deleteState = {...state}
+            delete deleteState[action.orderToDelete]
+            return deleteState
         }
         default:
             return state

@@ -28,7 +28,6 @@ def orders_by_user():
 
 # get the order by orderId
 # /api/orders/:orderId
-# TODO: Shall I keep this route?
 @order_routes.route('/<int:id>')
 @login_required
 def order_by_id(id):
@@ -71,6 +70,11 @@ def update_order(id):
         return {'message': 'Order not found'}, 404
     if order_to_update.user_id != current_user.id:
         return redirect('api/auth/unauthorized')
+    # remove item if quantity <= 0
+    if new_quantity <= 0:
+        db.session.delete(order_to_update)
+        db.session.commit()
+        return {'message': 'Successfully Deleted'}, 200
     order_to_update.quantity = new_quantity
     db.session.commit()
     return order_to_update.to_dict(), 200
