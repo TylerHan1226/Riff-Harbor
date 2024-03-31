@@ -46,7 +46,7 @@ h1, h2, h3, h4, p {
     width: 50%;
     margin-top: auto;
     background-color: rgb(190, 0, 0);
-    box-shadow: 0.5px 0.5px 1px 1px;
+    box-shadow: 0 0 10px 2px rgb(225, 0, 0, 0.5);
     border: none;
     height: 24px;
     margin-bottom: 12px;

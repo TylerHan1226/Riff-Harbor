@@ -72,11 +72,10 @@
     background-color: rgb(190, 0, 0);
     color: white;
     border: none;
-    /* box-shadow: 3px 3px 3px grey; */
 }
 .profile-log-modal-btn:hover {
     background-color: rgb(235, 0 , 0);
-    box-shadow: 2px 2px 2px grey;
+    box-shadow: 0 0 10px 2px rgb(225, 0, 0, 0.5);
     cursor: pointer;
 }
 
