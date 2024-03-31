@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
 import { getOrderByUserThunk } from "../../redux/cart";
@@ -14,16 +14,14 @@ export default function MyOrders() {
     const orders = useSelector(state => state.orders?.CurrentOrders)
     const instruments = useSelector(state => state.instruments)
     const instArr = Object.values(instruments)?.slice(0, orders?.length)
+    const instrumentIds = orders?.map(ele => ele.instrument_id)
+    console.log('instArr ==>', instArr)
+    console.log('orders ==>', orders)
 
-    // console.log('instArr ==>', instArr)
+    const [subtotal, setSubtotal] = useState(0)
 
-    let subTotal = 0
-    if (instArr?.length > 0) {
-        subTotal = instArr.reduce((acc, cur) => {
-            return acc + cur.price
-        }, 0)
-    }
-    // console.log('subTotal ==>', subTotal)
+    // get subtotal
+    // let subtotal = 0
 
     useEffect(() => {
         if (!user) {
@@ -32,7 +30,20 @@ export default function MyOrders() {
         dispatch(getOrderByUserThunk());
     }, [dispatch, user])
 
-    const instrumentIds = orders?.map(ele => ele.instrument_id)
+    const instrumentTotal = []
+    useEffect(() => {
+        instArr?.forEach(inst => {
+            orders?.forEach(order => {
+                if (inst.id == order.instrument_id) {
+                    instrumentTotal.push(inst.price * order.quantity)
+                }
+            })
+        })
+        const newTotal = instrumentTotal.reduce((acc, curr) => {
+            return acc + curr
+        }, 0)
+        setSubtotal(newTotal)
+    }, [orders, instArr, instrumentTotal])
 
     useEffect(() => {
         if (instrumentIds?.length > 0 && orders) {
@@ -40,18 +51,19 @@ export default function MyOrders() {
         }
     }, [dispatch, orders])
 
+
+
     if (!orders || !instruments) {
         return <h2>Loading</h2>
     }
 
 
     return (
-        <div className="page-container">
-            <h1>My Orders</h1>
-            <h3>Subtotal: ${subTotal}</h3>
-            <div className="my-instrument-item-container">
+        <div className="cart-page-container">
+
+            <div className="my-cart-item-container">
                 {instArr?.length > 0 && instArr?.map((eachInst) => (
-                    <div className="instrument-container" key={eachInst?.id}>
+                    <div className="instrument-container cart-item-container" key={eachInst?.id}>
                         <div className="instrument-dtl-container">
                             <NavLink to={`${eachInst?.id}`}>
                                 <img className="instrument-image" src={eachInst?.image_url} />
@@ -67,18 +79,17 @@ export default function MyOrders() {
                                 <p className="inst-dtl-text">New</p>
                             )}
                         </div>
-                        <OrderOperation instrument={eachInst} orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]}/>
-                        {/* <div className="my-cart-item-btn-container">
-                            <div className='quantity-container'>
-                                <button>-</button>
-                                <p>
-                                    Quantity: {orders?.filter(ele => ele.instrument_id == eachInst.id)[0]?.quantity}
-                                </p>
-                                <button>+</button>
-                            </div>
-                        </div> */}
+                        <OrderOperation instrument={eachInst} orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]} />
                     </div>
                 ))}
+            </div>
+
+            <div className='cart-checkout-container'>
+                <h1>My Orders</h1>
+                <h3>Subtotal: ${subtotal}</h3>
+                <button className="order-action-button">
+                    Check Out
+                </button>
             </div>
 
         </div>

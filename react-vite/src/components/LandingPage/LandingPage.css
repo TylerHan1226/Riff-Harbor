@@ -46,15 +46,14 @@ h1, h2, h3, h4, p {
     width: 50%;
     margin-top: auto;
     background-color: rgb(190, 0, 0);
-    box-shadow: 0 0 10px 2px rgb(225, 0, 0, 0.5);
     border: none;
     height: 24px;
     margin-bottom: 12px;
     border-radius: 4px;
 }
-
 .add-to-cart-button:hover {
     background-color: rgb(235, 0, 0);
+    box-shadow: 0 0 10px 2px rgb(225, 0, 0, 0.5);
 }
 
 .add-to-cart-text {

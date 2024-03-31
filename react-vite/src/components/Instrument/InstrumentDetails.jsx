@@ -20,9 +20,6 @@ export default function InstrumentDetails() {
     const [deletedInstrument, setDeleteInst] = useState(false)
     const { instrumentId } = useParams()
 
-    console.log('instrumentId ==>', instrumentId)
-    console.log('instrument ==>', instrument)
-
     const reRenderOnDelete = () => {
         setDeleteInst(!deletedInstrument)
     }

@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { deleteOrderThunk, updateOrderThunk } from "../../redux/cart"
-import { useNavigate } from "react-router-dom"
+import { updateOrderThunk } from "../../redux/cart"
 import DeleteOrder from "./DeleteOrder"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 
 
 export default function OrderOperation({ instrument, orderInfo }) {
-
     const dispatch = useDispatch()
 
     const [orderQuantity, setOrderQuantity] = useState(orderInfo?.quantity)
@@ -28,10 +26,6 @@ export default function OrderOperation({ instrument, orderInfo }) {
             dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
         }
     }
-    // const handleRemoveItem = () => {
-    //     dispatch(deleteOrderThunk(orderInfo.id))
-    //     alert('Successfully removed item from cart')
-    // }
 
 
     return (
@@ -40,9 +34,8 @@ export default function OrderOperation({ instrument, orderInfo }) {
                 {orderQuantity == 1 ? (
                     <button className="quantity-btn" onClick={handleDec}>
                         <OpenModalMenuItem
-                            // className='cart-btn-text'
                             itemText='-'
-                            modalComponent={<DeleteOrder orderId={orderInfo.id} />}
+                            modalComponent={<DeleteOrder orderId={orderInfo?.id} />}
                         />
                     </button>
                 ) : (
@@ -54,11 +47,10 @@ export default function OrderOperation({ instrument, orderInfo }) {
                 <button className="quantity-btn" onClick={handleInc}>+</button>
             </div>
             <div className="remove-order-container">
-                <button className="order-action-button">
+                <button className="order-remove-button">
                     <OpenModalMenuItem
-                        // className='cart-btn-text'
                         itemText='Remove from cart'
-                        modalComponent={<DeleteOrder orderId={orderInfo.id} />}
+                        modalComponent={<DeleteOrder orderId={orderInfo?.id} />}
                     />
                 </button>
             </div>
