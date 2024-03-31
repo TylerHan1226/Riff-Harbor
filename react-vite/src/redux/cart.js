@@ -6,6 +6,7 @@ export const LOAD_ORDER_BY_ID = 'cart/LOAD_ORDER_BY_ID'
 export const CREATE_ORDER = 'cart/CREATE_ORDER'
 export const UPDATE_ORDER = 'cart/UPDATE_ORDER'
 export const DELETE_ORDER = 'cart/DELETE_ORDER'
+export const CLEAR_CART = 'cart/CLEAR_CART'
 
 
 // Action Types
@@ -29,10 +30,14 @@ export const updateOrder = (updatedOrder) => ({
     type: UPDATE_ORDER,
     updatedOrder
 })
-export const deleteOrder = (orderToDelete) => {
+export const deleteOrder = (orderToDelete) => ({
     type: DELETE_ORDER,
     orderToDelete
-}
+})
+export const clearCart = (allItems) => ({
+    type: CLEAR_CART,
+    allItems
+})
 
 
 // Get All Orders
@@ -121,8 +126,19 @@ export const deleteOrderThunk = (orderId) => async (dispatch) => {
 }
 
 // Clear Cart / Checkout
+export const clearCartThunk = () => async (dispatch) => {
+    const res = await fetch(`/api/orders/current/clear`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        const orders = await res.json()
+        dispatch(clearCart(orders))
+    } else {
+        throw new Error('Failed to clear cart')
+    }
+}
 
-
+// Order Reduce
 export const orderReducer = (state={}, action) => {
     switch (action.type) {
         case LOAD_ALL_ORDER_ITEMS: {
@@ -143,6 +159,11 @@ export const orderReducer = (state={}, action) => {
         case DELETE_ORDER: {
             const deleteState = {...state}
             delete deleteState[action.orderToDelete]
+            return deleteState
+        }
+        case CLEAR_CART: {
+            const deleteState = {...state}
+            delete deleteState[action.allItems]
             return deleteState
         }
         default:

@@ -80,7 +80,6 @@ def update_order(id):
     return order_to_update.to_dict(), 200
 
 
-
 # delete an order
 # /api/orders/:orderId/delete
 @order_routes.route('/<int:id>/delete', methods=['DELETE'])

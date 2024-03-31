@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { getOrderByUserThunk } from "../../redux/cart";
 import { getInstrumentsByIdsThunk } from "../../redux/instrument";
 import OrderOperation from './OrderOperation'
+import ClearCart from './ClearCart';
 import './Orders.css'
+
+
 
 
 export default function MyOrders() {
@@ -42,7 +46,8 @@ export default function MyOrders() {
         const newTotal = instrumentTotal.reduce((acc, curr) => {
             return acc + curr
         }, 0)
-        setSubtotal(newTotal)
+        const roundedTotal = parseFloat(newTotal.toFixed(2))
+        setSubtotal(roundedTotal)
     }, [orders, instArr, instrumentTotal])
 
     useEffect(() => {
@@ -50,7 +55,6 @@ export default function MyOrders() {
             dispatch(getInstrumentsByIdsThunk(instrumentIds));
         }
     }, [dispatch, orders])
-
 
 
     if (!orders || !instruments) {
@@ -88,7 +92,11 @@ export default function MyOrders() {
                 <h1>My Orders</h1>
                 <h3>Subtotal: ${subtotal}</h3>
                 <button className="order-action-button">
-                    Check Out
+                    <OpenModalMenuItem
+                        itemText="Check Out"
+                        modalComponent={<ClearCart subtotal={subtotal} />}
+                    />
+                    
                 </button>
             </div>
 
