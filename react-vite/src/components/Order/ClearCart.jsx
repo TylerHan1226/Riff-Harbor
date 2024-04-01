@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useEffect } from "react";
-import { clearCartThunk, getOrderByIdThunk } from "../../redux/cart";
+import { clearCartThunk } from "../../redux/cart";
 // import { deleteInstrumentThunk, getOneInstrumentThunk } from "../../redux/instrument";
 
 export default function ClearCart({subtotal}) {

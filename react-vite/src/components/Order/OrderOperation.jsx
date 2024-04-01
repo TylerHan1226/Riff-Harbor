@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getOrderByUserThunk, updateOrderThunk } from "../../redux/cart"
+import { updateOrderThunk } from "../../redux/cart"
 import DeleteOrder from "./DeleteOrder"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
+import { useNavigate } from "react-router-dom"
 
 
 export default function OrderOperation({ orderInfo, reRenderOnQuantity, reRenderOnDelete }) {
     const dispatch = useDispatch()
+    const nav = useNavigate()
     const user = useSelector(state => state.session)
 
     const [orderQuantity, setOrderQuantity] = useState(orderInfo?.quantity)

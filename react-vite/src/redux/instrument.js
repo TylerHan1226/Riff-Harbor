@@ -1,4 +1,3 @@
-import { csrfFetch } from "./csrf"
 
 // Action Creators
 export const LOAD_ALL_INSTRUMENTS = 'instrument/LOAD_ALL_INSTRUMENTS'
