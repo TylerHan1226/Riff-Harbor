@@ -81,7 +81,7 @@ export const getInstrumentsByIdsThunk = (instrumentIds) => async (dispatch) => {
 
 // Create Instrument Thunk
 export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => {
-    const { make, model, color, category, price, details, body, fretboard, image_url } = newInstrumentData
+    const { make, model, color, category, price, details, body, fretboard, is_used, image_url } = newInstrumentData
     const formData = new FormData()
     formData.append('make', make)
     formData.append('model', model)
@@ -89,15 +89,16 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
     formData.append('category', category)
     formData.append('price', price)
     formData.append('details', details)
-    formData.append('model', body)
-    formData.append('model', fretboard)
+    formData.append('body', body)
+    formData.append('fretboard', fretboard)
+    formData.append('is_used', is_used)
     if (image_url) formData.append('image_url', image_url)
     
     console.log('make in thunk ==>', make)
     console.log('image_url in thunk ==>', image_url)
     console.log('formData in thunk ==>', formData)
 
-    const res = await csrfFetch('/api/instruments/new', {
+    const res = await fetch('/api/instruments/new', {
         method: "POST",
         // headers: {'Content-Type': 'multipart/form-data'},
         body: formData
