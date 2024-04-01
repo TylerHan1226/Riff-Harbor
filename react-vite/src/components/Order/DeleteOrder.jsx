@@ -31,8 +31,8 @@ export default function DeleteOrder({ orderId, reRenderOnDelete }) {
         <div className='delete-instrument-modal'>
             <div className='delete-form-container'>
                 <h1 className='remove-inst-title'>Are you sure you want to remove this order from your cart?</h1>
-                <button className='delete-modal-btn confirm-delete-btn' onClick={handleDeleteOrder}>Remove Order Item</button>
-                <button className='delete-modal-btn' onClick={closeModal}>Cancel</button>
+                <button className='modal-btn confirm-btn' onClick={handleDeleteOrder}>Remove Order Item</button>
+                <button className='modal-btn' onClick={closeModal}>Cancel</button>
             </div>
         </div>
     )

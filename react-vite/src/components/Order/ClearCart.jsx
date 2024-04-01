@@ -30,8 +30,8 @@ export default function ClearCart({subtotal}) {
             <div className='delete-form-container'>
                 <h1 className='confirm-text'>Confirm Your Subtotal</h1>
                 <h2>${subtotal}</h2>
-                <button className='delete-modal-btn confirm-delete-btn' onClick={handleDeleteOrder}>Checkout</button>
-                <button className='delete-modal-btn' onClick={closeModal}>Cancel</button>
+                <button className='modal-btn confirm-btn' onClick={handleDeleteOrder}>Checkout</button>
+                <button className='modal-btn' onClick={closeModal}>Cancel</button>
             </div>
         </div>
     )

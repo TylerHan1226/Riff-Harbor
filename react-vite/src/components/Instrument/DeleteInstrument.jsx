@@ -32,8 +32,8 @@ export default function DeleteInstrument({instrumentId, reRenderOnDelete}) {
         <div className='delete-instrument-modal'>
             <div className='delete-form-container'>
                 <h1 className='remove-inst-title'>Are you sure you want to remove this instrument from Riff Harbor?</h1>
-                <button className='delete-modal-btn confirm-delete-btn' onClick={deleteInstrument}>Remove My Instrument</button>
-                <button className='delete-modal-btn' onClick={closeModal}>Cancel</button>
+                <button className='modal-btn confirm-btn' onClick={deleteInstrument}>Remove My Instrument</button>
+                <button className='modal-btn' onClick={closeModal}>Cancel</button>
             </div>
         </div>
     )

@@ -80,10 +80,10 @@ export default function LandingPage() {
       <div id="trending-container">
         <div>
           <h1>Gallery</h1>
-          <button id='dice-button' >
+          <div id='dice-container' >
             <FaDice id='dice-icon' onClick={handleRandomizeInstClick} />
             <p id='dice-text'>click to randomize</p>
-          </button>
+          </div>
         </div>
         <div className="trending-instruments-container">
           {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (

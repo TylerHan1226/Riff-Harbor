@@ -74,33 +74,26 @@ h1, h2, h3, h4, p {
     color: red;
 } */
 
-#dice-button {
-    background-color: white;
+#dice-container {
     border: none;
     display: flex;
     flex-direction: column;
-    background-color: rgb(190, 0, 0);
-    border-radius: 8px;
     width: 150px;
     align-items: center;
 }
 
-#dice-button:hover {
-    background-color: rgb(235, 0, 0);
-    cursor: pointer;
-}
-
 #dice-icon {
-    font-size: 56px;
+    font-size: 64px;
     margin-top: 12px;
-    color: white;
+    color: rgb(190, 0, 0);
     transition: transform 0.3s ease;
 }
 #dice-icon:hover {
     color: rgb(20, 0, 0);
-    transform: rotate(30deg)
+    transform: rotate(30deg);
+    cursor: pointer;
 }
 
 #dice-text {
-    color: white;
+    color: rgb(190, 0, 0);
 }

@@ -125,7 +125,7 @@
     justify-content: center;
 }
 
-.delete-modal-btn{
+.modal-btn{
     height: 45px;
     width: 300px;
     margin: 15px;
@@ -135,17 +135,18 @@
     height: 48px;
     border-radius: 4px;
 }
-.delete-modal-btn:hover{
+.modal-btn:hover{
     background-color: grey;
     border: 1px solid grey;
+    cursor: pointer;
 }
 
-.confirm-delete-btn{
+.confirm-btn{
     background-color: rgb(190, 0, 0);
     border: 1px solid rgb(190, 0, 0);
     color: white;
 }
-.confirm-delete-btn:hover{
+.confirm-btn:hover{
     background-color: rgb(235, 0, 0);
     border: 1px solid rgb(235, 0, 0);
 }

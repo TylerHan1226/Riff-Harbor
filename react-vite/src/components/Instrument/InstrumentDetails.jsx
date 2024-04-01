@@ -50,12 +50,12 @@ export default function InstrumentDetails() {
         if (orderInstIds.includes(instId)) {
             alert("This instrument is already in your cart! You can change the quantity in your cart page.")
         } else {
-          const newOrder = {
-            instrument_id: instId
-          }
-          dispatch(createOrderThunk(newOrder))
-          alert("You've placed the order successfully!")
-          nav('/orders/MyOrders')
+            const newOrder = {
+                instrument_id: instId
+            }
+            dispatch(createOrderThunk(newOrder))
+            alert("You've placed the order successfully!")
+            nav('/orders/MyOrders')
         }
     }
 
@@ -96,7 +96,7 @@ export default function InstrumentDetails() {
                             </button>
                         </>
                     ) : (
-                        <button 
+                        <button
                             className={`add-to-cart-button-dtl ${user ? '' : 'disabled'}`}
                             onClick={() => handleAddToCart(instrument.id)}
                             disabled={isDisable}
@@ -106,10 +106,7 @@ export default function InstrumentDetails() {
                             </NavLink>
                         </button>
                     )}
-
                 </div>
-
-                {/* </div> */}
             </div>
         </div>
 
