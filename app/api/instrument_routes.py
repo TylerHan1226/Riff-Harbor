@@ -50,9 +50,20 @@ def create_instrument():
 
         new_instrument = Instrument(
             seller_id = current_user.id,
+            make = form.make.data,
+            model = form.model.data,
+            color = form.color.data,
+            category = form.category.data,
+            price = form.price.data,
+            details = form.details.data,
+            body = form.body.data,
+            fretboard = form.fretboard.data,
+            is_used = form.is_used.data,
             image_url=url
         )
-        form.populate_obj(new_instrument)
+        # explicitly load
+        # form.populate_obj(new_instrument)
+
         db.session.add(new_instrument)
         db.session.commit()
         return new_instrument.to_dict(), 201
