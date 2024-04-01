@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { getOrderByUserThunk, updateOrderThunk } from "../../redux/cart"
 import DeleteOrder from "./DeleteOrder"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
-import { getInstrumentsByIdsThunk } from "../../redux/instrument"
 
 
 export default function OrderOperation({ orderInfo, sendDataToParent }) {
@@ -16,6 +15,7 @@ export default function OrderOperation({ orderInfo, sendDataToParent }) {
         setOrderQuantity(ele => ele + 1)
         const updatedOrder = { quantity: orderQuantity + 1 }
         dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
+        sendDataToParent(true)
     }
     const handleDec = () => {
         if (orderQuantity == 1) {
@@ -27,15 +27,14 @@ export default function OrderOperation({ orderInfo, sendDataToParent }) {
             const updatedOrder = { quantity: orderQuantity - 1 }
             dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
         }
+        sendDataToParent(true)
     }
-
 
     useState(() => {
         if (!user) {
             nav('/')
         }
-        dispatch(getOrderByUserThunk())
-    }, [dispatch])
+    }, [dispatch, user])
 
 
     return (

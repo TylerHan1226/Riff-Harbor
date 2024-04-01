@@ -22,8 +22,14 @@ export default function MyOrders() {
     const instArr = Object.values(instruments)?.slice(0, orders?.length)
     const instrumentIds = orders?.map(ele => ele.instrument_id)
 
+    const [hasChangedQ, setChangedQ] = useState(false);
+    const handleChangeQuantity = (data) => {
+        setChangedQ(data);
+      };
+    console.log('hasChangedQ ==>', hasChangedQ)
+
     let subtotal = 0
-    const getSubTotal = (instArr) => {
+    const getSubTotal = (instArr, orders) => {
         const instrumentTotal = instArr?.reduce((acc, inst) => {
             const matchingOrder = orders.find(order => order.instrument_id == inst.id)
             if (matchingOrder) {
@@ -35,7 +41,7 @@ export default function MyOrders() {
         return newTotal
     }
     if (instArr.length > 0) {
-        subtotal = getSubTotal(instArr)
+        subtotal = getSubTotal(instArr, orders)
     }
 
     useEffect(() => {
@@ -43,13 +49,14 @@ export default function MyOrders() {
             nav('/')
         }
         dispatch(getOrderByUserThunk());
-    }, [dispatch, user])
+    }, [dispatch, hasChangedQ, user])
     
     useEffect(() => {
         if (instrumentIds?.length > 0 && orders) {
             dispatch(getInstrumentsByIdsThunk(instrumentIds));
         }
     }, [dispatch, orders])
+
 
 
     if (!orders || !instruments) {
@@ -79,7 +86,8 @@ export default function MyOrders() {
                             )}
                         </div>
                         <OrderOperation 
-                        orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]} 
+                        orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]}
+                        sendDataToParent={handleChangeQuantity} 
                         />
                     </div>
                 ))}
