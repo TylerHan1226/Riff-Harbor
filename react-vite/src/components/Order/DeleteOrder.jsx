@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { deleteOrderThunk, getOrderByIdThunk } from "../../redux/cart";
 // import { deleteInstrumentThunk, getOneInstrumentThunk } from "../../redux/instrument";
 
-export default function DeleteOrder({ orderId}) {
+export default function DeleteOrder({ orderId, reRenderOnDelete }) {
     const dispatch = useDispatch()
     const nav = useNavigate()
     const { closeModal } = useModal()
@@ -23,6 +23,7 @@ export default function DeleteOrder({ orderId}) {
         e.preventDefault()
         dispatch(deleteOrderThunk(orderId))
         closeModal()
+        reRenderOnDelete()
         nav(`/orders/MyOrders`)
     }
 

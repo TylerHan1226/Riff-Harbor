@@ -23,10 +23,14 @@ export default function MyOrders() {
     const instrumentIds = orders?.map(ele => ele.instrument_id)
 
     const [hasChangedQ, setChangedQ] = useState(false);
-    const handleChangeQuantity = (data) => {
-        setChangedQ(data);
-      };
-    console.log('hasChangedQ ==>', hasChangedQ)
+    const reRenderOnQuantity = () => {
+        setChangedQ(!hasChangedQ)
+    }
+
+    const [hasDeleted, setDeleted] = useState(false)
+    const reRenderOnDelete = () => {
+        setDeleted(!hasDeleted)
+    }
 
     let subtotal = 0
     const getSubTotal = (instArr, orders) => {
@@ -49,13 +53,13 @@ export default function MyOrders() {
             nav('/')
         }
         dispatch(getOrderByUserThunk());
-    }, [dispatch, hasChangedQ, user])
-    
+    }, [dispatch, hasChangedQ, user, hasDeleted])
+
     useEffect(() => {
         if (instrumentIds?.length > 0 && orders) {
             dispatch(getInstrumentsByIdsThunk(instrumentIds));
         }
-    }, [dispatch, orders])
+    }, [dispatch, orders, hasDeleted])
 
 
 
@@ -85,23 +89,24 @@ export default function MyOrders() {
                                 <p className="inst-dtl-text">New</p>
                             )}
                         </div>
-                        <OrderOperation 
-                        orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]}
-                        sendDataToParent={handleChangeQuantity} 
+                        <OrderOperation
+                            orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]}
+                            reRenderOnQuantity={reRenderOnQuantity}
+                            reRenderOnDelete={reRenderOnDelete}
                         />
                     </div>
                 ))}
             </div>
             <div className='cart-checkout-container'>
-        <h1>My Orders</h1>
-        <h3>Subtotal: ${subtotal}</h3>
-        <button className="order-action-button">
-            <OpenModalMenuItem
-                itemText="Checkout"
-                modalComponent={<ClearCart subtotal={subtotal} />}
-            />
-        </button>
-    </div>
+                <h1>My Orders</h1>
+                <h3>Subtotal: ${subtotal}</h3>
+                <button className="order-action-button">
+                    <OpenModalMenuItem
+                        itemText="Checkout"
+                        modalComponent={<ClearCart subtotal={subtotal} />}
+                    />
+                </button>
+            </div>
         </div>
 
     )

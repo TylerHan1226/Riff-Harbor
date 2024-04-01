@@ -5,7 +5,7 @@ import DeleteOrder from "./DeleteOrder"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 
 
-export default function OrderOperation({ orderInfo, sendDataToParent }) {
+export default function OrderOperation({ orderInfo, reRenderOnQuantity, reRenderOnDelete }) {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session)
 
@@ -15,7 +15,7 @@ export default function OrderOperation({ orderInfo, sendDataToParent }) {
         setOrderQuantity(ele => ele + 1)
         const updatedOrder = { quantity: orderQuantity + 1 }
         dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
-        sendDataToParent(true)
+        reRenderOnQuantity()
     }
     const handleDec = () => {
         if (orderQuantity == 1) {
@@ -27,7 +27,7 @@ export default function OrderOperation({ orderInfo, sendDataToParent }) {
             const updatedOrder = { quantity: orderQuantity - 1 }
             dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
         }
-        sendDataToParent(true)
+        reRenderOnQuantity()
     }
 
     useState(() => {
@@ -44,7 +44,10 @@ export default function OrderOperation({ orderInfo, sendDataToParent }) {
                     <button className="quantity-btn" onClick={handleDec}>
                         <OpenModalMenuItem
                             itemText='-'
-                            modalComponent={<DeleteOrder orderId={orderInfo?.id} />}
+                            modalComponent={<DeleteOrder
+                                orderId={orderInfo?.id}
+                                reRenderOnDelete={reRenderOnDelete}
+                            />}
                         />
                     </button>
                 ) : (
@@ -59,7 +62,9 @@ export default function OrderOperation({ orderInfo, sendDataToParent }) {
                 <button className="order-remove-button">
                     <OpenModalMenuItem
                         itemText='Remove from cart'
-                        modalComponent={<DeleteOrder orderId={orderInfo?.id} />}
+                        modalComponent={<DeleteOrder
+                        reRenderOnDelete={reRenderOnDelete}
+                        orderId={orderInfo?.id} />}
                     />
                 </button>
             </div>
