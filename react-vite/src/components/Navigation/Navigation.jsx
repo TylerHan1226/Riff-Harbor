@@ -42,7 +42,7 @@ export default function Navigation() {
       }
 
       <div>
-        <ProfileButton />
+        <ProfileButton className='nav-profile-btn' />
       </div>
 
       {user &&

@@ -12,8 +12,8 @@
 
 
 .cart-checkout-container {
-    margin-left: 36px;
-    margin-right: 60px;
+    margin-left: 12px;
+    margin-right: 120px;
 }
 
 .my-cart-item-btn-container {
@@ -26,8 +26,6 @@
     padding: 12px;
     margin-top: 12px;
 }
-
-
 
 .cart-item-container {
     max-width: 800px;
