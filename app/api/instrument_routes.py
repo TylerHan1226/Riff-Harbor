@@ -34,8 +34,11 @@ def instrument(id):
 def create_instrument():
     form = InstrumentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
-        image = form.data['image_url']
+        # image = form.data['image_url']
+        image = request.files['image_url']
+
         url = None
         if image:
             image.filename = get_unique_filename(image.filename)

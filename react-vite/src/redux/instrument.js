@@ -1,3 +1,4 @@
+import { csrfFetch } from "./csrf"
 
 // Action Creators
 export const LOAD_ALL_INSTRUMENTS = 'instrument/LOAD_ALL_INSTRUMENTS'
@@ -80,20 +81,25 @@ export const getInstrumentsByIdsThunk = (instrumentIds) => async (dispatch) => {
 
 // Create Instrument Thunk
 export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => {
+    const { make, model, color, category, price, details, body, fretboard, image_url } = newInstrumentData
     const formData = new FormData()
-    formData.append('make', newInstrumentData.make)
-    formData.append('model', newInstrumentData.model)
-    formData.append('color', newInstrumentData.color)
-    formData.append('category', newInstrumentData.category)
-    formData.append('price', newInstrumentData.price)
-    formData.append('details', newInstrumentData.details)
-    formData.append('model', newInstrumentData.body)
-    formData.append('model', newInstrumentData.fretboard)
-    formData.append('image_url', newInstrumentData.image_url)
+    formData.append('make', make)
+    formData.append('model', model)
+    formData.append('color', color)
+    formData.append('category', category)
+    formData.append('price', price)
+    formData.append('details', details)
+    formData.append('model', body)
+    formData.append('model', fretboard)
+    if (image_url) formData.append('image_url', image_url)
+    
+    console.log('make in thunk ==>', make)
+    console.log('image_url in thunk ==>', image_url)
+    console.log('formData in thunk ==>', formData)
 
-    const res = await fetch('/api/instruments/new', {
+    const res = await csrfFetch('/api/instruments/new', {
         method: "POST",
-        // headers: {'Content-Type': 'application/json'},
+        // headers: {'Content-Type': 'multipart/form-data'},
         body: formData
     })
     if (!res.ok) {

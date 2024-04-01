@@ -22,6 +22,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
     const [fretboard, setFretboard] = useState('');
     const [is_used, setIsUsed] = useState('');
     const [image_url, setImageUrl] = useState('');
+    const [image_file, setImageFile] = useState(null)
     const [validations, setValidations] = useState({});
     const [submitted, setSubmitted] = useState(false);
 
@@ -99,12 +100,12 @@ export default function InstrumentForm({ buttonName, instrument }) {
         e.preventDefault()
         setSubmitted(true)
         const newInstrument = {
-            make, model, color, category, price, details, body, fretboard, is_used, image_url
+            make, model, color, category, price, details, body, fretboard, is_used, image_url: image_file
         }
 
         if (!instrumentId) {
             const instrumentCreated = await dispatch(createInstrumentThunk(newInstrument))
-            if (instrumentCreated.id) {
+            if (instrumentCreated?.id) {
                 nav(`/instruments/${instrumentCreated.id}`)
             }
         } else {
@@ -116,25 +117,20 @@ export default function InstrumentForm({ buttonName, instrument }) {
     }
 
     // aws image
-    const handleUploadImage = (e, key, setImage) => {
-        const img = document.getElementById('instrument-preview-image')
-        console.log('img in upload ==>', img)
-        console.log('HELLO!!')
+    const handleUploadImage = (e) => {
         const file = e.target.files[0]
-        const size = file.size
-        img.classList.add('hidden')
-        if (size > 10 * 10 ** 6) {
-            return {'message': 'File size must not be greater than 10MB'}
-        }
 
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = event => {
-            img.src = event.target.result
-            img.classList.remove('hidden')
+        if (file) {
+            setImageFile(file)
+            const reader = new FileReader()
+            reader.onload = () => {
+                const url = reader.result
+                setImageUrl(url)
+            }
+            reader.readAsDataURL(file)
         }
-
-        setImage(file)
+        // const formData = new FormData()
+        // formData.append('image', file)
     }
 
 
@@ -273,23 +269,11 @@ export default function InstrumentForm({ buttonName, instrument }) {
                 </label>
                 {validations.is_used && (<p className="validation-error-text">* {validations.is_used}</p>)}
 
-                {/* <label className="form-label-container">
-                    Image URL: <br></br>
-                    <input
-                        type='text'
-                        name='image_url'
-                        value={image_url}
-                        placeholder="URL"
-                        onChange={e => setImageUrl(e.target.value)}
-                        className="form-input-field"
-                    ></input>
-                </label> */}
-
                 <label>Instrument Image Url</label>
                 <input 
                     type='file'
                     accept='image/*'
-                    onChange = { e => handleUploadImage(e, 'image_url', setImageUrl)}
+                    onChange = {handleUploadImage}
                 />
 
                 {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)}
