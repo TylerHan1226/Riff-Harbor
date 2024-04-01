@@ -58,6 +58,13 @@
     margin-bottom: 12px;
     border-radius: 4px;
 }
+.add-to-cart-button-dtl.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+.add-to-cart-button-dtl.disabled:hover {
+    background-color: black;
+}
 
 .add-to-cart-button-dtl:hover, 
 .delete-button:hover, 

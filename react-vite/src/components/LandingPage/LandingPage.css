@@ -80,9 +80,8 @@ h1, h2, h3, h4, p {
     display: flex;
     flex-direction: column;
     background-color: rgb(190, 0, 0);
-    padding: 4px;
     border-radius: 8px;
-    width: 160px;
+    width: 150px;
     align-items: center;
 }
 

@@ -61,20 +61,18 @@ export default function LandingPage() {
   const handleAddToCart = (instrumentId) => {
     const orderInstIds = orders.map(ele => ele.instrument_id)
     //check if already added item to the cart
-    if (!orderInstIds.includes(instrumentId)) {
+    if (orderInstIds.includes(instrumentId)) {
+      alert("This instrument is already in your cart! You can change the quantity in your cart page.")
+    } else {
       const newOrder = {
         instrument_id: instrumentId
       }
       dispatch(createOrderThunk(newOrder))
       alert("You've placed the order successfully!")
       nav('orders/MyOrders')
-    } else {
-      alert("This instrument is already in your cart! You can change the quantity in your cart page.")
     }
-
   }
 
-  console.log('orders ==>', orders)
 
 
   return (
@@ -82,8 +80,8 @@ export default function LandingPage() {
       <div id="trending-container">
         <div>
           <h1>Gallery</h1>
-          <button id='dice-button' onClick={handleRandomizeInstClick}>
-            <FaDice id='dice-icon' />
+          <button id='dice-button' >
+            <FaDice id='dice-icon' onClick={handleRandomizeInstClick} />
             <p id='dice-text'>click to randomize</p>
           </button>
         </div>
@@ -111,10 +109,10 @@ export default function LandingPage() {
                     </NavLink>
                   </button>
                 ) : (
-                  <button 
-                  className={`add-to-cart-button ${user ? '' : 'disabled'}`}
-                  onClick={() => handleAddToCart(eachInst.id)}
-                  disabled={isDisable}
+                  <button
+                    className={`add-to-cart-button ${user ? '' : 'disabled'}`}
+                    onClick={() => handleAddToCart(eachInst.id)}
+                    disabled={isDisable}
                   >
                     <NavLink className='add-to-cart-text'>
                       Add to Cart

@@ -35,7 +35,7 @@ export default function MyOrders() {
     let subtotal = 0
     const getSubTotal = (instArr, orders) => {
         const instrumentTotal = instArr?.reduce((acc, inst) => {
-            const matchingOrder = orders.find(order => order.instrument_id == inst.id)
+            const matchingOrder = orders?.find(order => order.instrument_id == inst.id)
             if (matchingOrder) {
                 return acc + (inst.price * matchingOrder.quantity)
             }
@@ -44,7 +44,7 @@ export default function MyOrders() {
         const newTotal = parseFloat(instrumentTotal.toFixed(2))
         return newTotal
     }
-    if (instArr.length > 0) {
+    if (instArr?.length > 0) {
         subtotal = getSubTotal(instArr, orders)
     }
 
@@ -75,7 +75,7 @@ export default function MyOrders() {
                 {instArr?.length > 0 && instArr?.map((eachInst) => (
                     <div className="instrument-container cart-item-container" key={eachInst?.id}>
                         <div className="instrument-dtl-container">
-                            <NavLink to={`${eachInst?.id}`}>
+                            <NavLink to={`/instruments/${eachInst?.id}`}>
                                 <img className="instrument-image" src={eachInst?.image_url} />
                             </NavLink>
                         </div>
