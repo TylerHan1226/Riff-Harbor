@@ -4,7 +4,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { createInstrumentThunk, updateInstrumentThunk } from "../../redux/instrument";
 import "./InstrumentForm.css";
 
-export default function InstrumentForm({ buttonName, instrument}) {
+export default function InstrumentForm({ buttonName, instrument }) {
 
     const dispatch = useDispatch()
     const nav = useNavigate()
@@ -119,8 +119,11 @@ export default function InstrumentForm({ buttonName, instrument}) {
 
 
     return (
-        <form className='form-container' onSubmit={handleSubmit}>
-            
+        <form className='form-container'
+            onSubmit={handleSubmit}
+            enctype="multipart/form-data"
+        >
+
             <div className='form-fields-container'>
                 <h3>Tell us about your gear!</h3>
                 <label className="form-label-container">
@@ -253,7 +256,7 @@ export default function InstrumentForm({ buttonName, instrument}) {
 
                 <label className="form-label-container">
                     Image URL: <br></br>
-                    <input 
+                    <input
                         type='text'
                         name='image_url'
                         value={image_url}
@@ -270,10 +273,10 @@ export default function InstrumentForm({ buttonName, instrument}) {
             </div>
 
             <div className="form-fields-container form-preview-img-container ">
-                 <h4>Post Your Photo!</h4>
-                 {image_url && 
+                <h4>Post Your Photo!</h4>
+                {image_url &&
                     <img className="form-preview-img" src={image_url} />
-                 }
+                }
             </div>
 
 

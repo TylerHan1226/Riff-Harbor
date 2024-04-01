@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-# from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import StringField, IntegerField, DecimalField, BooleanField
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms import StringField, IntegerField, DecimalField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, ValidationError
-
+from ..api.aws_helper import ALLOWED_EXTENSIONS
 from ..models import Instrument
 
 
@@ -42,4 +42,6 @@ class InstrumentForm(FlaskForm):
     body = StringField('Body', validators=[DataRequired(), check_under_100('Body')])
     fretboard = StringField('Fretboard', validators=[DataRequired(), check_under_100('Fretboard')])
     is_used = BooleanField('Pre-owned', validators=[DataRequired()])
-    image_url = StringField('Image URL', validators=[DataRequired()])
+    # image_url = StringField('Image URL', validators=[DataRequired()])
+    image_url = FileField('Image File', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    

@@ -35,8 +35,18 @@ def create_instrument():
     form = InstrumentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        image = form.data['image_url']
+        url = None
+        if image:
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if 'url' not in upload:
+                return {'Instrument Image': 'Failed to upload image'}, 500
+            url = upload['url']
+
         new_instrument = Instrument(
             seller_id = current_user.id,
+            image_url=url
         )
         form.populate_obj(new_instrument)
         db.session.add(new_instrument)
