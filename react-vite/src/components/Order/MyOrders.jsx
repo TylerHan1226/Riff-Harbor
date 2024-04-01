@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"
-import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { getOrderByUserThunk } from "../../redux/cart";
 import { getInstrumentsByIdsThunk } from "../../redux/instrument";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import OrderOperation from './OrderOperation'
 import ClearCart from './ClearCart';
+
 import './Orders.css'
+
 
 
 
@@ -19,13 +21,22 @@ export default function MyOrders() {
     const instruments = useSelector(state => state.instruments)
     const instArr = Object.values(instruments)?.slice(0, orders?.length)
     const instrumentIds = orders?.map(ele => ele.instrument_id)
-    console.log('instArr ==>', instArr)
-    console.log('orders ==>', orders)
 
-    const [subtotal, setSubtotal] = useState(0)
-
-    // get subtotal
-    // let subtotal = 0
+    let subtotal = 0
+    const getSubTotal = (instArr) => {
+        const instrumentTotal = instArr?.reduce((acc, inst) => {
+            const matchingOrder = orders.find(order => order.instrument_id == inst.id)
+            if (matchingOrder) {
+                return acc + (inst.price * matchingOrder.quantity)
+            }
+            return acc
+        }, 0)
+        const newTotal = parseFloat(instrumentTotal.toFixed(2))
+        return newTotal
+    }
+    if (instArr.length > 0) {
+        subtotal = getSubTotal(instArr)
+    }
 
     useEffect(() => {
         if (!user) {
@@ -33,23 +44,7 @@ export default function MyOrders() {
         }
         dispatch(getOrderByUserThunk());
     }, [dispatch, user])
-
-    const instrumentTotal = []
-    useEffect(() => {
-        instArr?.forEach(inst => {
-            orders?.forEach(order => {
-                if (inst.id == order.instrument_id) {
-                    instrumentTotal.push(inst.price * order.quantity)
-                }
-            })
-        })
-        const newTotal = instrumentTotal.reduce((acc, curr) => {
-            return acc + curr
-        }, 0)
-        const roundedTotal = parseFloat(newTotal.toFixed(2))
-        setSubtotal(roundedTotal)
-    }, [orders, instArr, instrumentTotal])
-
+    
     useEffect(() => {
         if (instrumentIds?.length > 0 && orders) {
             dispatch(getInstrumentsByIdsThunk(instrumentIds));
@@ -83,23 +78,22 @@ export default function MyOrders() {
                                 <p className="inst-dtl-text">New</p>
                             )}
                         </div>
-                        <OrderOperation instrument={eachInst} orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]} />
+                        <OrderOperation 
+                        orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]} 
+                        />
                     </div>
                 ))}
             </div>
-
             <div className='cart-checkout-container'>
-                <h1>My Orders</h1>
-                <h3>Subtotal: ${subtotal}</h3>
-                <button className="order-action-button">
-                    <OpenModalMenuItem
-                        itemText="Check Out"
-                        modalComponent={<ClearCart subtotal={subtotal} />}
-                    />
-                    
-                </button>
-            </div>
-
+        <h1>My Orders</h1>
+        <h3>Subtotal: ${subtotal}</h3>
+        <button className="order-action-button">
+            <OpenModalMenuItem
+                itemText="Checkout"
+                modalComponent={<ClearCart subtotal={subtotal} />}
+            />
+        </button>
+    </div>
         </div>
 
     )

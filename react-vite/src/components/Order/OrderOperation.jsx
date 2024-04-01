@@ -1,12 +1,14 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { updateOrderThunk } from "../../redux/cart"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getOrderByUserThunk, updateOrderThunk } from "../../redux/cart"
 import DeleteOrder from "./DeleteOrder"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
+import { getInstrumentsByIdsThunk } from "../../redux/instrument"
 
 
-export default function OrderOperation({ instrument, orderInfo }) {
+export default function OrderOperation({ orderInfo, sendDataToParent }) {
     const dispatch = useDispatch()
+    const user = useSelector(state => state.session)
 
     const [orderQuantity, setOrderQuantity] = useState(orderInfo?.quantity)
 
@@ -26,6 +28,14 @@ export default function OrderOperation({ instrument, orderInfo }) {
             dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
         }
     }
+
+
+    useState(() => {
+        if (!user) {
+            nav('/')
+        }
+        dispatch(getOrderByUserThunk())
+    }, [dispatch])
 
 
     return (
