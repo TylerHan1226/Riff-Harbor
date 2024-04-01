@@ -80,10 +80,21 @@ export const getInstrumentsByIdsThunk = (instrumentIds) => async (dispatch) => {
 
 // Create Instrument Thunk
 export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => {
+    const formData = new FormData()
+    formData.append('make', newInstrumentData.make)
+    formData.append('model', newInstrumentData.model)
+    formData.append('color', newInstrumentData.color)
+    formData.append('category', newInstrumentData.category)
+    formData.append('price', newInstrumentData.price)
+    formData.append('details', newInstrumentData.details)
+    formData.append('model', newInstrumentData.body)
+    formData.append('model', newInstrumentData.fretboard)
+    formData.append('image_url', newInstrumentData.image_url)
+
     const res = await fetch('/api/instruments/new', {
         method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(newInstrumentData)
+        // headers: {'Content-Type': 'application/json'},
+        body: formData
     })
     if (!res.ok) {
         throw new Error('Failed to create instrument')

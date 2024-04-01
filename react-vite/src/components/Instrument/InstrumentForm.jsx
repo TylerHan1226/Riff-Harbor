@@ -79,12 +79,12 @@ export default function InstrumentForm({ buttonName, instrument }) {
             if (!is_used) {
                 errors.is_used = 'New/Pre-owned field is required'
             }
-            if (!image_url) {
-                errors.image_url = 'Image URL is required'
-            }
-            if (image_url >= 900) {
-                errors.image_url = 'Image URL cannot be more than 900 characters'
-            }
+            // if (!image_url) {
+            //     errors.image_url = 'Image URL is required'
+            // }
+            // if (image_url >= 900) {
+            //     errors.image_url = 'Image URL cannot be more than 900 characters'
+            // }
         }
 
         setValidations(errors)
@@ -102,8 +102,6 @@ export default function InstrumentForm({ buttonName, instrument }) {
             make, model, color, category, price, details, body, fretboard, is_used, image_url
         }
 
-        console.log('instrumentId ==>', instrumentId)
-
         if (!instrumentId) {
             const instrumentCreated = await dispatch(createInstrumentThunk(newInstrument))
             if (instrumentCreated.id) {
@@ -117,13 +115,34 @@ export default function InstrumentForm({ buttonName, instrument }) {
         }
     }
 
+    // aws image
+    const handleUploadImage = (e, key, setImage) => {
+        const img = document.getElementById('instrument-preview-image')
+        console.log('img in upload ==>', img)
+        console.log('HELLO!!')
+        const file = e.target.files[0]
+        const size = file.size
+        img.classList.add('hidden')
+        if (size > 10 * 10 ** 6) {
+            return {'message': 'File size must not be greater than 10MB'}
+        }
+
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = event => {
+            img.src = event.target.result
+            img.classList.remove('hidden')
+        }
+
+        setImage(file)
+    }
+
 
     return (
         <form className='form-container'
             onSubmit={handleSubmit}
-            enctype="multipart/form-data"
+            encType="multipart/form-data"
         >
-
             <div className='form-fields-container'>
                 <h3>Tell us about your gear!</h3>
                 <label className="form-label-container">
@@ -254,7 +273,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                 </label>
                 {validations.is_used && (<p className="validation-error-text">* {validations.is_used}</p>)}
 
-                <label className="form-label-container">
+                {/* <label className="form-label-container">
                     Image URL: <br></br>
                     <input
                         type='text'
@@ -264,7 +283,15 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         onChange={e => setImageUrl(e.target.value)}
                         className="form-input-field"
                     ></input>
-                </label>
+                </label> */}
+
+                <label>Instrument Image Url</label>
+                <input 
+                    type='file'
+                    accept='image/*'
+                    onChange = { e => handleUploadImage(e, 'image_url', setImageUrl)}
+                />
+
                 {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)}
                 <button className="submit-form-button" type='submit' disabled={isValidated}>
                     <p className='add-to-cart-text-dtl submit-form-btn-text'>{buttonName}</p>
@@ -275,7 +302,10 @@ export default function InstrumentForm({ buttonName, instrument }) {
             <div className="form-fields-container form-preview-img-container ">
                 <h4>Post Your Photo!</h4>
                 {image_url &&
-                    <img className="form-preview-img" src={image_url} />
+                    <img
+                    id='instrument-preview-image'
+                     className="form-preview-img" 
+                      src={image_url} />
                 }
             </div>
 
