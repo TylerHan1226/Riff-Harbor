@@ -255,7 +255,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         type='radio'
                         name='is_used'
                         value={true}
-                        checked={is_used === true}
+                        checked={is_used == 'true'}
                         onChange={e => setIsUsed(e.target.value)}
                     />
                 </label>
@@ -265,7 +265,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         type='radio'
                         name='is_used'
                         value={false}
-                        checked={is_used === false}
+                        checked={is_used == 'false'}
                         onChange={e => setIsUsed(e.target.value)}
                     />
                 </label>
