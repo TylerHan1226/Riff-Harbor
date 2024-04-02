@@ -256,7 +256,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         name='is_used'
                         value={true}
                         checked={is_used === true}
-                        onChange={setIsUsed(true)}
+                        onChange={e => setIsUsed(e.target.value)}
                     />
                 </label>
                 <label className="form-label-container">
@@ -266,7 +266,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         name='is_used'
                         value={false}
                         checked={is_used === false}
-                        onChange={setIsUsed(false)}
+                        onChange={e => setIsUsed(e.target.value)}
                     />
                 </label>
                 {validations.is_used && (<p className="validation-error-text">* {validations.is_used}</p>)}
