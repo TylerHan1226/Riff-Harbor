@@ -101,34 +101,28 @@ export default function InstrumentForm({ buttonName, instrument }) {
         if (Object.keys(validations).length > 0) {
             return
         }
-        // ---- the one I used for create and it works ----
-        let formData
-        if (image_url) {
-            formData = {
-                make, model, color, category, price, details, body, fretboard, is_used, image_url
-            }
-        } else {
-            formData = {
-                make, model, color, category, price, details, body, fretboard, is_used, image_url: instrument.image_url
-            }
-        }
-        console.log('category ==>', category)
-        console.log('details ==>', details)
-        console.log('price ==>', price)
-        // ---- not passing in price, category, details?? ---
-        // const formData = new FormData()
-        // formData.append('make', make)
-        // formData.append('model', model)
-        // formData.append('color', color)
-        // formData.append('category', category)
-        // formData.append('price', price)
-        // formData.append('details', details)
-        // formData.append('body', body)
-        // formData.append('fretboard', fretboard)
-        // formData.append('is_used', is_used)
-        // formData.append('image_url', image_url)
 
-
+        // let formData
+        // if (image_url) {
+        //     formData = {
+        //         make, model, color, category, price, details, body, fretboard, is_used, image_url
+        //     }
+        // } else {
+        //     formData = {
+        //         make, model, color, category, price, details, body, fretboard, is_used, image_url: instrument.image_url
+        //     }
+        // }
+        const formData = new FormData()
+        formData.append('make', make)
+        formData.append('model', model)
+        formData.append('color', color)
+        formData.append('category', category)
+        formData.append('price', price)
+        formData.append('details', details)
+        formData.append('body', body)
+        formData.append('fretboard', fretboard)
+        formData.append('is_used', is_used)
+        formData.append('image_url', image_url)
         if (!instrumentId) {
             const instrumentCreated = await dispatch(createInstrumentThunk(formData))
             if (instrumentCreated?.id) {
@@ -142,19 +136,8 @@ export default function InstrumentForm({ buttonName, instrument }) {
         }
     }
 
-    useEffect(() => {
-        return () => {
-            if (url) {
-                URL.revokeObjectURL(url)
-            }
-        }
-    }, [])
-
-    let url = ''
     if (image_url) {
         console.log('image_url ==>', image_url)
-        url = URL.createObjectURL(image_url)
-        console.log('url ==>', url)
     }
 
 
@@ -310,18 +293,11 @@ export default function InstrumentForm({ buttonName, instrument }) {
 
             <div className="form-fields-container form-preview-img-container ">
                 <h4>Post Your Photo!</h4>
-                {image_url && instrument ? (
+                {image_url &&
                     <img
                     id='instrument-preview-image'
                      className="form-preview-img" 
                       src={image_url} />
-                )
-                    : (
-                        <img
-                        id='instrument-preview-image'
-                         className="form-preview-img" 
-                          src={url} />
-                    )
                 }
             </div>
 

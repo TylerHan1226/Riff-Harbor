@@ -80,23 +80,23 @@ export const getInstrumentsByIdsThunk = (instrumentIds) => async (dispatch) => {
 
 // Create Instrument Thunk
 export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => {
-    const { make, model, color, category, price, details, body, fretboard, is_used, image_url } = newInstrumentData
-    const formData = new FormData()
-    formData.append('make', make)
-    formData.append('model', model)
-    formData.append('color', color)
-    formData.append('category', category)
-    formData.append('price', price)
-    formData.append('details', details)
-    formData.append('body', body)
-    formData.append('fretboard', fretboard)
-    formData.append('is_used', is_used)
-    if (image_url) formData.append('image_url', image_url)
+    // const { make, model, color, category, price, details, body, fretboard, is_used, image_url } = newInstrumentData
+    // const formData = new FormData()
+    // formData.append('make', make)
+    // formData.append('model', model)
+    // formData.append('color', color)
+    // formData.append('category', category)
+    // formData.append('price', price)
+    // formData.append('details', details)
+    // formData.append('body', body)
+    // formData.append('fretboard', fretboard)
+    // formData.append('is_used', is_used)
+    // if (image_url) formData.append('image_url', image_url)
     
     const res = await fetch('/api/instruments/new', {
         method: "POST",
         // headers: {'Content-Type': 'multipart/form-data'},
-        body: formData
+        body: newInstrumentData
     })
     if (!res.ok) {
         throw new Error('Failed to create instrument')
@@ -108,23 +108,24 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
 
 // Update Instrument Thunk
 export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => async (dispatch) => {
-    const { make, model, color, category, price, details, body, fretboard, is_used, image_url } = updatedInstrumentData
-    const formData = new FormData()
-    formData.append('make', make)
-    formData.append('model', model)
-    formData.append('color', color)
-    formData.append('category', category)
-    formData.append('price', price)
-    formData.append('details', details)
-    formData.append('body', body)
-    formData.append('fretboard', fretboard)
-    formData.append('is_used', is_used)
-    if (image_url) formData.append('image_url', image_url)
+    // const { make, model, color, category, price, details, body, fretboard, is_used, image_url } = updatedInstrumentData
+    // const formData = new FormData()
+    // formData.append('make', make)
+    // formData.append('model', model)
+    // formData.append('color', color)
+    // formData.append('category', category)
+    // formData.append('price', price)
+    // formData.append('details', details)
+    // formData.append('body', body)
+    // formData.append('fretboard', fretboard)
+    // formData.append('is_used', is_used)
+    // console.log('image_url in thunk !===>', image_url)
+    // if (image_url) formData.append('image_url', image_url)
 
     const res = await fetch(`/api/instruments/${instrumentId}/update`, {
         method: "PUT",
         // headers: {'Content-Type': 'application/json'},
-        body: formData
+        body: updatedInstrumentData
     })
     if (!res.ok) {
         throw new Error('Failed to update instrument.')
