@@ -45,7 +45,7 @@ def create_instrument():
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             if 'url' not in upload:
-                return {'Instrument Image': 'Failed to upload image'}, 500
+                return {'message': 'Failed to upload image'}, 500
             url = upload['url']
 
         new_instrument = Instrument(
@@ -78,13 +78,34 @@ def create_instrument():
 def update_instrument(id):
     form = InstrumentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
         instrument = Instrument.query.get(id)
         if not instrument:
             return {'message': 'Instrument not found'}, 404
         if instrument.seller_id != current_user.id:
             return redirect('api/auth/unauthorized')
-        form.populate_obj(instrument)
+
+        image = request.files['image_url']
+        url = None
+        if image:
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if 'url' not in upload:
+                return {'message': 'Failed to upload image'}, 500
+            url = upload['url']
+        
+        instrument.make = form.make.data
+        instrument.model = form.model.data
+        instrument.color = form.color.data
+        instrument.category = form.category.data
+        instrument.price = form.price.data
+        instrument.body = form.body.data
+        instrument.fretboard = form.fretboard.data
+        instrument.is_used = form.is_used.data
+        instrument.image_url = url
+
+        # form.populate_obj(instrument)
         db.session.commit()
         return instrument.to_dict(), 200
     return form.errors, 400

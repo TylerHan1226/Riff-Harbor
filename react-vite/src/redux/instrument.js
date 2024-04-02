@@ -112,10 +112,25 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
 
 // Update Instrument Thunk
 export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => async (dispatch) => {
+    const { make, model, color, category, price, details, body, fretboard, is_used, image_url } = updatedInstrumentData
+    const formData = new FormData()
+    formData.append('make', make)
+    formData.append('model', model)
+    formData.append('color', color)
+    formData.append('category', category)
+    formData.append('price', price)
+    formData.append('details', details)
+    formData.append('body', body)
+    formData.append('fretboard', fretboard)
+    formData.append('is_used', is_used)
+    if (image_url) formData.append('image_url', image_url)
+
+    console.log('image_url in update ==>', image_url)
+
     const res = await fetch(`/api/instruments/${instrumentId}/update`, {
         method: "PUT",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(updatedInstrumentData)
+        // headers: {'Content-Type': 'application/json'},
+        body: formData
     })
     if (!res.ok) {
         throw new Error('Failed to update instrument.')
