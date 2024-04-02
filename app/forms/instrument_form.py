@@ -43,5 +43,5 @@ class InstrumentForm(FlaskForm):
     fretboard = StringField('Fretboard', validators=[DataRequired(), check_under_100('Fretboard')])
     is_used = BooleanField('Pre-owned', validators=[DataRequired()])
     # image_url = StringField('Image URL', validators=[DataRequired()])
-    image_url = FileField('Image File', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    image_url = FileField('Image File', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     

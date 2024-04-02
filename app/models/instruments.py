@@ -22,7 +22,7 @@ class Instrument(db.Model):
     body = Column(String(100), nullable=False)
     fretboard = Column(String(100), nullable=False)
     is_used = Column(Boolean(100), nullable=False)
-    image_url = Column(String(1000), nullable=False)
+    image_url = Column(String(1000), nullable=True)
 
     users = relationship('User', back_populates='instruments')
     order_items = relationship('OrderItem', back_populates='instruments')

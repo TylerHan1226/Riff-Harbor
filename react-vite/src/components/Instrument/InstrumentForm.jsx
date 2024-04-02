@@ -12,32 +12,34 @@ export default function InstrumentForm({ buttonName, instrument }) {
     const user = useSelector(state => state.session.user)
     const { instrumentId } = useParams()
 
-    const [make, setMake] = useState('');
-    const [model, setModel] = useState('');
-    const [color, setColor] = useState('');
-    const [category, setCategory] = useState('');
-    const [price, setPrice] = useState('');
-    const [details, setDetails] = useState('');
-    const [body, setBody] = useState('');
-    const [fretboard, setFretboard] = useState('');
-    const [is_used, setIsUsed] = useState('');
-    const [image_url, setImageUrl] = useState('');
+    const [make, setMake] = useState('')
+    const [model, setModel] = useState('')
+    const [color, setColor] = useState('')
+    const [category, setCategory] = useState('')
+    const [price, setPrice] = useState('')
+    const [details, setDetails] = useState('')
+    const [body, setBody] = useState('')
+    const [fretboard, setFretboard] = useState('')
+    const [is_used, setIsUsed] = useState('')
+    const [image_url, setImageUrl] = useState('')
     const [image_file, setImageFile] = useState(null)
-    const [validations, setValidations] = useState({});
-    const [submitted, setSubmitted] = useState(false);
+    const [validations, setValidations] = useState({})
+    const [submitted, setSubmitted] = useState(false)
 
     useEffect(() => {
         if (instrument) {
-            setMake(instrument.make || '');
-            setModel(instrument.model || '');
-            setColor(instrument.color || '');
-            setCategory(instrument.category || '');
-            setPrice(instrument.price || '');
-            setDetails(instrument.details || '');
-            setBody(instrument.body || '');
-            setFretboard(instrument.fretboard || '');
-            setIsUsed(instrument.is_used || '');
-            setImageUrl(instrument.image_url || '');
+            console.log('instrument in form ==>', instrument)
+            setMake(instrument.make || '')
+            setModel(instrument.model || '')
+            setColor(instrument.color || '')
+            setCategory(instrument.category || '')
+            setPrice(instrument.price || '')
+            setDetails(instrument.details || '')
+            setBody(instrument.body || '')
+            setFretboard(instrument.fretboard || '')
+            setIsUsed(instrument.is_used || '')
+            setImageUrl(instrument.image_url || '')
+            setImageFile(instrument.image_url || '')
         }
     }, [instrument, instrumentId]);
 
@@ -81,7 +83,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                 errors.is_used = 'New/Pre-owned field is required'
             }
             // if (!image_url) {
-            //     errors.image_url = 'Image URL is required'
+            //     errors.image_url = 'Image is required'
             // }
             // if (image_url >= 900) {
             //     errors.image_url = 'Image URL cannot be more than 900 characters'
@@ -253,8 +255,8 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         type='radio'
                         name='is_used'
                         value={true}
-                        checked={is_used == 'true'}
-                        onChange={e => setIsUsed(e.target.value)}
+                        checked={is_used === true}
+                        onChange={e => setIsUsed(true)}
                     />
                 </label>
                 <label className="form-label-container">
@@ -263,20 +265,20 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         type='radio'
                         name='is_used'
                         value={false}
-                        checked={is_used == 'false'}
-                        onChange={e => setIsUsed(e.target.value)}
+                        checked={is_used === false}
+                        onChange={e => setIsUsed(false)}
                     />
                 </label>
                 {validations.is_used && (<p className="validation-error-text">* {validations.is_used}</p>)}
 
-                <label>Instrument Image Url</label>
+                <label>Instrument Image Url: </label>
                 <input 
                     type='file'
                     accept='image/*'
                     onChange = {handleUploadImage}
                 />
-
                 {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)}
+
                 <button className="submit-form-button" type='submit' disabled={isValidated}>
                     <p className='add-to-cart-text-dtl submit-form-btn-text'>{buttonName}</p>
                 </button>
