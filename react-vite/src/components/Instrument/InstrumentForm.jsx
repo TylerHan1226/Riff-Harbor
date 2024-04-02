@@ -12,38 +12,35 @@ export default function InstrumentForm({ buttonName, instrument }) {
     const user = useSelector(state => state.session.user)
     const { instrumentId } = useParams()
 
-    const [make, setMake] = useState(instrument?.make || '')
-    const [model, setModel] = useState(instrument?.model || '')
-    const [color, setColor] = useState(instrument?.color || '')
-    const [category, setCategory] = useState(instrument?.category || '')
-    const [price, setPrice] = useState(instrument?.price || '')
-    const [details, setDetails] = useState(instrument?.details || '')
-    const [body, setBody] = useState(instrument?.body || '')
-    const [fretboard, setFretboard] = useState(instrument?.fretboard || '')
-    const [is_used, setIsUsed] = useState(instrument?.is_used || '')
-    const [image_url, setImageUrl] = useState(instrument?.image_url || null)
+    const [make, setMake] = useState('')
+    const [model, setModel] = useState('')
+    const [color, setColor] = useState('')
+    const [category, setCategory] = useState('')
+    const [price, setPrice] = useState('')
+    const [details, setDetails] = useState('')
+    const [body, setBody] = useState('')
+    const [fretboard, setFretboard] = useState('')
+    const [is_used, setIsUsed] = useState('')
+    const [image_url, setImageUrl] = useState(null)
 
     const [validations, setValidations] = useState({})
     const [submitted, setSubmitted] = useState(false)
 
-    // useEffect(() => {
-    //     if (instrument) {
-    //         console.log('instrument.image_url in form ==>', instrument.image_url)
-    //         setMake(instrument.make || '')
-    //         setModel(instrument.model || '')
-    //         setColor(instrument.color || '')
-    //         setCategory(instrument.category || '')
-    //         setPrice(instrument.price || '')
-    //         setDetails(instrument.details || '')
-    //         setBody(instrument.body || '')
-    //         setFretboard(instrument.fretboard || '')
-    //         setIsUsed(instrument.is_used || '')
-    //         setImageUrl(instrument.image_url || '')
-    //         // setImageFile(instrument.image_file || '')
-    //     }
-    // }, [instrument, instrumentId]);
-
-
+    useEffect(() => {
+        if (instrument) {
+            console.log('instrument.image_url in form ==>', instrument.image_url)
+            setMake(instrument.make || '')
+            setModel(instrument.model || '')
+            setColor(instrument.color || '')
+            setCategory(instrument.category || '')
+            setPrice(instrument.price || '')
+            setDetails(instrument.details || '')
+            setBody(instrument.body || '')
+            setFretboard(instrument.fretboard || '')
+            setIsUsed(instrument.is_used || '')
+            setImageUrl(instrument.image_url || '')
+        }
+    }, [instrument, instrumentId, image_url]);
 
 
     let isValidated = false
@@ -104,39 +101,21 @@ export default function InstrumentForm({ buttonName, instrument }) {
         if (Object.keys(validations).length > 0) {
             return
         }
-        
+        // ---- the one I used for create and it works ----
         let formData
         if (image_url) {
             formData = {
                 make, model, color, category, price, details, body, fretboard, is_used, image_url
             }
         } else {
-            console.log('image_url ==>', image_url)
+            formData = {
+                make, model, color, category, price, details, body, fretboard, is_used, image_url: instrument.image_url
+            }
         }
-    
         console.log('category ==>', category)
         console.log('details ==>', details)
         console.log('price ==>', price)
-    
-        
-        // const formData = new FormData()
-        // formData.append('make', make)
-        // formData.append('model', model)
-        // formData.append('color', color)
-        // formData.append('category', category)
-        // formData.append('price', price)
-        // formData.append('details', details)
-        // formData.append('body', body)
-        // formData.append('fretboard', fretboard)
-        // formData.append('is_used', is_used)
-        // // formData.append('image_url', image_file)
-    
-        // if (image_file) {
-        //     formData.append('image_url', image_file)
-        // } else {
-        //     formData.append('image_url', image_url)
-        // }
-
+        // ---- not passing in price, category, details?? ---
         // const formData = new FormData()
         // formData.append('make', make)
         // formData.append('model', model)
@@ -148,6 +127,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
         // formData.append('fretboard', fretboard)
         // formData.append('is_used', is_used)
         // formData.append('image_url', image_url)
+
 
         if (!instrumentId) {
             const instrumentCreated = await dispatch(createInstrumentThunk(formData))
@@ -162,22 +142,20 @@ export default function InstrumentForm({ buttonName, instrument }) {
         }
     }
 
-    // aws image
-    // const handleUploadImage = (e) => {
-    //     const file = e.target.files[0]
+    useEffect(() => {
+        return () => {
+            if (url) {
+                URL.revokeObjectURL(url)
+            }
+        }
+    }, [])
 
-    //     if (file) {
-    //         setImageUrl(file)
-    //         const reader = new FileReader()
-    //         reader.onload = () => {
-    //             const url = reader.result
-    //             setImageUrl(url)
-    //         }
-    //         reader.readAsDataURL(file)
-    //     }
-    //     // const formData = new FormData()
-    //     // formData.append('image', file)
-    // }
+    let url = ''
+    if (image_url) {
+        console.log('image_url ==>', image_url)
+        url = URL.createObjectURL(image_url)
+        console.log('url ==>', url)
+    }
 
 
     return (
@@ -332,11 +310,18 @@ export default function InstrumentForm({ buttonName, instrument }) {
 
             <div className="form-fields-container form-preview-img-container ">
                 <h4>Post Your Photo!</h4>
-                {image_url &&
+                {image_url && instrument ? (
                     <img
                     id='instrument-preview-image'
                      className="form-preview-img" 
                       src={image_url} />
+                )
+                    : (
+                        <img
+                        id='instrument-preview-image'
+                         className="form-preview-img" 
+                          src={url} />
+                    )
                 }
             </div>
 
