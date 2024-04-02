@@ -86,7 +86,7 @@ def update_instrument(id):
         if instrument.seller_id != current_user.id:
             return redirect('api/auth/unauthorized')
 
-        image = request.files['image_url']
+        image = form.image_url.data
         url = None
         if image:
             image.filename = get_unique_filename(image.filename)
@@ -100,6 +100,7 @@ def update_instrument(id):
         instrument.color = form.color.data
         instrument.category = form.category.data
         instrument.price = form.price.data
+        instrument.details = form.details.data
         instrument.body = form.body.data
         instrument.fretboard = form.fretboard.data
         instrument.is_used = form.is_used.data

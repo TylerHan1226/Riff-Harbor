@@ -93,10 +93,6 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
     formData.append('is_used', is_used)
     if (image_url) formData.append('image_url', image_url)
     
-    console.log('make in thunk ==>', make)
-    console.log('image_url in thunk ==>', image_url)
-    console.log('formData in thunk ==>', formData)
-
     const res = await fetch('/api/instruments/new', {
         method: "POST",
         // headers: {'Content-Type': 'multipart/form-data'},
@@ -124,8 +120,6 @@ export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => as
     formData.append('fretboard', fretboard)
     formData.append('is_used', is_used)
     if (image_url) formData.append('image_url', image_url)
-
-    console.log('image_url in update ==>', image_url)
 
     const res = await fetch(`/api/instruments/${instrumentId}/update`, {
         method: "PUT",

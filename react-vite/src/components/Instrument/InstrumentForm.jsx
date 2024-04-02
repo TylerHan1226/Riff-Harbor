@@ -12,36 +12,37 @@ export default function InstrumentForm({ buttonName, instrument }) {
     const user = useSelector(state => state.session.user)
     const { instrumentId } = useParams()
 
-    const [make, setMake] = useState('')
-    const [model, setModel] = useState('')
-    const [color, setColor] = useState('')
-    const [category, setCategory] = useState('')
-    const [price, setPrice] = useState('')
-    const [details, setDetails] = useState('')
-    const [body, setBody] = useState('')
-    const [fretboard, setFretboard] = useState('')
-    const [is_used, setIsUsed] = useState('')
-    const [image_url, setImageUrl] = useState('')
-    const [image_file, setImageFile] = useState(null)
+    const [make, setMake] = useState(instrument?.make || '')
+    const [model, setModel] = useState(instrument?.model || '')
+    const [color, setColor] = useState(instrument?.color || '')
+    const [category, setCategory] = useState(instrument?.category || '')
+    const [price, setPrice] = useState(instrument?.price || '')
+    const [details, setDetails] = useState(instrument?.details || '')
+    const [body, setBody] = useState(instrument?.body || '')
+    const [fretboard, setFretboard] = useState(instrument?.fretboard || '')
+    const [is_used, setIsUsed] = useState(instrument?.is_used || '')
+    const [image_url, setImageUrl] = useState(instrument?.image_url || null)
+
     const [validations, setValidations] = useState({})
     const [submitted, setSubmitted] = useState(false)
 
-    useEffect(() => {
-        if (instrument) {
-            console.log('instrument in form ==>', instrument)
-            setMake(instrument.make || '')
-            setModel(instrument.model || '')
-            setColor(instrument.color || '')
-            setCategory(instrument.category || '')
-            setPrice(instrument.price || '')
-            setDetails(instrument.details || '')
-            setBody(instrument.body || '')
-            setFretboard(instrument.fretboard || '')
-            setIsUsed(instrument.is_used || '')
-            setImageUrl(instrument.image_url || '')
-            setImageFile(instrument.image_url || '')
-        }
-    }, [instrument, instrumentId]);
+    // useEffect(() => {
+    //     if (instrument) {
+    //         console.log('instrument.image_url in form ==>', instrument.image_url)
+    //         setMake(instrument.make || '')
+    //         setModel(instrument.model || '')
+    //         setColor(instrument.color || '')
+    //         setCategory(instrument.category || '')
+    //         setPrice(instrument.price || '')
+    //         setDetails(instrument.details || '')
+    //         setBody(instrument.body || '')
+    //         setFretboard(instrument.fretboard || '')
+    //         setIsUsed(instrument.is_used || '')
+    //         setImageUrl(instrument.image_url || '')
+    //         // setImageFile(instrument.image_file || '')
+    //     }
+    // }, [instrument, instrumentId]);
+
 
 
 
@@ -79,39 +80,82 @@ export default function InstrumentForm({ buttonName, instrument }) {
             if (!fretboard || fretboard.length > 100) {
                 errors.fretboard = 'Fretboard material is required and must be under 100 characters'
             }
-            if (!is_used) {
+            if (![true, false].includes(is_used)) {
                 errors.is_used = 'New/Pre-owned field is required'
             }
             // if (!image_url) {
             //     errors.image_url = 'Image is required'
-            // }
-            // if (image_url >= 900) {
-            //     errors.image_url = 'Image URL cannot be more than 900 characters'
             // }
         }
 
         setValidations(errors)
         if (Object.keys(validations).length) {
             isValidated = true
+        } else {
+            isValidated = false
         }
-
-    }, [submitted, make, model, color, category, price, details, body, fretboard, is_used])
+    }, [submitted, make, model, color, category, price, details, body, fretboard, is_used, image_url])
     //DO NOT PUT VALIDATIONS IN THE DEPENDENCY
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setSubmitted(true)
-        const newInstrument = {
-            make, model, color, category, price, details, body, fretboard, is_used, image_url: image_file
+        
+        if (Object.keys(validations).length > 0) {
+            return
         }
+        
+        let formData
+        if (image_url) {
+            formData = {
+                make, model, color, category, price, details, body, fretboard, is_used, image_url
+            }
+        } else {
+            console.log('image_url ==>', image_url)
+        }
+    
+        console.log('category ==>', category)
+        console.log('details ==>', details)
+        console.log('price ==>', price)
+    
+        
+        // const formData = new FormData()
+        // formData.append('make', make)
+        // formData.append('model', model)
+        // formData.append('color', color)
+        // formData.append('category', category)
+        // formData.append('price', price)
+        // formData.append('details', details)
+        // formData.append('body', body)
+        // formData.append('fretboard', fretboard)
+        // formData.append('is_used', is_used)
+        // // formData.append('image_url', image_file)
+    
+        // if (image_file) {
+        //     formData.append('image_url', image_file)
+        // } else {
+        //     formData.append('image_url', image_url)
+        // }
+
+        // const formData = new FormData()
+        // formData.append('make', make)
+        // formData.append('model', model)
+        // formData.append('color', color)
+        // formData.append('category', category)
+        // formData.append('price', price)
+        // formData.append('details', details)
+        // formData.append('body', body)
+        // formData.append('fretboard', fretboard)
+        // formData.append('is_used', is_used)
+        // formData.append('image_url', image_url)
 
         if (!instrumentId) {
-            const instrumentCreated = await dispatch(createInstrumentThunk(newInstrument))
+            const instrumentCreated = await dispatch(createInstrumentThunk(formData))
             if (instrumentCreated?.id) {
                 nav(`/instruments/${instrumentCreated.id}`)
             }
         } else {
-            const instrumentUpdated = await dispatch(updateInstrumentThunk(newInstrument, instrumentId))
+            const instrumentUpdated = await dispatch(updateInstrumentThunk(formData, instrumentId))
             if (instrumentUpdated.id) {
                 nav(`/instruments/${instrumentUpdated.id}`)
             }
@@ -119,21 +163,21 @@ export default function InstrumentForm({ buttonName, instrument }) {
     }
 
     // aws image
-    const handleUploadImage = (e) => {
-        const file = e.target.files[0]
+    // const handleUploadImage = (e) => {
+    //     const file = e.target.files[0]
 
-        if (file) {
-            setImageFile(file)
-            const reader = new FileReader()
-            reader.onload = () => {
-                const url = reader.result
-                setImageUrl(url)
-            }
-            reader.readAsDataURL(file)
-        }
-        // const formData = new FormData()
-        // formData.append('image', file)
-    }
+    //     if (file) {
+    //         setImageUrl(file)
+    //         const reader = new FileReader()
+    //         reader.onload = () => {
+    //             const url = reader.result
+    //             setImageUrl(url)
+    //         }
+    //         reader.readAsDataURL(file)
+    //     }
+    //     // const formData = new FormData()
+    //     // formData.append('image', file)
+    // }
 
 
     return (
@@ -255,8 +299,8 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         type='radio'
                         name='is_used'
                         value={true}
-                        checked={is_used == 'true'}
-                        onChange={e => setIsUsed(e.target.value)}
+                        checked={is_used === true}
+                        onChange={() => setIsUsed(true)}
                     />
                 </label>
                 <label className="form-label-container">
@@ -265,19 +309,20 @@ export default function InstrumentForm({ buttonName, instrument }) {
                         type='radio'
                         name='is_used'
                         value={false}
-                        checked={is_used == 'false'}
-                        onChange={e => setIsUsed(e.target.value)}
+                        checked={is_used === false}
+                        onChange={() => setIsUsed(false)}
                     />
                 </label>
                 {validations.is_used && (<p className="validation-error-text">* {validations.is_used}</p>)}
 
-                <label>Instrument Image Url: </label>
+                <label>Instrument Image Url:
                 <input 
                     type='file'
                     accept='image/*'
-                    onChange = {handleUploadImage}
+                    onChange = {e => setImageUrl(e.target.files[0])}
                 />
-                {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)}
+                {/* {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)} */}
+                </label>
 
                 <button className="submit-form-button" type='submit' disabled={isValidated}>
                     <p className='add-to-cart-text-dtl submit-form-btn-text'>{buttonName}</p>
