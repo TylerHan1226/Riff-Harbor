@@ -64,6 +64,8 @@ def create_instrument():
         # explicitly load
         # form.populate_obj(new_instrument)
 
+        print('form.is_used.data in route ==>', form.is_used.data)
+
         db.session.add(new_instrument)
         db.session.commit()
         return new_instrument.to_dict(), 201

@@ -20,7 +20,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
     const [details, setDetails] = useState('')
     const [body, setBody] = useState('')
     const [fretboard, setFretboard] = useState('')
-    const [is_used, setIsUsed] = useState('')
+    const [is_used, setIsUsed] = useState(null)
     const [image_url, setImageUrl] = useState(instrument?.image_url || null)
 
     const [validations, setValidations] = useState({})
@@ -44,7 +44,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
             setDetails(instrument.details || '')
             setBody(instrument.body || '')
             setFretboard(instrument.fretboard || '')
-            setIsUsed(instrument.is_used || '')
+            setIsUsed(instrument.is_used || null)
             setImageUrl(image_url || instrument.image_url)
             setThumbnail(thumbnail || instrument.image_url)
         }
@@ -85,7 +85,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
             if (!fretboard || fretboard.length > 100) {
                 errors.fretboard = 'Fretboard material is required and must be under 100 characters'
             }
-            if (![true, false].includes(is_used)) {
+            if (is_used === null) {
                 errors.is_used = 'New/Pre-owned field is required'
             }
             // if (!image_url) {
@@ -109,7 +109,8 @@ export default function InstrumentForm({ buttonName, instrument }) {
         if (Object.keys(validations).length > 0) {
             return
         }
-
+        console.log('is_used ==>', is_used)
+        
         const formData = new FormData()
         formData.append('make', make)
         formData.append('model', model)
@@ -121,6 +122,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
         formData.append('fretboard', fretboard)
         formData.append('is_used', is_used)
         formData.append('image_url', image_url)
+
         if (!instrumentId) {
             const instrumentCreated = await dispatch(createInstrumentThunk(formData))
             if (instrumentCreated?.id) {
