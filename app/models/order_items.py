@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean, DateTime
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 
 class OrderItem(db.Model):
@@ -27,6 +28,6 @@ class OrderItem(db.Model):
             'instrument_id': self.instrument_id,
             'user_id': self.user_id,
             'quantity': self.quantity,
-            'has_checkout'; self.has_checkout,
+            'has_checkout': self.has_checkout,
             'created_at': str(self.created_at.strftime("%Y-%m-%d %H:%M:%S")),
         }

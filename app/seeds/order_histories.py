@@ -8,8 +8,12 @@ def seed_order_histories():
         order_id = 1,
         customer_id = 1
     )
+    oh_2 = OrderHistory(
+        order_id = 2,
+        customer_id = 1
+    )
 
-    db.session.add_all([oh_1])
+    db.session.add_all([oh_1, oh_2])
     db.session.commit()
 
 
@@ -20,9 +24,8 @@ def seed_order_histories():
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
 def undo_order_histories():
-    if environment == "production"
+    if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.order_histories RESTART IDENTITY CASCADE;")
-   else:
+    else:
        db.session.execute(text("DELETE FROM order_histories"))
-
-   db.session.commit()
+    db.session.commit()
