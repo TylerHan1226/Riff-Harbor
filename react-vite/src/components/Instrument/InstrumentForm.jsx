@@ -25,6 +25,13 @@ export default function InstrumentForm({ buttonName, instrument }) {
 
     const [validations, setValidations] = useState({})
     const [submitted, setSubmitted] = useState(false)
+    const [thumbnail, setThumbnail] = useState(null)
+
+    const imgSelectionAndThumbnail = (e) => {
+        setImageUrl(e.target.files[0])
+        const thumbnail = URL.createObjectURL(e.target.files[0])
+        setThumbnail(thumbnail)
+    }
 
     useEffect(() => {
         if (instrument) {
@@ -39,6 +46,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
             setFretboard(instrument.fretboard || '')
             setIsUsed(instrument.is_used || '')
             setImageUrl(instrument.image_url || '')
+            setThumbnail(thumbnail || instrument.image_url)
         }
     }, [instrument, instrumentId, image_url]);
 
@@ -280,7 +288,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                 <input 
                     type='file'
                     accept='image/*'
-                    onChange = {e => setImageUrl(e.target.files[0])}
+                    onChange = {e => imgSelectionAndThumbnail}
                 />
                 {/* {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)} */}
                 </label>

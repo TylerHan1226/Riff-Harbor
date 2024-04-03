@@ -316,8 +316,21 @@ def seed_instruments():
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711514602/Riff-Harbor/b-8_npdm9g.jpg",
     )
+    used_inst_1 = Instrument(
+        seller_id = 1,
+        make = "B.C. Rich",
+        model = "B.C. Rich Ironbird Extreme with Floyd Rose",
+        color = "Matte Black",
+        category = "Electric Guitar",
+        price = 1799.99,
+        details = "The BC Rich Ironbird, designed by Joey Rico in 1983, is a metal artists favorite. Its angular body shape features sharp, dagger-like points. With a 24-fret neck and licensed Floyd Rose tremolo, it’s built for shredding.",
+        body = "Basswood",
+        fretboard = "Rosewood",
+        is_used = True,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg",
+    )
 
-    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8])
+    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8, used_inst_1])
     db.session.commit()
 
 
