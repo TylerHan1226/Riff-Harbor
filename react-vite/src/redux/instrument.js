@@ -88,7 +88,6 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
     if (!res.ok) {
         throw new Error('Failed to create instrument')
     }
-    console.log('hello in thunk')
     const newInstrument = await res.json()
     dispatch(createInstrument(newInstrument))
     return newInstrument
