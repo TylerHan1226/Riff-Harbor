@@ -79,8 +79,12 @@ export const getInstrumentsByIdsThunk = (instrumentIds) => async (dispatch) => {
 }
 
 // Create Instrument Thunk
+<<<<<<< HEAD
 export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => {
     
+=======
+export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => {   
+>>>>>>> main
     const res = await fetch('/api/instruments/new', {
         method: "POST",
         // headers: {'Content-Type': 'multipart/form-data'},
@@ -89,6 +93,7 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
     if (!res.ok) {
         throw new Error('Failed to create instrument')
     }
+    console.log('hello in thunk')
     const newInstrument = await res.json()
     dispatch(createInstrument(newInstrument))
     return newInstrument
@@ -96,7 +101,10 @@ export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => 
 
 // Update Instrument Thunk
 export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => async (dispatch) => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     const res = await fetch(`/api/instruments/${instrumentId}/update`, {
         method: "PUT",
         // headers: {'Content-Type': 'application/json'},
