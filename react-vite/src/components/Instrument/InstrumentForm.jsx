@@ -44,7 +44,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
             setDetails(instrument.details || '')
             setBody(instrument.body || '')
             setFretboard(instrument.fretboard || '')
-            setIsUsed(instrument.is_used || null)
+            setIsUsed(instrument.is_used || false)
             setImageUrl(image_url || instrument.image_url)
             setThumbnail(thumbnail || instrument.image_url)
         }
