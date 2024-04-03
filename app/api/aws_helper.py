@@ -9,11 +9,6 @@ BUCKET_NAME = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 
 
-print('BUCKET_NAME ==>', BUCKET_NAME)
-print('ALLOWED_EXTENSIONS ==>', ALLOWED_EXTENSIONS)
-print('S3_LOCATION ==>', S3_LOCATION)
-
-
 s3 = boto3.client(
    "s3",
    aws_access_key_id=os.environ.get("S3_KEY"),

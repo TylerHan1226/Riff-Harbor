@@ -53,7 +53,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="validation-error-text">* {errors.email}</p>}
         <label className="profile-log-modal-label">
           Password
           <input
@@ -63,7 +63,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="validation-error-text">* {errors.password}</p>}
         <button className="profile-log-modal-btn" type="submit">Log In</button>
         <button className='profile-log-modal-btn'>
         <NavLink

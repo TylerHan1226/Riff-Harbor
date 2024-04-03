@@ -110,16 +110,6 @@ export default function InstrumentForm({ buttonName, instrument }) {
             return
         }
 
-        // let formData
-        // if (image_url) {
-        //     formData = {
-        //         make, model, color, category, price, details, body, fretboard, is_used, image_url
-        //     }
-        // } else {
-        //     formData = {
-        //         make, model, color, category, price, details, body, fretboard, is_used, image_url: instrument.image_url
-        //     }
-        // }
         const formData = new FormData()
         formData.append('make', make)
         formData.append('model', model)
@@ -142,10 +132,6 @@ export default function InstrumentForm({ buttonName, instrument }) {
                 nav(`/instruments/${instrumentUpdated.id}`)
             }
         }
-    }
-
-    if (image_url) {
-        console.log('image_url ==>', image_url)
     }
 
 
@@ -308,9 +294,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                       src={thumbnail} />
                 }
             </div>
-
-
         </form>
-    );
+    )
 }
 

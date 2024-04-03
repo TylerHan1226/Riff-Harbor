@@ -43,7 +43,7 @@ function SignupFormPage() {
   return (
     <>
       <h1>Sign Up</h1>
-      {errors.server && <p>{errors.server}</p>}
+      {errors.server && <p className="validation-error-text">* {errors.server}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Email
@@ -54,7 +54,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="validation-error-text">* {errors.email}</p>}
         <label>
           Username
           <input
@@ -64,7 +64,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="validation-error-text">* {errors.username}</p>}
         <label>
           Password
           <input
@@ -74,7 +74,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="validation-error-text">* {errors.password}</p>}
         <label>
           Confirm Password
           <input
@@ -84,7 +84,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        {errors.confirmPassword && <p className="validation-error-text">* {errors.confirmPassword}</p>}
         <button type="submit">Sign Up</button>
       </form>
     </>

@@ -72,7 +72,7 @@ export default function MyOrders() {
         <div className="cart-page-container">
 
             <div className="my-cart-item-container">
-                {instArr?.length > 0 && instArr?.map((eachInst) => (
+                {instArr?.length > 0 ? (instArr?.map((eachInst) => (
                     <div className="instrument-container cart-item-container" key={eachInst?.id}>
                         <div className="instrument-dtl-container">
                             <NavLink to={`/instruments/${eachInst?.id}`}>
@@ -95,7 +95,9 @@ export default function MyOrders() {
                             reRenderOnDelete={reRenderOnDelete}
                         />
                     </div>
-                ))}
+                ))) : (
+                    <h2>Your Cart is empty</h2>
+                ) }
             </div>
             <div className='cart-checkout-container'>
                 <h1>My Orders</h1>

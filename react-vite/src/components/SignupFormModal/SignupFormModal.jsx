@@ -43,7 +43,7 @@ function SignupFormModal() {
   return (
     <div className="profile-log-modal-container">
       <div className="profile-log-modal-header">
-        <h1>Sign Up</h1>
+        <h1>Start Your Journey</h1>
         <MdSailing className="login-model-icon" />
         
       </div>
@@ -58,7 +58,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="validation-error-text">* {errors.email}</p>}
         <label className="profile-log-modal-label">
           Username
           <input
@@ -68,7 +68,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="validation-error-text">* {errors.username}</p>}
         <label className="profile-log-modal-label">
           Password
           <input
@@ -78,7 +78,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="validation-error-text">* {errors.password}</p>}
         <label className="profile-log-modal-label">
           Confirm Password
           <input
@@ -88,7 +88,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        {errors.confirmPassword && <p className="validation-error-text">* {errors.confirmPassword}</p>}
         <button className="profile-log-modal-btn" type="submit">Sign Up</button>
       </form>
     </div>

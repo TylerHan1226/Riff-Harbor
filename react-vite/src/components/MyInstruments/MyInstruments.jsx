@@ -37,7 +37,7 @@ export default function MyInstruments() {
         <div className="page-container">
             <h1>My Instruments</h1>
             <div className="my-instrument-item-container">
-                {myInstruments?.length > 0 && myInstruments?.map((eachInst) => (
+                {myInstruments?.length > 0 ? myInstruments?.map((eachInst) => (
                     <div className="instrument-container" key={eachInst?.id}>
                         <div className="instrument-dtl-container">
                             <NavLink to={`${eachInst?.id}`}>
@@ -69,7 +69,9 @@ export default function MyInstruments() {
                         </div>
 
                     </div>
-                ))}
+                )) : (
+                    <h3>You have&apos;t posted any instrument yet</h3>
+                ) }
             </div>
 
         </div>
