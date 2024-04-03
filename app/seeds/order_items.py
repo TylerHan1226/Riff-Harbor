@@ -8,27 +8,45 @@ def seed_order_items():
         instrument_id = 1,
         user_id = "1",
         quantity = 1,
+        has_checkout = True,
     )
     order_2 = OrderItem(
-        instrument_id = 24,
+        instrument_id = 22,
         user_id = "1",
         quantity = 1,
+        has_checkout = True
     )
     order_3 = OrderItem(
         instrument_id = 10,
         user_id = "1",
         quantity = 1,
+        has_checkout = False
     )
     order_4 = OrderItem(
-        instrument_id = 3,
+        instrument_id = 22,
+        user_id = "1",
+        quantity = 1,
+        has_checkout = False
+    )
+    order_5 = OrderItem(
+        instrument_id = 2,
+        user_id = "1",
+        quantity = 1,
+        has_checkout = False
+    )
+    order_6 = OrderItem(
+        instrument_id = 11,
         user_id = "3",
         quantity = 1,
+        has_checkout = False
     )
 
     db.session.add_all([order_1, 
                         order_2, 
                         order_3, 
-                        order_4])
+                        order_4,
+                        order_5,
+                        order_6])
     db.session.commit()
 
 
