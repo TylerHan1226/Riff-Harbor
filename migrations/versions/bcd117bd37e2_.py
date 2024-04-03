@@ -60,7 +60,7 @@ def upgrade():
         op.execute(f"ALTER Table users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER Table instruments SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER Table order_items SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER Table order_histories SET SCHEMA {SCHEMA};")
+        # op.execute(f"ALTER Table order_histories SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
