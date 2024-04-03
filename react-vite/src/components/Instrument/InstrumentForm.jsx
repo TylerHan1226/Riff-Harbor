@@ -48,7 +48,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
             setImageUrl(instrument.image_url || '')
             setThumbnail(thumbnail || instrument.image_url)
         }
-    }, [instrument, instrumentId, image_url]);
+    }, [instrument, instrumentId, image_url, thumbnail]);
 
 
     let isValidated = false
@@ -288,7 +288,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
                 <input 
                     type='file'
                     accept='image/*'
-                    onChange = {e => imgSelectionAndThumbnail}
+                    onChange = {e => imgSelectionAndThumbnail(e)}
                 />
                 {/* {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)} */}
                 </label>
