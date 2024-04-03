@@ -21,7 +21,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
     const [body, setBody] = useState('')
     const [fretboard, setFretboard] = useState('')
     const [is_used, setIsUsed] = useState('')
-    const [image_url, setImageUrl] = useState(null)
+    const [image_url, setImageUrl] = useState(instrument?.image_url || null)
 
     const [validations, setValidations] = useState({})
     const [submitted, setSubmitted] = useState(false)
@@ -45,10 +45,10 @@ export default function InstrumentForm({ buttonName, instrument }) {
             setBody(instrument.body || '')
             setFretboard(instrument.fretboard || '')
             setIsUsed(instrument.is_used || '')
-            setImageUrl(instrument.image_url || '')
+            setImageUrl(image_url || instrument.image_url)
             setThumbnail(thumbnail || instrument.image_url)
         }
-    }, [instrument, instrumentId, image_url, thumbnail]);
+    }, [instrument, instrumentId, image_url]);
 
 
     let isValidated = false
@@ -301,11 +301,11 @@ export default function InstrumentForm({ buttonName, instrument }) {
 
             <div className="form-fields-container form-preview-img-container ">
                 <h4>Post Your Photo!</h4>
-                {image_url &&
+                {thumbnail &&
                     <img
                     id='instrument-preview-image'
                      className="form-preview-img" 
-                      src={image_url} />
+                      src={thumbnail} />
                 }
             </div>
 

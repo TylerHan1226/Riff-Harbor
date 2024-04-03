@@ -94,8 +94,8 @@ def update_instrument(id):
             if 'url' not in upload:
                 return {'message': 'Failed to upload image'}, 500
             url = upload['url']
-        # else:
-        #     url = instrument.image_url
+        else:
+            url = instrument.image_url
         
         instrument.make = form.make.data
         instrument.model = form.model.data
