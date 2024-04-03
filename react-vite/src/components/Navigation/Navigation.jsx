@@ -26,9 +26,9 @@ export default function Navigation() {
 
 
 
-      <div>
+      {/* <div>
         Search Bar
-      </div>
+      </div> */}
 
       {user &&
         <>

@@ -48,7 +48,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
             setImageUrl(image_url || instrument.image_url)
             setThumbnail(thumbnail || instrument.image_url)
         }
-    }, [instrument, instrumentId, image_url]);
+    }, [instrument, instrumentId, image_url, thumbnail]);
 
 
     let isValidated = false
@@ -108,12 +108,12 @@ export default function InstrumentForm({ buttonName, instrument }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setSubmitted(true)
-        
+
         if (Object.keys(validations).length > 0) {
             return
         }
         console.log('is_used ==>', is_used)
-        
+
         const formData = new FormData()
         formData.append('make', make)
         formData.append('model', model)
@@ -276,12 +276,12 @@ export default function InstrumentForm({ buttonName, instrument }) {
                 {validations.is_used && (<p className="validation-error-text">* {validations.is_used}</p>)}
 
                 <label>Instrument Image Url:
-                <input 
-                    type='file'
-                    accept='image/*'
-                    onChange = {e => imgSelectionAndThumbnail(e)}
-                />
-                {/* {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)} */}
+                    <input
+                        type='file'
+                        accept='image/*'
+                        onChange={e => imgSelectionAndThumbnail(e)}
+                    />
+                    {/* {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)} */}
                 </label>
 
                 <button className="submit-form-button" type='submit' disabled={isValidated}>
@@ -292,12 +292,17 @@ export default function InstrumentForm({ buttonName, instrument }) {
 
             <div className="form-fields-container form-preview-img-container ">
                 <h4>Post Your Photo!</h4>
-                {thumbnail &&
+                {instrument ? (
                     <img
                     id='instrument-preview-image'
                      className="form-preview-img" 
-                      src={thumbnail} />
-                }
+                      src={instrument.image_url} />
+                ) : (
+                    <img
+                    id='instrument-preview-image'
+                    className="form-preview-img" 
+                    src={thumbnail} />
+                )}
             </div>
         </form>
     )
