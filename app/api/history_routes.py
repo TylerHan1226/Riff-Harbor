@@ -8,7 +8,7 @@ history_routes = Blueprint('history', __name__)
 # get all the order history
 # /api/history
 @history_routes.route('/')
-@login_required
+# @login_required
 def all_history():
     histories = OrderHistory.query.all()
     history_list = [history.to_dict() for history in histories]
@@ -21,7 +21,7 @@ def all_history():
 def history_by_user():
     cur_history = OrderHistory.query.filter_by(user_id=current_user.id).all()
     cur_history_list = [history.to_dict() for history in cur_history]
-    return cur_history_list, 200
+    return {'UserOrderHistory': cur_history_list}, 200
 
 
 # add to history

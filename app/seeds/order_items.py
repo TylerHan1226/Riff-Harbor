@@ -38,7 +38,7 @@ def seed_order_items():
         instrument_id = 3,
         user_id = "3",
         quantity = 1,
-        has_checkout = False
+        has_checkout = True
     )
     order_7 = OrderItem(
         instrument_id = 9,

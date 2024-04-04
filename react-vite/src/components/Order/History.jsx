@@ -1,20 +1,19 @@
-// import { useEffect, useState } from 'react';
-// import { NavLink, useNavigate } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux"
-// import { getOrderByUserThunk } from "../../redux/cart";
-// import { getInstrumentsByIdsThunk } from "../../redux/instrument";
-// import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
-// import OrderOperation from './OrderOperation'
-// import ClearCart from './ClearCart';
-
-// import './Orders.css'
+import { useEffect, useState } from 'react';
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
+import { getUserHistoryThunk } from '../../redux/history';
 
 
 
+export default function History() { 
+    const dispatch = useDispatch()
+    const history = useSelector(state => state.histories?.UserOrderHistory)
 
+    console.log('history ==>', history)
 
-export default function History() {
-
+    useEffect(() => {
+        dispatch(getUserHistoryThunk())
+    }, [dispatch])
 
 
     return (
