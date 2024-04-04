@@ -8,11 +8,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import { instrumentReducer } from "./instrument";
 import { orderReducer } from "./cart";
+import { historyReducer } from "./history";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   instruments: instrumentReducer,
-  orders: orderReducer
+  orders: orderReducer,
+  histories: historyReducer
 });
 
 let enhancer;

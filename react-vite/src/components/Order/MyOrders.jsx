@@ -6,6 +6,7 @@ import { getInstrumentsByIdsThunk } from "../../redux/instrument";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import OrderOperation from './OrderOperation'
 import ClearCart from './ClearCart';
+import History from './History';
 
 import './Orders.css'
 
@@ -19,8 +20,9 @@ export default function MyOrders() {
     const user = useSelector(state => state.session.user)
     const orders = useSelector(state => state.orders?.CurrentOrders)
     const instruments = useSelector(state => state.instruments)
-    const instArr = Object.values(instruments)?.slice(0, orders?.length)
-    const instrumentIds = orders?.map(ele => ele.instrument_id)
+    const curOrders = orders?.filter(ele => ele.has_checkout == false)
+    const instArr = Object.values(instruments)?.slice(0, curOrders?.length)
+    const instrumentIds = curOrders?.map(ele => ele.instrument_id)
 
     const [hasChangedQ, setChangedQ] = useState(false);
     const reRenderOnQuantity = () => {
@@ -107,6 +109,9 @@ export default function MyOrders() {
                         itemText="Checkout"
                         modalComponent={<ClearCart subtotal={subtotal} />}
                     />
+                </button>
+                <button className="order-action-button">
+                    <NavLink to='/history'>History</NavLink>
                 </button>
             </div>
         </div>

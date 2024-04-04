@@ -34,10 +34,8 @@ def add_history():
     new_history = OrderHistory(user_id=current_user.id, order_id=order_id)
     if not new_history:
         return {'message': 'Cannot Add to history'}, 400
-    
     db.session.add(new_history)
     db.session.commit()
-
     return {'message': 'History is stored successfully'}
 
 
