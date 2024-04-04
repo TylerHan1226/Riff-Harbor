@@ -80,6 +80,7 @@ export default function InstrumentDetails() {
                     <p className="inst-dtl-text">Body Material: {instrument.body}</p>
                     <p className="inst-dtl-text">Fretboard Material: {instrument.fretboard}</p>
                     <p className="inst-dtl-text">Seller: {seller?.username}</p>
+                    <p className="inst-dtl-text">Details: {instrument?.details}</p>
                     {/* <p className="inst-dtl-text">Contact: {seller?.email}</p> */}
                     {instrument.seller_id == user?.id ? (
                         <>
