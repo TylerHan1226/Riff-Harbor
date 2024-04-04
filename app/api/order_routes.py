@@ -47,7 +47,7 @@ def order_by_id(id):
 def place_order():
     data = request.json
     instrument_id = data.get('instrument_id')
-    new_order = OrderItem(user_id=current_user.id, instrument_id=instrument_id, quantity=1)
+    new_order = OrderItem(user_id=current_user.id, instrument_id=instrument_id, quantity=1, has_checkout=False)
 
     if not new_order:
         return {'message': 'Cannot Add to cart'}, 400

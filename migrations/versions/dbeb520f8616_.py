@@ -1,19 +1,19 @@
 """empty message
 
-Revision ID: 6d1d45b9c15f
+Revision ID: dbeb520f8616
 Revises: 
-Create Date: 2024-04-03 18:06:12.731071
+Create Date: 2024-04-04 08:38:16.385928
 
 """
 from alembic import op
 import sqlalchemy as sa
 import os
 environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
+SCHEMA = os.environ.get("SCHEMA") 
 
 
 # revision identifiers, used by Alembic.
-revision = '6d1d45b9c15f'
+revision = 'dbeb520f8616'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,7 +41,7 @@ def upgrade():
     sa.Column('details', sa.String(length=1000), nullable=False),
     sa.Column('body', sa.String(length=100), nullable=False),
     sa.Column('fretboard', sa.String(length=100), nullable=False),
-    sa.Column('is_used', sa.Boolean(create_constraint=100), nullable=False),
+    sa.Column('is_used', sa.Boolean(), nullable=False),
     sa.Column('image_url', sa.String(length=1000), nullable=True),
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -51,6 +51,7 @@ def upgrade():
     sa.Column('instrument_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=False),
+    sa.Column('has_checkout', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['instrument_id'], ['instruments.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -59,10 +60,10 @@ def upgrade():
     op.create_table('order_histories',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('order_id', sa.Integer(), nullable=False),
-    sa.Column('customer_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['customer_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['order_id'], ['order_items.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
@@ -71,7 +72,6 @@ def upgrade():
         op.execute(f"ALTER Table instruments SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER Table order_items SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER Table order_histories SET SCHEMA {SCHEMA};")
-
 
 
 def downgrade():

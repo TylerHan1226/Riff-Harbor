@@ -6,11 +6,11 @@ import json
 def seed_order_histories():
     oh_1 = OrderHistory(
         order_id = 1,
-        customer_id = 1
+        user_id = 1
     )
     oh_2 = OrderHistory(
         order_id = 2,
-        customer_id = 1
+        user_id = 1
     )
 
     db.session.add_all([oh_1, oh_2])

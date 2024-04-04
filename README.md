@@ -540,7 +540,7 @@ Delete an existing instrument by id.
         "AllOrderLists": [
         {
           "id": 1,
-          "customer_id": 1,
+          "user_id": 1,
           "hasCheckedOut": false,
           "Items": [
             {
@@ -560,7 +560,7 @@ Delete an existing instrument by id.
           "updatedAt": "2024-01-20 20:20:20",
         }, {
           "id": 2,
-          "customer_id": 1,
+          "user_id": 1,
           "hasCheckedOut": true,
           "Items": [
             {
@@ -594,7 +594,7 @@ Delete an existing instrument by id.
     ```json
       {
         "id": 1,
-        "customer_id": 1,
+        "user_id": 1,
         "hasCheckedOut": false,
         "Items": [
           {
@@ -643,7 +643,7 @@ Delete an existing instrument by id.
     ```json
       {
         "id": 1,
-        "customer_id": 1,
+        "user_id": 1,
         "hasCheckedOut": false,
         "Items": []
         "createdAt": "2024-01-20 20:00:00",
