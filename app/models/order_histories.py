@@ -12,7 +12,7 @@ class OrderHistory(db.Model):
     
     id = Column(Integer, primary_key=True)
     order_id = Column(Integer, ForeignKey(add_prefix_for_prod('order_items.id')), nullable=False)
-    customer_id = Column(Integer, ForeignKey(add_prefix_for_prod('user.id')))
+    customer_id = Column(Integer, ForeignKey(add_prefix_for_prod('users.id')))
     created_at = Column(DateTime, default=datetime.now)
 
 
