@@ -6,10 +6,17 @@ import "./Navigation.css";
 import { GiGuitarBassHead } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdSailing } from "react-icons/md";
+import { useState } from "react";
 
 export default function Navigation() {
 
   const user = useSelector(state => state.session.user)
+
+  const [searchText, setSearchText] = useState('')
+  console.log(searchText)
+  const handleSearch = () => {
+    console.log(searchText)
+  }
 
   return (
     <div className="nav-container">
@@ -25,7 +32,24 @@ export default function Navigation() {
       </div>
 
       {/* <div>
-        Search Bar
+        <form className='search-bar-form'
+          onSubmit={handleSearch}
+        >
+          <label>
+            Search Bar
+            <input
+              type='text'
+              name='search'
+              value={searchText}
+              placeholder="Search"
+              onChange={e => setSearchText(e.target.value)}
+              className='search-bar-filed'
+            />
+            <button className="search-bar-btn" type='submit'>
+              submit
+            </button>
+          </label>
+        </form>
       </div> */}
 
       {user &&
