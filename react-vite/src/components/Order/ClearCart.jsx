@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { clearCartThunk } from "../../redux/cart";
 // import { deleteInstrumentThunk, getOneInstrumentThunk } from "../../redux/instrument";
 
-export default function ClearCart({subtotal}) {
+export default function ClearCart() {
     const dispatch = useDispatch()
     const nav = useNavigate()
     const { closeModal } = useModal()
@@ -28,9 +28,8 @@ export default function ClearCart({subtotal}) {
     return (
         <div className='delete-instrument-modal'>
             <div className='delete-form-container'>
-                <h1 className='confirm-text'>Confirm Your Subtotal</h1>
-                <h2>${subtotal}</h2>
-                <button className='modal-btn confirm-btn' onClick={handleDeleteOrder}>Checkout</button>
+                <h1 className='confirm-text'>Do you want to clear your shopping cart?</h1>
+                <button className='modal-btn confirm-btn' onClick={handleDeleteOrder}>Yes</button>
                 <button className='modal-btn' onClick={closeModal}>Cancel</button>
             </div>
         </div>
