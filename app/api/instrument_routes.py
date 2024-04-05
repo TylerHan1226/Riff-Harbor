@@ -28,6 +28,19 @@ def instrument(id):
         return instrument_list, 200
 
 
+# get instruments by category
+# /api/instruments/category
+@instrument_routes.route('/category/<category>')
+def instruments_by_category(category):
+    instruments = Instrument.query.filter_by(category=category).all()
+    if not instruments:
+        return {'message': 'Cannot get instruments by category'}
+    else:
+        instrument_list = [instrument.to_dict() for instrument in instruments]
+        return instrument_list
+    
+
+
 # create an instrument
 # /api/instruments/new
 @instrument_routes.route('/new', methods=['GET', 'POST'])

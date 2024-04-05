@@ -10,6 +10,7 @@ import DeleteInstrument from '../components/Instrument/DeleteInstrument'
 import MyInstruments from '../components/MyInstruments/MyInstruments';
 import MyOrders from '../components/Order/MyOrders';
 import Layout from './Layout';
+import Category from '../components/Category/Category';
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: "/orders/MyOrders",
         element: <MyOrders />
+      },
+      {
+        path: "instruments/category/:category",
+        element: <Category />
       }
     ],
   },

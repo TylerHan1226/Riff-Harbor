@@ -8,6 +8,7 @@ import { createOrderThunk, getOrderByUserThunk } from "../../redux/cart";
 import "./LandingPage.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaDice } from "react-icons/fa6";
+import Category from "../Category/Category";
 
 
 export default function LandingPage() {
@@ -73,8 +74,9 @@ export default function LandingPage() {
     }
   }
 
-  const handleCategory = () => {
-    alert('Feature coming soon!')
+
+  const handleCategory = (selectedCategory) => {
+    nav(`instruments/category/${selectedCategory}`)
   }
 
 
@@ -90,7 +92,7 @@ export default function LandingPage() {
             <div className="header-tabs-container">
 
               <div className="header-category">
-                <button className="category-tabs" onClick={handleCategory}>
+                <button className="category-tabs" onClick={() => handleCategory('Electric Guitar')}>
                     <img
                       src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348805/Riff-Harbor/ESP_e-g_bbjtj0.jpg'
                       alt='Electric Guitar Category'
@@ -101,7 +103,7 @@ export default function LandingPage() {
               </div>
 
               <div className="header-category">
-                <button className="category-tabs" onClick={handleCategory}>
+                <button className="category-tabs" onClick={() => handleCategory('Acoustic Guitar')}>
                     <img
                       src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348948/Riff-Harbor/lake_a-g_ouk3gj.jpg'
                       alt='Acoustic Guitar Category'
@@ -112,7 +114,7 @@ export default function LandingPage() {
               </div>
 
               <div className="header-category">
-                <button className="category-tabs" onClick={handleCategory}>
+                <button className="category-tabs" onClick={() => handleCategory('Bass')}>
                     <img
                       src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348949/Riff-Harbor/ESP_b_ak9opy.jpg'
                       alt='Bass Category'
@@ -173,7 +175,5 @@ export default function LandingPage() {
           ))}
         </div>
       </div>
-
-    // </div>
   );
 }
