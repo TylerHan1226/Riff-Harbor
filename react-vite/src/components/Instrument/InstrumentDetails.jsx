@@ -67,8 +67,8 @@ export default function InstrumentDetails() {
                     <img id="instrument-dtl-image" src={instrument.image_url} />
                 </div>
                 <div className="instrument-dtl-info-container">
-                    <h2 className='inst-dtl-text'>{instrument.model}</h2>
-                    <h3 className='inst-dtl-text'>{instrument.color}</h3>
+                    <h1>{instrument.model}</h1>
+                    <h2 className='inst-dtl-text'>{instrument.color}</h2>
                     <p className="inst-dtl-text">${instrument.price}</p>
                     {instrument.is_used ? (
                         <p className="inst-dtl-text">Condition: Pre-owned</p>
