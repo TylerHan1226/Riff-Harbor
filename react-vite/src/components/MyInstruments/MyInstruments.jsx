@@ -14,9 +14,6 @@ export default function MyInstruments() {
 
     const [deletedInstrument, setDeleteInst] = useState(false)
 
-    console.log('user ==>', user)
-    console.log('instruments ==>', instruments)
-
     const reRenderOnDelete = () => {
         setDeleteInst(!deletedInstrument)
     }
@@ -30,7 +27,6 @@ export default function MyInstruments() {
     }
 
     const myInstruments = instruments?.filter(ele => ele.seller_id == user?.id)
-    console.log('myInstruments ==>', myInstruments)
 
     return (
 
