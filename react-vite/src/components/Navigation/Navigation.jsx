@@ -43,7 +43,6 @@ export default function Navigation() {
         </>
       }
 
-
       <div className="nav-cartProfile-container">
         {user &&
           <div className="nav-cart-container">
