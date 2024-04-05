@@ -73,19 +73,75 @@ export default function LandingPage() {
     }
   }
 
+  const handleElectric = () => {
+    nav('orders/MyOrders')
+  }
+
 
 
   return (
     <div className="page-container">
-      <div id="trending-container">
-        <div>
-          <h1>Gallery</h1>
-          <div id='dice-container' >
-            <FaDice id='dice-icon' onClick={handleRandomizeInstClick} />
-            <p id='dice-text'>click to randomize</p>
+
+      <div id="landing-container">
+
+          <div className="landing-header-actions">
+            <h1>Category</h1>
+
+            <div className="header-tabs-container">
+
+              <div className="header-category">
+                <button className="category-tabs">
+                  <NavLink className='category-nav' to='/'>
+                    <img
+                      src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348805/Riff-Harbor/ESP_e-g_bbjtj0.jpg'
+
+                      alt='Electric Guitar Category'
+                      className="category-tab-image"
+                    />
+                  </NavLink>
+                </button>
+                <h3>Electric Guitars</h3>
+              </div>
+
+              <div className="header-category">
+                <button className="category-tabs">
+                  <NavLink className='category-nav' to='/'>
+                    <img
+                      src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348948/Riff-Harbor/lake_a-g_ouk3gj.jpg'
+                      alt='Acoustic Guitar Category'
+                      className="category-tab-image"
+                    />
+                  </NavLink>
+                </button>
+                <h3>Acoustic Guitars</h3>
+              </div>
+
+              <div className="header-category">
+                <button className="category-tabs">
+                  <NavLink className='category-nav' to='/'>
+                    <img
+                      src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348949/Riff-Harbor/ESP_b_ak9opy.jpg'
+                      alt='Bass Category'
+                      className="category-tab-image"
+                    />
+                  </NavLink>
+                </button>
+                <h3>Basses</h3>
+              </div>
+
+            </div>
           </div>
         </div>
-        <div className="trending-instruments-container">
+
+        <div className="landing-header-actions">
+            <h1>Gallery</h1>
+            <div id='dice-container' >
+              <FaDice id='dice-icon' onClick={handleRandomizeInstClick} />
+              <p id='dice-text'>click to randomize</p>
+            </div>
+        </div>
+
+        <div className="landing-instruments-container">
           {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
             <div className="instrument-container" key={eachInst?.id}>
               <div className="instrument-dtl-container">
@@ -119,13 +175,12 @@ export default function LandingPage() {
                     </NavLink>
                   </button>
                 )}
-
               </div>
             </div>
           ))}
         </div>
       </div>
 
-    </div>
+    // </div>
   );
 }
