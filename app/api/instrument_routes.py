@@ -37,7 +37,7 @@ def instruments_by_category(category):
         return {'message': 'Cannot get instruments by category'}
     else:
         instrument_list = [instrument.to_dict() for instrument in instruments]
-        return instrument_list
+        return {'SelectedInstruments': instrument_list}
     
 
 
