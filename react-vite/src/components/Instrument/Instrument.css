@@ -40,9 +40,6 @@
     object-fit: contain;
     height: 100%;
 }
-#instrument-dtl-image:hover {
-    cursor: zoom-in;
-}
 
 .back-button {
     width: 80px;
