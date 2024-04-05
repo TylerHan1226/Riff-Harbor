@@ -15,7 +15,7 @@ def seed_instruments():
         body = "Maple",
         fretboard = "Maple",
         is_used = False,
-        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711508618/Riff-Harbor/eg-1_h3dpkm.jpg",
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712351131/Riff-Harbor/eg-1_ahmvqc.png",
     )
     e_guitar_2 = Instrument(
         seller_id = 2,

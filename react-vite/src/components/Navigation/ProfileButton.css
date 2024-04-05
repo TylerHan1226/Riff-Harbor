@@ -4,13 +4,15 @@
 }
 
 .profile-log-modal-container {
-    padding: 24px;
+    /* padding: 12px; */
     width: 600px;
     height: 480px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgb(0, 0, 0);
+    border: 12px rgb(190, 0, 0) solid;
 }
 
 .toggle-dropdown{
@@ -53,7 +55,7 @@
 }
 
 .login-model-icon {
-    color: black;
+    color: white;
     font-size: 36px;
 }
 

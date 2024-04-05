@@ -73,8 +73,8 @@ export default function LandingPage() {
     }
   }
 
-  const handleElectric = () => {
-    nav('orders/MyOrders')
+  const handleCategory = () => {
+    alert('Feature coming soon!')
   }
 
 
@@ -90,41 +90,34 @@ export default function LandingPage() {
             <div className="header-tabs-container">
 
               <div className="header-category">
-                <button className="category-tabs">
-                  <NavLink className='category-nav' to='/'>
+                <button className="category-tabs" onClick={handleCategory}>
                     <img
                       src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348805/Riff-Harbor/ESP_e-g_bbjtj0.jpg'
-
                       alt='Electric Guitar Category'
                       className="category-tab-image"
                     />
-                  </NavLink>
                 </button>
                 <h3>Electric Guitars</h3>
               </div>
 
               <div className="header-category">
-                <button className="category-tabs">
-                  <NavLink className='category-nav' to='/'>
+                <button className="category-tabs" onClick={handleCategory}>
                     <img
                       src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348948/Riff-Harbor/lake_a-g_ouk3gj.jpg'
                       alt='Acoustic Guitar Category'
                       className="category-tab-image"
                     />
-                  </NavLink>
                 </button>
                 <h3>Acoustic Guitars</h3>
               </div>
 
               <div className="header-category">
-                <button className="category-tabs">
-                  <NavLink className='category-nav' to='/'>
+                <button className="category-tabs" onClick={handleCategory}>
                     <img
                       src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348949/Riff-Harbor/ESP_b_ak9opy.jpg'
                       alt='Bass Category'
                       className="category-tab-image"
                     />
-                  </NavLink>
                 </button>
                 <h3>Basses</h3>
               </div>
@@ -150,7 +143,7 @@ export default function LandingPage() {
                 </NavLink>
               </div>
               <div className="instrument-dtl-container">
-                <h4>{eachInst?.model}</h4>
+                <h4 className="inst-dtl-text">{eachInst?.model}</h4>
                 <p className="inst-dtl-text">{eachInst?.category}</p>
                 <p className="inst-dtl-text">${eachInst?.price}</p>
                 {eachInst?.is_used ? (
