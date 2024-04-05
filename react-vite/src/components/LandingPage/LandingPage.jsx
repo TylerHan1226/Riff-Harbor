@@ -10,6 +10,21 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FaDice } from "react-icons/fa6";
 import Category from "../Category/Category";
 
+export const handleAddToCart = (instrumentId, orders, dispatch, nav) => {
+  const orderInstIds = orders.map(ele => ele.instrument_id)
+  //check if already added item to the cart
+  if (orderInstIds.includes(instrumentId)) {
+    alert("This instrument is already in your cart! You can change the quantity in your cart page.")
+  } else {
+    const newOrder = {
+      instrument_id: instrumentId
+    }
+    dispatch(createOrderThunk(newOrder))
+    alert("You've placed the order successfully!")
+    nav('/orders/MyOrders')
+  }
+}
+
 
 export default function LandingPage() {
   const nav = useNavigate()
@@ -59,20 +74,7 @@ export default function LandingPage() {
   if (user) {
     isDisable = false
   }
-  const handleAddToCart = (instrumentId) => {
-    const orderInstIds = orders.map(ele => ele.instrument_id)
-    //check if already added item to the cart
-    if (orderInstIds.includes(instrumentId)) {
-      alert("This instrument is already in your cart! You can change the quantity in your cart page.")
-    } else {
-      const newOrder = {
-        instrument_id: instrumentId
-      }
-      dispatch(createOrderThunk(newOrder))
-      alert("You've placed the order successfully!")
-      nav('orders/MyOrders')
-    }
-  }
+
 
 
   const handleCategory = (selectedCategory) => {
@@ -162,7 +164,7 @@ export default function LandingPage() {
                 ) : (
                   <button
                     className={`add-to-cart-button ${user ? '' : 'disabled'}`}
-                    onClick={() => handleAddToCart(eachInst.id)}
+                    onClick={() => handleAddToCart(eachInst.id, orders, dispatch, nav)}
                     disabled={isDisable}
                   >
                     <NavLink className='add-to-cart-text'>
