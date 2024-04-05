@@ -29,26 +29,32 @@ export default function MyOrders() {
         setChangedQ(!hasChangedQ)
     }
 
+    const [newQuantity, setNewQuantity] = useState(1)
+    const updateQuantity = (quantity) => {
+        setNewQuantity(quantity)
+    }
+
     const [hasDeleted, setDeleted] = useState(false)
     const reRenderOnDelete = () => {
         setDeleted(!hasDeleted)
     }
+    console.log('newQuantity ==>', newQuantity)
 
     let subtotal = 0
-    const getSubTotal = (instArr, orders) => {
-        const instrumentTotal = instArr?.reduce((acc, inst) => {
-            const matchingOrder = orders?.find(order => order.instrument_id == inst.id)
-            if (matchingOrder) {
-                return acc + (inst.price * matchingOrder.quantity)
-            }
-            return acc
-        }, 0)
-        const newTotal = parseFloat(instrumentTotal.toFixed(2))
-        return newTotal
-    }
-    if (instArr?.length > 0) {
-        subtotal = getSubTotal(instArr, orders)
-    }
+    // const getSubTotal = (instArr, orders) => {
+    //     const instrumentTotal = instArr?.reduce((acc, inst) => {
+    //         const matchingOrder = orders?.find(order => order.instrument_id == inst.id)
+    //         if (matchingOrder) {
+    //             return acc + (inst.price * matchingOrder.quantity)
+    //         }
+    //         return acc
+    //     }, 0)
+    //     const newTotal = parseFloat(instrumentTotal.toFixed(2))
+    //     return newTotal
+    // }
+    // if (instArr?.length > 0) {
+    //     subtotal = getSubTotal(instArr, orders)
+    // }
 
     useEffect(() => {
         if (!user) {
@@ -95,6 +101,7 @@ export default function MyOrders() {
                             orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]}
                             reRenderOnQuantity={reRenderOnQuantity}
                             reRenderOnDelete={reRenderOnDelete}
+                            updateQuantity={updateQuantity}
                         />
                     </div>
                 ))) : (

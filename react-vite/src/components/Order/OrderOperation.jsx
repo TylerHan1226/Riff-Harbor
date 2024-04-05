@@ -6,7 +6,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { useNavigate } from "react-router-dom"
 
 
-export default function OrderOperation({ orderInfo, reRenderOnQuantity, reRenderOnDelete }) {
+export default function OrderOperation({ orderInfo, reRenderOnQuantity, reRenderOnDelete, updateQuantity }) {
     const dispatch = useDispatch()
     const nav = useNavigate()
     const user = useSelector(state => state.session)
@@ -16,7 +16,7 @@ export default function OrderOperation({ orderInfo, reRenderOnQuantity, reRender
     const handleInc = () => {
         setOrderQuantity(ele => ele + 1)
         const updatedOrder = { quantity: orderQuantity + 1 }
-        dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
+        updateQuantity(updatedOrder)
         reRenderOnQuantity()
     }
     const handleDec = () => {
@@ -27,7 +27,7 @@ export default function OrderOperation({ orderInfo, reRenderOnQuantity, reRender
         } else {
             setOrderQuantity(ele => ele - 1)
             const updatedOrder = { quantity: orderQuantity - 1 }
-            dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
+            updateQuantity(updatedOrder)
         }
         reRenderOnQuantity()
     }
