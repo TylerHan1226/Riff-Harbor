@@ -26,11 +26,13 @@ export default function InstrumentForm({ buttonName, instrument }) {
     const [validations, setValidations] = useState({})
     const [submitted, setSubmitted] = useState(false)
     const [thumbnail, setThumbnail] = useState(null)
+    const [hasUploadedImg, setUploadedImg] = useState(false)
 
     const imgSelectionAndThumbnail = (e) => {
         setImageUrl(e.target.files[0])
         const thumbnail = URL.createObjectURL(e.target.files[0])
         setThumbnail(thumbnail)
+        setUploadedImg(!hasUploadedImg)
     }
 
     useEffect(() => {
@@ -48,7 +50,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
             setImageUrl(image_url || instrument.image_url)
             setThumbnail(thumbnail || instrument.image_url)
         }
-    }, [instrument, instrumentId, image_url, thumbnail]);
+    }, [instrument, instrumentId]);
 
 
     let isValidated = false
@@ -70,11 +72,8 @@ export default function InstrumentForm({ buttonName, instrument }) {
             if (!category || !['Electric Guitar', 'Acoustic Guitar', 'Bass'].includes(category)) {
                 errors.category = 'This field is required and must be one of the following: Electric Guitar, Acoustic Guitar, Bass.'
             }
-            if (!price || price <= 0) {
+            if (!price || price <= 0 || isNaN(price)) {
                 errors.price = 'Price is required and must be a number greater than 0'
-            }
-            if (price && typeof price !== 'number') {
-                errors.price = 'Price is required and must be a number'
             }
             if (!details || details.length < 25) {
                 errors.details = 'Details is required and must be greater than 25 characters'
@@ -138,6 +137,13 @@ export default function InstrumentForm({ buttonName, instrument }) {
             }
         }
     }
+
+    let previewUrl = instrument?.image_url
+    if (thumbnail && hasUploadedImg) {
+        console.log('thumbnail ==>', thumbnail)
+        previewUrl = thumbnail
+    }
+
 
 
     return (
@@ -292,17 +298,10 @@ export default function InstrumentForm({ buttonName, instrument }) {
 
             <div className="form-fields-container form-preview-img-container ">
                 <h4>Post Your Photo!</h4>
-                {instrument ? (
-                    <img
-                    id='instrument-preview-image'
-                     className="form-preview-img" 
-                      src={instrument.image_url} />
-                ) : (
-                    <img
+                <img
                     id='instrument-preview-image'
                     className="form-preview-img" 
-                    src={thumbnail} />
-                )}
+                    src={previewUrl} />
             </div>
         </form>
     )

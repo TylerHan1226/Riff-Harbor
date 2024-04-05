@@ -2,16 +2,49 @@
 # RIFF HARBOR
   - Welcome to Riff Harbor – your premier destination for all things music! Our mission is to assist you in discovering the ideal instrument that perfectly complements your individual style and sonic expression. Let us guide you as you embark on your musical journey.
 
-## URL
-my url
+  - project URL: https://riff-harbor.onrender.com
+
 
 ## Data Schema
 ![data schema](./documents/Riff_Harbor_DB_schema.png)
 
-## Features
-  - Shopping (Orders & Checkout) 
-  - Instruments
-  - Search box
+## Feature List
+### 1. Instruments
+* View all instruments
+* Create new instruments.
+* Update the instruments they have created.
+* Delete the instruments they have created.
+
+### 2. Order Items
+* View all the order items created by the users.
+* Add order items to cart.
+* Update the the quantity of the order items they added.
+* Remove their order items.
+* Checkout (send data to order history)
+
+### 3. Order History
+* View all the orders histories created by the users.
+* Create order history.
+* Delete their order history.
+
+### 4. Wish List
+* View all the items added to the wish list.
+* Ddd items to the wish list.
+* Update the wish list the user has created.
+* Delete the wish list the user has created.
+
+
+## Bonus Feature
+### 5. Amazon Web Services
+* All media should be able to be stored in AWS.
+
+
+### 6. Search / Sort & Filter
+* Users should be able to view the results by sorting or filtering.
+* Users should be able to view the results by searching car models or car locations.
+
+# DEMO
+
 
 # Endpoints
 ## USERS

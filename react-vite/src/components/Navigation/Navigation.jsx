@@ -24,8 +24,6 @@ export default function Navigation() {
         <MdSailing className="nav-text-icon" />
       </div>
 
-
-
       {/* <div>
         Search Bar
       </div> */}
@@ -33,25 +31,31 @@ export default function Navigation() {
       {user &&
         <>
           <button className="nav-action-button">
-            <NavLink className='nav-action-button-text' to={`/instruments/${user.id}/MyInstruments`}>My Instruments</NavLink>
+            <NavLink className='nav-action-button-text' to={`/instruments/${user.id}/MyInstruments`}>
+              My Instruments
+            </NavLink>
           </button>
           <button className="nav-action-button">
-            <NavLink className='nav-action-button-text' to='/instruments/new'>Sell Your Gear!</NavLink>
+            <NavLink className='nav-action-button-text' to='/instruments/new'>
+              Sell Your Gear!
+            </NavLink>
           </button>
         </>
       }
 
-      <div>
-        <ProfileButton className='nav-profile-btn' />
+      <div className="nav-cartProfile-container">
+        {user &&
+          <div className="nav-cart-container">
+            <NavLink to='orders/MyOrders'>
+              <FaShoppingCart id='nav-cart' />
+            </NavLink>
+          </div>
+        }
+        <div className="nav-profile-container">
+          <ProfileButton className='nav-profile-btn' />
+        </div>
       </div>
 
-      {user &&
-        <div>
-          <NavLink to='orders/MyOrders'>
-            <FaShoppingCart id='nav-cart' />
-          </NavLink>
-        </div>
-      }
 
     </div>
   );
