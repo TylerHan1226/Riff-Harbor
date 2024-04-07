@@ -8,7 +8,6 @@ import { createOrderThunk, getOrderByUserThunk } from "../../redux/cart";
 import "./LandingPage.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaDice } from "react-icons/fa6";
-import Category from "../Category/Category";
 
 export const handleAddToCart = (instrumentId, orders, dispatch, nav) => {
   const orderInstIds = orders.map(ele => ele.instrument_id)

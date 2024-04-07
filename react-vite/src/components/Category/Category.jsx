@@ -14,7 +14,7 @@ export default function Category() {
   const nav = useNavigate()
   const dispatch = useDispatch()
   const { category } = useParams()
-  const user = useSelector(state => state.session)
+  const user = useSelector(state => state.session.user)
   const instruments = useSelector(state => state.instruments?.SelectedInstruments)
   const orders = useSelector(state => state.orders?.CurrentOrders)
 
@@ -73,7 +73,7 @@ export default function Category() {
           </NavLink>
 
         )) : (
-          <h3>We currently don't have any instruments under this category</h3>
+          <h3>We currently don&apos;t have any instruments under this category</h3>
         )}
       </div>
     </div>
