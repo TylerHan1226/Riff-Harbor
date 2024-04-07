@@ -9,6 +9,21 @@ import "./LandingPage.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaDice } from "react-icons/fa6";
 
+export const handleAddToCart = (instrumentId, orders, dispatch, nav) => {
+  const orderInstIds = orders.map(ele => ele.instrument_id)
+  //check if already added item to the cart
+  if (orderInstIds.includes(instrumentId)) {
+    alert("This instrument is already in your cart! You can change the quantity in your cart page.")
+  } else {
+    const newOrder = {
+      instrument_id: instrumentId
+    }
+    dispatch(createOrderThunk(newOrder))
+    alert("You've placed the order successfully!")
+    nav('/orders/MyOrders')
+  }
+}
+
 
 export default function LandingPage() {
   const nav = useNavigate()
@@ -58,34 +73,71 @@ export default function LandingPage() {
   if (user) {
     isDisable = false
   }
-  const handleAddToCart = (instrumentId) => {
-    const orderInstIds = orders.map(ele => ele.instrument_id)
-    //check if already added item to the cart
-    if (orderInstIds.includes(instrumentId)) {
-      alert("This instrument is already in your cart! You can change the quantity in your cart page.")
-    } else {
-      const newOrder = {
-        instrument_id: instrumentId
-      }
-      dispatch(createOrderThunk(newOrder))
-      alert("You've placed the order successfully!")
-      nav('orders/MyOrders')
-    }
+
+
+
+  const handleCategory = (selectedCategory) => {
+    nav(`instruments/category/${selectedCategory}`)
   }
 
 
 
   return (
     <div className="page-container">
-      <div id="trending-container">
-        <div>
-          <h1>Gallery</h1>
-          <div id='dice-container' >
-            <FaDice id='dice-icon' onClick={handleRandomizeInstClick} />
-            <p id='dice-text'>click to randomize</p>
+
+      <div id="landing-container">
+
+          <div className="landing-header-actions">
+            <h1>Category</h1>
+
+            <div className="header-tabs-container">
+
+              <div className="header-category">
+                <button className="category-tabs" onClick={() => handleCategory('Electric Guitar')}>
+                    <img
+                      src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348805/Riff-Harbor/ESP_e-g_bbjtj0.jpg'
+                      alt='Electric Guitar Category'
+                      className="category-tab-image"
+                    />
+                </button>
+                <h3>Electric Guitars</h3>
+              </div>
+
+              <div className="header-category">
+                <button className="category-tabs" onClick={() => handleCategory('Acoustic Guitar')}>
+                    <img
+                      src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348948/Riff-Harbor/lake_a-g_ouk3gj.jpg'
+                      alt='Acoustic Guitar Category'
+                      className="category-tab-image"
+                    />
+                </button>
+                <h3>Acoustic Guitars</h3>
+              </div>
+
+              <div className="header-category">
+                <button className="category-tabs" onClick={() => handleCategory('Bass')}>
+                    <img
+                      src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348949/Riff-Harbor/ESP_b_ak9opy.jpg'
+                      alt='Bass Category'
+                      className="category-tab-image"
+                    />
+                </button>
+                <h3>Basses</h3>
+              </div>
+
+            </div>
           </div>
         </div>
-        <div className="trending-instruments-container">
+
+        <div className="landing-header-actions">
+            <h1>Gallery</h1>
+            <div id='dice-container' >
+              <FaDice id='dice-icon' onClick={handleRandomizeInstClick} />
+              <p id='dice-text'>click to randomize</p>
+            </div>
+        </div>
+
+        <div className="landing-instruments-container">
           {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
             <div className="instrument-container" key={eachInst?.id}>
               <div className="instrument-dtl-container">
@@ -94,7 +146,7 @@ export default function LandingPage() {
                 </NavLink>
               </div>
               <div className="instrument-dtl-container">
-                <h4>{eachInst?.model}</h4>
+                <h4 className="inst-dtl-text">{eachInst?.model}</h4>
                 <p className="inst-dtl-text">{eachInst?.category}</p>
                 <p className="inst-dtl-text">${eachInst?.price}</p>
                 {eachInst?.is_used ? (
@@ -111,7 +163,7 @@ export default function LandingPage() {
                 ) : (
                   <button
                     className={`add-to-cart-button ${user ? '' : 'disabled'}`}
-                    onClick={() => handleAddToCart(eachInst.id)}
+                    onClick={() => handleAddToCart(eachInst.id, orders, dispatch, nav)}
                     disabled={isDisable}
                   >
                     <NavLink className='add-to-cart-text'>
@@ -119,13 +171,10 @@ export default function LandingPage() {
                     </NavLink>
                   </button>
                 )}
-
               </div>
             </div>
           ))}
         </div>
       </div>
-
-    </div>
   );
 }

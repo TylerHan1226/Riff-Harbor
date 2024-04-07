@@ -41,7 +41,7 @@ export default function MyInstruments() {
                             </NavLink>
                         </div>
                         <div className="instrument-dtl-container">
-                            <h4>{eachInst?.model}</h4>
+                            <h4 className="inst-dtl-text">{eachInst?.model}</h4>
                             <p className="inst-dtl-text">{eachInst?.category}</p>
                             <p className="inst-dtl-text">${eachInst?.price}</p>
                             {eachInst?.is_used ? (

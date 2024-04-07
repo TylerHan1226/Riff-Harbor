@@ -75,7 +75,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
             if (!price || price <= 0 || isNaN(price)) {
                 errors.price = 'Price is required and must be a number greater than 0'
             }
-            if (!details || details.length < 25) {
+            if (!details || details.length <= 25) {
                 errors.details = 'Details is required and must be greater than 25 characters'
             }
             if (details?.length >= 900) {

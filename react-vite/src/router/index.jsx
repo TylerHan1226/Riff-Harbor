@@ -11,6 +11,7 @@ import MyInstruments from '../components/MyInstruments/MyInstruments';
 import MyOrders from '../components/Order/MyOrders';
 import History from '../components/Order/History';
 import Layout from './Layout';
+import Category from '../components/Category/Category';
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "/history",
         element: <History />
+      },
+      {
+        path: "instruments/category/:category",
+        element: <Category />
       }
     ],
   },

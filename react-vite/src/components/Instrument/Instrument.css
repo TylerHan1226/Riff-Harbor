@@ -12,6 +12,7 @@
 
 #instrument-dtl-page-container {
     border: 0.5px solid rgb(0, 0, 0, 0.2);
+    background-color: white;
     border-radius: 12px;
     padding: 24px;
     display: flex;
@@ -72,7 +73,7 @@
 .delete-button:hover, 
 .submit-form-button:hover,
 .my-inst-action-btn:hover {
-    box-shadow: 0 0 10px 2px rgb(225, 0, 0, 0.5);
+    box-shadow: 0 0 10px 2px rgb(225, 0, 0, 0.75);
     background-color: rgb(235, 0, 0);
     cursor: pointer;
 }
@@ -103,22 +104,23 @@
     height: 5%;
 }
 
-
-
 .delete-instrument-modal{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(0, 0, 0);
+    border: 12px rgb(190, 0, 0) solid;
 }
 
 .delete-form-container{
     width: 50%;
-    padding: 36px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    
 }
 .remove-inst-title{
     text-wrap: wrap;
@@ -132,14 +134,14 @@
     width: 300px;
     margin: 15px;
     color: white;
-    background-color: black;
+    background-color: grey;
     border: 1px solid black;
     height: 48px;
     border-radius: 4px;
 }
 .modal-btn:hover{
-    background-color: grey;
-    border: 1px solid grey;
+    background-color: rgb(190, 190, 190);
+    border: 1px solid rgb(190, 190, 190);
     cursor: pointer;
 }
 

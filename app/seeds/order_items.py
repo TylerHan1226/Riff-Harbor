@@ -5,7 +5,7 @@ import json
 
 def seed_order_items():
     order_1 = OrderItem(
-        instrument_id = 1,
+        instrument_id = 2,
         user_id = "1",
         quantity = 1,
         has_checkout = True
