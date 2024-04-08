@@ -5,16 +5,20 @@ import json
 
 def seed_order_histories():
     oh_1 = OrderHistory(
-        order_id = 6,
-        user_id = 3
+        instrument_id = 5,
+        user_id = "1",
+        quantity = 1,
+        # created_at = 
     )
     oh_2 = OrderHistory(
-        order_id = 1,
-        user_id = 1
+        instrument_id = 8,
+        user_id = "1",
+        quantity = 1,
     )
     oh_3 = OrderHistory(
-        order_id = 2,
-        user_id = 1
+        instrument_id = 13,
+        user_id = "1",
+        quantity = 1,
     )
 
     db.session.add_all([oh_1, oh_2, oh_3])

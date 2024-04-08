@@ -14,12 +14,11 @@ class OrderItem(db.Model):
     instrument_id = Column(Integer, ForeignKey(add_prefix_for_prod('instruments.id')), nullable=False)
     user_id = Column(Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     quantity = Column(Integer, nullable=False)
-    has_checkout = Column(Boolean, nullable=False)
     created_at = Column(DateTime, default=datetime.now)
 
     users = relationship('User', back_populates='order_items')
     instruments = relationship('Instrument', back_populates='order_items')
-    order_histories = relationship('OrderHistory', back_populates='order_items')
+    # order_histories = relationship('OrderHistory', back_populates='order_items')
 
 
     def to_dict(self):
@@ -28,6 +27,5 @@ class OrderItem(db.Model):
             'instrument_id': self.instrument_id,
             'user_id': self.user_id,
             'quantity': self.quantity,
-            'has_checkout': self.has_checkout,
             'created_at': str(self.created_at.strftime("%Y-%m-%d %H:%M:%S")),
         }

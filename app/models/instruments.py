@@ -26,6 +26,7 @@ class Instrument(db.Model):
 
     users = relationship('User', back_populates='instruments')
     order_items = relationship('OrderItem', back_populates='instruments')
+    order_histories = relationship('OrderHistory', back_populates='instruments')
 
 
     def to_dict(self):
