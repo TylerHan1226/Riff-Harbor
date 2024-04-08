@@ -21,11 +21,7 @@ def all_history():
 def history_by_user():
     cur_history = OrderHistory.query.filter_by(user_id=current_user.id).all()
     cur_history_list = [history.to_dict() for history in cur_history]
-
-    # order_id_list = [history["order_id"] for history in cur_history_list]
-    # orders = OrderItem.query.filter(OrderItem.id.in_(order_id_list)).all()
-    # orders_list = [order.to_dict() for order in orders]
-
+    
     instrument_id_list = [history["instrument_id"] for history in cur_history_list]
     instruments = Instrument.query.filter(Instrument.id.in_(instrument_id_list)).all()
     instrument_list = [instrument.to_dict() for instrument in instruments]

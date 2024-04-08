@@ -53,7 +53,7 @@ export default function Category() {
             <div className="my-inst-item-btn-container">
               {eachInst?.seller_id == user?.id ? (
                 <button className="category-add-to-cart-button">
-                  <NavLink className='category-add-to-cart-text' to={`instruments/${eachInst?.id}/update`}>
+                  <NavLink className='category-add-to-cart-text' to={`/instruments/${eachInst?.id}/update`}>
                     Update
                   </NavLink>
                 </button>

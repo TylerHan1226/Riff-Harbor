@@ -13,7 +13,12 @@ export default function History() {
     console.log('histories ==>', histories)
     console.log('instruments ==>', instruments)
 
-    const sortedHistoryObj = histories?.reduce((acc, obj) => {
+    const historyCollection = histories?.map(history => 
+        history = {...history, "instrument": instruments?.filter(ele => ele.id == history.instrument_id)[0]}
+    )
+    console.log('historyCollection ==>', historyCollection)
+
+    const sortedHistoryObj = historyCollection?.reduce((acc, obj) => {
         const createdAt = obj.created_at?.slice(0, 16);
         if (!acc[createdAt]) {
             acc[createdAt] = [];
@@ -23,22 +28,11 @@ export default function History() {
     }, {});
     let sortedHistory = []
     if (sortedHistoryObj) {
-        const sortedHistoryArr = Object.values(sortedHistoryObj);
-        console.log('sortedHistoryArr ==>', sortedHistoryArr)
-        sortedHistory = sortedHistoryArr.map(historyBlock => {
-            return historyBlock.map(history => {
-                console.log('history ==>', history)
-                return history.instrument = 'instrument!'
-                // history.instrument = instruments?.filter(instrument => instrument.id == history.instrument_id)
-            })
-        })
+        sortedHistory = Object.values(sortedHistoryObj);
     }
 
     console.log('sortedHistory ==>', sortedHistory);
-    // sortedHistory.map((historyBlock) => {
-    //     console.log('historyBlock ==>', historyBlock)
-    //     console.log('historyBlock ==>', historyBlock[0].created_at)
-    // })
+
 
     useEffect(() => {
         dispatch(getUserHistoryThunk())
@@ -49,9 +43,9 @@ export default function History() {
         <div className='history-container'>
             <h1>My Order History</h1>
             <div className='my-instrument-item-container'>
-                {/* {sortedHistory.map((historyBlock) => (
+                {sortedHistory.map((historyBlock) => (
                     <div className='history-block' key={historyBlock[0].created_at}>
-                        <h3>{historyBlock[0].created_at}</h3>
+                        <h3>{historyBlock[0].created_at.slice(0,16)}</h3>
                         <div className='history-instruments'>
                             {historyBlock.map((history) => (
                                 <div className='history-inst-item' key={history.id}>
@@ -63,7 +57,7 @@ export default function History() {
                             ))}
                         </div>
                     </div>
-                ))} */}
+                ))}
             </div>
         </div>
     )
