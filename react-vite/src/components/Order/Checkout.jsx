@@ -2,24 +2,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useEffect } from "react";
-import { clearCartThunk } from "../../redux/cart";
-// import { deleteInstrumentThunk, getOneInstrumentThunk } from "../../redux/instrument";
+import { clearCartThunk, getOrderByUserThunk } from "../../redux/cart";
+import { addNewHistoryThunk } from "../../redux/history";
 
 export default function Checkout() {
     const dispatch = useDispatch()
     const nav = useNavigate()
     const { closeModal } = useModal()
     const user = useSelector(state => state.session)
+    const instruments = useSelector(state => state.instruments)
+    const orders = useSelector(state => state.orders?.CurrentOrders)
+    const instArr = Object.values(instruments)?.slice(0, orders?.length)
+
+    console.log('orders ==>', orders)
+
+    const subtotal = instArr?.reduce((acc, inst) => {
+        const matchingOrder = orders?.find(order => order.instrument_id == inst.id)
+        if (matchingOrder) {
+            return acc + (inst.price * matchingOrder.quantity)
+        }
+        return acc
+    }, 0).toFixed(2)
 
     useEffect(() => {
         if (!user) {
             nav('/')
         }
+        dispatch(getOrderByUserThunk())
     }, [dispatch, user])
 
-    const handleDeleteOrder = async (e) => {
+    const handleCheckout = async (e) => {
         e.preventDefault()
-        dispatch(clearCartThunk())
+        orders.forEach(async order => {
+            console.log('order ==>', order)
+            await dispatch(addNewHistoryThunk({instrument_id: order.instrument_id, quantity: order.quantity}))
+        })
+        await dispatch(clearCartThunk())
         closeModal()
         alert('Congratulations! You are ready for your music journey!')
         nav(`/`)
@@ -29,7 +47,8 @@ export default function Checkout() {
         <div className='delete-instrument-modal'>
             <div className='delete-form-container'>
                 <h1 className='confirm-text'>Please Confirm Your Subtotal</h1>
-                <button className='modal-btn confirm-btn' onClick={handleDeleteOrder}>Checkout</button>
+                <h3>${subtotal}</h3>
+                <button className='modal-btn confirm-btn' onClick={handleCheckout}>Checkout</button>
                 <button className='modal-btn' onClick={closeModal}>Cancel</button>
             </div>
         </div>

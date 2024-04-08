@@ -22,15 +22,15 @@ def history_by_user():
     cur_history = OrderHistory.query.filter_by(user_id=current_user.id).all()
     cur_history_list = [history.to_dict() for history in cur_history]
 
-    order_id_list = [history["order_id"] for history in cur_history_list]
-    orders = OrderItem.query.filter(OrderItem.id.in_(order_id_list)).all()
-    orders_list = [order.to_dict() for order in orders]
+    # order_id_list = [history["order_id"] for history in cur_history_list]
+    # orders = OrderItem.query.filter(OrderItem.id.in_(order_id_list)).all()
+    # orders_list = [order.to_dict() for order in orders]
 
-    instrument_id_list = [order["instrument_id"] for order in orders_list]
+    instrument_id_list = [history["instrument_id"] for history in cur_history_list]
     instruments = Instrument.query.filter(Instrument.id.in_(instrument_id_list)).all()
     instrument_list = [instrument.to_dict() for instrument in instruments]
     
-    return {'UserOrderHistory': cur_history_list, 'Orders': orders_list, 'Instruments': instrument_list}, 200
+    return {'UserOrderHistory': cur_history_list, 'HistoryInst': instrument_list }, 200
 
 
 # add to history
@@ -39,8 +39,9 @@ def history_by_user():
 @login_required
 def add_history():
     data = request.json
-    order_id = data.get('order_id')
-    new_history = OrderHistory(user_id=current_user.id, order_id=order_id)
+    instrument_id = data.get('instrument_id')
+    quantity = data.get('quantity')
+    new_history = OrderHistory(user_id=current_user.id, instrument_id=instrument_id, quantity=quantity)
     if not new_history:
         return {'message': 'Cannot Add to history'}, 400
     db.session.add(new_history)

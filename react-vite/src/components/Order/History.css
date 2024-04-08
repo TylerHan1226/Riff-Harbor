@@ -1,0 +1,7 @@
+
+.history-container {
+    width: 800px;
+    height: 800px;
+    overflow-y: auto;
+    padding: 36px;
+}

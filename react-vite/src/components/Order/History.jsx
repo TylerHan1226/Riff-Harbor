@@ -8,12 +8,11 @@ import './History.css'
 export default function History() {
     const dispatch = useDispatch()
     const histories = useSelector(state => state.histories?.UserOrderHistory)
-    const instruments = useSelector(state => state.histories?.Instruments)
-    const orders = useSelector(state => state.histories?.Orders)
+    const instruments = useSelector(state => state.histories?.HistoryInst)
 
     console.log('histories ==>', histories)
     console.log('instruments ==>', instruments)
-    console.log('orders ==>', orders)
+
 
     useEffect(() => {
         dispatch(getUserHistoryThunk())
@@ -21,7 +20,7 @@ export default function History() {
 
 
     return (
-        <div className='page-container'>
+        <div className='history-container'>
             <h1>My Order History</h1>
             <div className='my-instrument-item-container'>
                 {instruments?.length > 0 ? instruments?.map((eachInst) => (
