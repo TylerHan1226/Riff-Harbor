@@ -6,6 +6,8 @@ import { getInstrumentsByIdsThunk } from "../../redux/instrument";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import OrderOperation from './OrderOperation'
 import ClearCart from './ClearCart';
+import History from './History';
+import Checkout from './Checkout';
 import './Orders.css'
 
 
@@ -41,7 +43,7 @@ export default function MyOrders() {
             nav('/')
         }
         dispatch(getOrderByUserThunk());
-    }, [dispatch, hasChangedQ, user, hasDeleted])
+    }, [dispatch, hasChangedQ, user, hasDeleted, subtotal])
 
     useEffect(() => {
         if (instrumentIds?.length > 0 && orders) {
@@ -85,15 +87,27 @@ export default function MyOrders() {
                     </div>
                 ))) : (
                     <h2>Your Cart is empty</h2>
-                ) }
+                )}
             </div>
             <div className='cart-checkout-container'>
                 <h1>My Orders</h1>
                 <h3>Subtotal: ${subtotal}</h3>
                 <button className="order-action-button">
                     <OpenModalMenuItem
+                        itemText="Clear Cart"
+                        modalComponent={<ClearCart />}
+                    />
+                </button>
+                <button className="order-action-button">
+                    <OpenModalMenuItem
+                        itemText="Order History"
+                        modalComponent={<History />}
+                    />
+                </button>
+                <button className="order-action-button">
+                    <OpenModalMenuItem
                         itemText="Checkout"
-                        modalComponent={<ClearCart subtotal={subtotal} />}
+                        modalComponent={<Checkout />}
                     />
                 </button>
             </div>

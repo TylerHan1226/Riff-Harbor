@@ -62,10 +62,6 @@ export const router = createBrowserRouter([
         element: <MyOrders />
       },
       {
-        path: "/history",
-        element: <History />
-      },
-      {
         path: "instruments/category/:category",
         element: <Category />
       }
