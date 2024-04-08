@@ -6,12 +6,7 @@ import { getInstrumentsByIdsThunk } from "../../redux/instrument";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import OrderOperation from './OrderOperation'
 import ClearCart from './ClearCart';
-import History from './History';
-
 import './Orders.css'
-
-
-
 
 
 export default function MyOrders() {
@@ -20,41 +15,26 @@ export default function MyOrders() {
     const user = useSelector(state => state.session.user)
     const orders = useSelector(state => state.orders?.CurrentOrders)
     const instruments = useSelector(state => state.instruments)
-    const curOrders = orders?.filter(ele => ele.has_checkout == false)
-    const instArr = Object.values(instruments)?.slice(0, curOrders?.length)
-    const instrumentIds = curOrders?.map(ele => ele.instrument_id)
+    const instArr = Object.values(instruments)?.slice(0, orders?.length)
+    const instrumentIds = orders?.map(ele => ele.instrument_id)
 
     const [hasChangedQ, setChangedQ] = useState(false);
     const reRenderOnQuantity = () => {
         setChangedQ(!hasChangedQ)
     }
 
-    const [newQuantity, setNewQuantity] = useState(1)
-    const updateQuantity = (quantity) => {
-        setNewQuantity(quantity)
-    }
-
     const [hasDeleted, setDeleted] = useState(false)
     const reRenderOnDelete = () => {
         setDeleted(!hasDeleted)
     }
-    console.log('newQuantity ==>', newQuantity)
 
-    let subtotal = 0
-    // const getSubTotal = (instArr, orders) => {
-    //     const instrumentTotal = instArr?.reduce((acc, inst) => {
-    //         const matchingOrder = orders?.find(order => order.instrument_id == inst.id)
-    //         if (matchingOrder) {
-    //             return acc + (inst.price * matchingOrder.quantity)
-    //         }
-    //         return acc
-    //     }, 0)
-    //     const newTotal = parseFloat(instrumentTotal.toFixed(2))
-    //     return newTotal
-    // }
-    // if (instArr?.length > 0) {
-    //     subtotal = getSubTotal(instArr, orders)
-    // }
+    const subtotal = instArr?.reduce((acc, inst) => {
+        const matchingOrder = orders?.find(order => order.instrument_id == inst.id)
+        if (matchingOrder) {
+            return acc + (inst.price * matchingOrder.quantity)
+        }
+        return acc
+    }, 0).toFixed(2)
 
     useEffect(() => {
         if (!user) {
@@ -101,31 +81,19 @@ export default function MyOrders() {
                             orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]}
                             reRenderOnQuantity={reRenderOnQuantity}
                             reRenderOnDelete={reRenderOnDelete}
-                            updateQuantity={updateQuantity}
                         />
                     </div>
                 ))) : (
                     <h2>Your Cart is empty</h2>
-                )}
+                ) }
             </div>
             <div className='cart-checkout-container'>
                 <h1>My Orders</h1>
                 <h3>Subtotal: ${subtotal}</h3>
                 <button className="order-action-button">
                     <OpenModalMenuItem
-                        itemText="Clear My Cart"
-                        modalComponent={<ClearCart />}
-                    />
-                </button>
-                <button className="order-action-button">
-                    <NavLink className="order-action-button-text" to='/history'>
-                        History
-                    </NavLink>
-                </button>
-                <button className="order-checkout-button">
-                    <OpenModalMenuItem
                         itemText="Checkout"
-                        modalComponent={<ClearCart />}
+                        modalComponent={<ClearCart subtotal={subtotal} />}
                     />
                 </button>
             </div>
