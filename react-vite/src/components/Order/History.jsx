@@ -13,6 +13,32 @@ export default function History() {
     console.log('histories ==>', histories)
     console.log('instruments ==>', instruments)
 
+    const sortedHistoryObj = histories?.reduce((acc, obj) => {
+        const createdAt = obj.created_at?.slice(0, 16);
+        if (!acc[createdAt]) {
+            acc[createdAt] = [];
+        }
+        acc[createdAt].push(obj);
+        return acc;
+    }, {});
+    let sortedHistory = []
+    if (sortedHistoryObj) {
+        const sortedHistoryArr = Object.values(sortedHistoryObj);
+        console.log('sortedHistoryArr ==>', sortedHistoryArr)
+        sortedHistory = sortedHistoryArr.map(historyBlock => {
+            return historyBlock.map(history => {
+                console.log('history ==>', history)
+                return history.instrument = 'instrument!'
+                // history.instrument = instruments?.filter(instrument => instrument.id == history.instrument_id)
+            })
+        })
+    }
+
+    console.log('sortedHistory ==>', sortedHistory);
+    // sortedHistory.map((historyBlock) => {
+    //     console.log('historyBlock ==>', historyBlock)
+    //     console.log('historyBlock ==>', historyBlock[0].created_at)
+    // })
 
     useEffect(() => {
         dispatch(getUserHistoryThunk())
@@ -23,41 +49,21 @@ export default function History() {
         <div className='history-container'>
             <h1>My Order History</h1>
             <div className='my-instrument-item-container'>
-                {instruments?.length > 0 ? instruments?.map((eachInst) => (
-                    <div className="instrument-container" key={eachInst?.id}>
-                        <div className="instrument-dtl-container">
-                            <NavLink to={`${eachInst?.id}`}>
-                                <img className="instrument-image" src={eachInst?.image_url} />
-                            </NavLink>
+                {/* {sortedHistory.map((historyBlock) => (
+                    <div className='history-block' key={historyBlock[0].created_at}>
+                        <h3>{historyBlock[0].created_at}</h3>
+                        <div className='history-instruments'>
+                            {historyBlock.map((history) => (
+                                <div className='history-inst-item' key={history.id}>
+                                    <h3>{history.instrument_id}</h3>
+                                    <div>
+                                        hello
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                        <div className="instrument-dtl-container">
-                            <h4>{eachInst?.model}</h4>
-                            <p className="inst-dtl-text">{eachInst?.category}</p>
-                            <p className="inst-dtl-text">${eachInst?.price}</p>
-                            {eachInst?.is_used ? (
-                                <p className="inst-dtl-text">Pre-owned</p>
-                            ) : (
-                                <p className="inst-dtl-text">New</p>
-                            )}
-                        </div>
-                        {/* <div className="my-inst-item-btn-container">
-                            <button className="my-inst-action-btn">
-                                <NavLink className='add-to-cart-text my-inst-update-btn' to={`${eachInst?.id}/update`}>
-                                    Update
-                                </NavLink>
-                            </button>
-                            <button className="delete-button my-inst-action-btn">
-                                <OpenModalMenuItem
-                                    itemText='Delete Instrument'
-                                    modalComponent={<DeleteInstrument instrumentId={eachInst?.id} reRenderOnDelete={reRenderOnDelete} />}
-                                />
-                            </button>
-                        </div> */}
-
                     </div>
-                )) : (
-                    <h3>You don&apos;t have a history yet</h3>
-                )}
+                ))} */}
             </div>
         </div>
     )

@@ -5,3 +5,15 @@
     overflow-y: auto;
     padding: 36px;
 }
+
+.history-block {
+    border: 1px blue solid;
+}
+
+.history-instruments {
+    border: green 1px solid;
+}
+
+.history-inst-item {
+    border:  orange 1px solid;
+}

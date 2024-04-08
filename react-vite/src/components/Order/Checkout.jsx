@@ -14,8 +14,6 @@ export default function Checkout() {
     const orders = useSelector(state => state.orders?.CurrentOrders)
     const instArr = Object.values(instruments)?.slice(0, orders?.length)
 
-    console.log('orders ==>', orders)
-
     const subtotal = instArr?.reduce((acc, inst) => {
         const matchingOrder = orders?.find(order => order.instrument_id == inst.id)
         if (matchingOrder) {
@@ -34,7 +32,6 @@ export default function Checkout() {
     const handleCheckout = async (e) => {
         e.preventDefault()
         orders.forEach(async order => {
-            console.log('order ==>', order)
             await dispatch(addNewHistoryThunk({instrument_id: order.instrument_id, quantity: order.quantity}))
         })
         await dispatch(clearCartThunk())
