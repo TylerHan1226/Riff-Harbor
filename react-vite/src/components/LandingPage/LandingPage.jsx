@@ -74,13 +74,9 @@ export default function LandingPage() {
     isDisable = false
   }
 
-
-
   const handleCategory = (selectedCategory) => {
     nav(`instruments/category/${selectedCategory}`)
   }
-
-
 
   return (
     <div className="page-container">

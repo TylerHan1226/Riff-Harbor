@@ -81,6 +81,9 @@ body {
     background: transparent;
     border: none;
 }
+.category-tab-image:hover {
+    box-shadow: 0 0 20px 10px rgb(235, 0, 0, 0.5);
+}
 
 
 .landing-instruments-container{
