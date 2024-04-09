@@ -69,7 +69,7 @@ export default function History() {
                                         <p>{history.instrument.category}</p>
                                         <p>${history.instrument.price}</p>
                                         <p>quantity: {history.quantity}</p>
-                                        <p>total: {history.quantity * history.instrument.price}</p>
+                                        <p>total: ${history.quantity * history.instrument.price}</p>
                                     </div>
                                 </div>
                             ))}

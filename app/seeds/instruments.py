@@ -329,8 +329,87 @@ def seed_instruments():
         is_used = True,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg",
     )
+    used_inst_2 = Instrument(
+        seller_id = 1,
+        make = "Jackson",
+        model = "Jackson Pro Series Signature Jeff Loomis Soloist 7-String",
+        color = "Satin Black",
+        category = "Electric Guitar",
+        price = 1699.99,
+        details = "Jackson's Jeff Loomis Signature Soloist SL7: a high-speed, aggressive extended-range guitar crafted for clarity. Developed with Jeff Loomis, it offers a streamlined design, lightweight body, and satin-finished neck for shredders' comfort.",
+        body = "Alder",
+        fretboard = "Ebony",
+        is_used = True,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637202/Riff-Harbor/test-eg-2_lc8yfn.jpg",
+    )
+    e_guitar_13 = Instrument(
+        seller_id = 1,
+        make = "Jackson",
+        model = "Jackson American Series Soloist SL2MG HT",
+        color = "Satin Black",
+        category = "Electric Guitar",
+        price = 2499.99,
+        details = "Jackson's American Series Soloist SL2MG HT is a premium shred machine designed in Corona, CA for virtuosic players. With exceptional stability and sustain, it offers heavy tones ideal for modern metal, alongside a contoured body and specialized neck profile for stupefying fretboard antics, embodying high-octane speed and iconic metal attitude.",
+        body = "Alder",
+        fretboard = "Ebony",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637594/Riff-Harbor/eg-13_pssfbb.png",
+    )
+    e_guitar_14 = Instrument(
+        seller_id = 1,
+        make = "Jackson",
+        model = "Jackson KE2 Kelly USA",
+        color = "Black",
+        category = "Electric Guitar",
+        price = 4199.99,
+        details = "The Jackson KE2 Kelly USA Electric Guitar is a pro-level instrument. It features an alder body, quartersawn eastern hard rock maple neck-thru-body, compound-radius ebony fingerboard, Seymour Duncan humbucking pickups, Floyd Rose Original tremolo and black hardware (flame maple top and chrome hardware on trans finishes). Comes with hardshell case.",
+        body = "Solid wood",
+        fretboard = "Ebony",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637759/Riff-Harbor/eg-14_epxdgu.jpg",
+    )
+    e_guitar_15 = Instrument(
+        seller_id = 1,
+        make = "Jackson",
+        model = "Jackson USA RR1 Randy Rhoads Select Series",
+        color = "Snow White Pearl",
+        category = "Electric Guitar",
+        price = 4499.99,
+        details = "The Jackson USA RR1 Randy Rhoads Select Series Electric Guitar revives the legendary ax of metal pioneer Randy Rhoads. This high-performance version boasts an alder body, maple neck, and ebony fretboard with sharkfin inlays, delivering unmatched sustain and effortless soloing across its 22 jumbo frets.",
+        body = "Alder",
+        fretboard = "Ebony",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637946/Riff-Harbor/eg-15_vqyxhy.jpg",
+    )
+    e_guitar_16 = Instrument(
+        seller_id = 1,
+        make = "Jackson",
+        model = "Jackson MJ Series Rhoads RR24-MG",
+        color = "Black with Yellow Pinstripes",
+        category = "Electric Guitar",
+        price = 2999.99,
+        details = "The MJ Series Rhoads RR24-MG carries Randy Rhoads' metal legacy with an alder body, maple neck, and graphite-reinforced construction for stability. Its 24 jumbo frets, compound radius ebony fingerboard, and EMG pickups deliver intense, harmonically clear tones. With premium hardware like a Gotoh tremolo bridge and Dunlop strap buttons, it's built for daring performances.",
+        body = "Alder",
+        fretboard = "Ebony",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712638069/Riff-Harbor/eg-16_oost1a.jpg",
+    )
+    e_guitar_17 = Instrument(
+        seller_id = 1,
+        make = "Fender",
+        model = "Fender American Professional II Telecaster Deluxe",
+        color = "Black with Yellow Pinstripes",
+        category = "Electric Guitar",
+        price = 1849.99,
+        details = "The Fender American Professional II Telecaster Deluxe modernizes the iconic Telecaster with V-Mod II Double Tap humbuckers, delivering both punchy humbucking tones and single-coil-like split sounds. Its cut Tele bridge offers flexible string tension options for any playing style.",
+        body = "Alder",
+        fretboard = "Rosewood",
+        is_used = True,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712638159/Riff-Harbor/eg-17_c0l8hp.jpg",
+    )
 
-    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8, used_inst_1])
+
+    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8, used_inst_1, used_inst_2, e_guitar_13, e_guitar_14, e_guitar_15, e_guitar_16, e_guitar_17])
     db.session.commit()
 
 
