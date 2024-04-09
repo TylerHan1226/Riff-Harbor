@@ -72,7 +72,7 @@ def seed_instruments():
     e_guitar_6 = Instrument(
         seller_id = 2,
         make = "ESP",
-        model = "ESP LTD EX-7 Baritone Black Metal 7-String",
+        model = "LTD EX-7 Baritone Black Metal 7-String",
         color = "Black Satin",
         category = "Electric Guitar",
         price = 1099.00,
@@ -98,7 +98,7 @@ def seed_instruments():
     e_guitar_8 = Instrument(
         seller_id = 2,
         make = "ESP",
-        model = "ESP LTD EX-7 Baritone Black Metal 7-String",
+        model = "LTD EX-7 Baritone Black Metal 7-String",
         color = "Black Satin",
         category = "Electric Guitar",
         price = 1699.00,
@@ -343,7 +343,7 @@ def seed_instruments():
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637202/Riff-Harbor/test-eg-2_lc8yfn.jpg",
     )
     e_guitar_13 = Instrument(
-        seller_id = 1,
+        seller_id = 2,
         make = "Jackson",
         model = "Jackson American Series Soloist SL2MG HT",
         color = "Satin Black",
@@ -356,7 +356,7 @@ def seed_instruments():
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637594/Riff-Harbor/eg-13_pssfbb.png",
     )
     e_guitar_14 = Instrument(
-        seller_id = 1,
+        seller_id = 2,
         make = "Jackson",
         model = "Jackson KE2 Kelly USA",
         color = "Black",
@@ -369,7 +369,7 @@ def seed_instruments():
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637759/Riff-Harbor/eg-14_epxdgu.jpg",
     )
     e_guitar_15 = Instrument(
-        seller_id = 1,
+        seller_id = 2,
         make = "Jackson",
         model = "Jackson USA RR1 Randy Rhoads Select Series",
         color = "Snow White Pearl",
@@ -382,7 +382,7 @@ def seed_instruments():
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637946/Riff-Harbor/eg-15_vqyxhy.jpg",
     )
     e_guitar_16 = Instrument(
-        seller_id = 1,
+        seller_id = 2,
         make = "Jackson",
         model = "Jackson MJ Series Rhoads RR24-MG",
         color = "Black with Yellow Pinstripes",
@@ -395,7 +395,7 @@ def seed_instruments():
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712638069/Riff-Harbor/eg-16_oost1a.jpg",
     )
     e_guitar_17 = Instrument(
-        seller_id = 1,
+        seller_id = 2,
         make = "Fender",
         model = "Fender American Professional II Telecaster Deluxe",
         color = "Black with Yellow Pinstripes",
