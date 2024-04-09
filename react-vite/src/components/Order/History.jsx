@@ -19,19 +19,26 @@ export default function History() {
     console.log('historyCollection ==>', historyCollection)
 
     const sortedHistoryObj = historyCollection?.reduce((acc, obj) => {
-        const createdAt = obj.created_at?.slice(0, 16);
+        const createdAt = obj.created_at?.slice(0, 16)
         if (!acc[createdAt]) {
-            acc[createdAt] = [];
+            acc[createdAt] = []
         }
-        acc[createdAt].push(obj);
-        return acc;
-    }, {});
+        acc[createdAt].push(obj)
+        return acc
+    }, {})
     let sortedHistory = []
     if (sortedHistoryObj) {
-        sortedHistory = Object.values(sortedHistoryObj);
+        sortedHistory = Object.values(sortedHistoryObj)
     }
 
-    console.log('sortedHistory ==>', sortedHistory);
+
+    const getSubtotal = (history) => {
+        const subtotal = history.reduce((acc, curr) => {
+            const price = curr.instrument?.price * curr.quantity
+            return acc + price
+        }, 0)
+        return subtotal
+    }
 
 
     useEffect(() => {
@@ -43,15 +50,26 @@ export default function History() {
         <div className='history-container'>
             <h1>My Order History</h1>
             <div className='my-instrument-item-container'>
-                {sortedHistory.map((historyBlock) => (
-                    <div className='history-block' key={historyBlock[0].created_at}>
-                        <h3>{historyBlock[0].created_at.slice(0,16)}</h3>
+                {sortedHistory?.reverse().map((historyArr) => (
+                    <div className='history-block' key={historyArr[0].created_at}>
+                        <div className='history-header'>
+                        <div>
+                            <h4>{historyArr[0].created_at.slice(0,16).split(' ')[0]}</h4>
+                            <h4>{historyArr[0].created_at.slice(0,16).split(' ')[1]}</h4>
+                        </div>
+                        <h3 className='history-subtotal'>Subtotal: {getSubtotal(historyArr)}</h3>
+                        </div>
                         <div className='history-instruments'>
-                            {historyBlock.map((history) => (
+                            {historyArr.map((history) => (
                                 <div className='history-inst-item' key={history.id}>
-                                    <h3>{history.instrument_id}</h3>
+                                    <img className='history-inst-img' src={history.instrument.image_url} />
                                     <div>
-                                        hello
+                                        <h3>{history.instrument.model}</h3>
+                                        <p>{history.instrument.color}</p>
+                                        <p>{history.instrument.category}</p>
+                                        <p>${history.instrument.price}</p>
+                                        <p>quantity: {history.quantity}</p>
+                                        <p>total: {history.quantity * history.instrument.price}</p>
                                     </div>
                                 </div>
                             ))}
