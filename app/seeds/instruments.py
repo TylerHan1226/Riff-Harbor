@@ -433,9 +433,87 @@ def seed_instruments():
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712686157/Riff-Harbor/b-9_bm1alk.jpg",
     )
+    a_guitar_5 = Instrument(
+        seller_id = 2,
+        make = "Taylor",
+        model = "Taylor 414ce V-Class Special-Edition Grand Auditorium",
+        color = "Shaded Edge Burst",
+        category = "Acoustic Guitar",
+        price = 3099.99,
+        details = "The Taylor 414ce V-Class Special-Edition Grand Auditorium guitar delivers powerful tone and comfort. Crafted with Sitka spruce and Indian rosewood, it produces iconic acoustic timbre. Enhanced by V-Class bracing and Expression System 2 electronics, it offers an unforgettable sound. Responsive and visually stunning, it's a fantastic choice for musicians.",
+        body = "Solid Indian rosewood",
+        fretboard = "Tropical mahogany",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712696223/Riff-Harbor/ag-5_bm9clo.jpg",
+    )
+    a_guitar_6 = Instrument(
+        seller_id = 2,
+        make = "Gibson",
+        model = "Gibson SJ-200 Standard",
+        color = "Rosewood Burst",
+        category = "Acoustic Guitar",
+        price = 5999.99,
+        details = "The Gibson SJ-200 Standard Rosewood acoustic-electric is a reissue of the iconic “King of the Flat Tops,” with its distinctive Super Jumbo shape that is produced full, balanced tone since 1937. You will appreciate the rosewood back and sides matched with a Sitka spruce top for a warm, resonant sound that has helped define acoustic music for over 70 years. Own a piece of Gibson history with the ageless SJ-200.",
+        body = "Rosewood",
+        fretboard = "Rosewood",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712696542/Riff-Harbor/ag-6_e94nf7.png",
+    )
+    a_guitar_7 = Instrument(
+        seller_id = 2,
+        make = "Gibson",
+        model = "Gibson J-45 Standard Rosewood",
+        color = "Rosewood Burst",
+        category = "Acoustic Guitar",
+        price = 3699.99,
+        details = "The Gibson J-45 Standard Rosewood is an iconic dreadnought-style acoustic-electric guitar, renowned since the 1940s for its vintage appeal and rich tone. With a solid wood body and articulate highs, robust lows, and a projecting midrange, it's a versatile choice for studio recording and live performances. Known as The Workhorse, it sets the benchmark for professional instruments.",
+        body = "Rosewood",
+        fretboard = "Rosewood",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712696727/Riff-Harbor/ag-7_kbbbi6.png",
+    )
+    used_inst_3 = Instrument(
+        seller_id = 2,
+        make = "Gibson",
+        model = "Epiphone Inspired by Gibson Custom J-180 LS",
+        color = "Pink",
+        category = "Acoustic Guitar",
+        price = 1299.99,
+        details = "The Epiphone Inspired by Gibson Custom J-180 LS acoustic-electric guitar offers an authentic playing experience with premium materials like solid spruce and mahogany. Featuring iconic star inlays, it pays homage to the legendary Gibson J-180. In collaboration with the Gibson Custom Shop, it brings classic looks, feel, and sound to players at an affordable price.",
+        body = "Solid mahogany",
+        fretboard = "Laurel",
+        is_used = True,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712696972/Riff-Harbor/test-eg-3_dn0t2h.png",
+    )
+    used_inst_4 = Instrument(
+        seller_id = 2,
+        make = "Gibson",
+        model = "Gibson Hummingbird Standard",
+        color = "Vintage Sunburst",
+        category = "Acoustic Guitar",
+        price = 3999.99,
+        details = "Gibson's Hummingbird Standard, an iconic design since 1960, boasts a square shoulder dreadnought build. Renowned for its versatile sound and distinctive pickguard adorned with a hummingbird motif, exemplified in the 2019 acoustic/electric model.",
+        body = "Mahogany",
+        fretboard = "Rosewood",
+        is_used = True,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712697484/Riff-Harbor/used-4_lb0pcg.png",
+    )
+    a_guitar_8 = Instrument(
+        seller_id = 2,
+        make = "Gibson",
+        model = "Epiphone Inspired by Gibson Custom J-180 LS",
+        color = "Blue",
+        category = "Acoustic Guitar",
+        price = 1299.99,
+        details = "The Epiphone Inspired by Gibson Custom J-180 LS acoustic-electric guitar offers an authentic playing experience with premium materials like solid spruce and mahogany. Featuring iconic star inlays, it pays homage to the legendary Gibson J-180. In collaboration with the Gibson Custom Shop, it brings classic looks, feel, and sound to players at an affordable price.",
+        body = "Solid mahogany",
+        fretboard = "Laurel",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712697201/Riff-Harbor/ag-8_g9wlee.png",
+    )
 
 
-    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8, bass_9, used_inst_1, used_inst_2, e_guitar_13, e_guitar_14, e_guitar_15, e_guitar_16, e_guitar_17, e_guitar_18])
+    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, a_guitar_5, a_guitar_6, a_guitar_7, a_guitar_8, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8, bass_9, used_inst_1, used_inst_2, e_guitar_13, e_guitar_14, e_guitar_15, e_guitar_16, e_guitar_17, e_guitar_18, used_inst_3, used_inst_4])
     db.session.commit()
 
 
