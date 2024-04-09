@@ -27,11 +27,11 @@
 * Create order history.
 * Delete their order history.
 
-### 4. Wish List
-* View all the items added to the wish list.
-* Ddd items to the wish list.
-* Update the wish list the user has created.
-* Delete the wish list the user has created.
+### 4. Favorites
+* View all the items added to the favorites.
+* Add items to the favorites.
+* Update the favorite list the user has created.
+* Delete the item on favorite list the user has created.
 
 
 ## Bonus Feature

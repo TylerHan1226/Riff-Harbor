@@ -1,6 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship
 
@@ -27,6 +25,7 @@ class Instrument(db.Model):
     users = relationship('User', back_populates='instruments')
     order_items = relationship('OrderItem', back_populates='instruments')
     order_histories = relationship('OrderHistory', back_populates='instruments')
+    favorites = relationship('Favorite', back_populates='instruments')
 
 
     def to_dict(self):

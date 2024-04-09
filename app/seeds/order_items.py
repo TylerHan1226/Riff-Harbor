@@ -20,7 +20,7 @@ def seed_order_items():
         quantity = 1
     )
     order_4 = OrderItem(
-        instrument_id = 22,
+        instrument_id = 23,
         user_id = "3",
         quantity = 1
     )
