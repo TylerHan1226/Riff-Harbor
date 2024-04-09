@@ -1,7 +1,6 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import './Footer.css'
-import { NavLink } from "react-router-dom";
 
 export default function Footer() {
 
@@ -13,6 +12,7 @@ export default function Footer() {
                 <div className="footer-info-box">
                     <a href='https://github.com/TylerHan1226'
                         target="_blank"
+                        rel='noopener noreferrer'
                     >
                         <FaGithub className="footer-icons" />
                     </a>
@@ -21,10 +21,11 @@ export default function Footer() {
                 <div className="footer-info-box">
                     <a href='https://www.linkedin.com/in/yucheng-han-2a3684254/'
                         target="_blank"
+                        rel='noopener noreferrer'
                     >
                         <FaLinkedin className="footer-icons" />
                     </a>
-                    <p className="footer-text">Yucheng "Tyler" Han</p>
+                    <p className="footer-text">Yucheng Tyler Han</p>
                 </div>
                 <div className="footer-info-box">
                     <MdEmail className="footer-icons" />

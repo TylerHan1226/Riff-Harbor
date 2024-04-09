@@ -9,7 +9,6 @@ import InstrumentDetails from '../components/Instrument/InstrumentDetails';
 import DeleteInstrument from '../components/Instrument/DeleteInstrument'
 import MyInstruments from '../components/MyInstruments/MyInstruments';
 import MyOrders from '../components/Order/MyOrders';
-import History from '../components/Order/History';
 import Layout from './Layout';
 import Category from '../components/Category/Category';
 

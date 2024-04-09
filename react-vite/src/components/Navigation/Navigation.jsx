@@ -6,17 +6,17 @@ import "./Navigation.css";
 import { GiGuitarBassHead } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdSailing } from "react-icons/md";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function Navigation() {
 
   const user = useSelector(state => state.session.user)
 
-  const [searchText, setSearchText] = useState('')
-  console.log(searchText)
-  const handleSearch = () => {
-    console.log(searchText)
-  }
+  // const [searchText, setSearchText] = useState('')
+  // console.log(searchText)
+  // const handleSearch = () => {
+  //   console.log(searchText)
+  // }
 
   return (
     <div className="nav-container">
