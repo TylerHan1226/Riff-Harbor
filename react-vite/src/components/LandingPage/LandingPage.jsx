@@ -80,14 +80,10 @@ export default function LandingPage() {
 
   return (
     <div className="page-container">
-
       <div id="landing-container">
-
         <div className="landing-header-actions">
           <h1>Category</h1>
-
           <div className="header-tabs-container">
-
             <div className="header-category">
               <button className="category-tabs" onClick={() => handleCategory('Electric Guitar')}>
                 <img

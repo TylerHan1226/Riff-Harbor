@@ -51,6 +51,10 @@
     color: black;
 }
 
+.inst-dtl-text-bold {
+    font-weight: 500;
+}
+
 .add-to-cart-button-dtl, 
 .submit-form-button {
     width: 50%;
@@ -60,6 +64,7 @@
     height: 48px;
     margin-bottom: 12px;
     border-radius: 4px;
+    margin-top: 20px;
 }
 .add-to-cart-button-dtl.disabled {
     pointer-events: none;

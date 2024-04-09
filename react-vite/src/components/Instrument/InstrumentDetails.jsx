@@ -69,17 +69,17 @@ export default function InstrumentDetails() {
                 <div className="instrument-dtl-info-container">
                     <h1>{instrument.model}</h1>
                     <h2 className='inst-dtl-text'>{instrument.color}</h2>
-                    <p className="inst-dtl-text">${instrument.price}</p>
+                    <p className="inst-dtl-text-bold">${instrument.price}</p>
                     {instrument.is_used ? (
-                        <p className="inst-dtl-text">Condition: Pre-owned</p>
+                        <p className="inst-dtl-text-bold">Condition: Pre-owned</p>
                     ) : (
-                        <p className="inst-dtl-text">Condition: New</p>
+                        <p className="inst-dtl-text-bold">Condition: New</p>
                     )}
-                    <p className="inst-dtl-text">Make: {instrument.make}</p>
-                    <p className="inst-dtl-text">Details: {instrument.details}</p>
-                    <p className="inst-dtl-text">Body Material: {instrument.body}</p>
-                    <p className="inst-dtl-text">Fretboard Material: {instrument.fretboard}</p> 
-                    <p className="inst-dtl-text">Seller: {seller?.username}</p>
+                    <p className="inst-dtl-text-bold">Make: {instrument.make}</p>
+                    <p className="inst-dtl-text-bold">Details: {instrument.details}</p>
+                    <p className="inst-dtl-text-bold">Body Material: {instrument.body}</p>
+                    <p className="inst-dtl-text-bold">Fretboard Material: {instrument.fretboard}</p> 
+                    <p className="inst-dtl-text-bold">Seller: {seller?.username}</p>
                     {/* <p className="inst-dtl-text">Contact: {seller?.email}</p> */}
                     {instrument.seller_id == user?.id ? (
                         <>
