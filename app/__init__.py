@@ -10,6 +10,7 @@ from .api.auth_routes import auth_routes
 from .api.instrument_routes import instrument_routes
 from .api.order_routes import order_routes
 from .api.history_routes import history_routes
+from .api.favorites_routes import favorites_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -34,6 +35,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(instrument_routes, url_prefix='/api/instruments')
 app.register_blueprint(order_routes, url_prefix='/api/orders')
 app.register_blueprint(history_routes, url_prefix='/api/history')
+app.register_blueprint(favorite_routes, url_prefix='/api/favorites')
 db.init_app(app)
 Migrate(app, db)
 
