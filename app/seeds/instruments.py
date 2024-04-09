@@ -407,9 +407,35 @@ def seed_instruments():
         is_used = True,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712638159/Riff-Harbor/eg-17_c0l8hp.jpg",
     )
+    e_guitar_18 = Instrument(
+        seller_id = 2,
+        make = "Schecter",
+        model = "Schecter Guitar Research Solo-II Supreme",
+        color = "Black Burst",
+        category = "Electric Guitar",
+        price = 1599.99,
+        details = "The Schecter Solo-II Supreme electric guitar blends vintage vibe with modern features. With a flamed maple top, mahogany body, and 3-piece mahogany neck, it offers enhanced stability. Equipped with Lundgren Black Heaven humbuckers, it delivers versatile tones. Other features include a compound radius ebony fingerboard, coil-splitting controls, and premium hardware like GraphTech Ratio tuners and a TonePros Tune-O-Matic bridge.",
+        body = "Mahogany",
+        fretboard = "Ebony",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712685922/Riff-Harbor/eg-18_guaiss.jpg",
+    )
+    bass_9 = Instrument(
+        seller_id = 2,
+        make = "Fender",
+        model = "Fender Player Plus Meteora",
+        color = "Silver Burst",
+        category = "Bass",
+        price = 1099.99,
+        details = "The Fender Player Plus Meteora active bass celebrates Fender's legacy while embracing innovation. As part of the Meteora series, it introduces a sleek bass design accessible to all players. Fender's commitment to innovation extends beyond classic models like the Stratocaster and Telecaster, evident in its Custom Shop and series like Alternate Reality and Parallel Universe, continually refining designs, electronics, and player-centric features.",
+        body = "Alder",
+        fretboard = "Maple",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712686157/Riff-Harbor/b-9_bm1alk.jpg",
+    )
 
 
-    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8, used_inst_1, used_inst_2, e_guitar_13, e_guitar_14, e_guitar_15, e_guitar_16, e_guitar_17])
+    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8, bass_9, used_inst_1, used_inst_2, e_guitar_13, e_guitar_14, e_guitar_15, e_guitar_16, e_guitar_17, e_guitar_18])
     db.session.commit()
 
 
