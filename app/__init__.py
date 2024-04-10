@@ -10,7 +10,7 @@ from .api.auth_routes import auth_routes
 from .api.instrument_routes import instrument_routes
 from .api.order_routes import order_routes
 from .api.history_routes import history_routes
-from .api.favorites_routes import favorites_routes
+from .api.favorite_routes import favorite_routes
 from .seeds import seed_commands
 from .config import Config
 

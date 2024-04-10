@@ -43,7 +43,7 @@ def add_history():
         return {'message': 'Cannot Add to history'}, 400
     db.session.add(new_history)
     db.session.commit()
-    return {'message': 'History is stored successfully'}
+    return {'message': 'History is stored successfully'}, 200
 
 
 # delete a history
