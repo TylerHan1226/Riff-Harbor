@@ -8,6 +8,8 @@ import { createOrderThunk, getOrderByUserThunk } from "../../redux/cart";
 import "./LandingPage.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaDice } from "react-icons/fa6";
+import { GoHeartFill } from "react-icons/go";
+import { getUserFavThunk } from "../../redux/favorite";
 
 export const handleAddToCart = (instrumentId, orders, dispatch, nav) => {
   const orderInstIds = orders.map(ele => ele.instrument_id)
@@ -31,12 +33,14 @@ export default function LandingPage() {
   const user = useSelector(state => state.session.user)
   const instruments = useSelector(state => state.instruments)
   const orders = useSelector(state => state.orders?.CurrentOrders)
+  const favorites = useSelector(state => state.favorites?.MyFavorites)
 
   const [randomInstruments, setRandomInstruments] = useState([])
 
   useEffect(() => {
     dispatch(getAllInstrumentsThunk())
     dispatch(getOrderByUserThunk())
+    dispatch(getUserFavThunk())
   }, [dispatch])
 
   useEffect(() => {
@@ -77,6 +81,10 @@ export default function LandingPage() {
   const handleCategory = (selectedCategory) => {
     nav(`instruments/category/${selectedCategory}`)
   }
+
+  console.log('favorites =>',favorites)
+  const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
+  console.log('favoriteInstIds =>',favoriteInstIds)
 
   return (
     <div className="page-container">
@@ -133,18 +141,21 @@ export default function LandingPage() {
         {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
           <div className="instrument-container" key={eachInst?.id}>
             <div className="instrument-dtl-container">
-              <NavLink to={`instruments/${eachInst?.id}`}>
+              <button className="landing-fav-btn">
+                <GoHeartFill  className="landing-fav-icon"/>
+              </button>
+              <NavLink className='landing-page-inst-image-container' to={`instruments/${eachInst?.id}`}>
                 <img className="instrument-image" src={eachInst?.image_url} />
               </NavLink>
             </div>
             <div className="instrument-dtl-container">
               <h4 className="inst-dtl-text">{eachInst?.model}</h4>
-              <p className="inst-dtl-text">{eachInst?.category}</p>
-              <p className="inst-dtl-text">${eachInst?.price}</p>
+              <p className="inst-landing-dtl-text">{eachInst?.category}</p>
+              <p className="inst-landing-dtl-text">${eachInst?.price}</p>
               {eachInst?.is_used ? (
-                <p className="inst-dtl-text">Pre-owned</p>
+                <p className="inst-landing-dtl-text">Pre-owned</p>
               ) : (
-                <p className="inst-dtl-text">New</p>
+                <p className="inst-landing-dtl-text">New</p>
               )}
               {eachInst?.seller_id == user?.id ? (
                 <button className="add-to-cart-button">

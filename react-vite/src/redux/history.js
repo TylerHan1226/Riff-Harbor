@@ -68,7 +68,7 @@ export const addNewHistoryThunk = (newHistoryData) => async (dispatch) => {
 }
 
 
-// History Reduce
+// History Reducer
 export const historyReducer = (state={}, action) => {
     switch(action.type) {
         case LOAD_ALL_HISTORY: {

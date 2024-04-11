@@ -150,15 +150,15 @@ def seed_instruments():
     e_guitar_12 = Instrument(
         seller_id = 2,
         make = "ESP",
-        model = "PRS Private Stock Modern Eagle V Curly Maple Top & Ebony Fretboard with Pattern Neck",
+        model = "PRS Private Stock Modern Eagle V Curly Maple Top",
         color = "Laguna Dragon's Breath",
         category = "Electric Guitar",
-        price = 4299.00,
+        price = 11550.00,
         details = "The PRS Private Stock Modern Eagle V embodies pinnacle guitar craftsmanship. Crafted from exotic black limba with a curly maple top, its high gloss finish radiates luxury. The pattern-shaped black limba neck, adorned with curly maple binding, ensures sublime playability. Adorned with old-style bird inlays of green select abalone outlined in mother of pearl, it's visually unparalleled. Equipped with dual 408B humbuckers and a narrow single coil, its tonal versatility is unmatched. Hardware in smoked black, including the Gen III tremolo and PRS Phase III locking tuners with ebony buttons, adds a touch of elegance. Limited in availability, it comes with a paisley hardshell case and hand-signed certificate of authenticity.",
         body = "Exotic (Curly Maple Top)",
         fretboard = "Ebony",
         is_used = False,
-        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711510821/Riff-Harbor/eg-12_kticvg.jpg",
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712795334/Riff-Harbor/eg-12_wu3u5y.png",
     )
     a_guitar_1 = Instrument(
         seller_id = 2,

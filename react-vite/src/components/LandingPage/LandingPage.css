@@ -107,6 +107,7 @@ body {
 
 .instrument-dtl-container {
     /* border: 1px solid green; */
+    /* gap: 1px; */
     width: 200px;
     display: flex;
     flex-direction: column;
@@ -114,10 +115,8 @@ body {
     padding: 8px;
 }
 
-.instrument-image {
-    height: 200px;
-    width: 200px;
-    margin-top: 36px;
+.inst-landing-dtl-text {
+    height: 12px;
 }
 
 .add-to-cart-button {
@@ -174,4 +173,32 @@ body {
 
 #dice-text {
     color: rgb(190, 0, 0);
+}
+
+
+.landing-fav-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.instrument-image {
+    object-fit:cover;
+    height: 250px;
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.landing-fav-icon {
+    font-size: 18px;
+    color: white;
+}
+.landing-fav-icon:hover {
+    color: rgb(190, 0, 0);
+    cursor: pointer;
 }
