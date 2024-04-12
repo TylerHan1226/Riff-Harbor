@@ -6,6 +6,7 @@ import "./Navigation.css";
 import { GiGuitarBassHead } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdSailing } from "react-icons/md";
+import { GoHeartFill } from "react-icons/go";
 // import { useState } from "react";
 
 export default function Navigation() {
@@ -69,11 +70,18 @@ export default function Navigation() {
 
       <div className="nav-cartProfile-container">
         {user &&
+        <>
           <div className="nav-cart-container">
-            <NavLink to='orders/MyOrders'>
-              <FaShoppingCart id='nav-cart' />
+            <NavLink to='/orders/MyOrders'>
+              <FaShoppingCart className='nav-user-action-icon' />
             </NavLink>
           </div>
+          <div>
+          <NavLink to='orders/MyOrders'>
+              <GoHeartFill className='nav-user-action-icon' />
+            </NavLink>
+          </div>
+          </>
         }
         <div className="nav-profile-container">
           <ProfileButton className='nav-profile-btn' />

@@ -9,7 +9,7 @@ import "./LandingPage.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaDice } from "react-icons/fa6";
 import { GoHeartFill } from "react-icons/go";
-import { getUserFavThunk } from "../../redux/favorite";
+import { addToFavorite, getUserFavThunk, removeFavThunk } from "../../redux/favorite";
 
 export const handleAddToCart = (instrumentId, orders, dispatch, nav) => {
   const orderInstIds = orders.map(ele => ele.instrument_id)
@@ -82,9 +82,19 @@ export default function LandingPage() {
     nav(`instruments/category/${selectedCategory}`)
   }
 
-  console.log('favorites =>',favorites)
+  // handle favorite
   const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
-  console.log('favoriteInstIds =>',favoriteInstIds)
+  let isFav = false
+  const handleFav = (instrumentId) => {
+    if (favoriteInstIds.includes(instrumentId)) {
+      const favToRemove = favorites.filter(fav => fav.instrument_id == instrumentId)[0]
+      dispatch(removeFavThunk(favToRemove.id))
+    } else {
+      const newFav = {"instrument_id": instrumentId}
+      isFav = true
+      dispatch(addToFavorite(newFav))
+    }
+  }
 
   return (
     <div className="page-container">
@@ -141,8 +151,10 @@ export default function LandingPage() {
         {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
           <div className="instrument-container" key={eachInst?.id}>
             <div className="instrument-dtl-container">
-              <button className="landing-fav-btn">
-                <GoHeartFill  className="landing-fav-icon"/>
+              <button className={`landing-fav-btn ${favoriteInstIds?.includes(eachInst?.id) || isFav ? 'favorite' : ''}`}
+                onClick={() => handleFav(eachInst?.id)}
+              >
+                <GoHeartFill className={`landing-fav-icon ${favoriteInstIds?.includes(eachInst?.id) || isFav ? 'favorite' : ''}`} />
               </button>
               <NavLink className='landing-page-inst-image-container' to={`instruments/${eachInst?.id}`}>
                 <img className="instrument-image" src={eachInst?.image_url} />

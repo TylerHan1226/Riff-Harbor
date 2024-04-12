@@ -36,21 +36,22 @@
   color: rgb(20, 0, 0);
   transform: rotate(60deg)
 }
-#nav-cart {
+.nav-user-action-icon {
   font-size: 60px;
   color: white;
   transition: transform 0.3s ease;
 }
-#nav-cart:hover {
+.nav-user-action-icon:hover {
   color: rgb(20, 0, 0);
   transform: rotate(30deg)
 }
+
 
 .nav-cartProfile-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 36px;
+  gap: 20px;
 }
 
 .nav-profile-container {
