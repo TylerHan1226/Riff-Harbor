@@ -12,8 +12,25 @@ def seed_favorites():
         instrument_id = 33,
         user_id = "1"
     )
+    fav3 = Favorite(
+        instrument_id = 34,
+        user_id = "1"
+    )
+    fav4 = Favorite(
+        instrument_id = 37,
+        user_id = "1"
+    )
+    fav5 = Favorite(
+        instrument_id = 4,
+        user_id = "1"
+    )
+    fav6 = Favorite(
+        instrument_id = 18,
+        user_id = "1"
+    )
 
-    db.session.add_all([fav1, fav2])
+
+    db.session.add_all([fav1, fav2, fav3, fav4, fav5, fav6])
     db.session.commit()
 
 

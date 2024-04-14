@@ -61,7 +61,7 @@ export default function InstrumentDetails() {
 
 
     return (
-        <div id='instrument-dtl-page-root'>
+        <section id='instrument-dtl-page-root'>
             <div id='instrument-dtl-page-container'>
                 <div className="instrument-dtl-info-container">
                     <img id="instrument-dtl-image" src={instrument.image_url} />
@@ -108,7 +108,7 @@ export default function InstrumentDetails() {
                     )}
                 </div>
             </div>
-        </div>
+        </section>
 
     )
 }

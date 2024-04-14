@@ -1,0 +1,19 @@
+
+
+.fav-instruments-container {
+    border: 1px blue solid;
+    /* padding: 12px; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.fav-instrument {
+    border: red 1px solid;
+    margin: 12px;
+    width: 30%;
+}
+
+.fav-inst-img {
+    width: 320px;
+}

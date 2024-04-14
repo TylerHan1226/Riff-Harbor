@@ -102,7 +102,7 @@ export default function LandingPage() {
         <div className="landing-header-actions">
           <h1>Category</h1>
           <div className="header-tabs-container">
-            <div className="header-category">
+            <section className="header-category">
               <button className="category-tabs" onClick={() => handleCategory('Electric Guitar')}>
                 <img
                   src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348805/Riff-Harbor/ESP_e-g_bbjtj0.jpg'
@@ -111,9 +111,9 @@ export default function LandingPage() {
                 />
               </button>
               <h3>Electric Guitars</h3>
-            </div>
+            </section>
 
-            <div className="header-category">
+            <section className="header-category">
               <button className="category-tabs" onClick={() => handleCategory('Acoustic Guitar')}>
                 <img
                   src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348948/Riff-Harbor/lake_a-g_ouk3gj.jpg'
@@ -122,9 +122,9 @@ export default function LandingPage() {
                 />
               </button>
               <h3>Acoustic Guitars</h3>
-            </div>
+            </section>
 
-            <div className="header-category">
+            <section className="header-category">
               <button className="category-tabs" onClick={() => handleCategory('Bass')}>
                 <img
                   src='https://res.cloudinary.com/do8l6gpqp/image/upload/v1712348949/Riff-Harbor/ESP_b_ak9opy.jpg'
@@ -133,7 +133,7 @@ export default function LandingPage() {
                 />
               </button>
               <h3>Basses</h3>
-            </div>
+            </section>
 
           </div>
         </div>
@@ -149,7 +149,7 @@ export default function LandingPage() {
 
       <div className="landing-instruments-container"> 
         {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
-          <div className="instrument-container" key={eachInst?.id}>
+          <section className="instrument-container" key={eachInst?.id}>
             <div className="instrument-dtl-container">
               <button className={`landing-fav-btn ${favoriteInstIds?.includes(eachInst?.id) || isFav ? 'favorite' : ''}`}
                 onClick={() => handleFav(eachInst?.id)}
@@ -187,7 +187,7 @@ export default function LandingPage() {
                 </button>
               )}
             </div>
-          </div>
+          </section>
         ))}
       </div>
     </div>

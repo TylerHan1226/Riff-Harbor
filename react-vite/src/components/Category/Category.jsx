@@ -31,7 +31,7 @@ export default function Category() {
   return (
     <div className="page-container">
       <h1>{category}</h1>
-      <div className="category-container">
+      <section className="category-container">
         {instruments?.length > 0 ? instruments?.map((eachInst) => (
           <NavLink className="instrument-container category-link-container" key={eachInst?.id} to={`/instruments/${eachInst?.id}`}>
             <div className="instrument-dtl-container">
@@ -75,7 +75,7 @@ export default function Category() {
         )) : (
           <h3>We currently don&apos;t have any instruments under this category</h3>
         )}
-      </div>
+      </section>
     </div>
   )
 }

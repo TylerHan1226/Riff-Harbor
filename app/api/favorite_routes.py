@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required, current_user
-from app.models import db, Favorite
+from app.models import db, Favorite, Instrument
 import json
 
 favorite_routes = Blueprint('favorite', __name__)
@@ -13,7 +13,12 @@ favorite_routes = Blueprint('favorite', __name__)
 def fav_by_user():
     favorites = Favorite.query.filter_by(user_id=current_user.id).all()
     favorites_list = [fav.to_dict() for fav in favorites]
-    return {'MyFavorites': favorites_list}, 200
+
+    instrument_id_list = [favorite["instrument_id"] for favorite in favorites_list]
+    instruments = Instrument.query.filter(Instrument.id.in_(instrument_id_list)).all()
+    instrument_list = [instrument.to_dict() for instrument in instruments]
+
+    return {'MyFavorites': favorites_list, 'FavInst': instrument_list}, 200
 
 
 # add to favorites

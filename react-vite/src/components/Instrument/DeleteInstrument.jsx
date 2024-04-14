@@ -29,13 +29,13 @@ export default function DeleteInstrument({instrumentId, reRenderOnDelete}) {
     }
 
     return (
-        <div className='delete-instrument-modal'>
+        <section className='delete-instrument-modal'>
             <div className='delete-form-container'>
                 <h1 className='remove-inst-title'>Are you sure you want to remove this instrument from Riff Harbor?</h1>
                 <button className='modal-btn confirm-btn' onClick={deleteInstrument}>Remove My Instrument</button>
                 <button className='modal-btn' onClick={closeModal}>Cancel</button>
             </div>
-        </div>
+        </section>
     )
 
 
