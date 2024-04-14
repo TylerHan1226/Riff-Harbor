@@ -30,12 +30,12 @@ export default function Favorites() {
 
     return (
         <div className="page-container">
-            <h1>Fav!</h1>
-
+            <h1>My Favorites</h1>
             <section className="fav-instruments-container">
                 {favorites?.map(instrument => (
                     <div className="fav-instrument" key={instrument.id}>
                         <img className="fav-inst-img" src={instrument.image_url} />
+                        <h3 className="fav-inst-model">{instrument.model}</h3>
                     </div>
                 ))}
 

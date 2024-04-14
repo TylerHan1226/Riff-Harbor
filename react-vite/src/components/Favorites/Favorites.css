@@ -1,19 +1,37 @@
 
 
 .fav-instruments-container {
-    border: 1px blue solid;
-    /* padding: 12px; */
+    /* border: 1px blue solid; */
+    width: 80%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: center;
 }
 
 .fav-instrument {
-    border: red 1px solid;
-    margin: 12px;
-    width: 30%;
+    border: black solid 0.5px;
+    margin: 20px;
+    padding: 12px;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+    box-shadow: 0 0 16px 12px rgb(225, 0, 0, 0.5);
+    border-radius: 16px;
+    background-color: white;
 }
 
 .fav-inst-img {
-    width: 320px;
+    width: 300px;
+    margin-top: 12px;
+}
+
+.fav-inst-model {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
