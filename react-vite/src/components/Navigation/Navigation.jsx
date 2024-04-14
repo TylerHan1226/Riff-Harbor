@@ -77,7 +77,7 @@ export default function Navigation() {
             </NavLink>
           </div>
           <div>
-          <NavLink to='orders/MyOrders'>
+          <NavLink to='/favorites'>
               <GoHeartFill className='nav-user-action-icon' />
             </NavLink>
           </div>

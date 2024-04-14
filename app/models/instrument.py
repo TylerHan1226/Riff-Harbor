@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean, DateTime
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 
 class Instrument(db.Model):
