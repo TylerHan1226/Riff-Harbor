@@ -8,6 +8,7 @@ import { getAllUsersThunk } from '../../redux/session'
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem'
 import DeleteInstrument from './DeleteInstrument'
 import { createOrderThunk, getOrderByUserThunk } from '../../redux/cart'
+import { GoHeartFill } from "react-icons/go";
 
 
 export default function InstrumentDetails() {

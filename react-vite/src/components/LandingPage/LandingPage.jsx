@@ -8,8 +8,7 @@ import { createOrderThunk, getOrderByUserThunk } from "../../redux/cart";
 import "./LandingPage.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaDice } from "react-icons/fa6";
-import { GoHeartFill } from "react-icons/go";
-import { addToFavorite, getUserFavThunk, removeFavThunk } from "../../redux/favorite";
+
 
 export const handleAddToCart = (instrumentId, orders, dispatch, nav) => {
   const orderInstIds = orders.map(ele => ele.instrument_id)
@@ -33,14 +32,12 @@ export default function LandingPage() {
   const user = useSelector(state => state.session.user)
   const instruments = useSelector(state => state.instruments)
   const orders = useSelector(state => state.orders?.CurrentOrders)
-  const favorites = useSelector(state => state.favorites?.MyFavorites)
 
   const [randomInstruments, setRandomInstruments] = useState([])
 
   useEffect(() => {
     dispatch(getAllInstrumentsThunk())
     dispatch(getOrderByUserThunk())
-    dispatch(getUserFavThunk())
   }, [dispatch])
 
   useEffect(() => {
@@ -83,18 +80,18 @@ export default function LandingPage() {
   }
 
   // handle favorite
-  const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
-  let isFav = false
-  const handleFav = (instrumentId) => {
-    if (favoriteInstIds.includes(instrumentId)) {
-      const favToRemove = favorites.filter(fav => fav.instrument_id == instrumentId)[0]
-      dispatch(removeFavThunk(favToRemove.id))
-    } else {
-      const newFav = {"instrument_id": instrumentId}
-      isFav = true
-      dispatch(addToFavorite(newFav))
-    }
-  }
+  // const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
+  // let isFav = false
+  // const handleFav = (instrumentId) => {
+  //   if (favoriteInstIds.includes(instrumentId)) {
+  //     const favToRemove = favorites.filter(fav => fav.instrument_id == instrumentId)[0]
+  //     dispatch(removeFavThunk(favToRemove.id))
+  //   } else {
+  //     const newFav = {"instrument_id": instrumentId}
+  //     isFav = true
+  //     dispatch(addToFavorite(newFav))
+  //   }
+  // }
 
   return (
     <div className="page-container">
@@ -151,11 +148,11 @@ export default function LandingPage() {
         {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
           <section className="instrument-container" key={eachInst?.id}>
             <div className="instrument-dtl-container">
-              <button className={`landing-fav-btn ${favoriteInstIds?.includes(eachInst?.id) || isFav ? 'favorite' : ''}`}
+              {/* <button className={`landing-fav-btn ${favoriteInstIds?.includes(eachInst?.id) || isFav ? 'favorite' : ''}`}
                 onClick={() => handleFav(eachInst?.id)}
               >
                 <GoHeartFill className={`landing-fav-icon ${favoriteInstIds?.includes(eachInst?.id) || isFav ? 'favorite' : ''}`} />
-              </button>
+              </button> */}
               <NavLink className='landing-page-inst-image-container' to={`instruments/${eachInst?.id}`}>
                 <img className="instrument-image" src={eachInst?.image_url} />
               </NavLink>

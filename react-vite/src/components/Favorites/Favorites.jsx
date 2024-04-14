@@ -22,7 +22,9 @@ export default function Favorites() {
         nav('/')
     }
 
-    console.log('favorites ==>', favorites)
+    const handleNavToDtl = (instrumentId) => {
+        nav(`/instruments/${instrumentId}`)
+    }
 
     useEffect(() => {
         dispatch(getUserFavThunk())
@@ -33,10 +35,11 @@ export default function Favorites() {
             <h1>My Favorites</h1>
             <section className="fav-instruments-container">
                 {favorites?.map(instrument => (
-                    <div className="fav-instrument" key={instrument.id}>
+                    <button className="fav-instrument" key={instrument.id} onClick={() => handleNavToDtl(instrument.id)}>
                         <img className="fav-inst-img" src={instrument.image_url} />
-                        <h3 className="fav-inst-model">{instrument.model}</h3>
-                    </div>
+                        <h3 className="fav-inst-model inst-dtl-text">{instrument.model}</h3>
+                        <h4 className="fav-inst-color red-text">{instrument.color}</h4>
+                    </button>
                 ))}
 
             </section>
