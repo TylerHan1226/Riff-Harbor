@@ -21,6 +21,8 @@ class Instrument(db.Model):
     fretboard = Column(String(100), nullable=False)
     is_used = Column(Boolean, nullable=False)
     image_url = Column(String(1000), nullable=True)
+    created_at = Column(DateTime, default=datetime.now)
+
 
     users = relationship('User', back_populates='instruments')
     order_items = relationship('OrderItem', back_populates='instruments')

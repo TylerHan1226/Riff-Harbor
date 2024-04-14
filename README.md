@@ -280,8 +280,7 @@ Creates a new user, logs them in as the current user, and returns the current us
             "make": "Fender",
             "is_used": false,
             "image_url": "url.png",
-            "createdAt": "2024-01-20 20:00:00",
-            "updatedAt": "2024-01-20 20:20:20",
+            "createdAt": "2024-01-20 20:00:00"
           }
         ]
       }
@@ -316,8 +315,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "make": "Fender",
         "is_used": false,
         "image_url" : "img.png"
-        "createdAt": "2024-01-20 20:00:00",
-        "updatedAt": "2024-01-20 20:20:20",
+        "createdAt": "2024-01-20 20:00:00"
       }
     ```
 
@@ -350,7 +348,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "body": "Basswood",
         "fretboard": "Rosewood",
         "is_used": true,
-        "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg"
+        "image_url" : "img.url"
       }
     ```
 
@@ -373,9 +371,8 @@ Creates a new user, logs them in as the current user, and returns the current us
         "body": "Basswood",
         "fretboard": "Rosewood",
         "is_used": true,
-        "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg"
-        "createdAt": "2024-01-20 20:00:00",
-        "updatedAt": "2024-01-20 20:20:20",
+        "image_url" : "img.url;"
+        "createdAt": "2024-01-20 20:00:00"
       }
     ```
 
@@ -437,7 +434,7 @@ Creates a new user, logs them in as the current user, and returns the current us
         "body": "Basswood",
         "fretboard": "Rosewood",
         "is_used": true,
-        "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg"
+        "image_url" : "img.url;"
       }
     ```
 
@@ -460,9 +457,8 @@ Creates a new user, logs them in as the current user, and returns the current us
         "body": "Basswood",
         "fretboard": "Rosewood",
         "is_used": true,
-        "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg"
-        "createdAt": "2024-01-20 20:00:00",
-        "updatedAt": "2024-01-20 20:20:20",
+        "image_url" : "img.url;",
+        "createdAt": "2024-01-20 20:00:00"
       }
     ```
 
@@ -554,12 +550,13 @@ Delete an existing instrument by id.
       }
     ```
 
-## Order List
-### Get all orders (current orders and previous orders) for the current user
+## Orders
+
+### Get all orders for the current user
 * Require Authentication: True
 * Request
   * Method: GET
-  * URL: /api/orderLists
+  * URL: /api/orders
   * Body: None
 
 * Successful Response
@@ -570,52 +567,65 @@ Delete an existing instrument by id.
 
     ```json
       {
-        "AllOrderLists": [
+        "OrderItems": [
         {
           "id": 1,
           "user_id": 1,
-          "hasCheckedOut": false,
-          "Items": [
-            {
-              "id": 2,
-              "order_list_id": 2,
-              "instrument_id": 3,
-              "orderQuantity": 1
-            },
-            {
-              "id": 3,
-              "order_list_id": 2,
-              "instrument_id": 4,
-              "orderQuantity": 2
-            }
-          ],
+          "instrument_id": 2,
+          "quantity": 1,
           "createdAt": "2024-01-20 20:00:00",
-          "updatedAt": "2024-01-20 20:20:20",
-        }, {
+        },
+        {
           "id": 2,
           "user_id": 1,
-          "hasCheckedOut": true,
-          "Items": [
-            {
-              "id": 1,
-              "order_list_id": 1,
-              "instrument_id": 1,
-              "orderQuantity": 1
-            }
-          ],
+          "instrument_id": 3,
+          "quantity": 1,
           "createdAt": "2024-01-20 20:00:00",
-          "updatedAt": "2024-01-20 20:20:20",
+        }
+        ]
+      }
+    ```
+
+### Get all orders for the current user
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/orders/current
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "CurrentOrders": [
+        {
+          "id": 1,
+          "user_id": 1,
+          "instrument_id": 2,
+          "quantity": 1,
+          "createdAt": "2024-01-20 20:00:00",
+        },
+        {
+          "id": 2,
+          "user_id": 1,
+          "instrument_id": 3,
+          "quantity": 1,
+          "createdAt": "2024-01-20 20:00:00",
         }
         ]
       }
     ```
 
 
-### Get an order list (current orders or previous orders) by id
+### Get the order by orderId
 * Require Authentication: True
 * Request
   * Method: GET
-  * URL: /api/orderLists/:orderListId
+  * URL: /api/orders/:orderId
   * Body: None
 
 * Successful Response
@@ -628,43 +638,19 @@ Delete an existing instrument by id.
       {
         "id": 1,
         "user_id": 1,
-        "hasCheckedOut": false,
-        "Items": [
-          {
-            "id": 2,
-            "order_list_id": 2,
-            "instrument_id": 3,
-            "orderQuantity": 1
-          },
-          {
-            "id": 3,
-            "order_list_id": 2,
-            "instrument_id": 4,
-            "orderQuantity": 2
-          }
-        ],
+        "instrument_id": 2,
+        "quantity": 1,
         "createdAt": "2024-01-20 20:00:00",
-        "updatedAt": "2024-01-20 20:20:20",
       }
     ```
 
-* Error response: Order List not found
-  * Status Code: 404
-  * Headers:
-    * Content-Type: application/json
-  * Body:
 
-    ```json
-      {
-        "message": "Order List couldn't be found"
-      }
-    ```
 
-### Create an order lists (cerate an empty cart for the user)
+### Create an new order
 * Require Authentication: True
 * Request
   * Method: POST
-  * URL: /api/orderLists
+  * URL: /api/orders/new
   * Body: None
 
 * Successful Response
@@ -675,38 +661,32 @@ Delete an existing instrument by id.
 
     ```json
       {
-        "id": 1,
-        "user_id": 1,
-        "hasCheckedOut": false,
-        "Items": []
-        "createdAt": "2024-01-20 20:00:00",
-        "updatedAt": "2024-01-20 20:20:20",
+        "instrument_id": 5
       }
     ```
 
-* Error response: Only allows user to have one cart
-  * Status Code: 500
+* Error response: Can only add the same item once with the "Add to cart" button (update quantity in the cart page)
+  * Status Code: 400
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
       {
-        "message": "Please checkout or clear your previous cart"
+        "message": "Cannot Add to cart"
       }
     ```
 
 
-### Update the current order (already in the cart) in the order lists
+### Update the quantity of the order
 * Require Authentication: True
 * Request
   * Method: PUT
-  * URL: /api/orderLists/:orderList
+  * URL: /api/orders/:orderList/update
   * Body:
     ```json
       {
-        "instrument_id": 4,
-        "orderQuantity": 3
+        "quantity": 2
       }
     ```
 
@@ -719,25 +699,11 @@ Delete an existing instrument by id.
     ```json
       {
         "id": 3,
-        "order_list_id": 2,
         "instrument_id": 4,
-        "orderQuantity": 3,
-        "createdAt": "2024-01-20 20:00:00",
-        "updatedAt": "2024-01-20 20:20:20",
+        "quantity": 2
       }
     ```
 
-* Successful Response (when order quantity equals to 0 => deleting the item)
-  * Status Code: 200
-  * Headers:
-    * Content-Type: application/json
-  * Body:
-
-    ```json
-      {
-        "message": "Successfully removed order item from cart"
-      }
-    ```
 
 * Error response: Order List not found
   * Status Code: 404
@@ -750,29 +716,14 @@ Delete an existing instrument by id.
         "message": "Order couldn't be found"
       }
     ```
-* Error response: Order item body validation
-  * Status Code: 400
-  * Headers:
-    * Content-Type: application/json
-  * Body:
 
-    ```json
-      {
-        "instrument_id": [
-          "This field is required."|| "Instrument Id must be a valid positive integer"
-        ],
-        "orderQuantity": [
-          "This field is required."|| "Order quantity Id must be 1 when you first add it to cart"
-        ]
-      }
-    ```
 
-### Checkout
+
+### Delete the order
 * Require Authentication: True
-* User authentication: Current user must own the order list
 * Request
-  * Method: GET
-  * URL: /api/orderLists/:orderList/checkout
+  * Method: DELETE
+  * URL: /api/orders/:orderId/delete
   * Body: None
 
 * Successful Response
@@ -783,7 +734,7 @@ Delete an existing instrument by id.
 
     ```json
       {
-        "message": "Successfully checkout"
+        "message": "Successfully Deleted"
       }
     ```
 
@@ -798,7 +749,28 @@ Delete an existing instrument by id.
         "message": "Order couldn't be found"
       }
     ```
-* Error response: Order List is empty
+
+
+### Delete all the orders related to the current user
+* Require Authentication: True
+* Request
+  * Method: DELETE
+  * URL: /api/orders/current/clear
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully clear the cart"
+      }
+    ```
+
+* Error response: Order List not found
   * Status Code: 400
   * Headers:
     * Content-Type: application/json
@@ -806,12 +778,176 @@ Delete an existing instrument by id.
 
     ```json
       {
-        "message": "There's nothing in your cart"
+        "message": "There is nothing in your cart"
       }
     ```
 
 
 
+## Order History
+
+### Get all the order history
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/history
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "OrderHistory": [
+        {
+          "id": 1,
+          "user_id": 1,
+          "instrument_id": 2,
+          "quantity": 1,
+          "createdAt": "2024-01-20 20:00:00",
+        },
+        {
+          "id": 2,
+          "user_id": 1,
+          "instrument_id": 3,
+          "quantity": 1,
+          "createdAt": "2024-01-20 20:00:00",
+        }
+        ]
+      }
+    ```
+
+### Get all order history of the current user
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/history/current
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "UserOrderHistory": [
+        {
+          "id": 1,
+          "user_id": 1,
+          "instrument_id": 2,
+          "quantity": 1,
+          "createdAt": "2024-01-20 20:00:00",
+        },
+        {
+          "id": 2,
+          "user_id": 1,
+          "instrument_id": 3,
+          "quantity": 1,
+          "createdAt": "2024-01-20 20:00:00",
+        }
+        ],
+        "HistoryInst": [
+          {
+            "id": 2,
+            "seller_id": 1,
+            "model": "Fender American Vintage II 1951 Telecaster",
+            "color": "Butterscotch Blonde",
+            "category": "Electric Guitar",
+            "price": 2449.99,
+            "details": "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
+            "body": "Maple",
+            "fretboard": "Maple",
+            "make": "Fender",
+            "is_used": false,
+            "image_url": "url.png",
+            "createdAt": "2024-01-20 20:00:00"
+          },
+          {
+            "id": 3,
+            "seller_id": 1,
+            "make": "B.C. Rich",
+            "model": "B.C. Rich Ironbird Extreme with Floyd Rose",
+            "color": "Matte Black",
+            "category": "Electric Guitar",
+            "price": 1799.99,
+            "details": "The BC Rich Ironbird, designed by Joey Rico in 1983, is a metal artist’s favorite. Its angular body shape features sharp, dagger-like points. With a 24-fret neck and licensed Floyd Rose tremolo, it’s built for shredding.",
+            "body": "Basswood",
+            "fretboard": "Rosewood",
+            "is_used": true,
+            "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg",
+            "createdAt": "2024-01-20 20:00:00"
+          }
+        ]
+      }
+    ```
+
+
+### Add to history
+* Require Authentication: True
+* Request
+  * Method: POST
+  * URL: /api/history/new
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "instrument_id": 5,
+        "quantity": 2
+      }
+    ```
+
+* Error response: Need to have a valid instrument id and quantity
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Cannot Add to History"
+      }
+    ```
 
 
 
+### Delete the history
+* Require Authentication: True
+* Request
+  * Method: DELETE
+  * URL: /api/history/:historyId/delete
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully Deleted"
+      }
+    ```
+
+* Error response: Order List not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Order history is not found"
+      }
+    ```

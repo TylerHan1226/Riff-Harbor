@@ -7,7 +7,6 @@ history_routes = Blueprint('history', __name__)
 
 # get all the order history
 # /api/history
-# TODO Shall I keep this??
 @history_routes.route('/')
 # @login_required
 def all_history():

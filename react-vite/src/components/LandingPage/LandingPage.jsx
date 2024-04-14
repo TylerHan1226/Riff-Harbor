@@ -147,7 +147,7 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <div className="landing-instruments-container">
+      <div className="landing-instruments-container"> 
         {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
           <div className="instrument-container" key={eachInst?.id}>
             <div className="instrument-dtl-container">

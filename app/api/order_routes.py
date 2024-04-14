@@ -102,7 +102,7 @@ def delete_order(id):
 def clear_cart():
     cart_items = OrderItem.query.filter_by(user_id=current_user.id).all()
     if not cart_items:
-        return {'message': 'There is nothing in your cart'}
+        return {'message': 'There is nothing in your cart'}, 400
     for order in cart_items:
         db.session.delete(order)
     db.session.commit()
