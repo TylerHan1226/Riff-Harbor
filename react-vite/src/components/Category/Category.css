@@ -52,3 +52,7 @@
 .category-add-to-cart-button.disabled:hover {
     background-color: black;
 }
+
+.category-fav-btn {
+    margin: 24px 24px 24px auto;
+}

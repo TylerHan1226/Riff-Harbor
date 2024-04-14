@@ -161,3 +161,30 @@
 }
 
 
+.dtl-fav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    cursor: pointer;
+}
+.dtl-fav-btn.favorite {
+    background-color: rgb(190, 0, 0);
+}
+
+.dtl-fav-icon {
+    font-size: 24px;
+    color: white;
+}
+.dtl-fav-icon.favorite:hover {
+    color: black;
+}
+.dtl-fav-icon:hover {
+    color: rgb(190, 0, 0);
+    cursor: pointer;
+}
+

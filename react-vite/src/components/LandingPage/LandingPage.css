@@ -175,38 +175,9 @@ body {
     color: rgb(190, 0, 0);
 }
 
-
-.landing-fav-btn {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    cursor: pointer;
-}
-.landing-fav-btn.favorite {
-    background-color: rgb(190, 0, 0);
-}
-
 .instrument-image {
     object-fit:cover;
     height: 250px;
     width: 200px;
     margin-top: 20px;
-}
-
-.landing-fav-icon {
-    font-size: 18px;
-    color: white;
-}
-.landing-fav-icon.favorite:hover {
-    font-size: 18px;
-    color: black;
-}
-.landing-fav-icon:hover {
-    color: rgb(190, 0, 0);
-    cursor: pointer;
 }

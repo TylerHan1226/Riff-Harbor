@@ -79,19 +79,6 @@ export default function LandingPage() {
     nav(`instruments/category/${selectedCategory}`)
   }
 
-  // handle favorite
-  // const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
-  // let isFav = false
-  // const handleFav = (instrumentId) => {
-  //   if (favoriteInstIds.includes(instrumentId)) {
-  //     const favToRemove = favorites.filter(fav => fav.instrument_id == instrumentId)[0]
-  //     dispatch(removeFavThunk(favToRemove.id))
-  //   } else {
-  //     const newFav = {"instrument_id": instrumentId}
-  //     isFav = true
-  //     dispatch(addToFavorite(newFav))
-  //   }
-  // }
 
   return (
     <div className="page-container">
@@ -148,11 +135,6 @@ export default function LandingPage() {
         {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
           <section className="instrument-container" key={eachInst?.id}>
             <div className="instrument-dtl-container">
-              {/* <button className={`landing-fav-btn ${favoriteInstIds?.includes(eachInst?.id) || isFav ? 'favorite' : ''}`}
-                onClick={() => handleFav(eachInst?.id)}
-              >
-                <GoHeartFill className={`landing-fav-icon ${favoriteInstIds?.includes(eachInst?.id) || isFav ? 'favorite' : ''}`} />
-              </button> */}
               <NavLink className='landing-page-inst-image-container' to={`instruments/${eachInst?.id}`}>
                 <img className="instrument-image" src={eachInst?.image_url} />
               </NavLink>

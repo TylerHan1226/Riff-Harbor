@@ -34,7 +34,7 @@ export const getUserFavThunk = () => async (dispatch) => {
     return favorites
 }
 // Add new favorite
-export const addToFavorite = (newFavData) => async (dispatch) => {
+export const addToFavoriteThunk = (newFavData) => async (dispatch) => {
     const res = await fetch('/api/favorites/new', {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
