@@ -2,7 +2,14 @@
 # RIFF HARBOR
   - Welcome to Riff Harbor – your premier destination for all things music! Our mission is to assist you in discovering the ideal instrument that perfectly complements your individual style and sonic expression. Let us guide you as you embark on your musical journey.
 
-  - project URL: https://riff-harbor.onrender.com
+## Hosted On
+[![Render](https://img.shields.io/badge/Render-%46E3B7.svg?logo=render&logoColor=white)](https://riff-harbor.onrender.com)
+
+## Contact Me
+[![GitHub](https://img.shields.io/badge/GitHub-black?logo=github&logoColor=white)](https://github.com/TylerHan1226)
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?logo=linkedin&logoColor=black)](https://www.linkedin.com/in/yucheng-han-2a3684254/)
+![Gmail](https://img.shields.io/badge/tylerhan1226@gmail.com-red?logo=gmail&logoColor=black)
+
 
 
 ## Data Schema
@@ -43,7 +50,7 @@
 * Users should be able to view the results by sorting or filtering.
 * Users should be able to view the results by searching car models or car locations.
 
-# DEMO
+## DEMO
 
 
 # Endpoints
@@ -892,7 +899,14 @@ Delete an existing instrument by id.
 * Request
   * Method: POST
   * URL: /api/history/new
-  * Body: None
+  * Body: 
+
+    ```json
+      {
+        "instrument_id": 5,
+        "quantity": 2
+      }
+    ```
 
 * Successful Response
   * Status Code: 200
@@ -902,8 +916,7 @@ Delete an existing instrument by id.
 
     ```json
       {
-        "instrument_id": 5,
-        "quantity": 2
+        "message": "History is stored successfully"
       }
     ```
 
@@ -949,5 +962,144 @@ Delete an existing instrument by id.
     ```json
       {
         "message": "Order history is not found"
+      }
+    ```
+
+
+
+## Favorites
+
+### Get all the favorite items under the user
+* Require Authentication: True
+* Request
+  * Method: GET
+  * URL: /api/favorites/current
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "MyFavorites": [
+        {
+          "id": 1,
+          "user_id": 1,
+          "instrument_id": 2,
+          "createdAt": "2024-01-20 20:00:00",
+        },
+        {
+          "id": 2,
+          "user_id": 1,
+          "instrument_id": 3,
+          "createdAt": "2024-01-20 20:00:00",
+        }
+        ],
+        "FavInst": [
+          {
+            "id": 2,
+            "seller_id": 1,
+            "model": "Fender American Vintage II 1951 Telecaster",
+            "color": "Butterscotch Blonde",
+            "category": "Electric Guitar",
+            "price": 2449.99,
+            "details": "The Fender American Vintage II 1951 Telecaster is a premium electric guitar, meticulously crafted to capture the essence of the original 1951 Telecaster. With its vintage style and iconic sound, it's a true tribute to Fender's historic legacy.",
+            "body": "Maple",
+            "fretboard": "Maple",
+            "make": "Fender",
+            "is_used": false,
+            "image_url": "url.png",
+            "createdAt": "2024-01-20 20:00:00"
+          },
+          {
+            "id": 3,
+            "seller_id": 1,
+            "make": "B.C. Rich",
+            "model": "B.C. Rich Ironbird Extreme with Floyd Rose",
+            "color": "Matte Black",
+            "category": "Electric Guitar",
+            "price": 1799.99,
+            "details": "The BC Rich Ironbird, designed by Joey Rico in 1983, is a metal artist’s favorite. Its angular body shape features sharp, dagger-like points. With a 24-fret neck and licensed Floyd Rose tremolo, it’s built for shredding.",
+            "body": "Basswood",
+            "fretboard": "Rosewood",
+            "is_used": true,
+            "image_url" : "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg",
+            "createdAt": "2024-01-20 20:00:00"
+          }
+        ]
+      }
+    ```
+
+
+
+### Add to favorites
+* Require Authentication: True
+* Request
+  * Method: POST
+  * URL: /api/favorites/new
+  * Body: 
+    ```json
+      {
+        "instrument_id": 5
+      }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+    ```json
+      {
+        "message": "Add to favorites"
+      }
+    ```
+
+
+* Error response: Need to have a valid instrument id
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Cannot Add to favorites"
+      }
+    ```
+
+
+
+### Delete the history
+* Require Authentication: True
+* Request
+  * Method: DELETE
+  * URL: /api/favorites/:favoriteId/delete
+  * Body: None
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Successfully Deleted"
+      }
+    ```
+
+* Error response: Order List not found
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+      {
+        "message": "Favorite item is not found"
       }
     ```

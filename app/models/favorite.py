@@ -22,4 +22,5 @@ class Favorite(db.Model):
             'id': self.id,
             'instrument_id': self.instrument_id,
             'user_id': self.user_id,
+            'created_at': self.created_at
         }

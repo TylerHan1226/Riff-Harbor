@@ -42,7 +42,7 @@ def add_fav():
 def remove_fav(id):
     favorite = Favorite.query.get(id)
     if not favorite:
-        return {'message': 'Favorite is not found'}, 404
+        return {'message': 'Favorite item is not found'}, 404
     if favorite.user_id != current_user.id:
         return redirect('api/auth/unauthorized')
     db.session.delete(favorite)
