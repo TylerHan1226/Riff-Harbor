@@ -52,6 +52,47 @@
 
 ## DEMO
 
+### 1. User Login
+Credentials / Demo user login button
+![alt text](<demo/user-login.gif>)
+
+
+### 2. Home Page & Category
+Instruments by Category ⏩ Dice (Randomize instruments)
+![alt text](<demo/home-page.gif>)
+
+### 3. Create / Update Instrument
+Post an instrument to sell ⏩ My Instrument ⏩ Update
+![alt text](<demo/create&update-instrument.gif>)
+
+DEMO DATA:
+<br>make: Gibson 
+<br>model: Gibson Slash Les Paul Standard
+<br>Color: Victoria Gold Top
+<br>Category: Electric Guitar
+<br>Price: 3199
+<br>Details: The Gibson Slash Les Paul Standard: crafted with solid mahogany body, AAA figured maple top, and a comfortable C-shaped neck for effortless solos. Burstbucker pickups deliver Slash's iconic midrange crunch, while vintage-style electronics and signature details complete the package. Available exclusively at Guitar Center, it's a must-have for serious rock guitarists.
+<br>Body Material: Mahogany
+<br>Fretboard Material: Maple
+<br>image: (local image)
+
+### 4. Instrument Detail Page & Favorites
+Cart & Favorites ⏩ Add to Fav + Add to Cart (if the instrument is not already in the cart)
+![alt text](<demo/instrument-detail.gif>)
+
+### 5. Cart
+Update quantity and subtotal (remove item modal when quantity = 1) ⏩ remove item ⏩ Checkout
+![alt text](<demo/update-cart-checkout.gif>)
+
+### 6. Order History
+Order history with date, time and subtotal
+![alt text](<demo/order-history.gif>)
+
+### 7. Remove Instrument from Favorites
+![alt text](<demo/remove-fav.gif>)
+
+### 8. Remove Posted Instruments
+![alt text](<demo/remove-instrument.gif>)
 
 # Endpoints
 ## USERS
