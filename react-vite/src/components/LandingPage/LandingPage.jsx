@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllInstrumentsThunk } from '../../redux/instrument'
 import { createOrderThunk, getOrderByUserThunk } from "../../redux/cart";
+import Loading from "../Loading/Loading";
 
 import "./LandingPage.css";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -82,7 +83,7 @@ export default function LandingPage() {
 
   return (
     <div className="page-container">
-      <div id="landing-container">
+      {!randomInstruments ? (<Loading />) : (<>    <div id="landing-container">
         <div className="landing-header-actions">
           <h1>Category</h1>
           <div className="header-tabs-container">
@@ -123,52 +124,53 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <div className="landing-header-actions">
-        <h1>Gallery</h1>
-        <div id='dice-container' >
-          <FaDice id='dice-icon' onClick={handleRandomizeInstClick} />
-          <p id='dice-text'>click to randomize</p>
+        <div className="landing-header-actions">
+          <h1>Gallery</h1>
+          <div id='dice-container' >
+            <FaDice id='dice-icon' onClick={handleRandomizeInstClick} />
+            <p id='dice-text'>click to randomize</p>
+          </div>
         </div>
-      </div>
 
-      <div className="landing-instruments-container"> 
-        {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
-          <section className="instrument-container" key={eachInst?.id}>
-            <div className="instrument-dtl-container">
-              <NavLink className='landing-page-inst-image-container' to={`instruments/${eachInst?.id}`}>
-                <img className="instrument-image" src={eachInst?.image_url} />
-              </NavLink>
-            </div>
-            <div className="instrument-dtl-container">
-              <h4 className="inst-dtl-text">{eachInst?.model}</h4>
-              <p className="inst-landing-dtl-text">{eachInst?.category}</p>
-              <p className="inst-landing-dtl-text">${eachInst?.price}</p>
-              {eachInst?.is_used ? (
-                <p className="inst-landing-dtl-text">Pre-owned</p>
-              ) : (
-                <p className="inst-landing-dtl-text">New</p>
-              )}
-              {eachInst?.seller_id == user?.id ? (
-                <button className="add-to-cart-button">
-                  <NavLink className='add-to-cart-text' to={`instruments/${eachInst?.id}/update`}>
-                    Update
-                  </NavLink>
-                </button>
-              ) : (
-                <button
-                  className={`add-to-cart-button ${user ? '' : 'disabled'}`}
-                  onClick={() => handleAddToCart(eachInst.id, orders, dispatch, nav)}
-                  disabled={isDisable}
-                >
-                  <NavLink className='add-to-cart-text'>
-                    Add to Cart
-                  </NavLink>
-                </button>
-              )}
-            </div>
-          </section>
-        ))}
-      </div>
+        <div className="landing-instruments-container">
+          {randomInstruments.length > 0 && randomInstruments?.map((eachInst) => (
+            <section className="instrument-container" key={eachInst?.id}>
+              <div className="instrument-dtl-container">
+                <NavLink className='landing-page-inst-image-container' to={`instruments/${eachInst?.id}`}>
+                  <img className="instrument-image" src={eachInst?.image_url} />
+                </NavLink>
+              </div>
+              <div className="instrument-dtl-container">
+                <h4 className="inst-dtl-text">{eachInst?.model}</h4>
+                <p className="inst-landing-dtl-text">{eachInst?.category}</p>
+                <p className="inst-landing-dtl-text">${eachInst?.price}</p>
+                {eachInst?.is_used ? (
+                  <p className="inst-landing-dtl-text">Pre-owned</p>
+                ) : (
+                  <p className="inst-landing-dtl-text">New</p>
+                )}
+                {eachInst?.seller_id == user?.id ? (
+                  <button className="add-to-cart-button">
+                    <NavLink className='add-to-cart-text' to={`instruments/${eachInst?.id}/update`}>
+                      Update
+                    </NavLink>
+                  </button>
+                ) : (
+                  <button
+                    className={`add-to-cart-button ${user ? '' : 'disabled'}`}
+                    onClick={() => handleAddToCart(eachInst.id, orders, dispatch, nav)}
+                    disabled={isDisable}
+                  >
+                    <NavLink className='add-to-cart-text'>
+                      Add to Cart
+                    </NavLink>
+                  </button>
+                )}
+              </div>
+            </section>
+          ))}
+        </div>
+      </>)}
     </div>
   );
 }

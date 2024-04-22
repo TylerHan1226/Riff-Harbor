@@ -4,20 +4,29 @@ import { updateOrderThunk } from "../../redux/cart"
 import DeleteOrder from "./DeleteOrder"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { useNavigate } from "react-router-dom"
+import Loading from "../Loading/Loading"
 
 
-export default function OrderOperation({ orderInfo, reRenderOnQuantity, reRenderOnDelete }) {
+export default function OrderOperation({ orderInfo, reRenderOnDelete }) {
     const dispatch = useDispatch()
     const nav = useNavigate()
     const user = useSelector(state => state.session)
 
     const [orderQuantity, setOrderQuantity] = useState(orderInfo?.quantity)
+    const [isLoading, setLoading] = useState(false)
 
     const handleInc = () => {
         setOrderQuantity(ele => ele + 1)
         const updatedOrder = { quantity: orderQuantity + 1 }
         dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
-        reRenderOnQuantity()
+        .then(() => {
+            setLoading(false) // Hide loading modal
+            window.location.reload(true) // Hard refresh the page
+        })
+        .catch(() => {
+            setLoading(false) // Hide loading modal
+        })
+        // reRenderOnQuantity()
     }
     const handleDec = () => {
         if (orderQuantity == 1) {
@@ -28,8 +37,14 @@ export default function OrderOperation({ orderInfo, reRenderOnQuantity, reRender
             setOrderQuantity(ele => ele - 1)
             const updatedOrder = { quantity: orderQuantity - 1 }
             dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
+            .then(() => {
+                setLoading(false) // Hide loading modal
+                window.location.reload(true) // Hard refresh the page
+            })
+            .catch(() => {
+                setLoading(false) // Hide loading modal
+            })
         }
-        reRenderOnQuantity()
     }
 
     useState(() => {
@@ -37,6 +52,11 @@ export default function OrderOperation({ orderInfo, reRenderOnQuantity, reRender
             nav('/')
         }
     }, [dispatch, user])
+
+    if (isLoading) {
+        return <Loading />
+    }
+
 
     return (
         <div className="my-cart-item-btn-container">

@@ -68,7 +68,11 @@ export const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <Favorites />
-      }
+      },
+      {
+        path:'*',
+        element: <h1>Page not found</h1>
+      },
     ],
   },
 ]);

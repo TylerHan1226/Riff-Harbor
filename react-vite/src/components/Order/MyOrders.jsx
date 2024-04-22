@@ -9,6 +9,7 @@ import ClearCart from './ClearCart';
 import History from './History';
 import Checkout from './Checkout';
 import './Orders.css'
+import Loading from '../Loading/Loading';
 
 
 export default function MyOrders() {
@@ -19,11 +20,6 @@ export default function MyOrders() {
     const instruments = useSelector(state => state.instruments)
     const instArr = Object.values(instruments)?.slice(0, orders?.length)
     const instrumentIds = orders?.map(ele => ele.instrument_id)
-
-    const [hasChangedQ, setChangedQ] = useState(false);
-    const reRenderOnQuantity = () => {
-        setChangedQ(!hasChangedQ)
-    }
 
     const [hasDeleted, setDeleted] = useState(false)
     const reRenderOnDelete = () => {
@@ -43,7 +39,7 @@ export default function MyOrders() {
             nav('/')
         }
         dispatch(getOrderByUserThunk());
-    }, [dispatch, hasChangedQ, user, hasDeleted, subtotal])
+    }, [dispatch, user, hasDeleted, subtotal])
 
     useEffect(() => {
         if (instrumentIds?.length > 0 && orders) {
@@ -54,9 +50,8 @@ export default function MyOrders() {
 
 
     if (!orders || !instruments) {
-        return <h2>Loading</h2>
+        return <Loading />
     }
-
 
     return (
         <div className="cart-page-container">
@@ -81,7 +76,6 @@ export default function MyOrders() {
                         </div>
                         <OrderOperation
                             orderInfo={orders.filter(ele => ele.instrument_id == eachInst.id)[0]}
-                            reRenderOnQuantity={reRenderOnQuantity}
                             reRenderOnDelete={reRenderOnDelete}
                         />
                     </div>

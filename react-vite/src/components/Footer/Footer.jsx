@@ -32,7 +32,7 @@ export default function Footer() {
                     <p className="footer-text">tylerhan1226@gmail.com</p>
                 </div>
             </div>
-            {/* <p>© 2024 All rights reserved by Yucheng "Tyler" Han</p> */}
+            <p>© 2024 All rights reserved by Tyler Han</p>
         </div>
     )
 }
