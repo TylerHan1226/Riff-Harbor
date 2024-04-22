@@ -5,7 +5,8 @@
 
 .loader {
     width: 50%;
-    height: 22px;
+    height: 20px;
+    margin: auto auto;
     border-radius: 40px;
     color: var(--option-background);
     border: 2px solid;

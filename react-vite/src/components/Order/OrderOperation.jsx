@@ -13,20 +13,14 @@ export default function OrderOperation({ orderInfo, reRenderOnDelete }) {
     const user = useSelector(state => state.session)
 
     const [orderQuantity, setOrderQuantity] = useState(orderInfo?.quantity)
-    const [isLoading, setLoading] = useState(false)
 
     const handleInc = () => {
         setOrderQuantity(ele => ele + 1)
         const updatedOrder = { quantity: orderQuantity + 1 }
         dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
         .then(() => {
-            setLoading(false) // Hide loading modal
-            window.location.reload(true) // Hard refresh the page
+            window.location.reload(true)
         })
-        .catch(() => {
-            setLoading(false) // Hide loading modal
-        })
-        // reRenderOnQuantity()
     }
     const handleDec = () => {
         if (orderQuantity == 1) {
@@ -38,11 +32,7 @@ export default function OrderOperation({ orderInfo, reRenderOnDelete }) {
             const updatedOrder = { quantity: orderQuantity - 1 }
             dispatch(updateOrderThunk(orderInfo.id, updatedOrder))
             .then(() => {
-                setLoading(false) // Hide loading modal
                 window.location.reload(true) // Hard refresh the page
-            })
-            .catch(() => {
-                setLoading(false) // Hide loading modal
             })
         }
     }
@@ -53,9 +43,6 @@ export default function OrderOperation({ orderInfo, reRenderOnDelete }) {
         }
     }, [dispatch, user])
 
-    if (isLoading) {
-        return <Loading />
-    }
 
 
     return (
