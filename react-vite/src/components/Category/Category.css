@@ -7,8 +7,28 @@
 }
 
 .category-filter-container {
-    width: 20%;
-    margin-right: 16px;
+    width: 25%;
+    margin-right: 60px;
+}
+
+.category-instrument-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-price-input-container {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid blue; */
+    gap: 12px;
+}
+
+
+.filter-price-labels {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .brand-filter-container {
@@ -17,10 +37,6 @@
     flex-direction: column;
     gap: 8px;
 }
-
-/* .brand-filters {
-    border: green solid 1px;
-} */
 
 .radio-dot {
     height: 16px;
@@ -34,15 +50,26 @@
     margin-left: 12px;
     font-size: 20px;
 }
+.brand-filter-labels:hover {
+    text-decoration: underline;
+}
 
+.filter-price-text-bar {
+    width: 120px;
+    margin-left: 20px;
+}
 
-.category-instrument-container {
-    max-width: 1200px;
-    min-width: 900px;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.filter-price-labels {
+    color: rgb(190, 0, 0);
+    font-size: 20px;
+}
+
+.filter-price-text-bar:hover {
+    box-shadow: 0 0 10px 4px rgb(225, 0, 0, 0.5);
+}
+
+.filter-condition-btn {
+    background-color: rgb(190, 0, 0);
 }
 
 .category-link-container {

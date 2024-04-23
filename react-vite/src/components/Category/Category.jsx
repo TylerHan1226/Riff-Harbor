@@ -9,6 +9,7 @@ import { handleAddToCart } from "../LandingPage/LandingPage";
 import { GoHeartFill } from "react-icons/go";
 import { getUserFavThunk, removeFavThunk, addToFavoriteThunk } from '../../redux/favorite'
 import './Category.css'
+import Loading from "../Loading/Loading";
 
 
 
@@ -33,10 +34,11 @@ export default function Category() {
     setRemoveFav(false)
   }, [dispatch, category, toFav, removeFav])
 
-  let isDisable = true
-  if (user) {
-    isDisable = false
+  if (!category) {
+    return <Loading />
   }
+
+  const isDisable = user? false : true
 
   const handleFav = (instrumentId, instrument) => {
     if (favoriteInstIds.includes(instrumentId)) {
@@ -54,8 +56,6 @@ export default function Category() {
 
   // Filters
   const [brand, setBrand] = useState('')
-
-  console.log('brand ==>', brand)
   if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
 
   return (
@@ -68,101 +68,126 @@ export default function Category() {
           <div className="filter-containers">
             <h2>Brand</h2>
             <div className="brand-filter-container">
-            <div className="brand-filters">
-              <input  className="radio-dot" type='radio' name='brands' value='' onChange={() => setBrand('')}></input>
-              <label className="brand-filter-labels">All</label>
-            </div>
-            <div className="brand-filters">
-              <input className="radio-dot" type='radio' name='brands' value='B.C. Rich' onChange={() => setBrand('B.C. Rich')}></input>
-              <label className="brand-filter-labels">B.C. Rich</label>
-            </div>
-            <div className="brand-filters">
-              <input className="radio-dot" type='radio' name='brands' value='ESP' onChange={() => setBrand('ESP')}></input>
-              <label className="brand-filter-labels">ESP</label>
-            </div>
-            <div className="brand-filters">
-              <input className="radio-dot" type='radio' name='brands' value='Fender' onChange={() => setBrand('Fender')}></input>
-              <label className="brand-filter-labels">Fender</label>
-            </div>
-            <div className="brand-filters">
-              <input className="radio-dot" type='radio' name='brands' value='Gibson' onChange={() => setBrand('Gibson')}></input>
-              <label className="brand-filter-labels">Gibson</label>
-            </div>
-            <div className="brand-filters">
-              <input className="radio-dot" type='radio' name='brands' value='Jackson' onChange={() => setBrand('Jackson')}></input>
-              <label className="brand-filter-labels">Jackson</label>
-            </div>
-            <div className="brand-filters">
-              <input className="radio-dot" type='radio' name='brands' value='PRS' onChange={() => setBrand('PRS')}></input>
-              <label className="brand-filter-labels">PRS</label>
-            </div>
-            <div className="brand-filters">
-              <input className="radio-dot" type='radio' name='brands' value='Schecter' onChange={() => setBrand('Schecter')}></input>
-              <label className="brand-filter-labels">Schecter</label>
-            </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='' onChange={() => setBrand('')}></input>
+                <label className="brand-filter-labels">All</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='B.C. Rich' onChange={() => setBrand('B.C. Rich')}></input>
+                <label className="brand-filter-labels">B.C. Rich</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='Martin' onChange={() => setBrand('Ernie Ball')}></input>
+                <label className="brand-filter-labels">Ernie Ball</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='ESP' onChange={() => setBrand('ESP')}></input>
+                <label className="brand-filter-labels">ESP</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='Fender' onChange={() => setBrand('Fender')}></input>
+                <label className="brand-filter-labels">Fender</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='Gibson' onChange={() => setBrand('Gibson')}></input>
+                <label className="brand-filter-labels">Gibson</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='Jackson' onChange={() => setBrand('Jackson')}></input>
+                <label className="brand-filter-labels">Jackson</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='Martin' onChange={() => setBrand('Martin')}></input>
+                <label className="brand-filter-labels">Martin</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='PRS' onChange={() => setBrand('PRS')}></input>
+                <label className="brand-filter-labels">PRS</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='Schecter' onChange={() => setBrand('Schecter')}></input>
+                <label className="brand-filter-labels">Schecter</label>
+              </div>
+              <div className="brand-filters">
+                <input className="radio-dot" type='radio' name='brands' value='Taylor' onChange={() => setBrand('Taylor')}></input>
+                <label className="brand-filter-labels">Taylor</label>
+              </div>
             </div>
           </div>
 
           <div className="filter-containers">
             <h2>Price</h2>
+            <div className="filter-price-input-container">
+              <label className="filter-price-labels">Lowest
+                <input className="filter-price-text-bar" type="text" placeholder="$"/>
+              </label>
+              <label className="filter-price-labels">Highest
+                <input className="filter-price-text-bar" type="text" placeholder="$"/>
+              </label>
+            </div>
           </div>
 
           <div className="filter-containers">
             <h2>Condition</h2>
+            <button className="filter-condition-btn">
+                <label>New</label>
+            </button>
+            <button className="filter-condition-btn">
+                <label>Pre-owned</label>
+            </button>
           </div>
 
         </section>
 
         <section className="category-instrument-container">
-        {instruments?.length > 0 ? instruments?.map((eachInst) => (
-          <section className="instrument-container category-link-container" key={eachInst?.id}>
-            <NavLink className="instrument-dtl-container"  to={`/instruments/${eachInst?.id}`}>
-              <img className="instrument-image" src={eachInst?.image_url} />
-            </NavLink>
-            <div className="category-inst-info-container">
-              <h3>{eachInst?.model}</h3>
-              <p className="inst-dtl-text">${eachInst?.price}</p>
-              <h4 className="inst-dtl-text">{eachInst?.color}</h4>
-              {eachInst?.is_used ? (
-                <p className="inst-dtl-text">Pre-owned</p>
-              ) : (
-                <p className="inst-dtl-text">New</p>
-              )}
-            </div>
-            <div className="inst-details-text">
-              <p className="inst-dtl-text">{eachInst?.details}</p>
-            </div>
-            <div className="my-inst-item-btn-container">
-              <button className={`dtl-fav-btn ${favoriteInstIds?.includes(eachInst?.id) ? 'favorite' : ''} category-fav-btn`}
-                onClick={() => handleFav(eachInst?.id, eachInst)}
-              >
-                <GoHeartFill className={`dtl-fav-icon ${favoriteInstIds?.includes(eachInst?.id) ? 'favorite' : ''}`} />
-              </button>
-              {eachInst?.seller_id == user?.id ? (
-                <button className="category-add-to-cart-button">
-                  <NavLink className='category-add-to-cart-text' to={`/instruments/${eachInst?.id}/update`}>
-                    Update
-                  </NavLink>
-                </button>
-
-              ) : (
-                <button
-                  className={`category-add-to-cart-button ${user ? '' : 'disabled'}`}
-                  onClick={() => handleAddToCart(eachInst.id, orders, dispatch, nav)}
-                  disabled={isDisable}
+          {instruments?.length > 0 ? instruments?.map((eachInst) => (
+            <section className="instrument-container category-link-container" key={eachInst?.id}>
+              <NavLink className="instrument-dtl-container" to={`/instruments/${eachInst?.id}`}>
+                <img className="instrument-image" src={eachInst?.image_url} />
+              </NavLink>
+              <div className="category-inst-info-container">
+                <h3>{eachInst?.model}</h3>
+                <p className="inst-dtl-text">${eachInst?.price}</p>
+                <h4 className="inst-dtl-text">{eachInst?.color}</h4>
+                {eachInst?.is_used ? (
+                  <p className="inst-dtl-text">Pre-owned</p>
+                ) : (
+                  <p className="inst-dtl-text">New</p>
+                )}
+              </div>
+              <div className="inst-details-text">
+                <p className="inst-dtl-text">{eachInst?.details}</p>
+              </div>
+              <div className="my-inst-item-btn-container">
+                <button className={`dtl-fav-btn ${favoriteInstIds?.includes(eachInst?.id) ? 'favorite' : ''} category-fav-btn`}
+                  onClick={() => handleFav(eachInst?.id, eachInst)}
                 >
-                  <NavLink className='category-add-to-cart-text'>
-                    Add to Cart
-                  </NavLink>
+                  <GoHeartFill className={`dtl-fav-icon ${favoriteInstIds?.includes(eachInst?.id) ? 'favorite' : ''}`} />
                 </button>
-              )}
-            </div>
-          </section>
+                {eachInst?.seller_id == user?.id ? (
+                  <button className="category-add-to-cart-button">
+                    <NavLink className='category-add-to-cart-text' to={`/instruments/${eachInst?.id}/update`}>
+                      Update
+                    </NavLink>
+                  </button>
+                ) : (
+                  <button
+                    className={`category-add-to-cart-button ${user ? '' : 'disabled'}`}
+                    onClick={() => handleAddToCart(eachInst.id, orders, dispatch, nav)}
+                    disabled={isDisable}
+                  >
+                    <NavLink className='category-add-to-cart-text'>
+                      Add to Cart
+                    </NavLink>
+                  </button>
+                )}
+              </div>
+            </section>
 
-        )) : (
-          <h3>We currently don&apos;t have any instruments under this category</h3>
-        )}
-      </section>
+          )) : (
+            <h3>We currently don&apos;t have any instruments under this category</h3>
+          )}
+        </section>
       </div>
     </div>
   )

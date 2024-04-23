@@ -48,7 +48,7 @@ export default function LandingPage() {
   }, [instruments])
 
   if (!instruments) {
-    return <h2>loading...</h2>
+    return <Loading />
   }
 
   const allInstruments = instruments.Instruments
@@ -83,7 +83,7 @@ export default function LandingPage() {
 
   return (
     <div className="page-container">
-      {!randomInstruments ? (<Loading />) : (<>    <div id="landing-container">
+      <div id="landing-container">
         <div className="landing-header-actions">
           <h1>Category</h1>
           <div className="header-tabs-container">
@@ -170,7 +170,6 @@ export default function LandingPage() {
             </section>
           ))}
         </div>
-      </>)}
     </div>
   );
 }
