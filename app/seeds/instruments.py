@@ -149,7 +149,7 @@ def seed_instruments():
     )
     e_guitar_12 = Instrument(
         seller_id = 2,
-        make = "ESP",
+        make = "PRS",
         model = "PRS Private Stock Modern Eagle V Curly Maple Top",
         color = "Laguna Dragon's Breath",
         category = "Electric Guitar",

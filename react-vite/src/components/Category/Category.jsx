@@ -17,7 +17,7 @@ export default function Category() {
   const dispatch = useDispatch()
   const { category } = useParams()
   const user = useSelector(state => state.session.user)
-  const instruments = useSelector(state => state.instruments?.SelectedInstruments)
+  let instruments = useSelector(state => state.instruments?.SelectedInstruments)
   const orders = useSelector(state => state.orders?.CurrentOrders)
   const favorites = useSelector(state => state.favorites?.MyFavorites)
   const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
@@ -52,6 +52,12 @@ export default function Category() {
     }
   }
 
+  // Filters
+  const [brand, setBrand] = useState('')
+
+  console.log('brand ==>', brand)
+  if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
+
   return (
     <div className="page-container">
       <h1>{category}</h1>
@@ -61,12 +67,44 @@ export default function Category() {
 
           <div className="filter-containers">
             <h2>Brand</h2>
+            <div className="brand-filter-container">
+              <input type='radio' name='brands' value='' onChange={() => setBrand('')}></input>
+              <label>All</label>
+            </div>
+            <div className="brand-filter-container">
+              <input type='radio' name='brands' value='B.C. Rich' onChange={() => setBrand('B.C. Rich')}></input>
+              <label>B.C. Rich</label>
+            </div>
+            <div className="brand-filter-container">
+              <input type='radio' name='brands' value='ESP' onChange={() => setBrand('ESP')}></input>
+              <label>ESP</label>
+            </div>
+            <div className="brand-filter-container">
+              <input type='radio' name='brands' value='Fender' onChange={() => setBrand('Fender')}></input>
+              <label>Fender</label>
+            </div>
+            <div className="brand-filter-container">
+              <input type='radio' name='brands' value='Gibson' onChange={() => setBrand('Gibson')}></input>
+              <label>Gibson</label>
+            </div>
+            <div className="brand-filter-container">
+              <input type='radio' name='brands' value='Jackson' onChange={() => setBrand('Jackson')}></input>
+              <label>Jackson</label>
+            </div>
+            <div className="brand-filter-container">
+              <input type='radio' name='brands' value='PRS' onChange={() => setBrand('PRS')}></input>
+              <label>PRS</label>
+            </div>
+            <div className="brand-filter-container">
+              <input type='radio' name='brands' value='Schecter' onChange={() => setBrand('Schecter')}></input>
+              <label>Schecter</label>
+            </div>
           </div>
 
           <div className="filter-containers">
             <h2>Price</h2>
           </div>
-          
+
           <div className="filter-containers">
             <h2>Condition</h2>
           </div>
