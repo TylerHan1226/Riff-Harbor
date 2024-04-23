@@ -68,36 +68,38 @@ export default function Category() {
           <div className="filter-containers">
             <h2>Brand</h2>
             <div className="brand-filter-container">
-              <input type='radio' name='brands' value='' onChange={() => setBrand('')}></input>
-              <label>All</label>
+            <div className="brand-filters">
+              <input  className="radio-dot" type='radio' name='brands' value='' onChange={() => setBrand('')}></input>
+              <label className="brand-filter-labels">All</label>
             </div>
-            <div className="brand-filter-container">
-              <input type='radio' name='brands' value='B.C. Rich' onChange={() => setBrand('B.C. Rich')}></input>
-              <label>B.C. Rich</label>
+            <div className="brand-filters">
+              <input className="radio-dot" type='radio' name='brands' value='B.C. Rich' onChange={() => setBrand('B.C. Rich')}></input>
+              <label className="brand-filter-labels">B.C. Rich</label>
             </div>
-            <div className="brand-filter-container">
-              <input type='radio' name='brands' value='ESP' onChange={() => setBrand('ESP')}></input>
-              <label>ESP</label>
+            <div className="brand-filters">
+              <input className="radio-dot" type='radio' name='brands' value='ESP' onChange={() => setBrand('ESP')}></input>
+              <label className="brand-filter-labels">ESP</label>
             </div>
-            <div className="brand-filter-container">
-              <input type='radio' name='brands' value='Fender' onChange={() => setBrand('Fender')}></input>
-              <label>Fender</label>
+            <div className="brand-filters">
+              <input className="radio-dot" type='radio' name='brands' value='Fender' onChange={() => setBrand('Fender')}></input>
+              <label className="brand-filter-labels">Fender</label>
             </div>
-            <div className="brand-filter-container">
-              <input type='radio' name='brands' value='Gibson' onChange={() => setBrand('Gibson')}></input>
-              <label>Gibson</label>
+            <div className="brand-filters">
+              <input className="radio-dot" type='radio' name='brands' value='Gibson' onChange={() => setBrand('Gibson')}></input>
+              <label className="brand-filter-labels">Gibson</label>
             </div>
-            <div className="brand-filter-container">
-              <input type='radio' name='brands' value='Jackson' onChange={() => setBrand('Jackson')}></input>
-              <label>Jackson</label>
+            <div className="brand-filters">
+              <input className="radio-dot" type='radio' name='brands' value='Jackson' onChange={() => setBrand('Jackson')}></input>
+              <label className="brand-filter-labels">Jackson</label>
             </div>
-            <div className="brand-filter-container">
-              <input type='radio' name='brands' value='PRS' onChange={() => setBrand('PRS')}></input>
-              <label>PRS</label>
+            <div className="brand-filters">
+              <input className="radio-dot" type='radio' name='brands' value='PRS' onChange={() => setBrand('PRS')}></input>
+              <label className="brand-filter-labels">PRS</label>
             </div>
-            <div className="brand-filter-container">
-              <input type='radio' name='brands' value='Schecter' onChange={() => setBrand('Schecter')}></input>
-              <label>Schecter</label>
+            <div className="brand-filters">
+              <input className="radio-dot" type='radio' name='brands' value='Schecter' onChange={() => setBrand('Schecter')}></input>
+              <label className="brand-filter-labels">Schecter</label>
+            </div>
             </div>
           </div>
 
