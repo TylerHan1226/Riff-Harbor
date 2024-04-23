@@ -47,8 +47,6 @@ export default function MyOrders() {
         }
     }, [dispatch, orders, hasDeleted])
 
-
-
     if (!orders || !instruments) {
         return <Loading />
     }

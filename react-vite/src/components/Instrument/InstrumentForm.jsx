@@ -90,9 +90,6 @@ export default function InstrumentForm({ buttonName, instrument }) {
             if (is_used === null) {
                 errors.is_used = 'New/Pre-owned field is required'
             }
-            // if (!image_url) {
-            //     errors.image_url = 'Image is required'
-            // }
         }
 
         setValidations(errors)
@@ -111,7 +108,6 @@ export default function InstrumentForm({ buttonName, instrument }) {
         if (Object.keys(validations).length > 0) {
             return
         }
-        console.log('is_used ==>', is_used)
 
         const formData = new FormData()
         formData.append('make', make)
@@ -140,7 +136,6 @@ export default function InstrumentForm({ buttonName, instrument }) {
 
     let previewUrl = instrument?.image_url
     if (thumbnail && hasUploadedImg) {
-        console.log('thumbnail ==>', thumbnail)
         previewUrl = thumbnail
     }
 

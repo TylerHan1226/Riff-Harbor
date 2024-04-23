@@ -55,7 +55,25 @@ export default function Category() {
   return (
     <div className="page-container">
       <h1>{category}</h1>
-      <section className="category-container">
+      <div className="category-container">
+
+        <section className="category-filter-container">
+
+          <div className="filter-containers">
+            <h2>Brand</h2>
+          </div>
+
+          <div className="filter-containers">
+            <h2>Price</h2>
+          </div>
+          
+          <div className="filter-containers">
+            <h2>Condition</h2>
+          </div>
+
+        </section>
+
+        <section className="category-instrument-container">
         {instruments?.length > 0 ? instruments?.map((eachInst) => (
           <section className="instrument-container category-link-container" key={eachInst?.id}>
             <NavLink className="instrument-dtl-container"  to={`/instruments/${eachInst?.id}`}>
@@ -105,6 +123,7 @@ export default function Category() {
           <h3>We currently don&apos;t have any instruments under this category</h3>
         )}
       </section>
+      </div>
     </div>
   )
 }
