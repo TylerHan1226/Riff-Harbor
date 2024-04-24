@@ -65,15 +65,6 @@
     box-shadow: 0 0 20px 10px rgb(235, 0, 0, 0.5);
 }
 
-.landing-instruments-container{
-    /* border: 1px solid red; */
-    margin-top: 24px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
 .instrument-container {
     border: 0.5px solid rgb(0, 0, 0, 0.2);
     background-color: white;
@@ -82,6 +73,15 @@
     display: flex;
     flex-direction: row;
     min-height: 320px;
+}
+
+.landing-instruments-container{
+    /* border: 1px solid red; */
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .instrument-dtl-container {

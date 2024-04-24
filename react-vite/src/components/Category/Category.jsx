@@ -175,7 +175,7 @@ export default function Category() {
 
         <section className="category-instrument-container">
           {instruments?.length > 0 ? instruments?.map((eachInst) => (
-            <section className="instrument-container category-link-container" key={eachInst?.id}>
+            <section className="instrument-container" key={eachInst?.id}>
               <NavLink className="instrument-dtl-container" to={`/instruments/${eachInst?.id}`}>
                 <img className="instrument-image" src={eachInst?.image_url} />
               </NavLink>

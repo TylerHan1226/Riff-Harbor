@@ -6,17 +6,21 @@
     margin: 0 auto;
 }
 
+
 .category-filter-container {
     width: 25%;
     min-width: 240px;
     margin-right: 60px;
-    /* border: 1px solid red; */
 }
 
 .category-instrument-container {
     display: flex;
     flex-direction: column;
-    /* border: 1px solid blue; */
+    width: 80%;
+}
+
+.filter-containers {
+    margin-bottom: 32px;
 }
 
 .filter-price-input-container {
@@ -89,10 +93,6 @@
     cursor: pointer;
 }
 
-.category-link-container {
-    text-decoration: none;
-}
-
 .category-inst-info-container {
     width: 240px;
 }
@@ -136,4 +136,16 @@
 
 .category-fav-btn {
     margin: 24px 24px 24px auto;
+}
+
+@media (max-width: 650px) {
+    .category-container {
+        flex-direction: column;
+    }
+    .instrument-container {
+        flex-direction: column;
+        min-width: 280px;
+        padding: 12px;
+        align-items: center;
+    }
 }
