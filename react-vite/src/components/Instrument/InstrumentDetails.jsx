@@ -87,7 +87,7 @@ export default function InstrumentDetails() {
 
     return (
         <section id='instrument-dtl-page-root'>
-            <div id='instrument-dtl-page-container'>
+            <div className='instrument-dtl-page-container'>
                 <div className="instrument-dtl-info-container">
                     <button className={`dtl-fav-btn ${favoriteInstIds?.includes(instrument?.id) ? 'favorite' : ''}`}
                         onClick={() => handleFav(instrument?.id)}

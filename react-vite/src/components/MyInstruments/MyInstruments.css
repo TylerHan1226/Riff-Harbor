@@ -1,7 +1,6 @@
 .my-instrument-item-container {
-    max-width: 900px;
-    min-width: 600px;
-    margin: 0 auto 0 auto
+    width: 65%;
+    margin: 0 auto;
 }
 
 .my-inst-item-btn-container {

@@ -66,8 +66,8 @@
   /* border: black solid 1px; */
   display: flex;
   flex-direction: row;
-  gap: 12px;
-  height: 35%;
+  gap: 32px;
+  height: 25%;
 }
 
 .nav-action-button {
@@ -99,5 +99,8 @@
   }
   .nav-profile-container {
     margin: 0;
+  }
+  .nav-action-button-container {
+    flex-direction: column;
   }
 }

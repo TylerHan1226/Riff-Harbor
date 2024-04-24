@@ -142,9 +142,13 @@
     .category-container {
         flex-direction: column;
     }
+}
+
+@media (max-width: 1200px) {
     .instrument-container {
         flex-direction: column;
-        min-width: 280px;
+        width: 65%;
+        margin: 12px auto;
         padding: 12px;
         align-items: center;
     }

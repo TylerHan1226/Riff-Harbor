@@ -56,7 +56,7 @@ export default function MyOrders() {
 
             <div className="my-cart-item-container">
                 {instArr?.length > 0 ? (instArr?.map((eachInst) => (
-                    <div className="instrument-container cart-item-container" key={eachInst?.id}>
+                    <div className="cart-instrument-container" key={eachInst?.id}>
                         <div className="instrument-dtl-container">
                             <NavLink to={`/instruments/${eachInst?.id}`}>
                                 <img className="instrument-image" src={eachInst?.image_url} />
@@ -81,6 +81,7 @@ export default function MyOrders() {
                     <h2>Your Cart is empty</h2>
                 )}
             </div>
+            
             <div className='cart-checkout-container'>
                 <h1>My Orders</h1>
                 <h3>Subtotal: ${subtotal}</h3>

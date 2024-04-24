@@ -10,18 +10,16 @@
 }
 
 
-#instrument-dtl-page-container {
+.instrument-dtl-page-container {
     border: 0.5px solid rgb(0, 0, 0, 0.2);
     background-color: white;
     border-radius: 12px;
     padding: 24px;
     display: flex;
     flex-direction: row;
-    max-height: 900px;
-    max-width: 1200px;
-    min-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    width: 80%;
 }
 
 .instrument-dtl-info-container {
@@ -188,3 +186,13 @@
     cursor: pointer;
 }
 
+@media (max-width: 1200px) {
+    .instrument-dtl-page-container {
+        flex-direction: column;
+        align-items: center;
+        width: 60%;
+    }
+    .instrument-dtl-info-container {
+        width: 80%;
+    }
+}

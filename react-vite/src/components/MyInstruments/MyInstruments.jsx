@@ -63,7 +63,6 @@ export default function MyInstruments() {
                                 />
                             </button>
                         </div>
-
                     </div>
                 )) : (
                     <h3>You have&apos;t posted any instrument yet</h3>
