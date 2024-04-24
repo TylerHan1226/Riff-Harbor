@@ -13,12 +13,6 @@ export default function Navigation() {
 
   const user = useSelector(state => state.session.user)
 
-  // const [searchText, setSearchText] = useState('')
-  // console.log(searchText)
-  // const handleSearch = () => {
-  //   console.log(searchText)
-  // }
-
   return (
     <div className="nav-container">
 
@@ -54,7 +48,7 @@ export default function Navigation() {
       </div> */}
 
       {user &&
-        <>
+        <div className="nav-action-button-container">
           <button className="nav-action-button">
             <NavLink className='nav-action-button-text' to={`/instruments/${user.id}/MyInstruments`}>
               My Instruments
@@ -65,10 +59,10 @@ export default function Navigation() {
               Sell Your Gear!
             </NavLink>
           </button>
-        </>
+        </div>
       }
 
-      <div className="nav-cartProfile-container">
+      <div className="nav-icons-container">
         {user &&
         <>
           <div className="nav-cart-container">
