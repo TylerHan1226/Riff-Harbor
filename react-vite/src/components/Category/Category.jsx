@@ -38,7 +38,7 @@ export default function Category() {
     return <Loading />
   }
 
-  const isDisable = user? false : true
+  const isDisable = user ? false : true
 
   const handleFav = (instrumentId, instrument) => {
     if (favoriteInstIds.includes(instrumentId)) {
@@ -55,8 +55,39 @@ export default function Category() {
   }
 
   // Filters
+  // brand filter
   const [brand, setBrand] = useState('')
   if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
+  // condition filter
+  const [isUsed, setIsUsed] = useState(null)
+  const handleCondition = (condition) => {
+    if (isUsed == null) {
+      setIsUsed(condition)
+    } else if (isUsed == true && condition == true) {
+      setIsUsed(null)
+    } else if (isUsed == false && condition == false) {
+      setIsUsed(null)
+    }
+  }
+  if (isUsed == true) instruments = instruments.filter(ele => ele.is_used == true)
+  if (isUsed == false) instruments = instruments.filter(ele => ele.is_used == false)
+  // price filter
+  const [minPrice, setMinPrice] = useState('')
+  const [maxPrice, setMaxPrice] = useState('')
+  const handleMinPriceChange = (e) => {
+    const newValue = parseFloat(e.target.value)
+    newValue ? setMinPrice(newValue) : setMinPrice('')
+  }
+  const handleMaxPriceChange = (e) => {
+    const newValue = parseFloat(e.target.value)
+    newValue ? setMaxPrice(newValue) : setMaxPrice('')
+  }
+  if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
+  if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
+ 
+  console.log('minPrice ==>', minPrice)
+  console.log('maxPrice ==>', maxPrice)
+  console.log('instruments ==>', instruments)
 
   return (
     <div className="page-container">
@@ -118,23 +149,26 @@ export default function Category() {
           <div className="filter-containers">
             <h2>Price</h2>
             <div className="filter-price-input-container">
-              <label className="filter-price-labels">Lowest
-                <input className="filter-price-text-bar" type="text" placeholder="$"/>
+              <label className="filter-price-labels">
+                <input className="filter-price-text-bar" type="text" placeholder="$ Min" value={minPrice} onChange={handleMinPriceChange} />
               </label>
-              <label className="filter-price-labels">Highest
-                <input className="filter-price-text-bar" type="text" placeholder="$"/>
+              <label>-</label>
+              <label className="filter-price-labels">
+                <input className="filter-price-text-bar" type="text" placeholder="$ Max" value={maxPrice} onChange={handleMaxPriceChange} />
               </label>
             </div>
           </div>
 
           <div className="filter-containers">
             <h2>Condition</h2>
-            <button className="filter-condition-btn">
-                <label>New</label>
-            </button>
-            <button className="filter-condition-btn">
-                <label>Pre-owned</label>
-            </button>
+            <div className="filter-condition-input-container">
+              <button className={`filter-condition-btn ${isUsed == false ? 'selected' : ''}`} onClick={() => handleCondition(false)}>
+                New
+              </button>
+              <button className={`filter-condition-btn ${isUsed == true ? 'selected' : ''}`} onClick={() => handleCondition(true)}>
+                Pre-owned
+              </button>
+            </div>
           </div>
 
         </section>
@@ -147,16 +181,16 @@ export default function Category() {
               </NavLink>
               <div className="category-inst-info-container">
                 <h3>{eachInst?.model}</h3>
-                <p className="inst-dtl-text">${eachInst?.price}</p>
-                <h4 className="inst-dtl-text">{eachInst?.color}</h4>
+                <p className="black-text">${eachInst?.price}</p>
+                <h4 className="black-text">{eachInst?.color}</h4>
                 {eachInst?.is_used ? (
-                  <p className="inst-dtl-text">Pre-owned</p>
+                  <p className="black-text">Pre-owned</p>
                 ) : (
-                  <p className="inst-dtl-text">New</p>
+                  <p className="black-text">New</p>
                 )}
               </div>
               <div className="inst-details-text">
-                <p className="inst-dtl-text">{eachInst?.details}</p>
+                <p className="black-text">{eachInst?.details}</p>
               </div>
               <div className="my-inst-item-btn-container">
                 <button className={`dtl-fav-btn ${favoriteInstIds?.includes(eachInst?.id) ? 'favorite' : ''} category-fav-btn`}
@@ -183,9 +217,8 @@ export default function Category() {
                 )}
               </div>
             </section>
-
           )) : (
-            <h3>We currently don&apos;t have any instruments under this category</h3>
+            <h3>Sorry, we could&apos;t find a match for this search</h3>
           )}
         </section>
       </div>

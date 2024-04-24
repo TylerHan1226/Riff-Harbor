@@ -34,7 +34,7 @@ export default function Favorites() {
                 {favorites?.map(instrument => (
                     <button className="fav-instrument" key={instrument.id} onClick={() => handleNavToDtl(instrument.id)}>
                         <img className="fav-inst-img" src={instrument.image_url} />
-                        <h3 className="fav-inst-model inst-dtl-text">{instrument.model}</h3>
+                        <h3 className="fav-inst-model black-text">{instrument.model}</h3>
                         <h4 className="fav-inst-color red-text">{instrument.color}</h4>
                     </button>
                 ))}
