@@ -135,11 +135,10 @@ export default function InstrumentForm({ buttonName, instrument }) {
     }
 
     let previewUrl = instrument?.image_url
-    if (thumbnail && hasUploadedImg) {
+    if (thumbnail) {
         previewUrl = thumbnail
     }
-
-
+    console.log('previewUrl ==>', previewUrl)
 
     return (
         <form className='form-container'

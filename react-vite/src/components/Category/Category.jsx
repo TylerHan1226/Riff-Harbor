@@ -34,10 +34,6 @@ export default function Category() {
     setRemoveFav(false)
   }, [dispatch, category, toFav, removeFav])
 
-  if (!category) {
-    return <Loading />
-  }
-
   const isDisable = user ? false : true
 
   const handleFav = (instrumentId, instrument) => {
@@ -85,9 +81,9 @@ export default function Category() {
   if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
   if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
  
-  console.log('minPrice ==>', minPrice)
-  console.log('maxPrice ==>', maxPrice)
-  console.log('instruments ==>', instruments)
+  if (!category) {
+    return <Loading />
+  }
 
   return (
     <div className="page-container">

@@ -4,7 +4,6 @@ import { updateOrderThunk } from "../../redux/cart"
 import DeleteOrder from "./DeleteOrder"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { useNavigate } from "react-router-dom"
-import Loading from "../Loading/Loading"
 
 
 export default function OrderOperation({ orderInfo, reRenderOnDelete }) {
