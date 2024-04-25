@@ -57,12 +57,10 @@ export default function Category() {
   // condition filter
   const [isUsed, setIsUsed] = useState(null)
   const handleCondition = (condition) => {
-    if (isUsed == null) {
+    if ((isUsed == true && condition == true) || (isUsed == false && condition == false)) {
+      setIsUsed(null)
+    } else {
       setIsUsed(condition)
-    } else if (isUsed == true && condition == true) {
-      setIsUsed(null)
-    } else if (isUsed == false && condition == false) {
-      setIsUsed(null)
     }
   }
   if (isUsed == true) instruments = instruments.filter(ele => ele.is_used == true)
