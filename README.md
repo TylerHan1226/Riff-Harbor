@@ -122,6 +122,8 @@ Order history with date, time and subtotal
 ![GitLab](https://img.shields.io/badge/gitlab-%23181717.svg?logo=gitlab&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/SQLAlchemy-white?logo=sqlalchemy&logoColor=blue)
 
+# Installation Guide
+
 
 # API Documentation
 ## USERS
