@@ -123,6 +123,11 @@ Order history with date, time and subtotal
 ![Static Badge](https://img.shields.io/badge/SQLAlchemy-white?logo=sqlalchemy&logoColor=blue)
 
 # Installation Guide
+* piping shell
+* pipenv install pylint flask flask-sqlalchemy alembic flask-migrate python-dotenv sqlalchemy wtforms flask-wtf boto3
+* pipenv install -r requirements.txt --python 3.9.4
+* pip install email-validator
+* Cd into react-vite => npm install react-responsive-carousel date-fns
 
 
 # API Documentation
