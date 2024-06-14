@@ -57,11 +57,15 @@ Credentials / Demo user login button
 ![alt text](<demo/user-login.gif>)
 
 
-### 2. Home Page & Category
-Instruments by Category ⏩ Dice (Randomize instruments)
+### 2. Home Page
+Instruments browsing & Dice (Randomize instruments)
 ![alt text](<demo/home-page.gif>)
 
-### 3. Create / Update Instrument
+### 3. Category & Filter
+Instruments by Category
+![alt text](<demo/category-filter.gif>)
+
+### 4. Create / Update Instrument
 Post an instrument to sell ⏩ My Instrument ⏩ Update
 ![alt text](<demo/create&update-instrument.gif>)
 
@@ -76,22 +80,22 @@ DEMO DATA:
 <br>Fretboard Material: Maple
 <br>image: (local image)
 
-### 4. Instrument Detail Page & Favorites
+### 5. Instrument Detail Page & Favorites
 Cart & Favorites ⏩ Add to Fav + Add to Cart (if the instrument is not already in the cart)
 ![alt text](<demo/instrument-detail.gif>)
 
-### 5. Cart
+### 6. Cart
 Update quantity and subtotal (remove item modal when quantity = 1) ⏩ remove item ⏩ Checkout
 ![alt text](<demo/update-cart-checkout.gif>)
 
-### 6. Order History
+### 7. Order History
 Order history with date, time and subtotal
 ![alt text](<demo/order-history.gif>)
 
-### 7. Remove Instrument from Favorites
+### 8. Remove Instrument from Favorites
 ![alt text](<demo/remove-fav.gif>)
 
-### 8. Remove Posted Instruments
+### 9. Remove Posted Instruments
 ![alt text](<demo/remove-instrument.gif>)
 
 
@@ -1143,7 +1147,7 @@ Delete an existing instrument by id.
 
 
 
-### Delete the history
+### Delete the favorites
 * Require Authentication: True
 * Request
   * Method: DELETE
