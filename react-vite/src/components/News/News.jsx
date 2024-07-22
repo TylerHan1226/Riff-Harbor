@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from "react";
 import { getAllNewsThunk } from "../../redux/news";
+import './News.css'
 
 export default function News() {
     const nav = useNavigate()
@@ -11,10 +12,9 @@ export default function News() {
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState(parseInt(page) || 1)
 
-    const data = useSelector(state => state.news)
+    const news = useSelector(state => state.news)?.News
 
-    console.log('data =>', data)
-    console.log('currentPage =>', currentPage)
+    console.log('news =>', news)
 
     useEffect(() => {
         dispatch(getAllNewsThunk(currentPage))
@@ -25,11 +25,14 @@ export default function News() {
             <h1>News</h1>
             
             <div className="news-container">
-                {/* {data?.map(ele => (
-                    <div>
-                        ele.author
-                    </div>       
-                ))} */}
+                {
+                    news?.map(ele => (
+                        <div className="news-tab" key={ele.url}>
+                            <h2>{ele.title}</h2>
+
+                        </div>
+                    ))
+                }
             </div>
         </>
     )

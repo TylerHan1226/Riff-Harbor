@@ -24,7 +24,7 @@ export const getAllNewsThunk = (page) => async (dispatch) => {
 export const newsReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_ALL_NEWS: {
-            return {...state, ...action.news}
+            return {...state, "News": action.news}
         }
         default:
             return state
