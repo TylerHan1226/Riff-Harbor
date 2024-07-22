@@ -10,13 +10,15 @@ import { instrumentReducer } from "./instrument";
 import { orderReducer } from "./cart";
 import { historyReducer } from "./history";
 import { favoriteReducer } from "./favorite";
+import { newsReducer } from "./news";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   instruments: instrumentReducer,
   orders: orderReducer,
   histories: historyReducer,
-  favorites: favoriteReducer
+  favorites: favoriteReducer,
+  news: newsReducer
 });
 
 let enhancer;
