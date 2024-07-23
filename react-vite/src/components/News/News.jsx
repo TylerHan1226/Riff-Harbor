@@ -21,19 +21,26 @@ export default function News() {
     }, [dispatch, currentPage])
 
     return (
-        <>
+        <div className="page-container">
             <h1>News</h1>
-            
             <div className="news-container">
                 {
                     news?.map(ele => (
                         <div className="news-tab" key={ele.url}>
-                            <h2>{ele.title}</h2>
+                            <div className="news-text-container">
+                                <h2>{ele.title}</h2>
+                                <h3>{ele.author}</h3>
+                                <p className="news-text">{ele.description}</p>
+                            </div> 
+                            <div className="news-image-container">
+                                <img className="news-image" src={ele.urlToImage} />
+                            </div> 
 
                         </div>
                     ))
                 }
+
             </div>
-        </>
+        </div>
     )
 }
