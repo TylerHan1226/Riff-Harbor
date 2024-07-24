@@ -20,9 +20,10 @@ def all_news(page):
     }
     response = requests.get(url, params=params)
     data = response.json()['articles']
+    filtered_data = [article for article in data if article['title'] != '[Removed]' and len(article['urlToImage']) != 0]
     item_per_page = 5
     start = (page - 1) * item_per_page
     end = start + item_per_page
-    paginated_data = data[start:end]
+    paginated_data = filtered_data[start:end]
 
     return jsonify(paginated_data), 200

@@ -40,35 +40,42 @@ export default function News() {
             <div className="news-container">
                 {
                     news?.map(ele => (
-                        ele.title !== '[Removed]' && (
-                            <div className="news-tab" key={ele.url}>
-                                <div className="news-text-container">
-                                    <h2>{ele.title}</h2>
-                                    <h3>Author: {ele.author}</h3>
-                                    <p className="news-text">Publish Date: {ele.publishedAt.split("T")[0]}</p>
-                                    <p className="news-text">Source: {ele.source.name}</p>
-                                    <p className="news-text">{ele.description}</p>
-                                </div>
-                                <div className="news-image-container">
-                                    <img className="news-image" src={ele.urlToImage} />
-                                </div>
+                        <div className="news-tab" key={ele.url}>
+                            <div className="news-text-container">
+                                <h2>{ele.title}</h2>
+                                <h3>Author: {ele.author}</h3>
+                                <p className="news-text">Publish Date: {ele.publishedAt.split("T")[0]}</p>
+                                <p className="news-text">Source: {ele.source.name}</p>
+                                <p className="news-text">{ele.description}</p>
+                                <a href={`${ele.url}`} target="_blank">
+                                    <button className="news-readMore">Read More</button>
+                                </a>
                             </div>
-                        )
+                            <div className="news-image-container">
+                                <a href={`${ele.url}`} target="_blank">
+                                    <img className="news-image" src={ele.urlToImage} />
+                                </a>
+                            </div>
+                        </div>
                     ))
                 }
                 <div className="news-page-btn">
                     {
-                        page != 1 && (
+                        currentPage != 1 && (
                             <button className="news-btns" onClick={() => handlePrevPage()}>Previous</button>
                         )
                     }
-                    <button className="news-btns" onClick={() => handlePageNum(1)}>1</button>
-                    <button className="news-btns" onClick={() => handlePageNum(2)}>2</button>
-                    <button className="news-btns" onClick={() => handlePageNum(3)}>3</button>
-                    <button className="news-btns" onClick={() => handlePageNum(4)}>4</button>
-                    <button className="news-btns" onClick={() => handlePageNum(5)}>5</button>
+                  {[1, 2, 3, 4, 5].map(pageNumber => (
+                        <button
+                            key={pageNumber}
+                            className={`news-btns ${currentPage === pageNumber ? 'active' : ''}`}
+                            onClick={() => handlePageNum(pageNumber)}
+                        >
+                            {pageNumber}
+                        </button>
+                    ))}
                     {
-                        page != 5 && (
+                        currentPage != 5 && (
                             <button className="news-btns" onClick={() => handleNextPage()}>Next</button>
                         )
                     }
