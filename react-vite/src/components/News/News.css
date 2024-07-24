@@ -1,16 +1,20 @@
 
-.news-tab {
-    /* border: 1px solid blue; */
-    width: 80%;
-    margin: 24px auto 24px auto;
-    display: flex;
-    flex-direction: row;
-    height: 360px;
-}
-
 .news-container {
     width: 85%;
     margin: 24px auto 24px auto;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.news-tab {
+    width: 80%;
+    /* margin: 24px auto 24px auto; */
+    display: flex;
+    flex-direction: row;
+    height: 360px;
 }
 
 .news-text {
@@ -25,4 +29,13 @@
     height: 360px;
     width: 520px;
     object-fit: cover;
+}
+
+.news-page-btn {
+    margin: 24px 0 0 0;
+}
+
+.news-btns {
+    text-decoration: none;
+    margin: 0 24px 0 24px;
 }

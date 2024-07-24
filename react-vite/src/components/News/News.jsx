@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from "react";
 import { getAllNewsThunk } from "../../redux/news";
@@ -14,11 +14,25 @@ export default function News() {
 
     const news = useSelector(state => state.news)?.News
 
-    console.log('news =>', news)
-
     useEffect(() => {
         dispatch(getAllNewsThunk(currentPage))
-    }, [dispatch, currentPage])
+    }, [dispatch, currentPage, page])
+
+    const handlePageNum = (pageNumber) => {
+        setCurrentPage(pageNumber)
+        nav(`/news/${pageNumber}`)
+        window.scrollTo(0, 0)
+    }
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1)
+        nav(`/news/${currentPage - 1}`)
+        window.scrollTo(0, 0)
+    }
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1)
+        nav(`/news/${currentPage + 1}`)
+        window.scrollTo(0, 0)
+    }
 
     return (
         <div className="page-container">
@@ -26,22 +40,41 @@ export default function News() {
             <div className="news-container">
                 {
                     news?.map(ele => (
-                        <div className="news-tab" key={ele.url}>
-                            <div className="news-text-container">
-                                <h2>{ele.title}</h2>
-                                <h3>{ele.author}</h3>
-                                <p className="news-text">{ele.publishedAt}</p>
-                                <p className="news-text">{ele.description}</p>
-                            </div> 
-                            <div className="news-image-container">
-                                <img className="news-image" src={ele.urlToImage} />
-                            </div> 
-
-                        </div>
+                        ele.title !== '[Removed]' && (
+                            <div className="news-tab" key={ele.url}>
+                                <div className="news-text-container">
+                                    <h2>{ele.title}</h2>
+                                    <h3>Author: {ele.author}</h3>
+                                    <p className="news-text">Publish Date: {ele.publishedAt.split("T")[0]}</p>
+                                    <p className="news-text">Source: {ele.source.name}</p>
+                                    <p className="news-text">{ele.description}</p>
+                                </div>
+                                <div className="news-image-container">
+                                    <img className="news-image" src={ele.urlToImage} />
+                                </div>
+                            </div>
+                        )
                     ))
                 }
-
+                <div className="news-page-btn">
+                    {
+                        page != 1 && (
+                            <button className="news-btns" onClick={() => handlePrevPage()}>Previous</button>
+                        )
+                    }
+                    <button className="news-btns" onClick={() => handlePageNum(1)}>1</button>
+                    <button className="news-btns" onClick={() => handlePageNum(2)}>2</button>
+                    <button className="news-btns" onClick={() => handlePageNum(3)}>3</button>
+                    <button className="news-btns" onClick={() => handlePageNum(4)}>4</button>
+                    <button className="news-btns" onClick={() => handlePageNum(5)}>5</button>
+                    {
+                        page != 5 && (
+                            <button className="news-btns" onClick={() => handleNextPage()}>Next</button>
+                        )
+                    }
+                </div>
             </div>
+
         </div>
     )
 }
