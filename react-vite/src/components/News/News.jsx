@@ -30,6 +30,7 @@ export default function News() {
                             <div className="news-text-container">
                                 <h2>{ele.title}</h2>
                                 <h3>{ele.author}</h3>
+                                <p className="news-text">{ele.publishedAt}</p>
                                 <p className="news-text">{ele.description}</p>
                             </div> 
                             <div className="news-image-container">
