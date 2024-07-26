@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { useModal } from "../../context/Modal";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllNewsThunk } from "../../redux/news";
 import './News.css'
@@ -47,12 +46,12 @@ export default function News() {
                                 <p className="news-text">Publish Date: {ele.publishedAt.split("T")[0]}</p>
                                 <p className="news-text">Source: {ele.source.name}</p>
                                 <p className="news-text">{ele.description}</p>
-                                <a href={`${ele.url}`} target="_blank">
+                                <a href={`${ele.url}`} target="_blank" rel="noreferrer">
                                     <button className="news-readMore">Read More</button>
                                 </a>
                             </div>
                             <div className="news-image-container">
-                                <a href={`${ele.url}`} target="_blank">
+                                <a href={`${ele.url}`} target="_blank" rel="noreferrer">
                                     <img className="news-image" src={ele.urlToImage} />
                                 </a>
                             </div>
