@@ -11,6 +11,7 @@ from .api.instrument_routes import instrument_routes
 from .api.order_routes import order_routes
 from .api.history_routes import history_routes
 from .api.favorite_routes import favorite_routes
+from .api.news_routes import news_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -36,12 +37,12 @@ app.register_blueprint(instrument_routes, url_prefix='/api/instruments')
 app.register_blueprint(order_routes, url_prefix='/api/orders')
 app.register_blueprint(history_routes, url_prefix='/api/history')
 app.register_blueprint(favorite_routes, url_prefix='/api/favorites')
+app.register_blueprint(news_routes, url_prefix='/api/news')
 db.init_app(app)
 Migrate(app, db)
 
 # Application Security
 CORS(app)
-
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
@@ -51,8 +52,8 @@ CORS(app)
 @app.before_request
 def https_redirect():
     if os.environ.get('FLASK_ENV') == 'production':
-        if request.headers.get('X-Forwarded-Proto') == 'http':
-            url = request.url.replace('http://', 'https://', 1)
+        if request.headers.get('X-Forwarded-Proto') == 'http' or not request.is_secure:
+            url = request.url.replace('https://', 1)
             code = 301
             return redirect(url, code=code)
 

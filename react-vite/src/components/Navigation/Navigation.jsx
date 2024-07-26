@@ -59,6 +59,11 @@ export default function Navigation() {
               Sell Your Gear!
             </NavLink>
           </button>
+          <button className="nav-action-button">
+            <NavLink className='nav-action-button-text' to='/news/1'>
+              News
+            </NavLink>
+          </button>
         </div>
       }
 
