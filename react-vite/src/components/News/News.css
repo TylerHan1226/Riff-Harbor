@@ -16,18 +16,19 @@
     /* height: 360px; */
 }
 
+.news-image {
+    height: 100%;
+    width: 520px;
+    object-fit: cover;
+    margin-left: auto;
+}
+
 .news-text {
     color: rgb(190, 0, 0);
 }
 
 .news-text-container {
     margin-right: 24px;
-}
-
-.news-image {
-    height: 100%;
-    width: 520px;
-    object-fit: cover;
 }
 
 .news-page-btn {
