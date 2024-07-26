@@ -20,6 +20,9 @@
     height: 100%;
     width: 520px;
     object-fit: cover;
+}
+
+.news-image-container {
     margin-left: auto;
 }
 
