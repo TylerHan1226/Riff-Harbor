@@ -44,7 +44,7 @@ export const loadInstrumentsByCategory = (instruments) => ({
 
 // Get All Instruments Thunk
 export const getAllInstrumentsThunk = () => async (dispatch) => {
-    const res = await fetch('/api/instruments')
+    const res = await fetch('/api/instruments/')
     if (!res.ok) {
         throw new Error('Failed to fetch all instruments')
     }
@@ -72,7 +72,7 @@ export const getOneInstrumentThunk = (instrumentId) => async (dispatch) => {
 
 // Get instruments by ids
 export const getInstrumentsByIdsThunk = (instrumentIds) => async (dispatch) => {
-    const res = await fetch(`/api/instruments`)
+    const res = await fetch(`/api/instruments/`)
     if (!res.ok) {
         throw new Error('Failed to fetch instruments by ids')
     }
