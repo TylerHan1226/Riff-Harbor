@@ -12,6 +12,7 @@ import MyOrders from '../components/Order/MyOrders';
 import Layout from './Layout';
 import Category from '../components/Category/Category';
 import Favorites from '../components/Favorites/Favorites';
+import News from '../components/News/News';
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <Favorites />
+      },
+      {
+        path: "/news/:page",
+        element: <News />
       },
       {
         path:'*',

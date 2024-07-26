@@ -75,7 +75,9 @@
 .add-to-cart-button-dtl:hover, 
 .delete-button:hover, 
 .submit-form-button:hover,
-.my-inst-action-btn:hover {
+.my-inst-action-btn:hover,
+.news-btns:hover,
+.news-readMore:hover {
     box-shadow: 0 0 10px 2px rgb(225, 0, 0, 0.75);
     background-color: rgb(235, 0, 0);
     cursor: pointer;
