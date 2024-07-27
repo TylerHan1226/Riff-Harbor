@@ -14,80 +14,67 @@ export default function Navigation() {
   const user = useSelector(state => state.session.user)
 
   return (
-    <div className="nav-container">
+    <div id="nav">
 
-      <div id='nav-home'>
-        <NavLink to="/">
-          <GiGuitarBassHead id='nav-icon' />
-        </NavLink>
-        <h1 id='nav-site-name'>
-          Riff Harbor
-        </h1>
-        <MdSailing className="nav-text-icon" />
-      </div>
+      <section className="nav-container">
 
-      {/* <div>
-        <form className='search-bar-form'
-          onSubmit={handleSearch}
-        >
-          <label>
-            Search Bar
-            <input
-              type='text'
-              name='search'
-              value={searchText}
-              placeholder="Search"
-              onChange={e => setSearchText(e.target.value)}
-              className='search-bar-filed'
-            />
-            <button className="search-bar-btn" type='submit'>
-              submit
-            </button>
-          </label>
-        </form>
-      </div> */}
-
-      {user &&
-        <div className="nav-action-button-container">
-          <button className="nav-action-button">
-            <NavLink className='nav-action-button-text' to={`/instruments/${user.id}/MyInstruments`}>
-              My Instruments
-            </NavLink>
-          </button>
-          <button className="nav-action-button">
-            <NavLink className='nav-action-button-text' to='/instruments/new'>
-              Sell Your Gear!
-            </NavLink>
-          </button>
-          <button className="nav-action-button">
-            <NavLink className='nav-action-button-text' to='/news/1'>
-              News
-            </NavLink>
-          </button>
+        <div id='nav-home'>
+          <NavLink to="/">
+            <GiGuitarBassHead id='nav-icon' />
+          </NavLink>
+          <h1 id='nav-site-name'>
+            Riff Harbor
+          </h1>
+          <MdSailing className="nav-text-icon" />
         </div>
-      }
 
-      <div className="nav-icons-container">
         {user &&
-        <>
-          <div className="nav-cart-container">
-            <NavLink to='/orders/MyOrders'>
-              <FaShoppingCart className='nav-user-action-icon' />
-            </NavLink>
+          <div className="nav-action-button-container">
+            <button className="nav-action-button">
+              <NavLink className='nav-action-button-text' to={`/instruments/${user.id}/MyInstruments`}>
+                My Instruments
+              </NavLink>
+            </button>
+            <button className="nav-action-button">
+              <NavLink className='nav-action-button-text' to='/instruments/new'>
+                Sell Your Gear!
+              </NavLink>
+            </button>
+            <button className="nav-action-button">
+              <NavLink className='nav-action-button-text' to='/news/1'>
+                News
+              </NavLink>
+            </button>
           </div>
-          <div>
-          <NavLink to='/favorites'>
-              <GoHeartFill className='nav-user-action-icon' />
-            </NavLink>
-          </div>
-          </>
         }
-        <div className="nav-profile-container">
-          <ProfileButton className='nav-profile-btn' />
+
+        <div className="nav-icons-container">
+          {user &&
+            <>
+              <div className="nav-cart-container">
+                <NavLink to='/orders/MyOrders'>
+                  <FaShoppingCart className='nav-user-action-icon' />
+                </NavLink>
+              </div>
+              <div>
+                <NavLink to='/favorites'>
+                  <GoHeartFill className='nav-user-action-icon' />
+                </NavLink>
+              </div>
+            </>
+          }
+          <div className="nav-profile-container">
+            <ProfileButton className='nav-profile-btn' />
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section id="nav-search-bar-container">
+          <button className="search-bar">Search</button>
+      </section>
 
 
     </div>
+
   );
 }
