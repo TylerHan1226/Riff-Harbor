@@ -1,21 +1,15 @@
 
 // import ProfileButton from "./ProfileButton";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import Loading from "../Loading/Loading";
+import { useParams } from "react-router-dom";
 
-export default function Filter({instruments, filterInst}) {
-    const nav = useNavigate()
-    const dispatch = useDispatch()
-    const {category} = useParams()
+export default function Filter({ instruments, filterInst, setFilterOn }) {
 
-    // Filters
     // brand filter
     const [brand, setBrand] = useState('')
     if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
     console.log("instruments ==>", instruments)
-    console.log("category ==>", category)
+    console.log("brand ==>", brand)
     // condition filter
     const [isUsed, setIsUsed] = useState(null)
     const handleCondition = (condition) => {
@@ -41,9 +35,11 @@ export default function Filter({instruments, filterInst}) {
     if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
     if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
 
-    if (!category) {
-        return <Loading />
-    }
+    
+    useEffect(() => {
+        filterInst(instruments)
+        setFilterOn(true)
+    }, [brand, isUsed, minPrice, maxPrice])
 
     return (
         <section className="category-filter-container">

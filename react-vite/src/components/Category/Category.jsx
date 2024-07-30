@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { getInstrumentsByCategoryThunk, updateInstrument } from "../../redux/instrument";
+import { getInstrumentsByCategoryThunk } from "../../redux/instrument";
 import { getOrderByUserThunk } from "../../redux/cart";
 import { handleAddToCart } from "../LandingPage/LandingPage";
 import { GoHeartFill } from "react-icons/go";
@@ -12,7 +12,7 @@ import './Category.css'
 import Loading from "../Loading/Loading";
 import Filter from "../Search/Filter";
 
-export const InstrumentCard = ({ eachInst, favoriteInstIds, user, isDisable }) => (
+export const InstrumentCard = ({ eachInst, favoriteInstIds, user, orders, isDisable, handleFav, handleAddToCart, dispatch, nav }) => (
   <section className="instrument-container">
     <NavLink className="instrument-dtl-container" to={`/instruments/${eachInst?.id}`}>
       <img className="instrument-image" src={eachInst?.image_url} />
@@ -62,8 +62,8 @@ export default function Category() {
   const nav = useNavigate()
   const dispatch = useDispatch()
   const { category } = useParams()
+  const { instModel } = useParams()
   const user = useSelector(state => state.session.user)
-  const selectedInstruments = useSelector(state => state.instruments?.SelectedInstruments)
   let instruments = useSelector(state => state.instruments?.SelectedInstruments)
   const orders = useSelector(state => state.orders?.CurrentOrders)
   const favorites = useSelector(state => state.favorites?.MyFavorites)
@@ -71,6 +71,7 @@ export default function Category() {
   const [filteredInst, setFilterInst] = useState([]);
   const [toFav, setToFav] = useState(false)
   const [removeFav, setRemoveFav] = useState(false)
+  const [isFilterOn, setFilterOn] = useState(false)
 
   useEffect(() => {
     dispatch(getInstrumentsByCategoryThunk(category))
@@ -78,7 +79,7 @@ export default function Category() {
     dispatch(getUserFavThunk())
     setToFav(false)
     setRemoveFav(false)
-  }, [dispatch, category, toFav, removeFav])
+  }, [dispatch, category, toFav, removeFav, instModel, isFilterOn])
 
   const isDisable = user ? false : true
 
@@ -100,35 +101,50 @@ export default function Category() {
     setFilterInst(updatedInstruments)
   }
 
-  if (!category) {
-    return <Loading />
-  }
+
+  // if (!category) {
+  //   return <Loading />
+  // }
 
 
   return (
     <div className="page-container">
-      <h1>{category}</h1>
+      {category ? (<h1>{category}</h1>
+      ) : instModel ? (<h1>{category}</h1>)
+        : <h1> Sorry, we couldn't find a match for this search</h1>}
       <div className="category-container">
 
-        <Filter instruments={instruments} filterInst={filterInst} />
+        <Filter instruments={instruments} filterInst={filterInst} setFilterOn={setFilterOn} />
 
         <section className="category-instrument-container">
-          {filteredInst?.length > 0 ? (
+          {filteredInst?.length > 0 && isFilterOn ? (
             filteredInst.map((eachInst) => (
               <InstrumentCard key={eachInst?.id}
-              eachInst={eachInst}
-              favoriteInstIds={favoriteInstIds}
-              user={user}
-              isDisable={isDisable}
+                eachInst={eachInst}
+                favoriteInstIds={favoriteInstIds}
+                user={user}
+                orders={orders}
+                isDisable={isDisable}
+                handleFav={handleFav}
+                handleAddToCart={handleAddToCart}
+                dispatch={dispatch}
+                nav={nav}
               />
             ))
+          ) : filteredInst?.length == 0 && isFilterOn ? (
+            <h3>Sorry, we couldn't find a match for this search</h3>
           ) : instruments?.length > 0 ? (
             instruments.map((eachInst) => (
               <InstrumentCard key={eachInst?.id}
-              eachInst={eachInst}
-              favoriteInstIds={favoriteInstIds}
-              user={user}
-              isDisable={isDisable}
+                eachInst={eachInst}
+                favoriteInstIds={favoriteInstIds}
+                user={user}
+                orders={orders}
+                isDisable={isDisable}
+                handleFav={handleFav}
+                handleAddToCart={handleAddToCart}
+                dispatch={dispatch}
+                nav={nav}
               />
             ))
           ) : (
