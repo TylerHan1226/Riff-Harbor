@@ -10,6 +10,12 @@
     height: 600px;
 }
 
+.model-instrument-container {
+    border: blue, 1px, solid;
+    width: 80%;
+    margin: 0 auto 0 auto;
+}
+
 .search-bar-btn {
     border: none;
     list-style: none;
