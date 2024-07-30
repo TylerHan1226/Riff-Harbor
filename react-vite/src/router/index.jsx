@@ -13,6 +13,7 @@ import Layout from './Layout';
 import Category from '../components/Category/Category';
 import Favorites from '../components/Favorites/Favorites';
 import News from '../components/News/News';
+import SearchResult from '../components/Search/SeachResult';
 
 export const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
       {
         path: "/news/:page",
         element: <News />
+      },
+      {
+        path: "/search/:userInput",
+        element: <SearchResult />
       },
       {
         path:'*',
