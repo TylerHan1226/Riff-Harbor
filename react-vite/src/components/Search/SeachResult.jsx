@@ -5,6 +5,7 @@ import { getInstrumentsByModelThunk } from "../../redux/instrument";
 import { getUserFavThunk, removeFavThunk, addToFavoriteThunk } from '../../redux/favorite'
 import { handleAddToCart } from "../LandingPage/LandingPage";
 import { GoHeartFill } from "react-icons/go";
+import { InstrumentCard } from "../Category/Category";
 
 
 export default function SearchResult() {
@@ -46,54 +47,29 @@ export default function SearchResult() {
     return (
         <div className="page-container">
             <h1>"{instModel}"</h1>
-            <section className="model-instrument-container">
-                {instruments?.length > 0 ? instruments?.map((eachInst) => (
-                    <section className="instrument-container" key={eachInst?.id}>
-                        <NavLink className="instrument-dtl-container" to={`/instruments/${eachInst?.id}`}>
-                            <img className="instrument-image" src={eachInst?.image_url} />
-                        </NavLink>
-                        <div className="category-inst-info-container">
-                            <h3>{eachInst?.model}</h3>
-                            <p className="black-text">${eachInst?.price}</p>
-                            <h4 className="black-text">{eachInst?.color}</h4>
-                            {eachInst?.is_used ? (
-                                <p className="black-text">Pre-owned</p>
-                            ) : (
-                                <p className="black-text">New</p>
-                            )}
-                        </div>
-                        <div className="inst-details-text">
-                            <p className="black-text">{eachInst?.details}</p>
-                        </div>
-                        <div className="my-inst-item-btn-container">
-                            <button className={`dtl-fav-btn ${favoriteInstIds?.includes(eachInst?.id) ? 'favorite' : ''} category-fav-btn`}
-                                onClick={() => handleFav(eachInst?.id, eachInst)}
-                            >
-                                <GoHeartFill className={`dtl-fav-icon ${favoriteInstIds?.includes(eachInst?.id) ? 'favorite' : ''}`} />
-                            </button>
-                            {eachInst?.seller_id == user?.id ? (
-                                <button className="category-add-to-cart-button">
-                                    <NavLink className='category-add-to-cart-text' to={`/instruments/${eachInst?.id}/update`}>
-                                        Update
-                                    </NavLink>
-                                </button>
-                            ) : (
-                                <button
-                                    className={`category-add-to-cart-button ${user ? '' : 'disabled'}`}
-                                    onClick={() => handleAddToCart(eachInst.id, orders, dispatch, nav)}
-                                    disabled={isDisable}
-                                >
-                                    <NavLink className='category-add-to-cart-text'>
-                                        Add to Cart
-                                    </NavLink>
-                                </button>
-                            )}
-                        </div>
-                    </section>
-                )) : (
-                    <h3>Sorry, we could&apos;t find a match for this search</h3>
-                )}
-            </section>
+            <section className="category-instrument-container">
+          {filteredInst?.length > 0 ? (
+            filteredInst.map((eachInst) => (
+              <InstrumentCard key={eachInst?.id}
+              eachInst={eachInst}
+              favoriteInstIds={favoriteInstIds}
+              user={user}
+              isDisable={isDisable}
+              />
+            ))
+          ) : instruments?.length > 0 ? (
+            instruments.map((eachInst) => (
+              <InstrumentCard key={eachInst?.id}
+              eachInst={eachInst}
+              favoriteInstIds={favoriteInstIds}
+              user={user}
+              isDisable={isDisable}
+              />
+            ))
+          ) : (
+            <h3>Sorry, we couldn't find a match for this search</h3>
+          )}
+        </section>
         </div>
     );
 }
