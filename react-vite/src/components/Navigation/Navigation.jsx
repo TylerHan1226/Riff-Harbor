@@ -2,16 +2,20 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
-
 import { GiGuitarBassHead } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdSailing } from "react-icons/md";
 import { GoHeartFill } from "react-icons/go";
-// import { useState } from "react";
+import OpenModalMenuItem from "./OpenModalMenuItem";
+import Search from "../Search/Search";
 
 export default function Navigation() {
 
   const user = useSelector(state => state.session.user)
+
+  const handleSearch = async (e) => {
+    e.prevent
+  }
 
   return (
     <div id="nav">
@@ -70,11 +74,14 @@ export default function Navigation() {
       </section>
 
       <section id="nav-search-bar-container">
-          <button className="search-bar">Search</button>
+          <button className="search-bar-btn">
+            <OpenModalMenuItem 
+              itemText="Search"
+              modalComponent={<Search />}
+            />
+          </button>
       </section>
 
-
     </div>
-
   );
 }

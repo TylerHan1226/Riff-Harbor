@@ -1,0 +1,27 @@
+
+#nav-search-bar-container {
+    border: 1px green solid;
+    display: flex;
+}
+
+#search-modal-container {
+    border: 1px blue solid;
+    width: 1200px;
+    height: 600px;
+}
+
+.search-bar-btn {
+    border: none;
+    list-style: none;
+    background-color: rgb(190, 0, 0);
+    width: 50%;
+    padding: 12px;
+    border-radius: 4px;
+    color: white;
+    margin: 2px auto 2px auto;
+}
+.search-bar-btn:hover {
+    background-color: rgb(235, 0, 0);
+    box-shadow: 0 0 10px 2px rgb(225, 0, 0, 0.5);
+    cursor: pointer;
+}
