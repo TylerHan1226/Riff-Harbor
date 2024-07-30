@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
         element: <News />
       },
       {
-        path: "/search/:userInput",
+        path: "/search/:instModel",
         element: <SearchResult />
       },
       {

@@ -1,11 +1,26 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { getInstrumentsByModelThunk } from "../../redux/instrument";
 
 
 export default function SearchResult() {
+    const dispatch = useDispatch()
+    const { instModel } = useParams()
+    let instruments = useSelector(state => state.instruments?.SelectedInstruments)
 
-    const { userInput } = useParams()
+    useEffect(() => {
+        dispatch(getInstrumentsByModelThunk(instModel))
+    }, [dispatch, instModel])
+
+    console.log("instruments ==>", instruments)
 
     return (
-        <h1>{userInput}</h1>
+        <div className="page-container">
+            <h1>{instModel}</h1>
+            <div>
+
+            </div>
+        </div>
     );
 }

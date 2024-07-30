@@ -7,6 +7,7 @@ export const UPDATE_INSTRUMENT = 'instrument/UPDATE_INSTRUMENT'
 export const DELETE_INSTRUMENT = 'instrument/DELETE_INSTRUMENT'
 export const LOAD_INSTRUMENTS_BY_IDS = 'instrument/LOAD_INSTRUMENTS_BY_IDS'
 export const LOAD_INSTRUMENTS_BY_CATEGORY = 'instrument/LOAD_INSTRUMENTS_BY_CATEGORY'
+export const LOAD_INSTRUMENTS_BY_MODEL = 'instrument/LOAD_INSTRUMENTS_BY_MODEL'
 
 
 // Action Types
@@ -36,6 +37,10 @@ export const loadInstrumentsByIds = (instruments) => ({
 })
 export const loadInstrumentsByCategory = (instruments) => ({
     type: LOAD_INSTRUMENTS_BY_CATEGORY,
+    instruments
+})
+export const loadInstrumentsByModel = (instruments) => ({
+    type: LOAD_INSTRUMENTS_BY_MODEL,
     instruments
 })
 
@@ -99,6 +104,20 @@ export const getInstrumentsByCategoryThunk = (category) => async(dispatch) => {
     return instruments
 }
 
+// Get Instruments By Name
+export const getInstrumentsByModelThunk = (instModel) => async (dispatch) => {
+    const res = await fetch(`/api/instruments/search/${instModel}`)
+    if (!res.ok) {
+        throw new Error('Failed to fetch instruments by model')
+    }
+    const instruments = await res.json()
+    if (instruments.errors) {
+        return instruments.errors
+    }
+    dispatch(loadInstrumentsByModel(instruments))
+    return instruments
+}
+
 // Create Instrument Thunk
 export const createInstrumentThunk = (newInstrumentData) => async (dispatch) => {   
     const res = await fetch('/api/instruments/new', {
@@ -125,7 +144,6 @@ export const updateInstrumentThunk = (updatedInstrumentData, instrumentId) => as
         throw new Error('Failed to update instrument.')
     }
     const updatedInstrument = await res.json()
-    // dispatch(updateInstrument({...instrument, ...updatedInstrument}))
     dispatch(updateInstrument({...updatedInstrument}))
     return updatedInstrument
 }
@@ -158,6 +176,9 @@ export const instrumentReducer = (state ={}, action) => {
             return {...state, ...action.instruments}
         }
         case LOAD_INSTRUMENTS_BY_CATEGORY: {
+            return {...state, ...action.instruments}
+        }
+        case LOAD_INSTRUMENTS_BY_MODEL: {
             return {...state, ...action.instruments}
         }
         case CREATE_INSTRUMENT: {

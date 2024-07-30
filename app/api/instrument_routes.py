@@ -38,7 +38,17 @@ def instruments_by_category(category):
     else:
         instrument_list = [instrument.to_dict() for instrument in instruments]
         return {'SelectedInstruments': instrument_list}
-    
+
+# get instruments by name
+# /api/instruments/search/instName
+@instrument_routes.route('/search/<instModel>')
+def instruments_by_name(instModel):
+    instruments = Instrument.query.filter(Instrument.model.ilike(f'%{instModel}%')).all()
+    if not instruments:
+        return {'message': 'Cannot get instruments by name'}
+    else:
+        instrument_list = [instrument.to_dict() for instrument in instruments]
+        return {'SelectedInstruments': instrument_list}
 
 
 # create an instrument
