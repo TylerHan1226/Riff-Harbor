@@ -8,88 +8,57 @@ import { getOrderByUserThunk } from "../../redux/cart";
 import { handleAddToCart } from "../LandingPage/LandingPage";
 import { GoHeartFill } from "react-icons/go";
 import { getUserFavThunk, removeFavThunk, addToFavoriteThunk } from '../../redux/favorite'
-import './Category.css'
 import Loading from "../Loading/Loading";
-import Filter from "../Search/Filter";
 
 
 
-export default function Category() {
+export default function Filter(instruments, category) {
   const nav = useNavigate()
   const dispatch = useDispatch()
-  const { category } = useParams()
-  const user = useSelector(state => state.session.user)
-  let instruments = useSelector(state => state.instruments?.SelectedInstruments)
-  const orders = useSelector(state => state.orders?.CurrentOrders)
-  const favorites = useSelector(state => state.favorites?.MyFavorites)
-  const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
-
-  const [toFav, setToFav] = useState(false)
-  const [removeFav, setRemoveFav] = useState(false)
 
   useEffect(() => {
     dispatch(getInstrumentsByCategoryThunk(category))
     dispatch(getOrderByUserThunk())
     dispatch(getUserFavThunk())
-    setToFav(false)
-    setRemoveFav(false)
-  }, [dispatch, category, toFav, removeFav])
+  }, [dispatch, category, instruments])
 
-  const isDisable = user ? false : true
-
-  const handleFav = (instrumentId, instrument) => {
-    if (favoriteInstIds.includes(instrumentId)) {
-      const favToRemove = favorites.filter(fav => fav.instrument_id == instrumentId)[0]
-      dispatch(removeFavThunk(favToRemove.id))
-      alert(`Removed ${instrument.model} from favorites`)
-      setToFav(true)
-    } else {
-      const newFav = { "instrument_id": instrumentId }
-      dispatch(addToFavoriteThunk(newFav))
-      alert(`Successfully added ${instrument.model} to favorites!`)
-      setRemoveFav(true)
-    }
-  }
+  console.log("category ==>", category)
 
   // Filters
   // brand filter
-  // const [brand, setBrand] = useState('')
-  // if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
-  // // condition filter
-  // const [isUsed, setIsUsed] = useState(null)
-  // const handleCondition = (condition) => {
-  //   if ((isUsed == true && condition == true) || (isUsed == false && condition == false)) {
-  //     setIsUsed(null)
-  //   } else {
-  //     setIsUsed(condition)
-  //   }
-  // }
-  // if (isUsed == true) instruments = instruments.filter(ele => ele.is_used == true)
-  // if (isUsed == false) instruments = instruments.filter(ele => ele.is_used == false)
-  // // price filter
-  // const [minPrice, setMinPrice] = useState('')
-  // const [maxPrice, setMaxPrice] = useState('')
-  // const handleMinPriceChange = (e) => {
-  //   const newValue = parseFloat(e.target.value)
-  //   newValue ? setMinPrice(newValue) : setMinPrice('')
-  // }
-  // const handleMaxPriceChange = (e) => {
-  //   const newValue = parseFloat(e.target.value)
-  //   newValue ? setMaxPrice(newValue) : setMaxPrice('')
-  // }
-  // if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
-  // if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
+  const [brand, setBrand] = useState('')
+  if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
+  // condition filter
+  const [isUsed, setIsUsed] = useState(null)
+  const handleCondition = (condition) => {
+    if ((isUsed == true && condition == true) || (isUsed == false && condition == false)) {
+      setIsUsed(null)
+    } else {
+      setIsUsed(condition)
+    }
+  }
+  if (isUsed == true) instruments = instruments.filter(ele => ele.is_used == true)
+  if (isUsed == false) instruments = instruments.filter(ele => ele.is_used == false)
+  // price filter
+  const [minPrice, setMinPrice] = useState('')
+  const [maxPrice, setMaxPrice] = useState('')
+  const handleMinPriceChange = (e) => {
+    const newValue = parseFloat(e.target.value)
+    newValue ? setMinPrice(newValue) : setMinPrice('')
+  }
+  const handleMaxPriceChange = (e) => {
+    const newValue = parseFloat(e.target.value)
+    newValue ? setMaxPrice(newValue) : setMaxPrice('')
+  }
+  if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
+  if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
  
   if (!category) {
     return <Loading />
   }
 
   return (
-    <div className="page-container">
-      <h1>{category}</h1>
-      <div className="category-container">
-
-        {/* <section className="category-filter-container">
+    <section className="category-filter-container">
 
           <div className="filter-containers">
             <h2>Brand</h2>
@@ -165,59 +134,6 @@ export default function Category() {
               </button>
             </div>
           </div>
-
-        </section> */}
-        <Filter instruments={instruments} category={category} />
-
-        <section className="category-instrument-container">
-          {instruments?.length > 0 ? instruments?.map((eachInst) => (
-            <section className="instrument-container" key={eachInst?.id}>
-              <NavLink className="instrument-dtl-container" to={`/instruments/${eachInst?.id}`}>
-                <img className="instrument-image" src={eachInst?.image_url} />
-              </NavLink>
-              <div className="category-inst-info-container">
-                <h3>{eachInst?.model}</h3>
-                <p className="black-text">${eachInst?.price}</p>
-                <h4 className="black-text">{eachInst?.color}</h4>
-                {eachInst?.is_used ? (
-                  <p className="black-text">Pre-owned</p>
-                ) : (
-                  <p className="black-text">New</p>
-                )}
-              </div>
-              <div className="inst-details-text">
-                <p className="black-text">{eachInst?.details}</p>
-              </div>
-              <div className="my-inst-item-btn-container">
-                <button className={`dtl-fav-btn ${favoriteInstIds?.includes(eachInst?.id) ? 'favorite' : ''} category-fav-btn`}
-                  onClick={() => handleFav(eachInst?.id, eachInst)}
-                >
-                  <GoHeartFill className={`dtl-fav-icon ${favoriteInstIds?.includes(eachInst?.id) ? 'favorite' : ''}`} />
-                </button>
-                {eachInst?.seller_id == user?.id ? (
-                  <button className="category-add-to-cart-button">
-                    <NavLink className='category-add-to-cart-text' to={`/instruments/${eachInst?.id}/update`}>
-                      Update
-                    </NavLink>
-                  </button>
-                ) : (
-                  <button
-                    className={`category-add-to-cart-button ${user ? '' : 'disabled'}`}
-                    onClick={() => handleAddToCart(eachInst.id, orders, dispatch, nav)}
-                    disabled={isDisable}
-                  >
-                    <NavLink className='category-add-to-cart-text'>
-                      Add to Cart
-                    </NavLink>
-                  </button>
-                )}
-              </div>
-            </section>
-          )) : (
-            <h3>Sorry, we could&apos;t find a match for this search</h3>
-          )}
-        </section>
-      </div>
-    </div>
+    </section>
   )
 }

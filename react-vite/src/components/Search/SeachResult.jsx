@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { getInstrumentsByModelThunk } from "../../redux/instrument";
 import { getUserFavThunk, removeFavThunk, addToFavoriteThunk } from '../../redux/favorite'
+import { handleAddToCart } from "../LandingPage/LandingPage";
 import { GoHeartFill } from "react-icons/go";
 
 
 export default function SearchResult() {
     const dispatch = useDispatch()
+    const nav = useNavigate()
     const { instModel } = useParams()
     const user = useSelector(state => state.session.user)
     let instruments = useSelector(state => state.instruments?.SelectedInstruments)
     const favorites = useSelector(state => state.favorites?.MyFavorites)
     const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
-
+    const orders = useSelector(state => state.orders?.CurrentOrders)
 
     const [toFav, setToFav] = useState(false)
     const [removeFav, setRemoveFav] = useState(false)
