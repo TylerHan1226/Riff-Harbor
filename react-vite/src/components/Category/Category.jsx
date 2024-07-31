@@ -93,26 +93,32 @@ export default function Category() {
     setFilterInst(updatedInstruments)
   }
 
-    useEffect(() => {
+  useEffect(() => {
     dispatch(getInstrumentsByCategoryThunk(category))
     dispatch(getOrderByUserThunk())
     dispatch(getUserFavThunk())
     setToFav(false)
     setRemoveFav(false)
-  }, [dispatch, category, toFav, removeFav, instModel, isFilterSwitch, filteredInst])
+  }, [dispatch, category, toFav, removeFav, instModel, isFilterSwitch])
 
   console.log("isFilterSwitch =>", isFilterSwitch)
   console.log("instruments =>", instruments)
   console.log("filteredInst =>", filteredInst)
 
+
   return (
     <div className="page-container">
       {category ? (<h1>{category}</h1>
       ) : instModel ? (<h1>{category}</h1>)
-        : <h1> Sorry, we couldn't find a match for this search</h1>}
+        : <h1>N/A</h1>}
       <div className="category-container">
 
-        <Filter instruments={instruments} filterInst={filterInst} setFilterOn={setFilterOn} isFilterSwitch={isFilterSwitch} />
+        <Filter instruments={instruments}
+          filterInst={filterInst}
+          setFilterOn={setFilterOn}
+          isFilterSwitch={isFilterSwitch}
+          
+        />
 
         <section className="category-instrument-container">
           {filteredInst?.length > 0 ? (
@@ -129,7 +135,7 @@ export default function Category() {
                 nav={nav}
               />
             ))
-          ) : instruments?.length > 0 && !filteredInst ? (
+          ) : instruments?.length > 0 ? (
             instruments.map((eachInst) => (
               <InstrumentCard key={eachInst?.id}
                 eachInst={eachInst}

@@ -105,8 +105,8 @@ export const getInstrumentsByCategoryThunk = (category) => async(dispatch) => {
 }
 
 // Get Instruments By Name
-export const getInstrumentsByModelThunk = (instModel) => async (dispatch) => {
-    const res = await fetch(`/api/instruments/search/${instModel}`)
+export const getInstrumentBySearchThunk = (searchInput) => async (dispatch) => {
+    const res = await fetch(`/api/instruments/search/${searchInput}`)
     if (!res.ok) {
         throw new Error('Failed to fetch instruments by model')
     }

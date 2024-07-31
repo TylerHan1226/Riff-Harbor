@@ -14,6 +14,7 @@ import Category from '../components/Category/Category';
 import Favorites from '../components/Favorites/Favorites';
 import News from '../components/News/News';
 import SearchResult from '../components/Search/SeachResult';
+import SearchPage from '../components/Search/SearchPage';
 
 export const router = createBrowserRouter([
   {
@@ -64,10 +65,6 @@ export const router = createBrowserRouter([
         element: <MyOrders />
       },
       {
-        path: "/instruments/category/:category",
-        element: <Category />
-      },
-      {
         path: "/favorites",
         element: <Favorites />
       },
@@ -76,8 +73,12 @@ export const router = createBrowserRouter([
         element: <News />
       },
       {
-        path: "/search/:instModel",
-        element: <SearchResult />
+        path: "/instruments/category/:category",
+        element: <Category />
+      },
+      {
+        path: "/search/:searchInput",
+        element: <SearchPage />
       },
       {
         path:'*',

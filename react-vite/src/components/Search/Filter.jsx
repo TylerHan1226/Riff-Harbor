@@ -3,16 +3,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function Filter({ instruments, filterInst, setFilterOn, isFilterSwitch }) {
-
+export default function Filter({ instruments, filterInst, setFilterOn, isFilterSwitch, filtersOn }) {
+    
     // brand filter
     const [brand, setBrand] = useState('')
     const handleBrandChange = (e) => {
             setBrand(e)
             setFilterOn(!isFilterSwitch)
+            filtersOn = true
     }
     if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
-    console.log("instruments ==>", instruments)
+
     // condition filter
     const [isUsed, setIsUsed] = useState(null)
     const handleCondition = (e) => {
@@ -22,6 +23,7 @@ export default function Filter({ instruments, filterInst, setFilterOn, isFilterS
             setIsUsed(e)
         }
         setFilterOn(!isFilterSwitch)
+        filtersOn = true
     }
     if (isUsed == true) instruments = instruments.filter(ele => ele.is_used == true)
     if (isUsed == false) instruments = instruments.filter(ele => ele.is_used == false)
@@ -32,19 +34,20 @@ export default function Filter({ instruments, filterInst, setFilterOn, isFilterS
         const newValue = parseFloat(e.target.value)
         newValue ? setMinPrice(newValue) : setMinPrice('')
         setFilterOn(!isFilterSwitch)
+        filtersOn = true
     }
     const handleMaxPriceChange = (e) => {
         const newValue = parseFloat(e.target.value)
         newValue ? setMaxPrice(newValue) : setMaxPrice('')
         setFilterOn(!isFilterSwitch)
+        filtersOn = true
     }
     if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
     if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
 
-    
     useEffect(() => {
         filterInst(instruments)
-    }, [isUsed, minPrice, maxPrice, isFilterSwitch])
+    }, [brand, isUsed, minPrice, maxPrice, isFilterSwitch])
 
     return (
         <section className="category-filter-container">

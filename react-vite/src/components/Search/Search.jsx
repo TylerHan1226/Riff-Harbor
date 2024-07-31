@@ -4,16 +4,16 @@ import "./Search.css";
 import { useModal } from "../../context/Modal";
 
 export default function Search() {
-    const [instModel, setInstModel] = useState("");
+    const [searchInput, setSearchInput] = useState("");
     const navigate = useNavigate();
     const { closeModal } = useModal()
 
     const handleSearch = (e) => {
         e.preventDefault();
-        if (instModel.length == 0) {
+        if (searchInput.length == 0) {
             navigate(`/`);
         } else {
-            navigate(`/search/${instModel}`);
+            navigate(`/search/${searchInput}`);
         }
         closeModal()
     };
@@ -25,8 +25,8 @@ export default function Search() {
                     <input
                         type="text"
                         placeholder="Find your instrument"
-                        value={instModel}
-                        onChange={(e) => setInstModel(e.target.value)}
+                        value={searchInput}
+                        onChange={(e) => setSearchInput(e.target.value)}
                     />
                     <button className="search-modal-btn" type="submit">
                         <p className="search-modal-btn-text">Search</p>

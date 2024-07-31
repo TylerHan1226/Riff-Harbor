@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db, Instrument
 from app.forms import InstrumentForm
 from .aws_helper import get_unique_filename, upload_file_to_s3
+from sqlalchemy import or_
 import json
 
 instrument_routes = Blueprint('instruments', __name__)
@@ -39,11 +40,16 @@ def instruments_by_category(category):
         instrument_list = [instrument.to_dict() for instrument in instruments]
         return {'SelectedInstruments': instrument_list}
 
-# get instruments by name
+# get instruments by search
 # /api/instruments/search/instName
-@instrument_routes.route('/search/<instModel>')
-def instruments_by_name(instModel):
-    instruments = Instrument.query.filter(Instrument.model.ilike(f'%{instModel}%')).all()
+@instrument_routes.route('/search/<searchInput>')
+def instruments_by_name(searchInput):
+    instruments = Instrument.query.filter(
+        or_(
+            Instrument.model.ilike(f'%{searchInput}%'),
+            Instrument.category.ilike(f'%{searchInput}%')
+        )
+    ).all()
     if not instruments:
         return {'message': 'Cannot get instruments by name'}
     else:

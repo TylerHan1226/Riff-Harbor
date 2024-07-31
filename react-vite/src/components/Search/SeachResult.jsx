@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { getInstrumentsByModelThunk } from "../../redux/instrument";
+import { getInstrumentBySearchThunk } from "../../redux/instrument";
 import { getUserFavThunk, removeFavThunk, addToFavoriteThunk } from '../../redux/favorite'
 import { handleAddToCart } from "../LandingPage/LandingPage";
 import { InstrumentCard } from "../Category/Category";
@@ -22,7 +22,7 @@ export default function SearchResult() {
     const [isFilterSwitch, setFilterOn] = useState(false)
 
     useEffect(() => {
-        dispatch(getInstrumentsByModelThunk(instModel))
+        dispatch(getInstrumentBySearchThunk(instModel))
         dispatch(getUserFavThunk())
         setToFav(false)
         setRemoveFav(false)
