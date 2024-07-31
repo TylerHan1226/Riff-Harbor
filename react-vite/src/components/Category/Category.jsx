@@ -73,20 +73,6 @@ export default function Category() {
   const [removeFav, setRemoveFav] = useState(false)
   const [isFilterSwitch, setFilterOn] = useState(false)
 
-  useEffect(() => {
-    dispatch(getInstrumentsByCategoryThunk(category))
-    dispatch(getOrderByUserThunk())
-    dispatch(getUserFavThunk())
-    setToFav(false)
-    setRemoveFav(false)
-  }, [dispatch, category, toFav, removeFav, instModel, isFilterSwitch])
-
-  // useEffect(() => {
-  //   return () => {
-  //     setFilterOn(false)
-  //   }
-  // }, [nav])
-
   const isDisable = user ? false : true
 
   const handleFav = (instrumentId, instrument) => {
@@ -107,8 +93,17 @@ export default function Category() {
     setFilterInst(updatedInstruments)
   }
 
-  console.log("isFilterSwitch =>", isFilterSwitch)
+    useEffect(() => {
+    dispatch(getInstrumentsByCategoryThunk(category))
+    dispatch(getOrderByUserThunk())
+    dispatch(getUserFavThunk())
+    setToFav(false)
+    setRemoveFav(false)
+  }, [dispatch, category, toFav, removeFav, instModel, isFilterSwitch, filteredInst])
 
+  console.log("isFilterSwitch =>", isFilterSwitch)
+  console.log("instruments =>", instruments)
+  console.log("filteredInst =>", filteredInst)
 
   return (
     <div className="page-container">
@@ -120,7 +115,7 @@ export default function Category() {
         <Filter instruments={instruments} filterInst={filterInst} setFilterOn={setFilterOn} isFilterSwitch={isFilterSwitch} />
 
         <section className="category-instrument-container">
-          {filteredInst?.length > 0 && isFilterSwitch ? (
+          {filteredInst?.length > 0 ? (
             filteredInst.map((eachInst) => (
               <InstrumentCard key={eachInst?.id}
                 eachInst={eachInst}
@@ -134,9 +129,7 @@ export default function Category() {
                 nav={nav}
               />
             ))
-          ) : filteredInst?.length == 0 && isFilterSwitch ? (
-            <h3>Sorry, we couldn't find a match for this search</h3>
-          ) : instruments?.length > 0 ? (
+          ) : instruments?.length > 0 && !filteredInst ? (
             instruments.map((eachInst) => (
               <InstrumentCard key={eachInst?.id}
                 eachInst={eachInst}

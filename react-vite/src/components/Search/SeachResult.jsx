@@ -26,13 +26,13 @@ export default function SearchResult() {
         dispatch(getUserFavThunk())
         setToFav(false)
         setRemoveFav(false)
-    }, [dispatch, instModel, toFav, removeFav])
+    }, [dispatch, instModel, toFav, removeFav, isFilterSwitch,filteredInst])
 
     useEffect(() => {
         return () => {
-          setFilterOn(false)
+            setFilterOn(false)
         }
-      }, [nav, instModel])
+    }, [nav, instModel])
 
     const isDisable = user ? false : true
 
@@ -55,14 +55,16 @@ export default function SearchResult() {
     }
 
     console.log("isFilterSwitch =>", isFilterSwitch)
+    console.log("instruments =>", instruments)
+    console.log("filteredInst =>", filteredInst)
 
     return (
         <div className="page-container">
             <h1>"{instModel}"</h1>
             <div className="category-container">
-                <Filter instruments={instruments} filterInst={filterInst} setFilterOn={setFilterOn} isFilterSwitch={isFilterSwitch}/>
+                <Filter instruments={instruments} filterInst={filterInst} setFilterOn={setFilterOn} isFilterSwitch={isFilterSwitch} />
                 <section className="category-instrument-container">
-                    {filteredInst?.length > 0 && isFilterSwitch ? (
+                    {filteredInst?.length > 0 ? (
                         filteredInst.map((eachInst) => (
                             <InstrumentCard key={eachInst?.id}
                                 eachInst={eachInst}
@@ -76,9 +78,7 @@ export default function SearchResult() {
                                 nav={nav}
                             />
                         ))
-                    ) : filteredInst?.length == 0 && isFilterSwitch ? (
-                        <h3>Sorry, we couldn't find a match for this search</h3>
-                    ) : instruments?.length > 0 ? (
+                    ) : instruments?.length > 0 && !filteredInst ? (
                         instruments.map((eachInst) => (
                             <InstrumentCard key={eachInst?.id}
                                 eachInst={eachInst}
@@ -96,6 +96,7 @@ export default function SearchResult() {
                         <h3>Sorry, we couldn't find a match for this search</h3>
                     )}
                 </section>
+
             </div>
         </div>
     );
