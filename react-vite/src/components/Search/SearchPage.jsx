@@ -85,9 +85,6 @@ export default function SearchPage() {
 
     if (!searchInput) return <Loading />
 
-    console.log("instruments ==>", instruments)
-    console.log("searchResults ==>", searchResults)
-
     return (
         <div className="page-container">
             <h1>{searchInput}</h1>
