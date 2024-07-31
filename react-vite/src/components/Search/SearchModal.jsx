@@ -38,31 +38,44 @@ export default function Search() {
                     </button>
                 </div>
             </form>
-            <div className="search-trending-container">
+            <section>
                 <h3>Trending Search</h3>
-                <div className="search-trending-searches">
-                    <button className="search-trending-btns"
-                    onClick={() => handleTrendingBtn("Fender")}>
-                        Fender
-                    </button>
-                    <button className="search-trending-btns"
-                    onClick={() => handleTrendingBtn("Les Paul")}>
-                        Les Paul
-                    </button>
-                    <button className="search-trending-btns"
-                    onClick={() => handleTrendingBtn("Black Satin")}>
-                        Black Satin
-                    </button>
-                    <button className="search-trending-btns"
-                    onClick={() => handleTrendingBtn("Acoustic Guitar")}>
-                        Acoustic Guitar
-                    </button>
-                    <button className="search-trending-btns"
-                    onClick={() => handleTrendingBtn("ESP")}>
-                        Taylor 
-                    </button>
-                </div>
-            </div>
+                <section className="search-trending-container">
+                    <div className="search-trending-search-container">
+                        <div className="search-trending-searches">
+                            <button className="search-trending-btns"
+                                onClick={() => handleTrendingBtn("Fender")}>
+                                Fender
+                            </button>
+                            <button className="search-trending-btns"
+                                onClick={() => handleTrendingBtn("Les Paul")}>
+                                Les Paul
+                            </button>
+                            <button className="search-trending-btns"
+                                onClick={() => handleTrendingBtn("Vintage")}>
+                                Vintage
+                            </button>
+                            <button className="search-trending-btns"
+                                onClick={() => handleTrendingBtn("Taylor")}>
+                                Taylor
+                            </button>
+                            <button className="search-trending-btns"
+                                onClick={() => handleTrendingBtn("Acoustic Guitar")}>
+                                Acoustic Guitar
+                            </button>
+                            <button className="search-trending-btns"
+                                onClick={() => handleTrendingBtn("Black Satin")}>
+                                Black Satin
+                            </button>
+                        </div>
+                    </div>
+                    <div className="search-trending-products-container">
+
+                    </div>
+
+                </section>
+
+            </section>
         </section>
     );
 }
