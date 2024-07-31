@@ -3,20 +3,25 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function Filter({ instruments, filterInst, setFilterOn }) {
+export default function Filter({ instruments, filterInst, setFilterOn, isFilterSwitch }) {
 
     // brand filter
     const [brand, setBrand] = useState('')
+    const handleBrandChange = (e) => {
+            setBrand(e)
+            setFilterOn(!isFilterSwitch)
+    }
     if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
     console.log("instruments ==>", instruments)
     // condition filter
     const [isUsed, setIsUsed] = useState(null)
-    const handleCondition = (condition) => {
-        if ((isUsed == true && condition == true) || (isUsed == false && condition == false)) {
+    const handleCondition = (e) => {
+        if ((isUsed == true && e == true) || (isUsed == false && e == false)) {
             setIsUsed(null)
         } else {
-            setIsUsed(condition)
+            setIsUsed(e)
         }
+        setFilterOn(!isFilterSwitch)
     }
     if (isUsed == true) instruments = instruments.filter(ele => ele.is_used == true)
     if (isUsed == false) instruments = instruments.filter(ele => ele.is_used == false)
@@ -26,10 +31,12 @@ export default function Filter({ instruments, filterInst, setFilterOn }) {
     const handleMinPriceChange = (e) => {
         const newValue = parseFloat(e.target.value)
         newValue ? setMinPrice(newValue) : setMinPrice('')
+        setFilterOn(!isFilterSwitch)
     }
     const handleMaxPriceChange = (e) => {
         const newValue = parseFloat(e.target.value)
         newValue ? setMaxPrice(newValue) : setMaxPrice('')
+        setFilterOn(!isFilterSwitch)
     }
     if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
     if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
@@ -37,8 +44,7 @@ export default function Filter({ instruments, filterInst, setFilterOn }) {
     
     useEffect(() => {
         filterInst(instruments)
-        setFilterOn(true)
-    }, [brand, isUsed, minPrice, maxPrice])
+    }, [isUsed, minPrice, maxPrice, isFilterSwitch])
 
     return (
         <section className="category-filter-container">
@@ -47,43 +53,43 @@ export default function Filter({ instruments, filterInst, setFilterOn }) {
                 <h2>Brand</h2>
                 <div className="brand-filter-container">
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='' onChange={() => setBrand('')} defaultChecked></input>
+                        <input className="radio-dot" type='radio' name='brands' value='' onChange={() => handleBrandChange('')} defaultChecked></input>
                         <label className="brand-filter-labels">All</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='B.C. Rich' onChange={() => setBrand('B.C. Rich')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='B.C. Rich' onChange={() => handleBrandChange('B.C. Rich')}></input>
                         <label className="brand-filter-labels">B.C. Rich</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='Martin' onChange={() => setBrand('Ernie Ball')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='Martin' onChange={() => handleBrandChange('Ernie Ball')}></input>
                         <label className="brand-filter-labels">Ernie Ball</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='ESP' onChange={() => setBrand('ESP')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='ESP' onChange={() => handleBrandChange('ESP')}></input>
                         <label className="brand-filter-labels">ESP</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='Fender' onChange={() => setBrand('Fender')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='Fender' onChange={() => handleBrandChange('Fender')}></input>
                         <label className="brand-filter-labels">Fender</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='Gibson' onChange={() => setBrand('Gibson')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='Gibson' onChange={() => handleBrandChange('Gibson')}></input>
                         <label className="brand-filter-labels">Gibson</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='Jackson' onChange={() => setBrand('Jackson')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='Jackson' onChange={() => handleBrandChange('Jackson')}></input>
                         <label className="brand-filter-labels">Jackson</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='Martin' onChange={() => setBrand('Martin')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='Martin' onChange={() => handleBrandChange('Martin')}></input>
                         <label className="brand-filter-labels">Martin</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='PRS' onChange={() => setBrand('PRS')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='PRS' onChange={() => handleBrandChange('PRS')}></input>
                         <label className="brand-filter-labels">PRS</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='Schecter' onChange={() => setBrand('Schecter')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='Schecter' onChange={() => handleBrandChange('Schecter')}></input>
                         <label className="brand-filter-labels">Schecter</label>
                     </div>
                     <div className="brand-filters">

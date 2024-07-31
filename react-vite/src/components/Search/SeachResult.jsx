@@ -19,6 +19,7 @@ export default function SearchResult() {
     const [filteredInst, setFilterInst] = useState([]);
     const [toFav, setToFav] = useState(false)
     const [removeFav, setRemoveFav] = useState(false)
+    const [isFilterSwitch, setFilterOn] = useState(false)
 
     useEffect(() => {
         dispatch(getInstrumentsByModelThunk(instModel))
@@ -26,6 +27,12 @@ export default function SearchResult() {
         setToFav(false)
         setRemoveFav(false)
     }, [dispatch, instModel, toFav, removeFav])
+
+    useEffect(() => {
+        return () => {
+          setFilterOn(false)
+        }
+      }, [nav, instModel])
 
     const isDisable = user ? false : true
 
@@ -46,15 +53,16 @@ export default function SearchResult() {
     const filterInst = (updatedInstruments) => {
         setFilterInst(updatedInstruments)
     }
-    const [isFilterOn, setFilterOn] = useState(false)
+
+    console.log("isFilterSwitch =>", isFilterSwitch)
 
     return (
         <div className="page-container">
             <h1>"{instModel}"</h1>
             <div className="category-container">
-                <Filter instruments={instruments} filterInst={filterInst} setFilterOn={setFilterOn} />
+                <Filter instruments={instruments} filterInst={filterInst} setFilterOn={setFilterOn} isFilterSwitch={isFilterSwitch}/>
                 <section className="category-instrument-container">
-                    {filteredInst?.length > 0 && isFilterOn ? (
+                    {filteredInst?.length > 0 && isFilterSwitch ? (
                         filteredInst.map((eachInst) => (
                             <InstrumentCard key={eachInst?.id}
                                 eachInst={eachInst}
@@ -68,7 +76,7 @@ export default function SearchResult() {
                                 nav={nav}
                             />
                         ))
-                    ) : filteredInst?.length == 0 && isFilterOn ? (
+                    ) : filteredInst?.length == 0 && isFilterSwitch ? (
                         <h3>Sorry, we couldn't find a match for this search</h3>
                     ) : instruments?.length > 0 ? (
                         instruments.map((eachInst) => (
