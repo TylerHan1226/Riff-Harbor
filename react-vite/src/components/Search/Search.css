@@ -145,14 +145,8 @@
 
 #search-modal-container {
     border: 1px pink solid;
-    width: 1200px;
+    width: 900px;
     height: 600px;
-}
-
-.model-instrument-container {
-    border: blue, 1px, solid;
-    width: 80%;
-    margin: 0 auto 0 auto;
 }
 
 .search-bar-btn {
@@ -171,6 +165,20 @@
     cursor: pointer;
 }
 
+.search-form {
+    border: 1px blue solid;
+}
+
+.search-trending-container {
+    border: 1px green solid;
+}
+
+.search-trending-searches {
+    border: 1px red solid;
+    display: flex;
+    flex-direction: column;
+}
+
 @media (max-width: 650px) {
     .search-container {
         flex-direction: column;
@@ -184,5 +192,8 @@
         margin: 12px auto;
         padding: 4px;
         align-items: center;
+    }
+    #search-modal-container {
+        width: 100%;
     }
 }

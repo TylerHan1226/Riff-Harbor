@@ -35,7 +35,8 @@ def instruments_by_name(searchInput):
     instruments = Instrument.query.filter(
         or_(
             Instrument.model.ilike(f'%{searchInput}%'),
-            Instrument.category.ilike(f'%{searchInput}%')
+            Instrument.category.ilike(f'%{searchInput}%'),
+            Instrument.color.ilike(f'%{searchInput}%')
         )
     ).all()
     if not instruments:
