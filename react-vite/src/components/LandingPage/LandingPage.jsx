@@ -12,7 +12,7 @@ import { FaDice } from "react-icons/fa6";
 
 
 export const handleAddToCart = (instrumentId, orders, dispatch, nav) => {
-  const orderInstIds = orders.map(ele => ele.instrument_id)
+  const orderInstIds = orders?.map(ele => ele.instrument_id)
   //check if already added item to the cart
   if (orderInstIds.includes(instrumentId)) {
     alert("This instrument is already in your cart! You can change the quantity in your cart page.")

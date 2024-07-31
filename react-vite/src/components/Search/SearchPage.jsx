@@ -7,6 +7,7 @@ import { addToFavoriteThunk, getUserFavThunk, removeFavThunk } from "../../redux
 import { InstrumentCard, handleFav } from "../Instrument/InstrumentHelpers";
 import { FilterCard } from "./FilterCard";
 import { handleAddToCart } from "../LandingPage/LandingPage";
+import { getOrderByUserThunk } from "../../redux/cart";
 
 
 export default function SearchPage() {
@@ -25,6 +26,7 @@ export default function SearchPage() {
     useEffect(() => {
         dispatch(getInstrumentBySearchThunk(searchInput))
         dispatch(getUserFavThunk())
+        dispatch(getOrderByUserThunk())
         setToFav(false)
         setRemoveFav(false)
     }, [nav, dispatch, searchInput, toFav, removeFav])
@@ -103,7 +105,7 @@ export default function SearchPage() {
                                 orders={orders}
                                 isDisable={isDisable}
                                 handleFav={() => handleFav(eachInst?.id, eachInst, favoriteInstIds)}
-                                handleAddToCart={handleAddToCart}
+                                handleAddToCart={() => handleAddToCart(eachInst?.id, orders, dispatch, nav)}
                                 dispatch={dispatch}
                                 nav={nav}
                             />
