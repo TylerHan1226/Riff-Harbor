@@ -3,54 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function Filter({ instruments, filterInst, setFilterOn, isFilterSwitch, filtersOn }) {
-    
-    // brand filter
-    const [brand, setBrand] = useState('')
-    const handleBrandChange = (e) => {
-            setBrand(e)
-            setFilterOn(!isFilterSwitch)
-            filtersOn = true
-    }
-    if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
-
-    // condition filter
-    const [isUsed, setIsUsed] = useState(null)
-    const handleCondition = (e) => {
-        if ((isUsed == true && e == true) || (isUsed == false && e == false)) {
-            setIsUsed(null)
-        } else {
-            setIsUsed(e)
-        }
-        setFilterOn(!isFilterSwitch)
-        filtersOn = true
-    }
-    if (isUsed == true) instruments = instruments.filter(ele => ele.is_used == true)
-    if (isUsed == false) instruments = instruments.filter(ele => ele.is_used == false)
-    // price filter
-    const [minPrice, setMinPrice] = useState('')
-    const [maxPrice, setMaxPrice] = useState('')
-    const handleMinPriceChange = (e) => {
-        const newValue = parseFloat(e.target.value)
-        newValue ? setMinPrice(newValue) : setMinPrice('')
-        setFilterOn(!isFilterSwitch)
-        filtersOn = true
-    }
-    const handleMaxPriceChange = (e) => {
-        const newValue = parseFloat(e.target.value)
-        newValue ? setMaxPrice(newValue) : setMaxPrice('')
-        setFilterOn(!isFilterSwitch)
-        filtersOn = true
-    }
-    if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
-    if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
-
-    useEffect(() => {
-        filterInst(instruments)
-    }, [brand, isUsed, minPrice, maxPrice, isFilterSwitch])
-
-    return (
-        <section className="category-filter-container">
+export const FilterCard = ({ isUsed, minPrice, maxPrice, handleBrandChange, handleMinPriceChange, handleMaxPriceChange, handleCondition}) => (
+    <section className="category-filter-container">
 
             <div className="filter-containers">
                 <h2>Brand</h2>
@@ -127,5 +81,4 @@ export default function Filter({ instruments, filterInst, setFilterOn, isFilterS
                 </div>
             </div>
         </section>
-    )
-}
+  );

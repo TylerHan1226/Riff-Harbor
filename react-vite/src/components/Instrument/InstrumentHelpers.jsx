@@ -1,6 +1,5 @@
 
 import { NavLink } from "react-router-dom";
-
 import { GoHeartFill } from "react-icons/go";
 
 export const InstrumentCard = ({ eachInst, favoriteInstIds, user, orders, isDisable, handleFav, handleAddToCart, dispatch, nav }) => (
