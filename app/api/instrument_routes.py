@@ -28,20 +28,8 @@ def instrument(id):
         instrument_list = instrument.to_dict()
         return instrument_list, 200
 
-
-# get instruments by category
-# /api/instruments/category
-@instrument_routes.route('/category/<category>')
-def instruments_by_category(category):
-    instruments = Instrument.query.filter_by(category=category).all()
-    if not instruments:
-        return {'message': 'Cannot get instruments by category'}
-    else:
-        instrument_list = [instrument.to_dict() for instrument in instruments]
-        return {'SelectedInstruments': instrument_list}
-
 # get instruments by search
-# /api/instruments/search/instName
+# /api/instruments/search/searchInput
 @instrument_routes.route('/search/<searchInput>')
 def instruments_by_name(searchInput):
     instruments = Instrument.query.filter(

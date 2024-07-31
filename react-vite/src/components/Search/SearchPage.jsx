@@ -23,14 +23,17 @@ export default function SearchPage() {
 
     const [toFav, setToFav] = useState(false)
     const [removeFav, setRemoveFav] = useState(false)
+    let [searchResults, setSearchResults] = useState([])
 
     useEffect(() => {
-        dispatch(getInstrumentBySearchThunk(searchInput))
+        dispatch(getInstrumentBySearchThunk(searchInput)).then((results) => {
+            setSearchResults(results?.SelectedInstruments)
+        })
         dispatch(getUserFavThunk())
         dispatch(getOrderByUserThunk())
         setToFav(false)
         setRemoveFav(false)
-    }, [nav, dispatch, searchInput, toFav, removeFav, searchInput])
+    }, [nav, dispatch, searchInput, toFav, removeFav])
 
     const isDisable = user ? false : true
 
@@ -40,7 +43,7 @@ export default function SearchPage() {
     const handleBrandChange = (e) => {
         setBrand(e)
     }
-    if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
+    if (brand !== '') searchResults = searchResults.filter(ele => ele.make == brand)
     // condition filter
     const [isUsed, setIsUsed] = useState(null)
     const handleCondition = (e) => {
@@ -50,8 +53,8 @@ export default function SearchPage() {
             setIsUsed(e)
         }
     }
-    if (isUsed == true) instruments = instruments.filter(ele => ele.is_used == true)
-    if (isUsed == false) instruments = instruments.filter(ele => ele.is_used == false)
+    if (isUsed == true) searchResults = searchResults.filter(ele => ele.is_used == true)
+    if (isUsed == false) searchResults = searchResults.filter(ele => ele.is_used == false)
     // price filter
     const [minPrice, setMinPrice] = useState('')
     const [maxPrice, setMaxPrice] = useState('')
@@ -63,8 +66,8 @@ export default function SearchPage() {
         const newValue = parseFloat(e.target.value)
         newValue ? setMaxPrice(newValue) : setMaxPrice('')
     }
-    if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
-    if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
+    if (minPrice) searchResults = searchResults.filter(ele => ele.price > minPrice)
+    if (maxPrice) searchResults = searchResults.filter(ele => ele.price < maxPrice)
 
     const handleFav = (instrumentId, instrument, favoriteInstIds) => {
         if (favoriteInstIds.includes(instrumentId)) {
@@ -82,6 +85,9 @@ export default function SearchPage() {
 
     if (!searchInput) return <Loading />
 
+    console.log("instruments ==>", instruments)
+    console.log("searchResults ==>", searchResults)
+
     return (
         <div className="page-container">
             <h1>{searchInput}</h1>
@@ -96,8 +102,8 @@ export default function SearchPage() {
                     handleCondition={handleCondition}
                 />
                 <section className="search-instrument-container">
-                    {instruments?.length > 0 ? (
-                        instruments.map((eachInst) => (
+                    {searchResults?.length > 0 ? (
+                        searchResults?.map((eachInst) => (
                             <InstrumentCard key={eachInst?.id}
                                 eachInst={eachInst}
                                 favoriteInstIds={favoriteInstIds}

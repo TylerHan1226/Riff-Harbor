@@ -5,15 +5,15 @@ import { useModal } from "../../context/Modal";
 
 export default function Search() {
     const [searchInput, setSearchInput] = useState("");
-    const navigate = useNavigate();
+    const nav = useNavigate();
     const { closeModal } = useModal()
 
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchInput.length == 0) {
-            navigate(`/`);
+            nav(`/`);
         } else {
-            navigate(`/search/${searchInput}`);
+            nav(`/search/${searchInput}`);
         }
         closeModal()
     };

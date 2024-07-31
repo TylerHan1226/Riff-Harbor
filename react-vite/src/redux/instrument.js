@@ -6,7 +6,6 @@ export const CREATE_INSTRUMENT = 'instrument/CREATE_INSTRUMENT'
 export const UPDATE_INSTRUMENT = 'instrument/UPDATE_INSTRUMENT'
 export const DELETE_INSTRUMENT = 'instrument/DELETE_INSTRUMENT'
 export const LOAD_INSTRUMENTS_BY_IDS = 'instrument/LOAD_INSTRUMENTS_BY_IDS'
-export const LOAD_INSTRUMENTS_BY_CATEGORY = 'instrument/LOAD_INSTRUMENTS_BY_CATEGORY'
 export const LOAD_INSTRUMENTS_BY_MODEL = 'instrument/LOAD_INSTRUMENTS_BY_MODEL'
 
 
@@ -33,10 +32,6 @@ export const deleteInstrument = (deletedInstrument) => ({
 })
 export const loadInstrumentsByIds = (instruments) => ({
     type: LOAD_INSTRUMENTS_BY_IDS,
-    instruments
-})
-export const loadInstrumentsByCategory = (instruments) => ({
-    type: LOAD_INSTRUMENTS_BY_CATEGORY,
     instruments
 })
 export const loadInstrumentsByModel = (instruments) => ({
@@ -90,21 +85,7 @@ export const getInstrumentsByIdsThunk = (instrumentIds) => async (dispatch) => {
     return selectedInstruments
 }
 
-// Get Instruments By Category
-export const getInstrumentsByCategoryThunk = (category) => async(dispatch) => {
-    const res = await fetch(`/api/instruments/category/${category}`)
-    if (!res.ok) {
-        throw new Error('Failed to fetch instruments by category')
-    }
-    const instruments = await res.json()
-    if (instruments.errors) {
-        return instruments.errors
-    }
-    dispatch(loadInstrumentsByCategory(instruments))
-    return instruments
-}
-
-// Get Instruments By Name
+// Get Instruments By Searching
 export const getInstrumentBySearchThunk = (searchInput) => async (dispatch) => {
     const res = await fetch(`/api/instruments/search/${searchInput}`)
     if (!res.ok) {
@@ -173,9 +154,6 @@ export const instrumentReducer = (state ={}, action) => {
             return {...state, ...action.instrument}
         }
         case LOAD_INSTRUMENTS_BY_IDS: {
-            return {...state, ...action.instruments}
-        }
-        case LOAD_INSTRUMENTS_BY_CATEGORY: {
             return {...state, ...action.instruments}
         }
         case LOAD_INSTRUMENTS_BY_MODEL: {
