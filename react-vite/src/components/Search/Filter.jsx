@@ -9,7 +9,6 @@ export default function Filter({ instruments, filterInst, setFilterOn }) {
     const [brand, setBrand] = useState('')
     if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
     console.log("instruments ==>", instruments)
-    console.log("brand ==>", brand)
     // condition filter
     const [isUsed, setIsUsed] = useState(null)
     const handleCondition = (condition) => {
@@ -48,7 +47,7 @@ export default function Filter({ instruments, filterInst, setFilterOn }) {
                 <h2>Brand</h2>
                 <div className="brand-filter-container">
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='' onChange={() => setBrand('')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='' onChange={() => setBrand('')} defaultChecked></input>
                         <label className="brand-filter-labels">All</label>
                     </div>
                     <div className="brand-filters">
