@@ -1,10 +1,6 @@
 
-// import ProfileButton from "./ProfileButton";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
 export const FilterCard = ({ isUsed, minPrice, maxPrice, handleBrandChange, handleMinPriceChange, handleMaxPriceChange, handleCondition}) => (
-    <section className="category-filter-container">
+    <section className="search-filter-container">
 
             <div className="filter-containers">
                 <h2>Brand</h2>

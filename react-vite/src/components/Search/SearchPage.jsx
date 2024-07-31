@@ -1,13 +1,14 @@
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import { getInstrumentBySearchThunk } from "../../redux/instrument";
 import { addToFavoriteThunk, getUserFavThunk, removeFavThunk } from "../../redux/favorite";
-import { InstrumentCard, handleFav } from "../Instrument/InstrumentHelpers";
+import { InstrumentCard } from "../Instrument/InstrumentHelpers";
 import { FilterCard } from "./FilterCard";
 import { handleAddToCart } from "../LandingPage/LandingPage";
 import { getOrderByUserThunk } from "../../redux/cart";
+import Loading from "../Loading/Loading";
 
 
 export default function SearchPage() {
@@ -29,7 +30,7 @@ export default function SearchPage() {
         dispatch(getOrderByUserThunk())
         setToFav(false)
         setRemoveFav(false)
-    }, [nav, dispatch, searchInput, toFav, removeFav])
+    }, [nav, dispatch, searchInput, toFav, removeFav, searchInput])
 
     const isDisable = user ? false : true
 
@@ -79,13 +80,12 @@ export default function SearchPage() {
         }
     }
 
-    console.log("searchInput ==>", searchInput)
-    console.log("instruments ==>", instruments)
+    if (!searchInput) return <Loading />
 
     return (
         <div className="page-container">
             <h1>{searchInput}</h1>
-            <div className="category-container">
+            <div className="search-container">
                 <FilterCard
                     isUsed={isUsed}
                     minPrice={minPrice}
@@ -95,7 +95,7 @@ export default function SearchPage() {
                     handleMaxPriceChange={handleMaxPriceChange}
                     handleCondition={handleCondition}
                 />
-                <section className="category-instrument-container">
+                <section className="search-instrument-container">
                     {instruments?.length > 0 ? (
                         instruments.map((eachInst) => (
                             <InstrumentCard key={eachInst?.id}

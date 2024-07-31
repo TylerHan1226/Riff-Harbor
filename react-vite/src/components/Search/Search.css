@@ -1,5 +1,5 @@
 
-.category-container {
+.search-container {
     display: flex;
     flex-direction: row;
     width: 80%;
@@ -7,13 +7,13 @@
 }
 
 
-.category-filter-container {
+.search-filter-container {
     width: 25%;
     min-width: 240px;
     margin-right: 60px;
 }
 
-.category-instrument-container {
+.search-instrument-container {
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -31,7 +31,6 @@
 }
 
 .filter-price-labels {
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -63,14 +62,13 @@
 .filter-price-text-bar {
     width: 100%;
 }
+.filter-price-text-bar:hover {
+    box-shadow: 0 0 10px 4px rgb(225, 0, 0, 0.5);
+}
 
 .filter-price-labels {
     color: rgb(190, 0, 0);
     font-size: 20px;
-}
-
-.filter-price-text-bar:hover {
-    box-shadow: 0 0 10px 4px rgb(225, 0, 0, 0.5);
 }
 
 .filter-condition-input-container {
@@ -95,7 +93,7 @@
     box-shadow: 0 0 12px 4px rgb(225, 0, 0, 0.5);
 }
 
-.category-inst-info-container {
+.search-inst-info-container {
     width: 240px;
 }
 
@@ -106,7 +104,7 @@
     margin-left: 12px;
 }
 
-.category-add-to-cart-button {
+.search-add-to-cart-button {
     width: 160px;
     margin-top: auto;
     margin-right: 16px;
@@ -116,27 +114,27 @@
     margin-bottom: 12px;
     border-radius: 4px;
 }
-.category-add-to-cart-button:hover {
+.search-add-to-cart-button:hover {
     background-color: rgb(235, 0, 0);
     box-shadow: 0 0 10px 2px rgb(225, 0, 0, 0.5);
 }
 
-.category-add-to-cart-text {
+.search-add-to-cart-text {
     text-decoration: none;
     font-size: 20px;
     color: white;
 }
 
-.category-add-to-cart-button.disabled {
+.search-add-to-cart-button.disabled {
     pointer-events: none;
     opacity: 0.5;
 }
 
-.category-add-to-cart-button.disabled:hover {
+.search-add-to-cart-button.disabled:hover {
     background-color: black;
 }
 
-.category-fav-btn {
+.search-fav-btn {
     margin: 24px 24px 24px auto;
 }
 
@@ -174,7 +172,7 @@
 }
 
 @media (max-width: 650px) {
-    .category-container {
+    .search-container {
         flex-direction: column;
     }
 }
@@ -182,9 +180,9 @@
 @media (max-width: 1200px) {
     .instrument-container {
         flex-direction: column;
-        width: 65%;
+        width: 90%;
         margin: 12px auto;
-        padding: 12px;
+        padding: 4px;
         align-items: center;
     }
 }
