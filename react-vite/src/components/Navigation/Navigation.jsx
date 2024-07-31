@@ -7,15 +7,11 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdSailing } from "react-icons/md";
 import { GoHeartFill } from "react-icons/go";
 import OpenModalMenuItem from "./OpenModalMenuItem";
-import Search from "../Search/Search";
+import SearchModal from "../Search/SearchModal";
 
 export default function Navigation() {
 
   const user = useSelector(state => state.session.user)
-
-  const handleSearch = async (e) => {
-    e.prevent
-  }
 
   return (
     <div id="nav">
@@ -77,7 +73,7 @@ export default function Navigation() {
           <button className="search-bar-btn">
             <OpenModalMenuItem 
               itemText="Search"
-              modalComponent={<Search />}
+              modalComponent={<SearchModal />}
             />
           </button>
       </section>
