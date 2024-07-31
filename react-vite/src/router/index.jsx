@@ -10,10 +10,8 @@ import DeleteInstrument from '../components/Instrument/DeleteInstrument'
 import MyInstruments from '../components/MyInstruments/MyInstruments';
 import MyOrders from '../components/Order/MyOrders';
 import Layout from './Layout';
-import Category from '../components/Category/Category';
 import Favorites from '../components/Favorites/Favorites';
 import News from '../components/News/News';
-import SearchResult from '../components/Search/SeachResult';
 import SearchPage from '../components/Search/SearchPage';
 
 export const router = createBrowserRouter([
@@ -71,10 +69,6 @@ export const router = createBrowserRouter([
       {
         path: "/news/:page",
         element: <News />
-      },
-      {
-        path: "/instruments/category/:category",
-        element: <Category />
       },
       {
         path: "/search/:searchInput",

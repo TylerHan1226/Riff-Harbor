@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import { getInstrumentBySearchThunk } from "../../redux/instrument";
-import { getUserFavThunk } from "../../redux/favorite";
+import { addToFavoriteThunk, getUserFavThunk, removeFavThunk } from "../../redux/favorite";
 import { InstrumentCard, handleFav } from "../Instrument/InstrumentHelpers";
 import { FilterCard } from "./FilterCard";
 import { handleAddToCart } from "../LandingPage/LandingPage";
@@ -19,7 +19,6 @@ export default function SearchPage() {
     const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
     const orders = useSelector(state => state.orders?.CurrentOrders)
 
-
     const [toFav, setToFav] = useState(false)
     const [removeFav, setRemoveFav] = useState(false)
 
@@ -28,7 +27,7 @@ export default function SearchPage() {
         dispatch(getUserFavThunk())
         setToFav(false)
         setRemoveFav(false)
-    }, [nav, dispatch, searchInput])
+    }, [nav, dispatch, searchInput, toFav, removeFav])
 
     const isDisable = user ? false : true
 
@@ -39,7 +38,6 @@ export default function SearchPage() {
         setBrand(e)
     }
     if (brand !== '') instruments = instruments.filter(ele => ele.make == brand)
-
     // condition filter
     const [isUsed, setIsUsed] = useState(null)
     const handleCondition = (e) => {
@@ -65,6 +63,19 @@ export default function SearchPage() {
     if (minPrice) instruments = instruments.filter(ele => ele.price > minPrice)
     if (maxPrice) instruments = instruments.filter(ele => ele.price < maxPrice)
 
+    const handleFav = (instrumentId, instrument, favoriteInstIds) => {
+        if (favoriteInstIds.includes(instrumentId)) {
+            const favToRemove = favorites.filter(fav => fav.instrument_id == instrumentId)[0]
+            dispatch(removeFavThunk(favToRemove.id))
+            alert(`Removed ${instrument.model} from favorites`)
+            setToFav(true)
+        } else {
+            const newFav = { "instrument_id": instrumentId }
+            dispatch(addToFavoriteThunk(newFav))
+            alert(`Successfully added ${instrument.model} to favorites!`)
+            setRemoveFav(true)
+        }
+    }
 
     console.log("searchInput ==>", searchInput)
     console.log("instruments ==>", instruments)
@@ -82,25 +93,25 @@ export default function SearchPage() {
                     handleMaxPriceChange={handleMaxPriceChange}
                     handleCondition={handleCondition}
                 />
-            <section className="category-instrument-container">
-                {instruments?.length > 0 ? (
-                    instruments.map((eachInst) => (
-                        <InstrumentCard key={eachInst?.id}
-                            eachInst={eachInst}
-                            favoriteInstIds={favoriteInstIds}
-                            user={user}
-                            orders={orders}
-                            isDisable={isDisable}
-                            handleFav={handleFav}
-                            handleAddToCart={handleAddToCart}
-                            dispatch={dispatch}
-                            nav={nav}
-                        />
-                    ))
-                ) : (
-                    <h3>Sorry, we couldn't find a match for this search</h3>
-                )}
-            </section>
+                <section className="category-instrument-container">
+                    {instruments?.length > 0 ? (
+                        instruments.map((eachInst) => (
+                            <InstrumentCard key={eachInst?.id}
+                                eachInst={eachInst}
+                                favoriteInstIds={favoriteInstIds}
+                                user={user}
+                                orders={orders}
+                                isDisable={isDisable}
+                                handleFav={() => handleFav(eachInst?.id, eachInst, favoriteInstIds)}
+                                handleAddToCart={handleAddToCart}
+                                dispatch={dispatch}
+                                nav={nav}
+                            />
+                        ))
+                    ) : (
+                        <h3>Sorry, we couldn't find a match for this search</h3>
+                    )}
+                </section>
             </div>
         </div>
 

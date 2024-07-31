@@ -48,7 +48,7 @@ export const InstrumentCard = ({ eachInst, favoriteInstIds, user, orders, isDisa
   );
 
 
-export const handleFav = (instrumentId, instrument) => {
+export const handleFav = (instrumentId, instrument, favoriteInstIds) => {
   if (favoriteInstIds.includes(instrumentId)) {
     const favToRemove = favorites.filter(fav => fav.instrument_id == instrumentId)[0]
     dispatch(removeFavThunk(favToRemove.id))
