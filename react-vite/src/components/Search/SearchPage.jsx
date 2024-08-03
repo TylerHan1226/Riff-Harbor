@@ -43,7 +43,7 @@ export default function SearchPage() {
     const handleBrandChange = (e) => {
         setBrand(e)
     }
-    if (brand !== '') searchResults = searchResults.filter(ele => ele.make == brand)
+    if (brand !== '') searchResults = searchResults?.filter(ele => ele.make == brand)
     // condition filter
     const [isUsed, setIsUsed] = useState(null)
     const handleCondition = (e) => {
@@ -53,8 +53,8 @@ export default function SearchPage() {
             setIsUsed(e)
         }
     }
-    if (isUsed == true) searchResults = searchResults.filter(ele => ele.is_used == true)
-    if (isUsed == false) searchResults = searchResults.filter(ele => ele.is_used == false)
+    if (isUsed == true) searchResults = searchResults?.filter(ele => ele.is_used == true)
+    if (isUsed == false) searchResults = searchResults?.filter(ele => ele.is_used == false)
     // price filter
     const [minPrice, setMinPrice] = useState('')
     const [maxPrice, setMaxPrice] = useState('')
@@ -66,8 +66,8 @@ export default function SearchPage() {
         const newValue = parseFloat(e.target.value)
         newValue ? setMaxPrice(newValue) : setMaxPrice('')
     }
-    if (minPrice) searchResults = searchResults.filter(ele => ele.price > minPrice)
-    if (maxPrice) searchResults = searchResults.filter(ele => ele.price < maxPrice)
+    if (minPrice) searchResults = searchResults?.filter(ele => ele.price > minPrice)
+    if (maxPrice) searchResults = searchResults?.filter(ele => ele.price < maxPrice)
 
     const handleFav = (instrumentId, instrument, favoriteInstIds) => {
         if (favoriteInstIds.includes(instrumentId)) {
