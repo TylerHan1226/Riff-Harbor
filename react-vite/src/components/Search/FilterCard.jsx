@@ -46,7 +46,7 @@ export const FilterCard = ({ isUsed, minPrice, maxPrice, handleBrandChange, hand
                         <label className="brand-filter-labels">Schecter</label>
                     </div>
                     <div className="brand-filters">
-                        <input className="radio-dot" type='radio' name='brands' value='Taylor' onChange={() => setBrand('Taylor')}></input>
+                        <input className="radio-dot" type='radio' name='brands' value='Taylor' onChange={() => handleBrandChange('Taylor')}></input>
                         <label className="brand-filter-labels">Taylor</label>
                     </div>
                 </div>

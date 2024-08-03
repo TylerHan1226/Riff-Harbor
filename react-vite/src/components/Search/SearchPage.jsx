@@ -16,7 +16,7 @@ export default function SearchPage() {
     const dispatch = useDispatch()
     const { searchInput } = useParams()
     const user = useSelector(state => state.session.user)
-    let instruments = useSelector(state => state.instruments?.SelectedInstruments)
+    // let instruments = useSelector(state => state.instruments?.SelectedInstruments)
     const favorites = useSelector(state => state.favorites?.MyFavorites)
     const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
     const orders = useSelector(state => state.orders?.CurrentOrders)
@@ -114,7 +114,7 @@ export default function SearchPage() {
                             />
                         ))
                     ) : (
-                        <h3>Sorry, we couldn't find a match for this search</h3>
+                        <h3>Sorry, we could not find a match for this search</h3>
                     )}
                 </section>
             </div>

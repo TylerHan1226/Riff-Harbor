@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
@@ -13,7 +13,7 @@ import SignupFormModal from "../SignupFormModal";
 import { FaSearch } from "react-icons/fa";
 
 export default function Navigation() {
-  const nav = useNavigate()
+
   const user = useSelector(state => state.session.user)
 
   return (
