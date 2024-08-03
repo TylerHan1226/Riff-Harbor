@@ -1,21 +1,21 @@
-#nav {
-  background-color: rgb(235, 0, 0);
-}
 
 .nav-container {
-  /* border: 1px red solid; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 160px;
+  background-color: rgb(235, 0, 0)
 }
 
-#nav-home {
+.nav-home {
   display: flex;
   flex-direction: row;
   gap: 24px;
+  width: 600px;
   align-items: center;
+  justify-content: center;
+  margin-left: 0;
 }
 
 #nav-site-name {
@@ -32,14 +32,13 @@
   font-size: 42px;
 }
 
-#nav-icon {
-  font-size: 90px;
+#nav-site-icon {
+  font-size: 105px;
   color: white;
   transition: transform 0.3s ease;
   transform: rotate(40deg);
-  margin: 0 16px;
 }
-#nav-icon:hover {
+#nav-site-icon:hover {
   color: rgb(20, 0, 0);
   transform: rotate(60deg)
 }
@@ -53,35 +52,57 @@
   transform: rotate(30deg)
 }
 
-
 .nav-icons-container {
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
+  align-items: center;
   gap: 20px;
 }
 
-.nav-profile-container {
+.nav-action-button-container {
   display: flex;
   flex-direction: row;
-  justify-items: center;
+  gap: 24px;
+  width: 60%;
+  margin: 0 36px 0 36px;
   align-items: center;
+  justify-content: center;
 }
 
+.search-bar-container {
+  width: 20%;
+}
 
-.nav-action-button-container {
-  /* border: black solid 1px; */
+.nav-loginSignup-container {
   display: flex;
   flex-direction: row;
-  gap: 32px;
-  height: 25%;
+  padding: 12px;
+  gap: 24px;
 }
 
 .nav-action-button {
     background-color: white;
-    width: 240px;
+    width: 180px;
+    height: 36px;
     border: none;
     border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: rgb(235, 0, 0);
+    list-style: none;
+    font-size: 20px;
+}
+
+.nav-search-btn {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.nav-search-btn:hover {
+  cursor: pointer;
 }
 
 .nav-action-button:hover {
@@ -94,6 +115,7 @@
   color: rgb(235, 0, 0);
   text-decoration: none;
   font-size: 20px;
+  height: 20px;
 }
 
 
@@ -103,9 +125,6 @@
     padding: 20px;
     height: 100%;
     gap: 12px;
-  }
-  .nav-profile-container {
-    margin: 0;
   }
   .nav-action-button-container {
     flex-direction: column;

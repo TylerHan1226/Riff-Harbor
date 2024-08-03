@@ -5,7 +5,6 @@
     margin: 0 auto;
 }
 
-
 .search-filter-container {
     width: 25%;
     min-width: 240px;
@@ -138,15 +137,6 @@
     background-color: black;
 }
 
-.search-fav-btn {
-    margin: 24px 24px 24px auto;
-}
-
-#nav-search-bar-container {
-    border: 1px green solid;
-    display: flex;
-}
-
 #search-modal-container {
     border: 1px pink solid;
     width: 900px;
@@ -159,7 +149,7 @@
     border: none;
     list-style: none;
     background-color: rgb(190, 0, 0);
-    width: 50%;
+    width: 240px;
     padding: 12px;
     border-radius: 4px;
     color: white;
