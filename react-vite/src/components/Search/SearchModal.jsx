@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Search.css";
 import { useModal } from "../../context/Modal";
 import { FaSearch } from "react-icons/fa";
@@ -39,7 +39,7 @@ export default function Search() {
                     <input
                         className="search-form-field-input"
                         type="text"
-                        placeholder="Find your instrument"
+                        placeholder="Find your sound"
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
                     />
@@ -86,8 +86,11 @@ export default function Search() {
                             {trendingInstruments?.length > 0 && (
                                 trendingInstruments.map((eachInst) => (
                                     <div className="trending-product" key={eachInst.id}>
-                                        <img className="trending-products-img" src={eachInst.image_url} />
-                                        <p>$ {eachInst.price}</p>
+                                        <NavLink to={`instruments/${eachInst.id}`} onClick={closeModal}>
+                                            <img className="trending-products-img" src={eachInst.image_url} />
+                                        </NavLink>
+                                        <p className="trending-product-text">{eachInst.model}</p>
+                                        <p className="trending-product-text">$ {eachInst.price}</p>
                                     </div>
                                 ))
                             )}

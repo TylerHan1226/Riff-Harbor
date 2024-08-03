@@ -3,7 +3,7 @@ export const FilterCard = ({ isUsed, minPrice, maxPrice, handleBrandChange, hand
     <section className="search-filter-container">
 
             <div className="filter-containers">
-                <h2>Brand</h2>
+                <h2>Make</h2>
                 <div className="brand-filter-container">
                     <div className="brand-filters">
                         <input className="radio-dot" type='radio' name='brands' value='' onChange={() => handleBrandChange('')} defaultChecked></input>
