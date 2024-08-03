@@ -97,9 +97,6 @@
 
 .nav-search-btn {
   list-style: none;
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
 }
 .nav-search-btn:hover {
   cursor: pointer;

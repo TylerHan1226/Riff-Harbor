@@ -35,7 +35,6 @@
 }
 
 .brand-filter-container {
-    /* border: blue solid 1px; */
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -108,12 +107,10 @@
 
 .search-add-to-cart-button {
     width: 160px;
-    margin-top: auto;
-    margin-right: 16px;
     background-color: rgb(190, 0, 0);
     border: none;
     height: 56px;
-    margin-bottom: 12px;
+    margin: auto 24px 24px 0;
     border-radius: 4px;
 }
 
@@ -138,7 +135,6 @@
 }
 
 #search-modal-container {
-    border: 1px pink solid;
     width: 900px;
     height: 420px;
     padding: 16px;
@@ -165,9 +161,6 @@
     color: white;
 }
 
-/* .search-form {
-    border: 1px blue solid;
-} */
 .search-form-fields {
     display: flex;
     flex-direction: row;
@@ -189,23 +182,19 @@
 }
 
 .search-trending-container {
-    /* border: 1px red solid; */
     display: flex;
     flex-direction: row;
 }
 
 .search-trending-search-container {
-    /* border: 1px green solid; */
     width: 20%;
 }
 
 .search-trending-products-container {
-    /* border: 1px orange solid; */
     width: 80%;
 }
 
 .search-trending-searches {
-    /* border: 1px red solid; */
     display: flex;
     flex-direction: column;
 }
@@ -238,6 +227,9 @@
     height: 16px;
     font-size: 16px;
 }
+.search-fav-btn {
+    margin: 24px 24px 0 auto;
+}
 
 @media (max-width: 650px) {
     .search-container {
@@ -253,8 +245,7 @@
         padding: 4px;
         align-items: center;
     }
-
     #search-modal-container {
-        width: 100%;
+        width: 900px;
     }
 }
