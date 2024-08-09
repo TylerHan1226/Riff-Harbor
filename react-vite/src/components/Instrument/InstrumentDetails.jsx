@@ -98,9 +98,15 @@ export default function InstrumentDetails() {
                     <h2 className='black-text'>{instrument.color}</h2>
                     {instrument.discount < 1 ? (
                         <div className='discount-price-container'>
-                            <p className="black-text-bold discount-price detail-price-text">${instrument.price}</p>
-                            <p className="black-text-bold detail-price-text">${(instrument.price * instrument.discount).toFixed(2)}</p>
-                            <p className="black-text-bold detail-price-text money-saved">SAVE ${(instrument.price - (instrument.price * instrument.discount)).toFixed(2)} !</p>
+                            <p className="black-text-bold discount-price detail-price-text">
+                                ${instrument.price}
+                            </p>
+                            <p className="black-text-bold detail-price-text">
+                                ${(instrument.price * instrument.discount).toFixed(2)}
+                            </p>
+                            <p className="black-text-bold detail-price-text money-saved">
+                                SAVE ${(instrument.price - (instrument.price * instrument.discount)).toFixed(2)} !
+                            </p>
                         </div>
                     ) : (
                         <p className="black-text-bold detail-price-text">${instrument.price}</p>

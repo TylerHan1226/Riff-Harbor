@@ -30,7 +30,7 @@ def seed_instruments():
         fretboard = "Maple",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711508631/Riff-Harbor/eg-2_wikka6.jpg",
-        discount = 1
+        discount = 0.9
     )
     e_guitar_3 = Instrument(
         seller_id = 2,

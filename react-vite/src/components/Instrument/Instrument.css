@@ -205,6 +205,10 @@
     color: white;
     padding: 8px;
 }
+.instrument-card-dtl-text {
+    height: 20px;
+    font-weight: 500;
+}
 
 @media (max-width: 1200px) {
     .instrument-dtl-page-container {

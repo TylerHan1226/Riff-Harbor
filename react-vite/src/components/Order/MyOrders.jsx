@@ -65,7 +65,25 @@ export default function MyOrders() {
                         <div className="instrument-dtl-container">
                             <h4 className="black-text">{eachInst?.model}</h4>
                             <p className="black-text">{eachInst?.category}</p>
-                            <p className="black-text">${eachInst?.price}</p>
+                            {eachInst?.discount < 1 ? (
+                <div className="landing-discount-container">
+                  <div className="discount-price-container">
+                    <p className="instrument-card-dtl-text discount-price">
+                      ${eachInst?.price}
+                    </p>
+                    <p className="instrument-card-dtl-text">
+                      ${(eachInst?.price * eachInst?.discount).toFixed(2)}
+                    </p>
+                  </div>
+                  <div className="landing-money-saved">
+                    <p >
+                    Save ${(eachInst?.price - (eachInst?.price * eachInst?.discount)).toFixed(2)}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <p className="instrument-card-dtl-text">${eachInst?.price}</p>
+              )}
                             {eachInst?.is_used ? (
                                 <p className="black-text">Pre-owned</p>
                             ) : (
