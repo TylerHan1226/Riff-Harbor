@@ -46,5 +46,6 @@ class Instrument(db.Model):
             'body': self.body,
             'fretboard': self.fretboard,
             'is_used': self.is_used,
+            'discount': self.discount,
             'image_url': self.image_url,
         }

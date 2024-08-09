@@ -51,7 +51,6 @@ export default function InstrumentDetails() {
     if (user) {
         isDisable = false
     }
-
     const handleAddToCart = (instId) => {
         const orderInstIds = userOrders.map(ele => ele.instrument_id)
         //check if already added item to the cart
@@ -69,7 +68,6 @@ export default function InstrumentDetails() {
 
     // handle favorite
     const favoriteInstIds = favorites?.map(ele => ele.instrument_id)
-    
     const handleFav = (instrumentId) => {
       if (favoriteInstIds.includes(instrumentId)) {
         const favToRemove = favorites.filter(fav => fav.instrument_id == instrumentId)[0]
@@ -84,6 +82,13 @@ export default function InstrumentDetails() {
       }
     }
 
+    console.log('discount ==>', instrument?.discount)
+
+    let instrumentPrice = instrument?.price
+    if (instrument?.discount < 1) {
+        instrumentPrice *= instrument.discount
+    }
+    instrumentPrice = instrumentPrice.toFixed(2)
 
     return (
         <section id='instrument-dtl-page-root'>
@@ -99,7 +104,16 @@ export default function InstrumentDetails() {
                 <div className="instrument-dtl-info-container">
                     <h1>{instrument.model}</h1>
                     <h2 className='black-text'>{instrument.color}</h2>
-                    <p className="black-text-bold">${instrument.price}</p>
+                    {instrument.discount < 1 ? (
+                        <div className='discount-price-container'>
+                            <p className="black-text-bold discount-price detail-price-text">${instrument.price}</p>
+                            <p className="black-text-bold detail-price-text">${instrumentPrice}</p>
+                            <p className="black-text-bold detail-price-text money-saved">SAVE ${instrument.price - instrumentPrice} !</p>
+                        </div>
+                    ) : (
+                        <p className="black-text-bold detail-price-text">${instrumentPrice}</p>
+                    )}
+
                     {instrument.is_used ? (
                         <p className="black-text-bold">Condition: Pre-owned</p>
                     ) : (

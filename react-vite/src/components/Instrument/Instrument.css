@@ -160,7 +160,6 @@
     border: 1px solid rgb(235, 0, 0);
 }
 
-
 .dtl-fav-btn {
     width: 48px;
     height: 48px;
@@ -186,6 +185,25 @@
 .dtl-fav-icon:hover {
     color: rgb(190, 0, 0);
     cursor: pointer;
+}
+
+.discount-price-container {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+}
+.detail-price-text {
+    font-size: 20px;
+}
+.discount-price {
+    color: rgb(190, 0, 0);
+    text-decoration: line-through;
+}
+.money-saved {
+    background-color: red;
+    color: white;
+    padding: 8px;
 }
 
 @media (max-width: 1200px) {
