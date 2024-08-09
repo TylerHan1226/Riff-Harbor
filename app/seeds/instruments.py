@@ -268,6 +268,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711513528/Riff-Harbor/b-3_wmr4zd.jpg",
+        discount = 0.9
     )
     bass_4 = Instrument(
         seller_id = 2,
