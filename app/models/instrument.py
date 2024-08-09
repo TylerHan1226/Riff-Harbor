@@ -21,8 +21,10 @@ class Instrument(db.Model):
     body = Column(String(100), nullable=False)
     fretboard = Column(String(100), nullable=False)
     is_used = Column(Boolean, nullable=False)
+    discount = Column(Float, nullable=True)
     image_url = Column(String(1000), nullable=True)
     created_at = Column(DateTime, default=datetime.now)
+    updated_at = Column(DateTime, default=datetime.now)
 
 
     users = relationship('User', back_populates='instruments')

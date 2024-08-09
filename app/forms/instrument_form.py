@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import StringField, IntegerField, DecimalField, BooleanField, SubmitField
+from flask_wtf.file import FileField, FileAllowed
+from wtforms import StringField, DecimalField, BooleanField
 from wtforms.validators import DataRequired, ValidationError
 from ..api.aws_helper import ALLOWED_EXTENSIONS
 from ..models import Instrument
@@ -29,6 +29,9 @@ def check_details(form, field):
     if len(field.data) <= 25:
         raise ValidationError('Details must be greater than 25 characters')
 
+def check_discount(form, field):
+    if not (0 <= field.data <= 1):
+        raise ValidationError('Discount must be between 0 and 1')
 
 
 # form class
@@ -42,6 +45,6 @@ class InstrumentForm(FlaskForm):
     body = StringField('Body', validators=[DataRequired(), check_under_100('Body')])
     fretboard = StringField('Fretboard', validators=[DataRequired(), check_under_100('Fretboard')])
     is_used = BooleanField('Pre-owned')
-    # image_url = StringField('Image URL', validators=[DataRequired()])
+    discount = DecimalField('Discount', validators=[check_discount])
     image_url = FileField('Image File', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     

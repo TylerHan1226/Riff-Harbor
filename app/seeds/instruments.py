@@ -16,6 +16,7 @@ def seed_instruments():
         fretboard = "Maple",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712351131/Riff-Harbor/eg-1_ahmvqc.png",
+        discount = 1
     )
     e_guitar_2 = Instrument(
         seller_id = 2,
@@ -29,6 +30,7 @@ def seed_instruments():
         fretboard = "Maple",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711508631/Riff-Harbor/eg-2_wikka6.jpg",
+        discount = 1
     )
     e_guitar_3 = Instrument(
         seller_id = 2,
@@ -42,6 +44,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711508633/Riff-Harbor/eg-3_qx38jb.jpg",
+        discount = 1
     )
     e_guitar_4 = Instrument(
         seller_id = 2,
@@ -55,6 +58,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711508636/Riff-Harbor/eg-4_xlvihd.jpg",
+        discount = 1
     )
     e_guitar_5 = Instrument(
         seller_id = 2,
@@ -68,6 +72,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711509117/Riff-Harbor/eg-5_rpezwk.jpg",
+        discount = 1
     )
     e_guitar_6 = Instrument(
         seller_id = 2,
@@ -81,6 +86,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711509293/Riff-Harbor/eg-6_w5dqan.jpg",
+        discount = 1
     )
     e_guitar_7 = Instrument(
         seller_id = 2,
@@ -94,6 +100,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711509668/Riff-Harbor/eg-7_ygb6ah.jpg",
+        discount = 1
     )
     e_guitar_8 = Instrument(
         seller_id = 2,
@@ -107,6 +114,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711509874/Riff-Harbor/eg-8_strtro.jpg",
+        discount = 0.8
     )
     e_guitar_9 = Instrument(
         seller_id = 2,
@@ -120,6 +128,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711510116/Riff-Harbor/eg-9_ptbrvp.jpg",
+        discount = 1
     )
     e_guitar_10 = Instrument(
         seller_id = 2,
@@ -133,6 +142,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711510276/Riff-Harbor/eg-10_fxnrlu.jpg",
+        discount = 1
     )
     e_guitar_11 = Instrument(
         seller_id = 2,
@@ -146,6 +156,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711510540/Riff-Harbor/eg-11_rp4fve.jpg",
+        discount = 0.8
     )
     e_guitar_12 = Instrument(
         seller_id = 2,
@@ -159,6 +170,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712795334/Riff-Harbor/eg-12_wu3u5y.png",
+        discount = 0.85
     )
     a_guitar_1 = Instrument(
         seller_id = 2,
@@ -172,6 +184,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711511261/Riff-Harbor/ag-1_celjqi.jpg",
+        discount = 1
     )
     a_guitar_2 = Instrument(
         seller_id = 2,
@@ -185,6 +198,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711511269/Riff-Harbor/ag-2_ydzev5.jpg",
+        discount = 1
     )
     a_guitar_3 = Instrument(
         seller_id = 2,
@@ -198,6 +212,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711511958/Riff-Harbor/ag-3_nd7csl.jpg",
+        discount = 0.9
     )
     a_guitar_4 = Instrument(
         seller_id = 2,
@@ -211,6 +226,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711514825/Riff-Harbor/ag-4_hejvke.jpg",
+        discount = 0.9
     )
     bass_1 = Instrument(
         seller_id = 2,
@@ -224,6 +240,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711512107/Riff-Harbor/b-1_paekkg.jpg",
+        discount = 0.75
     )
     bass_2 = Instrument(
         seller_id = 2,
@@ -237,6 +254,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711513320/Riff-Harbor/b-2_btvnbr.jpg",
+        discount = 1
     )
     bass_3 = Instrument(
         seller_id = 2,
@@ -263,6 +281,7 @@ def seed_instruments():
         fretboard = "Maple",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711513685/Riff-Harbor/b-4_wpi6a5.jpg",
+        discount = 1
     )
     bass_5 = Instrument(
         seller_id = 2,
@@ -276,6 +295,7 @@ def seed_instruments():
         fretboard = "Maple",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711514142/Riff-Harbor/b-5_s3leed.jpg",
+        discount = 1
     )
     bass_6 = Instrument(
         seller_id = 2,
@@ -289,6 +309,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711514298/Riff-Harbor/b-6_bzajvj.jpg",
+        discount = 0.85
     )
     bass_7 = Instrument(
         seller_id = 2,
@@ -302,6 +323,7 @@ def seed_instruments():
         fretboard = "Maple",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711514560/Riff-Harbor/b-7_zhcnrm.jpg",
+        discount = 1
     )
     bass_8 = Instrument(
         seller_id = 2,
@@ -315,6 +337,7 @@ def seed_instruments():
         fretboard = "Maple",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711514602/Riff-Harbor/b-8_npdm9g.jpg",
+        discount = 1
     )
     used_inst_1 = Instrument(
         seller_id = 1,
@@ -328,6 +351,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = True,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg",
+        discount = 0.65
     )
     used_inst_2 = Instrument(
         seller_id = 1,
@@ -341,6 +365,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = True,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637202/Riff-Harbor/test-eg-2_lc8yfn.jpg",
+        discount = 0.7
     )
     e_guitar_13 = Instrument(
         seller_id = 2,
@@ -354,6 +379,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637594/Riff-Harbor/eg-13_pssfbb.png",
+        discount = 1
     )
     e_guitar_14 = Instrument(
         seller_id = 2,
@@ -367,6 +393,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637759/Riff-Harbor/eg-14_epxdgu.jpg",
+        discount = 1
     )
     e_guitar_15 = Instrument(
         seller_id = 2,
@@ -380,6 +407,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637946/Riff-Harbor/eg-15_vqyxhy.jpg",
+        discount = 1
     )
     e_guitar_16 = Instrument(
         seller_id = 2,
@@ -393,6 +421,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712638069/Riff-Harbor/eg-16_oost1a.jpg",
+        discount = 0.9
     )
     e_guitar_17 = Instrument(
         seller_id = 2,
@@ -406,6 +435,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = True,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712638159/Riff-Harbor/eg-17_c0l8hp.jpg",
+        discount = 1
     )
     e_guitar_18 = Instrument(
         seller_id = 2,
@@ -419,6 +449,7 @@ def seed_instruments():
         fretboard = "Ebony",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712685922/Riff-Harbor/eg-18_guaiss.jpg",
+        discount = 1
     )
     bass_9 = Instrument(
         seller_id = 2,
@@ -432,6 +463,7 @@ def seed_instruments():
         fretboard = "Maple",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712686157/Riff-Harbor/b-9_bm1alk.jpg",
+        discount = 1
     )
     a_guitar_5 = Instrument(
         seller_id = 2,
@@ -445,6 +477,7 @@ def seed_instruments():
         fretboard = "Tropical mahogany",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712696223/Riff-Harbor/ag-5_bm9clo.jpg",
+        discount = 1
     )
     a_guitar_6 = Instrument(
         seller_id = 2,
@@ -458,6 +491,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712696542/Riff-Harbor/ag-6_e94nf7.png",
+        discount = 0.85
     )
     a_guitar_7 = Instrument(
         seller_id = 2,
@@ -471,6 +505,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712696727/Riff-Harbor/ag-7_kbbbi6.png",
+        discount = 0.85
     )
     used_inst_3 = Instrument(
         seller_id = 2,
@@ -484,6 +519,7 @@ def seed_instruments():
         fretboard = "Laurel",
         is_used = True,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712696972/Riff-Harbor/test-eg-3_dn0t2h.png",
+        discount = 0.95
     )
     used_inst_4 = Instrument(
         seller_id = 2,
@@ -497,6 +533,7 @@ def seed_instruments():
         fretboard = "Rosewood",
         is_used = True,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712697484/Riff-Harbor/used-4_lb0pcg.png",
+        discount = 0.85
     )
     a_guitar_8 = Instrument(
         seller_id = 2,
@@ -510,6 +547,7 @@ def seed_instruments():
         fretboard = "Laurel",
         is_used = False,
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712697201/Riff-Harbor/ag-8_g9wlee.png",
+        discount = 1
     )
 
 
