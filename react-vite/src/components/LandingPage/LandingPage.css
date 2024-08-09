@@ -12,12 +12,7 @@
     flex-direction: row;
 }
 
-/* .header-category {
-    border: red 1px solid;
-} */
-
 .landing-header-actions {
-    /* border: green solid 1px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,7 +22,6 @@
 }
 
 .header-tabs-container {
-    /* border: orange solid 1px; */
     align-self: center;
     padding: 4px;
     display: flex;
@@ -51,7 +45,6 @@
 }
 
 .category-tabs {
-    /* border: blue solid 1px; */
     cursor: pointer;
     min-width: 160px;
     width: 320px;
@@ -65,7 +58,7 @@
 }
 
 .instrument-container {
-    border: 0.5px solid rgb(0, 0, 0, 0.2);
+    border: 0.25px solid rgb(0, 0, 0, 0.2);
     background-color: white;
     border-radius: 12px;
     margin: 12px 0;
@@ -75,25 +68,26 @@
 }
 
 .landing-instruments-container{
-    /* border: 1px solid red; */
     margin-top: 24px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 4px;
 }
 
 .instrument-dtl-container {
     width: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 8px;
+    height: 280px;
 }
 
 .inst-landing-dtl-text {
-    height: 12px;
+    height: 8px;
+}
+.instrument-model {
+    height: 52px;
 }
 
 .add-to-cart-button {
@@ -101,7 +95,7 @@
     margin-top: auto;
     background-color: rgb(190, 0, 0);
     border: none;
-    height: 24px;
+    min-height: 24px;
     margin-bottom: 12px;
     border-radius: 4px;
 }
@@ -158,6 +152,24 @@
     width: 200px;
     margin-top: 20px;
 }
+
+.landing-discount-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+.landing-money-saved {
+    background-color: red;
+    color: white;
+    height: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    border-radius: 4px;
+}
+
 
 @media (max-width: 1200px) {
     .header-tabs-container {

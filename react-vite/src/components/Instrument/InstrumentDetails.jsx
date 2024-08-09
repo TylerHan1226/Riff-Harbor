@@ -82,14 +82,6 @@ export default function InstrumentDetails() {
       }
     }
 
-    console.log('discount ==>', instrument?.discount)
-
-    let instrumentPrice = instrument?.price
-    if (instrument?.discount < 1) {
-        instrumentPrice *= instrument.discount
-    }
-    instrumentPrice = instrumentPrice.toFixed(2)
-
     return (
         <section id='instrument-dtl-page-root'>
             <div className='instrument-dtl-page-container'>
@@ -107,13 +99,12 @@ export default function InstrumentDetails() {
                     {instrument.discount < 1 ? (
                         <div className='discount-price-container'>
                             <p className="black-text-bold discount-price detail-price-text">${instrument.price}</p>
-                            <p className="black-text-bold detail-price-text">${instrumentPrice}</p>
-                            <p className="black-text-bold detail-price-text money-saved">SAVE ${instrument.price - instrumentPrice} !</p>
+                            <p className="black-text-bold detail-price-text">${(instrument.price * instrument.discount).toFixed(2)}</p>
+                            <p className="black-text-bold detail-price-text money-saved">SAVE ${(instrument.price - (instrument.price * instrument.discount)).toFixed(2)} !</p>
                         </div>
                     ) : (
-                        <p className="black-text-bold detail-price-text">${instrumentPrice}</p>
+                        <p className="black-text-bold detail-price-text">${instrument.price}</p>
                     )}
-
                     {instrument.is_used ? (
                         <p className="black-text-bold">Condition: Pre-owned</p>
                     ) : (
