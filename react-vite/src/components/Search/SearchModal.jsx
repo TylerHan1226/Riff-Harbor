@@ -4,6 +4,7 @@ import "./Search.css";
 import { useModal } from "../../context/Modal";
 import { FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { MdSailing } from "react-icons/md";
 
 export default function Search() {
     const [searchInput, setSearchInput] = useState("")
@@ -100,7 +101,6 @@ export default function Search() {
                                             <img className="trending-products-img" src={eachInst.image_url} />
                                         </NavLink>
                                         <p className="trending-product-text">{eachInst.model}</p>
-                                        <p className="">$ {eachInst.price}</p>
                                     </div>
                                 ))
                             )}
@@ -118,7 +118,10 @@ export default function Search() {
                                             <img className="trending-products-img" src={eachInst.image_url} />
                                         </NavLink>
                                         <p className="trending-product-text">{eachInst.model}</p>
-                                        <p className="search-modal-discount-text">{((1 - eachInst.discount) * 10).toFixed(0) * 10}% OFF!</p>
+                                        <div className="search-modal-discount-container">
+                                            <p className="search-modal-discount-text">{((1 - eachInst.discount) * 10).toFixed(0) * 10}% OFF!</p>
+                                            <p className="search-modal-discount-text"><MdSailing /></p>
+                                        </div>
                                     </div>
                                 ))
                             )}
