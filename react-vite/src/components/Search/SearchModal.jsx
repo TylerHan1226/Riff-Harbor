@@ -6,31 +6,42 @@ import { FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 export default function Search() {
-    const [searchInput, setSearchInput] = useState("");
-    const nav = useNavigate();
+    const [searchInput, setSearchInput] = useState("")
+    const nav = useNavigate()
     const { closeModal } = useModal()
 
     const instruments = useSelector(state => state.instruments?.Instruments)
 
     const handleSearch = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (searchInput.length == 0) {
-            nav(`/`);
+            nav(`/`)
         } else {
-            nav(`/search/${searchInput}`);
+            nav(`/search/${searchInput}`)
         }
         closeModal()
     };
 
     const handleTrendingBtn = (trendingText) => {
-        nav(`/search/${trendingText}`);
+        nav(`/search/${trendingText}`)
         closeModal()
     }
 
     // add customized trending instruments (can be dynamic with more instruments attributes in the future)
-    const trendingInstruments = instruments.filter(ele => [5, 7, 33, 39].includes(ele.id))
-    console.log("trendingInstruments ==>", trendingInstruments)
-    console.log("instruments ==>", instruments)
+    const trendingInstruments = instruments?.filter(ele => [5, 7, 33, 39].includes(ele.id))
+
+    // filter instruments with discount
+    let discountInstruments = instruments?.filter(ele => ele.discount < 1)
+    //randomize helper
+    function shuffleArray(array) {
+        for (let i = array?.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+    discountInstruments = shuffleArray(discountInstruments)?.slice(0, 5)
+    console.log(discountInstruments)
 
     return (
         <section id="search-modal-container">
@@ -49,7 +60,6 @@ export default function Search() {
                 </div>
             </form>
             <section>
-
                 <section className="search-trending-container">
                     <div className="search-trending-search-container">
                         <h3>Trending Search</h3>
@@ -96,8 +106,24 @@ export default function Search() {
                             )}
                         </div>
                     </div>
-
                 </section>
+
+                <div className="search-trending-products-container">
+                        <h3>Limited Discount!</h3>
+                        <div className="trending-products-container">
+                            {discountInstruments?.length > 0 && (
+                                discountInstruments.map((eachInst) => (
+                                    <div className="trending-product" key={eachInst.id}>
+                                        <NavLink to={`instruments/${eachInst.id}`} onClick={closeModal}>
+                                            <img className="trending-products-img" src={eachInst.image_url} />
+                                        </NavLink>
+                                        <p className="trending-product-text">{eachInst.model}</p>
+                                        <p className="trending-product-text">$ {eachInst.price}</p>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                </div>
 
             </section>
         </section>

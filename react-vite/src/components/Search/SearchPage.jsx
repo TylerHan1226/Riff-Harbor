@@ -92,7 +92,7 @@ export default function SearchPage() {
         }
     }
     if (discountFilter == true) searchResults = searchResults?.filter(ele => ele.discount < 1).sort((a, b) => a.discount - b.discount)
-    if (discountFilter == false) searchResults = searchResults?.filter(ele => ele.discount < 1).sort((a, b) => b.discount - a.discount)
+    if (discountFilter == false) searchResults = searchResults?.sort((a, b) => b.discount - a.discount)
     
         if (!searchInput) return <Loading />
 

@@ -3,20 +3,6 @@ export const FilterCard = ({ isUsed, minPrice, maxPrice, discountFilter, handleD
     <section className="search-filter-container">
 
         <div className="filter-containers">
-            <h2>Discount</h2>
-            <div className="filter-discount-btn-container">
-                <button className={`filter-discount-arrow-btns ${discountFilter == true ? 'selected' : ''}`}
-                        onClick={() => handleDiscountFilter(true)}>
-                    <FaArrowAltCircleUp />
-                </button>
-                <button className={`filter-discount-arrow-btns ${discountFilter == false ? 'selected' : ''}`}
-                    onClick={() => handleDiscountFilter(false)}>
-                    <FaArrowAltCircleDown />
-                </button>
-            </div>
-        </div>
-
-        <div className="filter-containers">
             <h2>Make</h2>
             <div className="brand-filter-container">
                 <div className="brand-filters">
@@ -76,6 +62,20 @@ export const FilterCard = ({ isUsed, minPrice, maxPrice, discountFilter, handleD
                 <label className="filter-price-labels">
                     <input className="filter-price-text-bar" type="text" placeholder="$ Max" value={maxPrice} onChange={handleMaxPriceChange} />
                 </label>
+            </div>
+        </div>
+
+        <div className="filter-containers">
+            <h2>Discount</h2>
+            <div className="filter-discount-btn-container">
+                <button className={`filter-discount-arrow-btns ${discountFilter == true ? 'selected' : ''}`}
+                        onClick={() => handleDiscountFilter(true)}>
+                    <FaArrowAltCircleUp />
+                </button>
+                <button className={`filter-discount-arrow-btns ${discountFilter == false ? 'selected' : ''}`}
+                    onClick={() => handleDiscountFilter(false)}>
+                    <FaArrowAltCircleDown />
+                </button>
             </div>
         </div>
 
