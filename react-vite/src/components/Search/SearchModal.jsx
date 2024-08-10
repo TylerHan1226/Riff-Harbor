@@ -100,7 +100,7 @@ export default function Search() {
                                             <img className="trending-products-img" src={eachInst.image_url} />
                                         </NavLink>
                                         <p className="trending-product-text">{eachInst.model}</p>
-                                        <p className="trending-product-text">$ {eachInst.price}</p>
+                                        <p className="">$ {eachInst.price}</p>
                                     </div>
                                 ))
                             )}
@@ -118,7 +118,7 @@ export default function Search() {
                                             <img className="trending-products-img" src={eachInst.image_url} />
                                         </NavLink>
                                         <p className="trending-product-text">{eachInst.model}</p>
-                                        <p className="trending-product-text">$ {eachInst.price}</p>
+                                        <p className="search-modal-discount-text">{((1 - eachInst.discount) * 10).toFixed(0) * 10}% OFF!</p>
                                     </div>
                                 ))
                             )}

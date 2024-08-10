@@ -138,7 +138,7 @@
 
 #search-modal-container {
     width: 900px;
-    height: 800px;
+    height: 820px;
     padding: 20px;
     background-color: white;
 }
@@ -226,7 +226,7 @@
     object-fit: cover;
 }
 .trending-product-text {
-    height: 16px;
+    height: 36px;
     font-size: 16px;
 }
 .search-fav-btn {
@@ -250,6 +250,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.search-modal-discount-text {
+    color: rgb(190, 0, 0);
+    font-weight: 600;
 }
 
 @media (max-width: 650px) {
