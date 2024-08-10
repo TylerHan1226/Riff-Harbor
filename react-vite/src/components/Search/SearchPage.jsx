@@ -82,8 +82,19 @@ export default function SearchPage() {
             setRemoveFav(true)
         }
     }
-
-    if (!searchInput) return <Loading />
+    // discount filter
+    const [discountFilter, setDiscountFilter] = useState(false)
+    const handleDiscountFilter = (e) => {
+        if ((discountFilter == true && e == true) || (discountFilter == false && e == false)) {
+            setDiscountFilter(null)
+        } else {
+            setDiscountFilter(e)
+        }
+    }
+    if (discountFilter == true) searchResults = searchResults?.filter(ele => ele.discount < 1).sort((a, b) => a.discount - b.discount)
+    if (discountFilter == false) searchResults = searchResults?.filter(ele => ele.discount < 1).sort((a, b) => b.discount - a.discount)
+    
+        if (!searchInput) return <Loading />
 
     return (
         <div className="page-container">
@@ -93,6 +104,8 @@ export default function SearchPage() {
                     isUsed={isUsed}
                     minPrice={minPrice}
                     maxPrice={maxPrice}
+                    discountFilter={discountFilter}
+                    handleDiscountFilter={handleDiscountFilter}
                     handleBrandChange={handleBrandChange}
                     handleMinPriceChange={handleMinPriceChange}
                     handleMaxPriceChange={handleMaxPriceChange}
