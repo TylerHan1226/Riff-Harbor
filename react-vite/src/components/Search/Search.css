@@ -236,16 +236,17 @@
 .filter-discount-btn-container {
     display: flex;
     flex-direction: row;
-    gap:12px
+    gap: 12px
 }
 .filter-discount-arrow-btns {
-    width: 48%;
+    width: 100%;
     background-color: white;
     height: 32px;
     border: none;
     font-size: 16px;
+    font-weight: 500;
     border-radius: 12px;
-    font-size: 24px;
+    font-size: 20px;
     color: rgb(190, 0, 0);
     display: flex;
     justify-content: center;
@@ -254,6 +255,7 @@
 .search-modal-discount-text {
     color: rgb(190, 0, 0);
     font-weight: 600;
+    font-size: 20px;
 }
 .search-modal-discount-container {
     display: flex;

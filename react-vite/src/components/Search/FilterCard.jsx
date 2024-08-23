@@ -1,4 +1,4 @@
-import { FaArrowAltCircleUp, FaArrowAltCircleDown } from "react-icons/fa";
+
 export const FilterCard = ({ isUsed, minPrice, maxPrice, discountFilter, handleDiscountFilter, handleBrandChange, handleMinPriceChange, handleMaxPriceChange, handleCondition }) => (
     <section className="search-filter-container">
 
@@ -70,11 +70,7 @@ export const FilterCard = ({ isUsed, minPrice, maxPrice, discountFilter, handleD
             <div className="filter-discount-btn-container">
                 <button className={`filter-discount-arrow-btns ${discountFilter == true ? 'selected' : ''}`}
                         onClick={() => handleDiscountFilter(true)}>
-                    <FaArrowAltCircleUp />
-                </button>
-                <button className={`filter-discount-arrow-btns ${discountFilter == false ? 'selected' : ''}`}
-                    onClick={() => handleDiscountFilter(false)}>
-                    <FaArrowAltCircleDown />
+                    I Want Discount!
                 </button>
             </div>
         </div>

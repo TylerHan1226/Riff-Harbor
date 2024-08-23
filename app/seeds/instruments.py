@@ -340,33 +340,33 @@ def seed_instruments():
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711514602/Riff-Harbor/b-8_npdm9g.jpg",
         discount = 1
     )
-    used_inst_1 = Instrument(
-        seller_id = 1,
-        make = "B.C. Rich",
-        model = "B.C. Rich Ironbird Extreme with Floyd Rose",
-        color = "Matte Black",
-        category = "Electric Guitar",
-        price = 1799.99,
-        details = "The BC Rich Ironbird, designed by Joey Rico in 1983, is a metal artists favorite. Its angular body shape features sharp, dagger-like points. With a 24-fret neck and licensed Floyd Rose tremolo, it’s built for shredding.",
-        body = "Basswood",
+    bass_9 = Instrument(
+        seller_id = 2,
+        make = "Gibson",
+        model = "Gibson SG Standard Bass Heritage",
+        color = "Cherry",
+        category = "Bass",
+        price = 1999.00,
+        details = "The Gibson SG Standard Bass, known for its iconic look, sound, and feel, features a 30-inch short scale length that enhances its distinctive tone. Ideal for smaller players, this bass is cherished for its strong, fundamental sound. With a solid mahogany body and a comfortable, rounded neck, it's a classic.",
+        body = "Mahogany",
         fretboard = "Rosewood",
-        is_used = True,
-        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg",
-        discount = 0.65
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1724453041/Riff-Harbor/b-10_q2aacn.jpg",
+        discount = 1
     )
-    used_inst_2 = Instrument(
-        seller_id = 1,
-        make = "Jackson",
-        model = "Jackson Pro Series Signature Jeff Loomis Soloist 7-String",
-        color = "Satin Black",
-        category = "Electric Guitar",
-        price = 1699.99,
-        details = "Jackson's Jeff Loomis Signature Soloist SL7: a high-speed, aggressive extended-range guitar crafted for clarity. Developed with Jeff Loomis, it offers a streamlined design, lightweight body, and satin-finished neck for shredders' comfort.",
-        body = "Alder",
-        fretboard = "Ebony",
-        is_used = True,
-        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637202/Riff-Harbor/test-eg-2_lc8yfn.jpg",
-        discount = 0.7
+    bass_10 = Instrument(
+        seller_id = 2,
+        make = "Gibson",
+        model = "Gibson SG Standard Bass Heritage",
+        color = "Ebony",
+        category = "Bass",
+        price = 1999.00,
+        details = "The Gibson SG Standard Bass, known for its iconic look, sound, and feel, features a 30-inch short scale length that enhances its distinctive tone. Ideal for smaller players, this bass is cherished for its strong, fundamental sound. With a solid mahogany body and a comfortable, rounded neck, it's a classic.",
+        body = "Mahogany",
+        fretboard = "Rosewood",
+        is_used = False,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1724454328/Riff-Harbor/b-11_xbpelw.png",
+        discount = 1
     )
     e_guitar_13 = Instrument(
         seller_id = 2,
@@ -452,7 +452,7 @@ def seed_instruments():
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712685922/Riff-Harbor/eg-18_guaiss.jpg",
         discount = 1
     )
-    bass_9 = Instrument(
+    bass_11 = Instrument(
         seller_id = 2,
         make = "Fender",
         model = "Fender Player Plus Meteora",
@@ -508,6 +508,34 @@ def seed_instruments():
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712696727/Riff-Harbor/ag-7_kbbbi6.png",
         discount = 0.85
     )
+    used_inst_1 = Instrument(
+        seller_id = 1,
+        make = "B.C. Rich",
+        model = "B.C. Rich Ironbird Extreme with Floyd Rose",
+        color = "Matte Black",
+        category = "Electric Guitar",
+        price = 1799.99,
+        details = "The BC Rich Ironbird, designed by Joey Rico in 1983, is a metal artists favorite. Its angular body shape features sharp, dagger-like points. With a 24-fret neck and licensed Floyd Rose tremolo, it is built for shredding.",
+        body = "Basswood",
+        fretboard = "Rosewood",
+        is_used = True,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1711557057/Riff-Harbor/test-eg-1_esfxhj.jpg",
+        discount = 0.65
+    )
+    used_inst_2 = Instrument(
+        seller_id = 1,
+        make = "Jackson",
+        model = "Jackson Pro Series Signature Jeff Loomis Soloist 7-String",
+        color = "Satin Black",
+        category = "Electric Guitar",
+        price = 1699.99,
+        details = "Jackson's Jeff Loomis Signature Soloist SL7: a high-speed, aggressive extended-range guitar crafted for clarity. Developed with Jeff Loomis, it offers a streamlined design, lightweight body, and satin-finished neck for shredders' comfort.",
+        body = "Alder",
+        fretboard = "Ebony",
+        is_used = True,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712637202/Riff-Harbor/test-eg-2_lc8yfn.jpg",
+        discount = 0.7
+    )
     used_inst_3 = Instrument(
         seller_id = 2,
         make = "Gibson",
@@ -536,6 +564,34 @@ def seed_instruments():
         image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1712697484/Riff-Harbor/used-4_lb0pcg.png",
         discount = 0.85
     )
+    used_inst_5 = Instrument(
+        seller_id = 2,
+        make = "Fender",
+        model = "Fender Player II Mustang Bass PJ",
+        color = "Coral Red",
+        category = "Bass",
+        price = 799.99,
+        details = "The Fender Player II Mustang Bass PJ offers flexible, thunderous tone with sleek style. Since 1964, it's been a favorite among bassists. This update adds versatile pickups: the P Bass middle for punchy lows and mids, and the Jazz Bass neck for rich lows—perfect for any genre.",
+        body = "Alder",
+        fretboard = "Ebony",
+        is_used = True,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1724454424/Riff-Harbor/used-bass-4_lw6z7a.jpg",
+        discount = 0.65
+    )
+    used_inst_6 = Instrument(
+        seller_id = 1,
+        make = "ESP",
+        model = "ESP Original Snapper",
+        color = "Nebula Black Burst",
+        category = "Electric Guitar",
+        price = 5499.00,
+        details = "The ESP Original Snapper CTMN Electric Guitar in Nebula Black Burst is a high-end, handcrafted instrument featuring a swamp ash body with a burled poplar top, a one-piece maple neck and fingerboard, and Seymour Duncan pickups. It includes Gotoh locking tuners and an ESP Flicker-III tremolo system, all wrapped in a stunning Nebula Black Burst finish. Perfect for players seeking top-notch craftsmanship and versatile performance.",
+        body = "Mahogany",
+        fretboard = "Maple",
+        is_used = True,
+        image_url = "https://res.cloudinary.com/do8l6gpqp/image/upload/v1724454799/Riff-Harbor/used-inst-6_lzufot.jpg",
+        discount = 0.95
+    )
     a_guitar_8 = Instrument(
         seller_id = 2,
         make = "Gibson",
@@ -552,7 +608,7 @@ def seed_instruments():
     )
 
 
-    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, a_guitar_5, a_guitar_6, a_guitar_7, a_guitar_8, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8, bass_9, used_inst_1, used_inst_2, e_guitar_13, e_guitar_14, e_guitar_15, e_guitar_16, e_guitar_17, e_guitar_18, used_inst_3, used_inst_4])
+    db.session.add_all([e_guitar_1, e_guitar_2, e_guitar_3, e_guitar_4, e_guitar_5, e_guitar_6, e_guitar_7, e_guitar_8, e_guitar_9, e_guitar_10, e_guitar_11, e_guitar_12, a_guitar_1, a_guitar_2, a_guitar_3, a_guitar_4, a_guitar_5, a_guitar_6, a_guitar_7, a_guitar_8, bass_1, bass_2, bass_3, bass_4, bass_5, bass_6, bass_7, bass_8, bass_9, bass_10, bass_11, used_inst_1, used_inst_2, e_guitar_13, e_guitar_14, e_guitar_15, e_guitar_16, e_guitar_17, e_guitar_18, used_inst_3, used_inst_4, used_inst_5,used_inst_6])
     db.session.commit()
 
 
