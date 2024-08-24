@@ -32,6 +32,19 @@ input, label, select {
     width: 100%;
 }
 
+.form-discount-field-container {
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    align-items: center;
+}
+.form-input-discount-field {
+    width: 40%;
+}
+.form-discount-text {
+    margin-left: 12px;
+}
+
 .form-textarea-field {
     max-width: 100%;
     resize: vertical;

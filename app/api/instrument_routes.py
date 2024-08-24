@@ -78,7 +78,8 @@ def create_instrument():
             body = form.body.data,
             fretboard = form.fretboard.data,
             is_used = form.is_used.data,
-            image_url=url
+            image_url=url,
+            discount = form.body.discount,
         )
         # explicitly load
         # form.populate_obj(new_instrument)
@@ -128,6 +129,7 @@ def update_instrument(id):
         instrument.fretboard = form.fretboard.data
         instrument.is_used = form.is_used.data
         instrument.image_url = url
+        instrument.discount = form.discount.data
 
         # form.populate_obj(instrument)
         db.session.commit()

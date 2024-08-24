@@ -22,6 +22,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
     const [fretboard, setFretboard] = useState('')
     const [is_used, setIsUsed] = useState(null)
     const [image_url, setImageUrl] = useState(instrument?.image_url || null)
+    const [discount, setDiscount ] = useState(0)
 
     const [validations, setValidations] = useState({})
     const [submitted, setSubmitted] = useState(false)
@@ -37,7 +38,6 @@ export default function InstrumentForm({ buttonName, instrument }) {
 
     useEffect(() => {
         if (instrument) {
-            console.log('instrument.image_url in form ==>', instrument.image_url)
             setMake(instrument.make || '')
             setModel(instrument.model || '')
             setColor(instrument.color || '')
@@ -49,6 +49,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
             setIsUsed(instrument.is_used || false)
             setImageUrl(image_url || instrument.image_url)
             setThumbnail(thumbnail || instrument.image_url)
+            setDiscount(Math.round((1 - instrument.discount) * 100) || 0)
         }
     }, [instrument, instrumentId]);
 
@@ -90,6 +91,9 @@ export default function InstrumentForm({ buttonName, instrument }) {
             if (is_used === null) {
                 errors.is_used = 'New/Pre-owned field is required'
             }
+            if ((100 - discount) / 100 < 0 || (100 - discount) / 100 > 1) {
+                errors.discount = 'Discount must be between 0 and 100%'
+            }
         }
 
         setValidations(errors)
@@ -98,7 +102,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
         } else {
             isValidated = false
         }
-    }, [submitted, make, model, color, category, price, details, body, fretboard, is_used, image_url])
+    }, [submitted, make, model, color, category, price, details, body, fretboard, is_used, image_url, discount])
     //DO NOT PUT VALIDATIONS IN THE DEPENDENCY
 
     const handleSubmit = async (e) => {
@@ -120,6 +124,7 @@ export default function InstrumentForm({ buttonName, instrument }) {
         formData.append('fretboard', fretboard)
         formData.append('is_used', is_used)
         formData.append('image_url', image_url)
+        formData.append('discount', (100 - discount) / 100)
 
         if (!instrumentId) {
             const instrumentCreated = await dispatch(createInstrumentThunk(formData))
@@ -283,6 +288,22 @@ export default function InstrumentForm({ buttonName, instrument }) {
                     />
                     {/* {validations.image_url && (<p className="validation-error-text">* {validations.image_url}</p>)} */}
                 </label>
+
+                <label className="form-label-container">
+                    Discount: <br></br>
+                    <div className="form-discount-field-container">
+                        <input
+                        type='text'
+                        name='price'
+                        value={discount}
+                        placeholder="Discount"
+                        onChange={e => setDiscount(e.target.value)}
+                        className="form-input-discount-field"
+                        ></input>
+                        <p className="form-discount-text">% OFF!</p>
+                    </div>
+                </label>
+                {validations.discount && (<p className="validation-error-text">* {validations.discount}</p>)}
 
                 <button className="submit-form-button" type='submit' disabled={isValidated}>
                     <p className='add-to-cart-text-dtl submit-form-btn-text'>{buttonName}</p>
