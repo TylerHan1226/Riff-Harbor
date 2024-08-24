@@ -579,7 +579,7 @@ def seed_instruments():
         discount = 0.65
     )
     used_inst_6 = Instrument(
-        seller_id = 1,
+        seller_id = 2,
         make = "ESP",
         model = "ESP Original Snapper",
         color = "Nebula Black Burst",
