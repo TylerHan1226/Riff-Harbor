@@ -44,3 +44,16 @@
     width: 30%;
     object-fit: cover;
 }
+
+.history-price-container {
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    align-items: center;
+    gap: 24px;
+}
+
+.history-discount-text {
+    color: rgb(190, 0, 0);
+    font-weight: 600;
+}

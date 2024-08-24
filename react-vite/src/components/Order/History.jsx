@@ -34,9 +34,9 @@ export default function History() {
 
     const getSubtotal = (history) => {
         const subtotal = history.reduce((acc, curr) => {
-            const price = curr.instrument?.price * curr.quantity
+            const price = curr.instrument?.price * curr.quantity * curr.instrument?.discount
             return acc + price
-        }, 0)
+        }, 0).toFixed(2)
         return subtotal
     }
 
@@ -67,9 +67,12 @@ export default function History() {
                                         <h3>{history.instrument.model}</h3>
                                         <p>{history.instrument.color}</p>
                                         <p>{history.instrument.category}</p>
-                                        <p>${history.instrument.price}</p>
+                                        <div className='history-price-container'>
+                                        <p>${(history.instrument.price * history.instrument.discount).toFixed(2)}</p>
+                                        {history.instrument.discount < 1 && <p className='history-discount-text'>{Math.ceil(1 - history.instrument.discount) * 10}% OFF!</p>}
+                                        </div>
                                         <p>quantity: {history.quantity}</p>
-                                        <p>total: ${history.quantity * history.instrument.price}</p>
+                                        <p>total: ${(history.quantity * history.instrument.price * history.instrument.discount).toFixed(2)}</p>
                                     </div>
                                 </div>
                             ))}
