@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal";
 import { useEffect } from "react";
 import { clearCartThunk, getOrderByUserThunk } from "../../redux/cart";
 import { addNewHistoryThunk } from "../../redux/history";
+import { getSubtotal } from './OrderHelper';
 
 export default function Checkout() {
     const dispatch = useDispatch()
@@ -14,13 +15,7 @@ export default function Checkout() {
     const orders = useSelector(state => state.orders?.CurrentOrders)
     const instArr = Object.values(instruments)?.slice(0, orders?.length)
 
-    const subtotal = instArr?.reduce((acc, inst) => {
-        const matchingOrder = orders?.find(order => order.instrument_id == inst.id)
-        if (matchingOrder) {
-            return acc + (inst.price * matchingOrder.quantity)
-        }
-        return acc
-    }, 0).toFixed(2)
+    const subtotal = getSubtotal(instArr, orders)
 
     useEffect(() => {
         if (!user) {

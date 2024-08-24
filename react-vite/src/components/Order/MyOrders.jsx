@@ -10,6 +10,7 @@ import History from './History';
 import Checkout from './Checkout';
 import './Orders.css'
 import Loading from '../Loading/Loading';
+import { getSubtotal } from './OrderHelper';
 
 
 export default function MyOrders() {
@@ -26,13 +27,7 @@ export default function MyOrders() {
         setDeleted(!hasDeleted)
     }
 
-    const subtotal = instArr?.reduce((acc, inst) => {
-        const matchingOrder = orders?.find(order => order.instrument_id == inst.id)
-        if (matchingOrder) {
-            return acc + (inst.price * matchingOrder.quantity)
-        }
-        return acc
-    }, 0).toFixed(2)
+    const subtotal = getSubtotal(instArr, orders)
 
     useEffect(() => {
         if (!user) {
