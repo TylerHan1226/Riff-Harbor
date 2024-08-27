@@ -43,7 +43,20 @@ export default function MyInstruments() {
                         <div className="instrument-dtl-container">
                             <h4 className="black-text">{eachInst?.model}</h4>
                             <p className="black-text">{eachInst?.category}</p>
-                            <p className="black-text">${eachInst?.price}</p>
+                            
+                            {eachInst.discount < 1 ? (
+                                <div className='myInstr-discount-price-container'>
+                                    <p className="black-text-bold discount-price">
+                                        ${eachInst.price}
+                                    </p>
+                                    <p className="black-text-bold">
+                                        ${(eachInst.price * eachInst.discount).toFixed(2)}
+                                    </p>
+                                </div>
+                            ) : 
+                                (<p className="black-text">${eachInst?.price}</p>
+                            )}
+
                             {eachInst?.is_used ? (
                                 <p className="black-text">Pre-owned</p>
                             ) : (
@@ -51,7 +64,7 @@ export default function MyInstruments() {
                             )}
                         </div>
                         <div className="my-inst-item-btn-container">
-                        <button className="my-inst-action-btn">
+                            <button className="my-inst-action-btn">
                                 <NavLink className='add-to-cart-text my-inst-update-btn' to={`${eachInst?.id}/update`}>
                                     Update
                                 </NavLink>
@@ -66,7 +79,7 @@ export default function MyInstruments() {
                     </div>
                 )) : (
                     <h3>You have&apos;t posted any instrument yet</h3>
-                ) }
+                )}
             </div>
 
         </div>
