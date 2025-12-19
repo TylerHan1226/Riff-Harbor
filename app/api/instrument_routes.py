@@ -57,7 +57,7 @@ def create_instrument():
 
     if form.validate_on_submit():
         # image = form.data['image_url']
-        image = request.files['image_url']
+        image = request.files.get('image_url')
 
         url = None
         if image:
@@ -79,7 +79,7 @@ def create_instrument():
             fretboard = form.fretboard.data,
             is_used = form.is_used.data,
             image_url=url,
-            discount = form.body.discount,
+            discount = form.discount.data,
         )
         # explicitly load
         # form.populate_obj(new_instrument)
@@ -108,7 +108,7 @@ def update_instrument(id):
         if instrument.seller_id != current_user.id:
             return redirect('api/auth/unauthorized')
 
-        image = form.image_url.data
+        image = request.files.get('image_url')
         url = None
         if image:
             image.filename = get_unique_filename(image.filename)
