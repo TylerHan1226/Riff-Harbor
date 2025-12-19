@@ -53,7 +53,8 @@ def instruments_by_name(searchInput):
 @login_required
 def create_instrument():
     form = InstrumentForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form['csrf_token'].data = request.cookies.get('csrf_token')
+
 
     if form.validate_on_submit():
         # image = form.data['image_url']
@@ -114,7 +115,7 @@ def update_instrument(id):
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             if 'url' not in upload:
-                return {'message': 'Failed to upload image'}, 500
+                return {'message': 'Failed to upload image', 'upload': upload}, 500
             url = upload['url']
         else:
             url = instrument.image_url
