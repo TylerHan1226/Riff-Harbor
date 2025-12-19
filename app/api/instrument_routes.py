@@ -65,7 +65,7 @@ def create_instrument():
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             if 'url' not in upload:
-                return {'message': 'Failed to upload image'}, 500
+                return {'message': 'Failed to upload image', 'upload': upload}, 500
             url = upload['url']
 
         new_instrument = Instrument(

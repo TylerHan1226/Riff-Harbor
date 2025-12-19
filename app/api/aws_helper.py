@@ -6,13 +6,15 @@ import uuid
 
 ALLOWED_EXTENSIONS = { "pdf", "png", "jpg", "jpeg", "gif" }
 BUCKET_NAME = os.environ.get("S3_BUCKET")
-S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
+AWS_REGION = os.environ.get("AWS_REGION")
+S3_LOCATION = f"https://{BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/"
 
 
 s3 = boto3.client(
-   "s3",
-   aws_access_key_id=os.environ.get("S3_KEY"),
-   aws_secret_access_key=os.environ.get("S3_SECRET")
+    "s3",
+    region_name=AWS_REGION,
+    aws_access_key_id=os.environ.get("S3_KEY"),
+    aws_secret_access_key=os.environ.get("S3_SECRET"),
 )
 
 
@@ -22,25 +24,19 @@ def get_unique_filename(filename):
     return f"{unique_filename}.{ext}"
 
 
-def upload_file_to_s3(file, acl="public-read"):
+def upload_file_to_s3(file):
     try:
-        print('BUCKET_NAME ==>', BUCKET_NAME)
-        print('ALLOWED_EXTENSIONS ==>', ALLOWED_EXTENSIONS)
-        print('S3_LOCATION ==>', S3_LOCATION)
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
             file.filename,
-            ExtraArgs={
-                "ACL": acl,
-                "ContentType": file.content_type
-            }
+            ExtraArgs={"ContentType": file.content_type}
         )
     except Exception as e:
-        # in case the your s3 upload fails
         return {"errors": str(e)}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}
+
 
 
 def remove_file_from_s3(image_url):
